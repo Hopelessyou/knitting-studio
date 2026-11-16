@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function TopNavBar({ activeTab, onSelectTab }) {
   const tabs = [
+    { id: 'home', label: '홈', icon: 'home' },
     { id: 'sweater', label: '스웨터', sub: '탑다운 레글런' },
     { id: 'beanie', label: '비니 / 와치캡', sub: '8등분 왕관 줄임' },
     { id: 'socks', label: '맞춤 양말', sub: '토업 & 커프다운' },
@@ -11,19 +12,25 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
   return (
     <header className="sticky top-0 z-40 bg-[#fff8f3]/90 backdrop-blur-md border-b border-[#201b13]/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center shadow-sm">
+        {/* /html/body/div/div/header/div[1]/div[1] -> Home Button */}
+        <button
+          type="button"
+          onClick={() => onSelectTab('home')}
+          className="flex items-center gap-3 cursor-pointer group text-left border-0 bg-transparent p-0 focus:outline-none"
+          title="홈으로 이동"
+        >
+          <div className="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:bg-primary-hover transition-all">
             <span className="material-symbols-outlined text-[24px]">gesture</span>
           </div>
           <div>
-            <h1 className="font-serif font-bold text-lg text-on-surface tracking-tight leading-tight">
+            <h1 className="font-serif font-bold text-lg text-on-surface tracking-tight leading-tight group-hover:text-primary transition-colors">
               니팅 스튜디오
             </h1>
             <p className="text-xs text-on-surface-variant font-medium tracking-wide">
               KNITTING STUDIO · REACT EDITION
             </p>
           </div>
-        </div>
+        </button>
 
         <nav className="hidden md:flex items-center gap-1 bg-surface-container-low p-1.5 rounded-full border border-on-surface/[0.06]">
           {tabs.map((tab) => {
@@ -38,6 +45,7 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
                     : 'text-on-surface-variant hover:text-on-surface hover:bg-white/60'
                 }`}
               >
+                {tab.icon && <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>}
                 <span>{tab.label}</span>
                 {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
               </button>
@@ -72,7 +80,7 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
             <button
               key={tab.id}
               onClick={() => onSelectTab(tab.id)}
-              className={`px-3 py-1 rounded-full text-sm font-semibold shrink-0 transition-all ${
+              className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all ${
                 isActive
                   ? 'bg-primary text-white shadow-sm'
                   : 'text-on-surface-variant bg-white/70'

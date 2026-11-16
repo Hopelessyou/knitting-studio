@@ -1,4 +1,5 @@
-@echo off
+﻿@echo off
+chcp 65001 >nul
 setlocal
 cd /d "%~dp0"
 title [Knitting Studio] Git Auto Push
@@ -7,15 +8,21 @@ echo ========================================================
 echo   [Knitting Studio] Staging and committing files...
 echo ========================================================
 "C:\Program Files\Git\cmd\git.exe" add -A
-"C:\Program Files\Git\cmd\git.exe" commit -m "feat: Complete 4 knitwear calculators with preview photos and tool checklists"
+"C:\Program Files\Git\cmd\git.exe" commit -m "feat: Update Knitting Studio (Auto push)"
+
+echo.
+echo ========================================================
+echo   [Knitting Studio] Syncing with GitHub (Pull & Rebase)...
+echo ========================================================
+"C:\Program Files\Git\cmd\git.exe" remote set-url origin https://github.com/Hopelessyou/knitting-studio.git
+"C:\Program Files\Git\cmd\git.exe" branch -M main
+"C:\Program Files\Git\cmd\git.exe" pull --rebase origin main
 
 echo.
 echo ========================================================
 echo   [Knitting Studio] Pushing to GitHub (Hopelessyou)...
 echo   If browser opens, click [Authorize / Sign in] once.
 echo ========================================================
-"C:\Program Files\Git\cmd\git.exe" remote set-url origin https://github.com/Hopelessyou/knitting-studio.git
-"C:\Program Files\Git\cmd\git.exe" branch -M main
 "C:\Program Files\Git\cmd\git.exe" push -u origin main
 
 if %ERRORLEVEL% EQU 0 (
