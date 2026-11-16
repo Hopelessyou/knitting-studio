@@ -12,7 +12,7 @@ echo ========================================================
 
 echo.
 echo ========================================================
-echo   [Knitting Studio] Syncing with GitHub (Pull & Rebase)...
+echo   [Knitting Studio] Syncing with GitHub (Pull and Rebase)...
 echo ========================================================
 "C:\Program Files\Git\cmd\git.exe" remote set-url origin https://github.com/Hopelessyou/knitting-studio.git
 "C:\Program Files\Git\cmd\git.exe" branch -M main
