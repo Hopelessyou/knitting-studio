@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<title>니팅 커뮤니티 | 뜨개인들의 따뜻한 공간 - 니팅 스튜디오</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#fe875d",
+            "primary": "#984125",
+            "surface": "#faf9f6",
+            "on-tertiary-container": "#fffbff",
+            "primary-fixed": "#ffdbd0",
+            "inverse-primary": "#ffb59e",
+            "on-secondary": "#ffffff",
+            "secondary": "#a0401c",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#f0e0d0",
+            "surface-variant": "#e3e2e0",
+            "inverse-surface": "#2f312f",
+            "tertiary-container": "#7f7365",
+            "secondary-fixed": "#ffdbcf",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#ffb59e",
+            "outline-variant": "#dcc1b9",
+            "outline": "#89726c",
+            "on-secondary-container": "#722200",
+            "on-tertiary-fixed": "#221a10",
+            "on-secondary-fixed": "#390c00",
+            "inverse-on-surface": "#f2f1ee",
+            "tertiary-fixed-dim": "#d3c4b4",
+            "error": "#ba1a1a",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f4f3f1",
+            "surface-container-highest": "#e3e2e0",
+            "on-secondary-fixed-variant": "#802a05",
+            "surface-container": "#efeeeb",
+            "on-tertiary-fixed-variant": "#4f4539",
+            "on-error": "#ffffff",
+            "on-surface": "#1a1c1a",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-primary-fixed-variant": "#7d2d12",
+            "on-surface-variant": "#56423d",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#3a0b00",
+            "surface-dim": "#dbdad7",
+            "tertiary": "#655a4e",
+            "surface-bright": "#faf9f6",
+            "on-primary-container": "#fffbff",
+            "surface-tint": "#9c4427",
+            "background": "#faf9f6",
+            "on-background": "#1a1c1a",
+            "primary-container": "#b8593b",
+            "surface-container-high": "#e9e8e5"
+          },
+          "fontFamily": {
+            "body": ["Plus Jakarta Sans", "sans-serif"],
+            "headline": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+</script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -4px rgba(196, 98, 67, 0.06), 0 2px 8px 0 rgba(28, 25, 23, 0.03);
+    }
+    .hover-card {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hover-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px -4px rgba(152, 65, 37, 0.12), 0 4px 12px 0 rgba(28, 25, 23, 0.04);
+    }
+    .category-chip.active {
+      background-color: #984125;
+      color: #ffffff;
+      border-color: #984125;
+      font-weight: 700;
+    }
+</style>
+<!-- Supabase CDN Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body">
+
+<!-- ========================================== -->
+<!-- 🧶 TOP NAVIGATION HEADER -->
+<!-- ========================================== -->
+<header class="bg-surface/90 backdrop-blur-md text-primary docked full-width top-0 sticky z-40 border-b border-outline-variant/30 shadow-xs">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-3.5">
+    <a class="text-xl md:text-2xl font-extrabold text-primary tracking-tight flex items-center gap-2 hover:opacity-90 transition-opacity" href="index.html" title="홈으로 이동">
+      <span class="text-2xl">🧶</span>
+      <span>니팅 스튜디오</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 text-sm flex items-center gap-1" href="community.html">
+        <span class="material-symbols-outlined text-[17px]">forum</span>
+        <span>커뮤니티</span>
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-2.5">
+      <!-- Write Post Button -->
+      <button type="button" onclick="openWriteModal()" class="px-3.5 py-1.5 rounded-full text-xs md:text-sm font-bold bg-primary hover:bg-primary-container text-on-primary transition-all duration-150 shadow-xs flex items-center gap-1.5 cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">edit</span>
+        <span>새 글 쓰기</span>
+      </button>
+
+      <!-- Supabase Auth / Cloud Sync -->
+      <div id="auth-logged-out" class="flex items-center">
+        <button type="button" onclick="openAuthModal()" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-surface-container-low hover:bg-surface-container border border-outline-variant/50 text-on-surface transition-all flex items-center gap-1 cursor-pointer">
+          <span class="material-symbols-outlined text-[16px]">account_circle</span>
+          <span class="hidden sm:inline">로그인</span>
+        </button>
+      </div>
+
+      <div id="auth-logged-in" class="hidden items-center gap-2">
+        <span id="user-badge" class="px-2.5 py-1 bg-primary/10 text-primary font-bold text-xs rounded-full max-w-[110px] truncate" title="로그인 계정"></span>
+        <button type="button" onclick="handleSignOut()" class="p-1.5 rounded-full hover:bg-surface-container text-outline hover:text-error transition-all cursor-pointer" title="로그아웃">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========================================== -->
+<!-- 🌟 COMMUNITY HERO SECTION -->
+<!-- ========================================== -->
+<section class="bg-gradient-to-b from-surface-container-low/60 to-surface py-10 md:py-14 border-b border-on-surface/[0.04]">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 text-center flex flex-col items-center">
+    <div class="inline-flex items-center gap-2 bg-primary-fixed/50 text-primary px-4 py-1.5 rounded-full text-xs font-bold border border-primary/20 mb-4 shadow-2xs">
+      <span class="material-symbols-outlined text-[16px]">group</span>
+      <span>따뜻한 핸드크래프트 소통 공간</span>
+    </div>
+
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-on-surface tracking-tight text-balance">
+      뜨개인들의 따뜻한 사랑방, <span class="text-primary">니팅 커뮤니티</span> 🧶
+    </h1>
+    
+    <p class="mt-3 text-sm md:text-base text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+      나만의 탑다운 스웨터 완성작을 자랑하고, 게이지 측정 노하우와 실·바늘 추천 팁을 이웃 니터들과 자유롭게 나눠보세요.
+    </p>
+
+    <!-- Quick Stat Badges (0-state) -->
+    <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-on-surface/[0.06] text-xs font-semibold text-on-surface shadow-2xs">
+        <span class="text-primary font-bold">🧵</span>
+        <span>공유된 작품 <strong id="stat-posts" class="text-primary">0개</strong></span>
+      </div>
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-on-surface/[0.06] text-xs font-semibold text-on-surface shadow-2xs">
+        <span class="text-red-500">❤️</span>
+        <span>누적 응원 <strong id="stat-likes" class="text-primary">0회</strong></span>
+      </div>
+      <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-on-surface/[0.06] text-xs font-semibold text-on-surface shadow-2xs">
+        <span class="text-amber-600">💬</span>
+        <span>따뜻한 조언 &amp; 댓글 <strong id="stat-comments" class="text-primary">0개</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- 🔍 CONTROLS: Category Tabs, Search & Sort -->
+<!-- ========================================== -->
+<section class="max-w-7xl mx-auto px-6 md:px-10 pt-8 pb-4 w-full">
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-on-surface/[0.08] pb-6">
+    <!-- Category Tabs -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none" id="category-tabs">
+      <button type="button" onclick="selectCategory('all', this)" class="category-chip active px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all shrink-0 cursor-pointer">
+        🌟 전체보기
+      </button>
+      <button type="button" onclick="selectCategory('showcase', this)" class="category-chip px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all shrink-0 cursor-pointer">
+        🧶 완성작 갤러리
+      </button>
+      <button type="button" onclick="selectCategory('tips', this)" class="category-chip px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all shrink-0 cursor-pointer">
+        💡 게이지 &amp; 꿀팁
+      </button>
+      <button type="button" onclick="selectCategory('qna', this)" class="category-chip px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all shrink-0 cursor-pointer">
+        ❓ 질문 &amp; 답변
+      </button>
+      <button type="button" onclick="selectCategory('yarn', this)" class="category-chip px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all shrink-0 cursor-pointer">
+        🧵 실 &amp; 바늘 추천
+      </button>
+      <button type="button" onclick="selectCategory('free', this)" class="category-chip px-4 py-2 rounded-full text-xs md:text-sm font-semibold border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary transition-all shrink-0 cursor-pointer">
+        ☕ 자유 수다
+      </button>
+    </div>
+
+    <!-- Search & Sort Controls -->
+    <div class="flex items-center gap-3 shrink-0">
+      <div class="relative flex-1 sm:w-64">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+        <input type="text" id="community-search" oninput="handleSearch(this.value)" placeholder="제목, 실, 작성자 검색..." class="w-full pl-9 pr-3 py-2 rounded-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary text-xs text-on-surface placeholder:text-outline transition-all" />
+      </div>
+
+      <select id="community-sort" onchange="handleSort(this.value)" class="py-2 px-3 rounded-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary text-xs font-semibold text-on-surface-variant cursor-pointer">
+        <option value="newest">최신순</option>
+        <option value="likes">인기순 (좋아요)</option>
+        <option value="comments">댓글 많은순</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- 📋 POSTS GRID FEED (CLEAN 0 POSTS) -->
+<!-- ========================================== -->
+<main class="max-w-7xl mx-auto px-6 md:px-10 py-6 flex-grow w-full">
+  <!-- Post Grid Container -->
+  <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Dynamic Cards Rendered Here -->
+  </div>
+
+  <!-- Empty State (Shown by default since posts = 0) -->
+  <div id="empty-state" class="flex flex-col items-center justify-center py-20 text-center">
+    <div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-3xl mb-3 shadow-2xs">
+      🧶
+    </div>
+    <h3 class="text-base font-bold text-on-surface">아직 등록된 게시글이 없습니다.</h3>
+    <p class="text-xs text-on-surface-variant mt-1">첫 번째 따뜻한 이야기를 나눠보세요!</p>
+    <button type="button" onclick="openWriteModal()" class="mt-4 px-5 py-2.5 bg-primary text-on-primary rounded-full text-xs font-bold shadow-xs hover:bg-primary-container transition-all cursor-pointer active:scale-95 flex items-center gap-1.5">
+      <span class="material-symbols-outlined text-[16px]">edit</span>
+      <span>첫 글 작성하기</span>
+    </button>
+  </div>
+</main>
+
+<!-- ========================================== -->
+<!-- 📝 WRITE POST MODAL -->
+<!-- ========================================== -->
+<div id="write-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="handleWriteBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-all duration-200 flex flex-col max-h-[90vh]" id="write-modal-card" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2.5">
+        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">edit_note</span>
+        </span>
+        <h3 class="text-base font-bold text-on-surface">새 이야기 작성하기</h3>
+      </div>
+      <button type="button" onclick="closeWriteModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors" title="닫기 (ESC)">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Form Content -->
+    <div class="p-6 overflow-y-auto flex flex-col gap-4 text-xs md:text-sm">
+      <!-- Category & Author Row -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="block font-bold text-on-surface mb-1">카테고리 선택 *</label>
+          <select id="new-category" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface font-medium">
+            <option value="showcase">🧶 완성작 갤러리</option>
+            <option value="tips">💡 게이지 &amp; 꿀팁</option>
+            <option value="qna">❓ 질문 &amp; 답변</option>
+            <option value="yarn">🧵 실 &amp; 바늘 추천</option>
+            <option value="free">☕ 자유 수다</option>
+          </select>
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block font-bold text-on-surface">작성자 닉네임 *</label>
+            <span id="author-verified-badge" class="text-[11px] text-primary font-bold inline-flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-[13px]">verified_user</span>
+              <span>회원 인증됨</span>
+            </span>
+          </div>
+          <input type="text" id="new-author" placeholder="닉네임 입력" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface font-medium" />
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <label class="block font-bold text-on-surface mb-1">제목 *</label>
+        <input type="text" id="new-title" placeholder="뜨개인들의 시선을 사로잡을 제목을 입력하세요" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 px-3 text-on-surface font-semibold" />
+      </div>
+
+      <!-- Optional Specs (Gauge & Yarn) -->
+      <div class="p-3.5 bg-surface-container-low/70 rounded-2xl border border-on-surface/[0.05] flex flex-col gap-2.5">
+        <div class="flex items-center gap-1.5 text-primary font-bold text-xs">
+          <span class="material-symbols-outlined text-[16px]">straighten</span>
+          <span>작품 스펙 태그 (선택 입력)</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <input type="text" id="new-gauge" placeholder="게이지 (예: 21코 28단)" class="bg-surface-container-lowest border border-on-surface/[0.08] rounded-xl py-1.5 px-2.5" />
+          <input type="text" id="new-needle" placeholder="바늘 (예: 4.5mm 줄바늘)" class="bg-surface-container-lowest border border-on-surface/[0.08] rounded-xl py-1.5 px-2.5" />
+          <input type="text" id="new-yarn" placeholder="사용 실 (예: 로완 트위드 6볼)" class="bg-surface-container-lowest border border-on-surface/[0.08] rounded-xl py-1.5 px-2.5" />
+        </div>
+      </div>
+
+      <!-- Image Upload Area -->
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <label class="block font-bold text-on-surface">사진 첨부 (완성작·스와치·실 사진)</label>
+          <span class="text-[11px] text-outline">최대 1장 · 가로 900px 자동 최적화</span>
+        </div>
+        
+        <!-- Upload Trigger Zone -->
+        <div id="image-upload-zone" class="border-2 border-dashed border-outline-variant/60 hover:border-primary rounded-2xl p-4 flex flex-col items-center justify-center gap-1.5 transition-all bg-surface-container-low/40 cursor-pointer" onclick="document.getElementById('new-image-file').click()">
+          <input type="file" id="new-image-file" accept="image/*" class="hidden" onchange="handleImageSelect(event)" />
+          <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-[22px]">add_photo_alternate</span>
+          </div>
+          <div class="text-center">
+            <span class="text-xs font-bold text-primary">클릭하여 사진 업로드</span>
+            <span class="text-xs text-on-surface-variant hidden sm:inline"> (또는 이미지 파일 드래그)</span>
+          </div>
+          <p class="text-[11px] text-outline">JPG, PNG, WebP 지원 (모바일 카메라 직찍 지원)</p>
+        </div>
+
+        <!-- Image Preview Container -->
+        <div id="image-preview-container" class="hidden relative rounded-2xl overflow-hidden mt-2 border border-on-surface/[0.08] bg-surface-container-low">
+          <img id="image-preview" src="" alt="첨부 사진 미리보기" class="w-full max-h-56 object-cover" />
+          <button type="button" onclick="removeSelectedImage(event)" class="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition-all cursor-pointer shadow-md" title="사진 삭제">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div>
+        <label class="block font-bold text-on-surface mb-1">본문 내용 *</label>
+        <textarea id="new-content" rows="6" placeholder="뜨개 팁, 제작 과정의 즐거움이나 궁금한 점을 편안하게 적어주세요." class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl p-3 text-on-surface leading-relaxed"></textarea>
+      </div>
+
+      <div id="write-error" class="hidden text-xs text-error font-medium p-2.5 bg-error-container/40 rounded-xl border border-error/20"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-6 py-3.5 bg-surface-container-low border-t border-on-surface/[0.06] flex items-center justify-between">
+      <span class="text-xs text-on-surface-variant flex items-center gap-1">
+        <span class="material-symbols-outlined text-[15px] text-primary">favorite</span>
+        <span>서로를 배려하는 따뜻한 언어를 사용해 주세요.</span>
+      </span>
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="closeWriteModal()" class="px-4 py-2 rounded-full text-xs font-semibold text-on-surface-variant hover:bg-surface-container transition-all cursor-pointer">
+          취소
+        </button>
+        <button type="button" onclick="submitNewPost()" class="px-5 py-2 rounded-full text-xs font-bold bg-primary text-on-primary hover:bg-primary-container transition-all cursor-pointer shadow-sm active:scale-95">
+          게시글 등록하기
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 📖 POST DETAIL & COMMENTS MODAL -->
+<!-- ========================================== -->
+<div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="handleDetailBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-all duration-200 flex flex-col max-h-[90vh]" id="detail-modal-card" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2">
+        <span id="detail-category-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold"></span>
+        <span class="text-xs text-outline" id="detail-date"></span>
+      </div>
+      <button type="button" onclick="closeDetailModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors" title="닫기 (ESC)">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Body Content -->
+    <div class="p-6 overflow-y-auto flex flex-col gap-4">
+      <h2 id="detail-title" class="text-xl md:text-2xl font-extrabold text-on-surface leading-snug"></h2>
+
+      <div class="flex items-center justify-between text-xs text-on-surface-variant border-b border-on-surface/[0.06] pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-full bg-primary-fixed text-primary font-bold flex items-center justify-center text-xs" id="detail-avatar"></div>
+          <span class="font-bold text-on-surface" id="detail-author"></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-[15px]">visibility</span>
+            <span id="detail-views">0</span>
+          </span>
+          <button type="button" onclick="toggleDetailLike()" class="flex items-center gap-1 text-primary hover:scale-105 transition-transform cursor-pointer">
+            <span class="material-symbols-outlined text-[17px]" id="detail-like-icon">favorite_border</span>
+            <span id="detail-likes" class="font-bold">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Attached Photo Box -->
+      <div id="detail-image-box" class="hidden w-full rounded-2xl overflow-hidden my-2 max-h-[380px] bg-stone-900 border border-on-surface/[0.08] flex items-center justify-center">
+        <img id="detail-image" src="" alt="게시글 첨부 사진" class="w-full h-full object-contain max-h-[380px]" />
+      </div>
+
+      <!-- Spec Pills (if any) -->
+      <div id="detail-specs-box" class="hidden flex-wrap gap-2 p-3 bg-surface-container-low rounded-2xl border border-on-surface/[0.04] text-xs">
+      </div>
+
+      <!-- Main Body -->
+      <div id="detail-body" class="text-sm md:text-base text-on-surface leading-relaxed whitespace-pre-line py-2">
+      </div>
+
+      <!-- Comments Section -->
+      <div class="border-t border-on-surface/[0.08] pt-4 mt-2 flex flex-col gap-3">
+        <h4 class="font-bold text-sm text-on-surface flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-primary text-[18px]">forum</span>
+          <span>따뜻한 댓글 (<span id="detail-comment-count">0</span>)</span>
+        </h4>
+
+        <!-- Comment List -->
+        <div id="detail-comment-list" class="flex flex-col gap-2.5">
+        </div>
+
+        <!-- Add Comment Form -->
+        <div class="mt-2 p-3 bg-surface-container-low rounded-2xl border border-on-surface/[0.06] flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <input type="text" id="comment-author" placeholder="닉네임" class="w-32 bg-surface-container-lowest border border-on-surface/[0.08] rounded-xl py-1.5 px-2.5 text-xs text-on-surface font-medium" />
+            <input type="text" id="comment-input" placeholder="응원과 팁이 담긴 따뜻한 댓글을 남겨보세요..." class="flex-1 bg-surface-container-lowest border border-on-surface/[0.08] rounded-xl py-1.5 px-3 text-xs text-on-surface" />
+            <button type="button" onclick="submitComment()" class="px-4 py-1.5 bg-primary text-on-primary rounded-xl text-xs font-bold hover:bg-primary-container transition-all cursor-pointer shrink-0">
+              등록
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- ☁️ AUTH MODAL (Supabase) -->
+<!-- ========================================== -->
+<div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="handleAuthModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-all duration-200 flex flex-col" id="auth-modal-card" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">account_circle</span>
+        </span>
+        <h3 class="text-base font-bold text-on-surface" id="auth-modal-title">로그인</h3>
+      </div>
+      <button type="button" onclick="closeAuthModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors" title="닫기">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <div class="p-6 flex flex-col gap-4 text-xs">
+      <div id="auth-tabs-row" class="grid grid-cols-2 p-1 bg-surface-container rounded-full border border-on-surface/[0.05]">
+        <button id="tab-login" type="button" onclick="setAuthTab('login')" class="py-1.5 text-center font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer">
+          로그인
+        </button>
+        <button id="tab-signup" type="button" onclick="setAuthTab('signup')" class="py-1.5 text-center font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">
+          회원가입
+        </button>
+      </div>
+
+      <!-- Standard Fields (Login / Signup) -->
+      <div id="auth-standard-fields" class="flex flex-col gap-3">
+        <!-- Nickname Field (회원가입 시 표시) -->
+        <div id="auth-nickname-wrap" class="hidden">
+          <div class="flex items-center justify-between mb-1">
+            <label class="block font-semibold text-on-surface" for="auth-nickname">닉네임</label>
+            <span id="nick-status" class="text-[11px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="auth-nickname" maxlength="10" placeholder="닉네임 입력" oninput="handleNicknameInput()" class="flex-1 bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+            <button type="button" id="btn-check-nick" onclick="checkNicknameDuplicate()" class="px-3 py-2 bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold rounded-xl border border-outline-variant/40 transition-colors whitespace-nowrap cursor-pointer active:scale-95">
+              중복 확인
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-on-surface mb-1" for="auth-email">이메일 주소</label>
+          <input type="email" id="auth-email" placeholder="knit@example.com" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+        </div>
+        <div>
+          <label class="block font-semibold text-on-surface mb-1" for="auth-password">비밀번호</label>
+          <input type="password" id="auth-password" placeholder="6자리 이상 비밀번호" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+        </div>
+      </div>
+
+      <!-- Reset Fields (비밀번호 재설정) -->
+      <div id="auth-reset-fields" class="hidden flex flex-col gap-3">
+        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[11px] text-on-surface-variant flex items-start gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock_reset</span>
+          <span>가입 시 등록하신 <strong>이메일과 닉네임</strong>이 일치하면 즉시 새로운 비밀번호로 변경됩니다.</span>
+        </div>
+        <div>
+          <label class="block font-semibold text-on-surface mb-1" for="reset-email">가입한 이메일</label>
+          <input type="email" id="reset-email" placeholder="knit@example.com" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+        </div>
+        <div>
+          <label class="block font-semibold text-on-surface mb-1" for="reset-nickname">가입한 닉네임</label>
+          <input type="text" id="reset-nickname" placeholder="등록했던 닉네임" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+        </div>
+        <div>
+          <label class="block font-semibold text-on-surface mb-1" for="reset-password">새 비밀번호</label>
+          <input type="password" id="reset-password" minlength="6" placeholder="6자리 이상 새 비밀번호" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+        </div>
+        <div>
+          <label class="block font-semibold text-on-surface mb-1" for="reset-password-confirm">새 비밀번호 확인</label>
+          <input type="password" id="reset-password-confirm" minlength="6" placeholder="새 비밀번호 재입력" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
+        </div>
+      </div>
+
+      <div id="auth-error" class="hidden text-xs text-error font-medium p-2.5 bg-error-container/40 rounded-xl border border-error/20"></div>
+
+      <button id="auth-submit-btn" type="button" onclick="handleAuthSubmit()" class="w-full py-2.5 rounded-full font-bold bg-primary text-on-primary hover:bg-primary-container transition-all cursor-pointer shadow-sm active:scale-95 flex items-center justify-center gap-1.5">
+        로그인하기
+      </button>
+
+      <!-- Bottom Links -->
+      <div id="auth-bottom-links" class="flex items-center justify-between text-[11px] text-on-surface-variant px-1 pt-1">
+        <button type="button" id="btn-forgot-pw" onclick="setAuthTab('reset')" class="hover:text-primary transition-colors cursor-pointer underline underline-offset-2">
+          비밀번호를 잊으셨나요?
+        </button>
+        <button type="button" id="btn-back-login" onclick="setAuthTab('login')" class="hidden hover:text-primary transition-colors cursor-pointer underline underline-offset-2">
+          ← 로그인으로 돌아가기
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- 🍞 TOAST NOTIFICATION -->
+<!-- ========================================== -->
+<div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-3 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-inverse-surface text-inverse-on-surface shadow-xl text-xs md:text-sm font-medium">
+  <span class="material-symbols-outlined text-primary-fixed text-[20px]" id="toast-icon">check_circle</span>
+  <span id="toast-msg">메시지</span>
+</div>
+
+<!-- ========================================== -->
+<!-- 💻 FOOTER -->
+<!-- ========================================== -->
+<footer class="bg-surface-container-low w-full border-t border-outline-variant/30 mt-16 py-8">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6 md:px-10">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">🧶</span>
+      <span class="text-sm font-bold text-on-surface">1초 스웨터 계산기 &amp; 커뮤니티</span>
+      <span class="text-xs text-on-surface-variant ml-2 border-l border-outline-variant/50 pl-2">Warm Craft &amp; Knitters Lounge</span>
+    </div>
+    <nav class="flex flex-wrap items-center justify-center gap-4 text-xs text-on-surface-variant">
+      <a class="hover:text-primary transition-colors" href="sweater.html">스웨터 계산기</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="sweater.html#roadmap">뜨개 로드맵</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="community.html">커뮤니티</a>
+    </nav>
+    <p class="text-xs text-on-surface-variant">© 2025 니팅 스튜디오. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ========================================== -->
+<!-- ⚙️ SCRIPT: DATA STORE & INTERACTION LOGIC -->
+<!-- ========================================== -->
+<script>
+  // 1. Initial Community Posts (Clean Empty State)
+  const INITIAL_POSTS = [];
+
+  // 2. State & Storage Management
+  let posts = [];
+  let uploadedImageData = null;
+
+  function handleImageSelect(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      showToast('이미지 파일(JPG, PNG, WebP)만 첨부할 수 있습니다.', 'error');
+      return;
+    }
+
+    if (file.size > 15 * 1024 * 1024) {
+      showToast('이미지 용량은 최대 15MB 이하만 가능합니다.', 'error');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(evt) {
+      const img = new Image();
+      img.onload = function() {
+        // High quality dynamic resize to max 900px
+        const maxDim = 900;
+        let w = img.width;
+        let h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+
+        uploadedImageData = canvas.toDataURL('image/jpeg', 0.85);
+
+        // Show preview
+        document.getElementById('image-preview').src = uploadedImageData;
+        document.getElementById('image-preview-container').classList.remove('hidden');
+        document.getElementById('image-upload-zone').classList.add('hidden');
+        showToast('사진이 첨부되었습니다! 📷');
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeSelectedImage(e) {
+    if (e) e.stopPropagation();
+    uploadedImageData = null;
+    document.getElementById('new-image-file').value = '';
+    document.getElementById('image-preview').src = '';
+    document.getElementById('image-preview-container').classList.add('hidden');
+    document.getElementById('image-upload-zone').classList.remove('hidden');
+  }
+  let currentCategory = 'all';
+  let searchQuery = '';
+  let currentSort = 'newest';
+  let activeDetailPostId = null;
+
+  function loadPosts() {
+    localStorage.removeItem('KNIT_COMMUNITY_POSTS'); // purge old dummy posts
+    const saved = localStorage.getItem('KNIT_COMMUNITY_POSTS_V2');
+    if (saved) {
+      try {
+        posts = JSON.parse(saved);
+      } catch (e) {
+        posts = [];
+      }
+    } else {
+      posts = [];
+    }
+    renderPosts();
+    updateStats();
+  }
+
+  function savePosts() {
+    localStorage.setItem('KNIT_COMMUNITY_POSTS_V2', JSON.stringify(posts));
+    if (typeof updateStats === 'function') updateStats();
+  }
+
+  function updateStats() {
+    const totalLikes = posts.reduce((sum, p) => sum + (p.likes || 0), 0);
+    const totalComments = posts.reduce((sum, p) => sum + (p.comments?.length || 0), 0);
+
+    const elPosts = document.getElementById('stat-posts');
+    const elLikes = document.getElementById('stat-likes');
+    const elComments = document.getElementById('stat-comments');
+
+    if (elPosts) elPosts.innerText = `${posts.length}개`;
+    if (elLikes) elLikes.innerText = `${totalLikes}회`;
+    if (elComments) elComments.innerText = `${totalComments}개`;
+  }
+
+  // 3. Category Helpers
+  const CATEGORY_MAP = {
+    showcase: { label: "🧶 완성작 갤러리", badgeClass: "bg-amber-100 text-amber-900 border-amber-200" },
+    tips: { label: "💡 게이지 & 꿀팁", badgeClass: "bg-emerald-100 text-emerald-900 border-emerald-200" },
+    qna: { label: "❓ 질문 & 답변", badgeClass: "bg-blue-100 text-blue-900 border-blue-200" },
+    yarn: { label: "🧵 실 & 바늘 추천", badgeClass: "bg-purple-100 text-purple-900 border-purple-200" },
+    free: { label: "☕ 자유 수다", badgeClass: "bg-stone-100 text-stone-800 border-stone-200" }
+  };
+
+  function selectCategory(cat, btn) {
+    currentCategory = cat;
+    document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    renderPosts();
+  }
+
+  function handleSearch(val) {
+    searchQuery = val.trim().toLowerCase();
+    renderPosts();
+  }
+
+  function handleSort(sortVal) {
+    currentSort = sortVal;
+    renderPosts();
+  }
+
+  // 4. Render Posts
+  function renderPosts() {
+    const container = document.getElementById('posts-container');
+    const emptyState = document.getElementById('empty-state');
+    if (!container) return;
+
+    let filtered = posts.filter(p => {
+      const matchCat = currentCategory === 'all' || p.category === currentCategory;
+      const matchQuery = !searchQuery || 
+        p.title.toLowerCase().includes(searchQuery) || 
+        p.content.toLowerCase().includes(searchQuery) ||
+        (p.yarn && p.yarn.toLowerCase().includes(searchQuery)) ||
+        p.author.toLowerCase().includes(searchQuery);
+      return matchCat && matchQuery;
+    });
+
+    // Sorting
+    if (currentSort === 'likes') {
+      filtered.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    } else if (currentSort === 'comments') {
+      filtered.sort((a, b) => (b.comments?.length || 0) - (a.comments?.length || 0));
+    } else {
+      // Newest (default)
+      filtered.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      emptyState.classList.add('flex');
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+    emptyState.classList.remove('flex');
+
+    container.innerHTML = filtered.map(post => {
+      const catInfo = CATEGORY_MAP[post.category] || { label: "이야기", badgeClass: "bg-stone-100 text-stone-800 border-stone-200" };
+      const hasSpecs = post.gauge || post.needle || post.yarn;
+      const initial = post.author ? post.author.charAt(0) : '니';
+      const heartIcon = post.userLiked ? 'favorite' : 'favorite_border';
+      const heartClass = post.userLiked ? 'text-red-500 fill-current' : 'text-outline hover:text-red-500';
+
+      return `
+        <article onclick="openDetailModal('${post.id}')" class="hover-card cursor-pointer bg-surface-container-lowest rounded-3xl p-5 md:p-6 border border-on-surface/[0.06] custom-shadow flex flex-col justify-between transition-all">
+          <div>
+            <!-- Header Row -->
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border ${catInfo.badgeClass}">
+                ${catInfo.label}
+              </span>
+              <span class="text-xs text-outline font-medium">${post.date}</span>
+            </div>
+
+            <!-- Post Cover Image (if present) -->
+            ${post.image ? `
+              <div class="w-full h-44 rounded-2xl overflow-hidden mb-3 bg-surface-container-low border border-on-surface/[0.04]">
+                <img src="${post.image}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+              </div>
+            ` : ''}
+
+            <!-- Post Title -->
+            <h3 class="text-base md:text-lg font-bold text-on-surface leading-snug line-clamp-2 hover:text-primary transition-colors mb-2">
+              ${post.title}
+            </h3>
+
+            <!-- Post Snippet -->
+            <p class="text-xs md:text-sm text-on-surface-variant line-clamp-3 leading-relaxed mb-4">
+              ${post.content.replace(/\n/g, ' ')}
+            </p>
+
+            <!-- Specs Tag Pill (if any) -->
+            ${hasSpecs ? `
+              <div class="flex flex-wrap gap-1.5 mb-4 p-2.5 bg-surface-container-low/60 rounded-xl text-xs text-on-surface-variant font-medium">
+                ${post.gauge ? `<span class="bg-surface-container-lowest px-2 py-0.5 rounded-md border border-on-surface/[0.05]">📐 ${post.gauge}</span>` : ''}
+                ${post.needle ? `<span class="bg-surface-container-lowest px-2 py-0.5 rounded-md border border-on-surface/[0.05]">🥢 ${post.needle}</span>` : ''}
+                ${post.yarn ? `<span class="bg-surface-container-lowest px-2 py-0.5 rounded-md border border-on-surface/[0.05]">🧶 ${post.yarn}</span>` : ''}
+              </div>
+            ` : ''}
+          </div>
+
+          <!-- Footer Row -->
+          <div class="pt-3 border-t border-on-surface/[0.05] flex items-center justify-between text-xs text-on-surface-variant" onclick="event.stopPropagation()">
+            <!-- Author -->
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full bg-primary-fixed text-primary font-bold flex items-center justify-center text-xs">
+                ${initial}
+              </div>
+              <span class="font-semibold text-on-surface">${post.author}</span>
+            </div>
+
+            <!-- Stats & Like Button -->
+            <div class="flex items-center gap-3">
+              <span class="flex items-center gap-0.5" title="조회수">
+                <span class="material-symbols-outlined text-[15px] text-outline">visibility</span>
+                <span>${post.views || 0}</span>
+              </span>
+              <span class="flex items-center gap-0.5" title="댓글">
+                <span class="material-symbols-outlined text-[15px] text-outline">chat_bubble_outline</span>
+                <span>${post.comments?.length || 0}</span>
+              </span>
+              <button type="button" onclick="toggleLike('${post.id}')" class="flex items-center gap-0.5 ${heartClass} transition-colors cursor-pointer" title="응원하기">
+                <span class="material-symbols-outlined text-[17px]">${heartIcon}</span>
+                <span class="font-bold text-on-surface">${post.likes || 0}</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  // 5. Interactions (Like & Views)
+  function toggleLike(postId) {
+    const post = posts.find(p => p.id === postId);
+    if (!post) return;
+    if (post.userLiked) {
+      post.likes = Math.max(0, (post.likes || 1) - 1);
+      post.userLiked = false;
+    } else {
+      post.likes = (post.likes || 0) + 1;
+      post.userLiked = true;
+      showToast('따뜻한 응원을 전했습니다! ❤️');
+    }
+    savePosts();
+    renderPosts();
+    if (activeDetailPostId === postId) {
+      updateDetailModalLikes(post);
+    }
+  }
+
+  function toggleDetailLike() {
+    if (activeDetailPostId) {
+      toggleLike(activeDetailPostId);
+    }
+  }
+
+  function updateDetailModalLikes(post) {
+    const icon = document.getElementById('detail-like-icon');
+    const likes = document.getElementById('detail-likes');
+    if (icon) icon.innerText = post.userLiked ? 'favorite' : 'favorite_border';
+    if (likes) likes.innerText = post.likes || 0;
+  }
+
+  // 6. Write Modal Controller
+  let pendingActionAfterLogin = null;
+
+  function openWriteModal() {
+    // 🔒 LOGIN GUARD: Only authenticated members can write
+    if (!currentUser) {
+      showToast('게시글을 작성하려면 먼저 로그인해 주세요! 🧶', 'account_circle');
+      pendingActionAfterLogin = 'write';
+      openAuthModal();
+      return;
+    }
+
+    const modal = document.getElementById('write-modal');
+    const card = document.getElementById('write-modal-card');
+    document.getElementById('write-error').classList.add('hidden');
+    
+    // Auto fill author from logged-in user
+    const authorInput = document.getElementById('new-author');
+    if (authorInput) {
+      const defaultNick = currentUser.user_metadata?.nickname || currentUser.email.split('@')[0];
+      authorInput.value = defaultNick;
+    }
+
+    if (modal && card) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeWriteModal() {
+    const modal = document.getElementById('write-modal');
+    const card = document.getElementById('write-modal-card');
+    if (modal && card) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      card.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function handleWriteBackdrop(e) {
+    if (e.target && e.target.id === 'write-modal') {
+      closeWriteModal();
+    }
+  }
+
+  function submitNewPost() {
+    // 🔒 LOGIN GUARD
+    if (!currentUser) {
+      showToast('로그인이 필요한 서비스입니다.', 'account_circle');
+      openAuthModal();
+      return;
+    }
+
+    const category = document.getElementById('new-category').value;
+    const author = document.getElementById('new-author').value.trim();
+    const title = document.getElementById('new-title').value.trim();
+    const content = document.getElementById('new-content').value.trim();
+    const gauge = document.getElementById('new-gauge').value.trim();
+    const needle = document.getElementById('new-needle').value.trim();
+    const yarn = document.getElementById('new-yarn').value.trim();
+    const errEl = document.getElementById('write-error');
+
+    if (!title || !content || !author) {
+      errEl.innerText = '카테고리, 닉네임, 제목, 본문은 필수 입력 사항입니다.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    const newPost = {
+      id: 'post-' + Date.now(),
+      category: category,
+      title: title,
+      content: content,
+      author: author,
+      date: '방금 전',
+      image: uploadedImageData || null,
+      gauge: gauge || null,
+      needle: needle || null,
+      yarn: yarn || null,
+      likes: 0,
+      views: 1,
+      userLiked: false,
+      timestamp: Date.now(),
+      comments: []
+    };
+
+    posts.unshift(newPost);
+    savePosts();
+    renderPosts();
+    closeWriteModal();
+    showToast('새 게시글이 등록되었습니다! 🎉');
+
+    // Reset inputs
+    document.getElementById('new-title').value = '';
+    document.getElementById('new-content').value = '';
+    document.getElementById('new-gauge').value = '';
+    document.getElementById('new-needle').value = '';
+    document.getElementById('new-yarn').value = '';
+    removeSelectedImage();
+  }
+
+  // 7. Detail & Comments Modal Controller
+  function openDetailModal(postId) {
+    const post = posts.find(p => p.id === postId);
+    if (!post) return;
+    activeDetailPostId = postId;
+
+    // Increment view count
+    post.views = (post.views || 0) + 1;
+    savePosts();
+
+    const catInfo = CATEGORY_MAP[post.category] || { label: "이야기", badgeClass: "bg-stone-100 text-stone-800" };
+
+    const badge = document.getElementById('detail-category-badge');
+    badge.innerText = catInfo.label;
+    badge.className = `px-2.5 py-0.5 rounded-full text-xs font-bold border ${catInfo.badgeClass}`;
+
+    document.getElementById('detail-date').innerText = post.date;
+    document.getElementById('detail-title').innerText = post.title;
+    document.getElementById('detail-author').innerText = post.author;
+    document.getElementById('detail-avatar').innerText = post.author ? post.author.charAt(0) : '니';
+    document.getElementById('detail-views').innerText = post.views;
+    document.getElementById('detail-body').innerText = post.content;
+
+    // Attached Image Preview in Detail Modal
+    const imgBox = document.getElementById('detail-image-box');
+    const detailImg = document.getElementById('detail-image');
+    if (post.image) {
+      detailImg.src = post.image;
+      imgBox.classList.remove('hidden');
+    } else {
+      imgBox.classList.add('hidden');
+      detailImg.src = '';
+    }
+
+    updateDetailModalLikes(post);
+
+    // Specs box
+    const specsBox = document.getElementById('detail-specs-box');
+    const hasSpecs = post.gauge || post.needle || post.yarn;
+    if (hasSpecs) {
+      specsBox.innerHTML = `
+        ${post.gauge ? `<span class="bg-surface-container-lowest px-2.5 py-1 rounded-md border border-on-surface/[0.08] font-medium text-xs">📐 <strong>게이지:</strong> ${post.gauge}</span>` : ''}
+        ${post.needle ? `<span class="bg-surface-container-lowest px-2.5 py-1 rounded-md border border-on-surface/[0.08] font-medium text-xs">🥢 <strong>바늘:</strong> ${post.needle}</span>` : ''}
+        ${post.yarn ? `<span class="bg-surface-container-lowest px-2.5 py-1 rounded-md border border-on-surface/[0.08] font-medium text-xs">🧶 <strong>사용 실:</strong> ${post.yarn}</span>` : ''}
+      `;
+      specsBox.classList.remove('hidden');
+      specsBox.classList.add('flex');
+    } else {
+      specsBox.classList.add('hidden');
+      specsBox.classList.remove('flex');
+    }
+
+    renderComments(post);
+
+    const modal = document.getElementById('detail-modal');
+    const card = document.getElementById('detail-modal-card');
+    if (modal && card) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function renderComments(post) {
+    const list = document.getElementById('detail-comment-list');
+    const count = document.getElementById('detail-comment-count');
+    const comments = post.comments || [];
+    count.innerText = comments.length;
+
+    if (comments.length === 0) {
+      list.innerHTML = `<p class="text-xs text-on-surface-variant py-2">아직 댓글이 없습니다. 첫 번째 따뜻한 응원을 남겨보세요!</p>`;
+      return;
+    }
+
+    list.innerHTML = comments.map(c => `
+      <div class="p-3 bg-surface-container-low/70 rounded-2xl border border-on-surface/[0.04] text-xs">
+        <div class="flex items-center justify-between mb-1">
+          <strong class="text-on-surface font-bold">${c.author}</strong>
+          <span class="text-outline text-[11px]">${c.date || '방금'}</span>
+        </div>
+        <p class="text-on-surface-variant leading-relaxed">${c.text}</p>
+      </div>
+    `).join('');
+  }
+
+  function submitComment() {
+    if (!activeDetailPostId) return;
+    const post = posts.find(p => p.id === activeDetailPostId);
+    if (!post) return;
+
+    // 🔒 LOGIN GUARD FOR COMMENTS
+    if (!currentUser) {
+      showToast('댓글을 작성하려면 먼저 로그인해 주세요! 🧶', 'account_circle');
+      openAuthModal();
+      return;
+    }
+
+    const authorInput = document.getElementById('comment-author');
+    const textInput = document.getElementById('comment-input');
+    const author = authorInput.value.trim() || currentUser.email.split('@')[0];
+    const text = textInput.value.trim();
+
+    if (!text) {
+      showToast('댓글 내용을 입력해 주세요.', 'info');
+      return;
+    }
+
+    if (!post.comments) post.comments = [];
+    post.comments.push({
+      author: author,
+      text: text,
+      date: '방금 전'
+    });
+
+    savePosts();
+    renderComments(post);
+    renderPosts();
+    textInput.value = '';
+    showToast('댓글이 등록되었습니다! 💬');
+  }
+
+  function closeDetailModal() {
+    const modal = document.getElementById('detail-modal');
+    const card = document.getElementById('detail-modal-card');
+    activeDetailPostId = null;
+    if (modal && card) {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      card.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function handleDetailBackdrop(e) {
+    if (e.target && e.target.id === 'detail-modal') {
+      closeDetailModal();
+    }
+  }
+
+  // 8. Toast Helper
+  function showToast(msg, icon = 'check_circle') {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').innerText = msg;
+    document.getElementById('toast-icon').innerText = icon;
+    t.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    setTimeout(() => {
+      t.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 2800);
+  }
+
+  // 9. Supabase Auth Controller
+  const SUPABASE_URL = "https://vjuehrbdottiklcojlcl.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdWVocmJkb3R0aWtsY29qbGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3MjM4NzAsImV4cCI6MjExMDI5OTg3MH0.BDWbnmL0tsM2jpEGIyvIpYub9kC7oI5ZWgGuieLu0a8";
+
+  let spClient = null;
+  if (typeof supabase !== 'undefined') {
+    spClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  let currentAuthTab = 'login';
+  let currentUser = null;
+  let isNicknameChecked = false;
+  let verifiedNickname = '';
+
+  function openAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.remove('opacity-0', 'pointer-events-none');
+    document.getElementById('auth-modal-card').classList.remove('scale-95');
+    setAuthTab('login');
+  }
+
+  function closeAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.add('opacity-0', 'pointer-events-none');
+    document.getElementById('auth-modal-card').classList.add('scale-95');
+    document.getElementById('auth-error').classList.add('hidden');
+  }
+
+  function handleAuthModalBackdrop(e) {
+    if (e.target && e.target.id === 'auth-modal') {
+      closeAuthModal();
+    }
+  }
+
+  const FORBIDDEN_NICK_KEYWORDS = [
+    '운영자', '관리자', '어드민', '마스터', '스태프', '매니저', '스튜디오', '공식',
+    '고객센터', '시스템', '운영팀', '관리팀', '뜨개스튜디오',
+    'admin', 'administrator', 'operator', 'master', 'manager', 'staff',
+    'root', 'support', 'system', 'official'
+  ];
+
+  function validateNicknameFormat(nick) {
+    if (!nick) return { valid: false, message: '닉네임을 입력해 주세요.' };
+    if (nick.length < 2 || nick.length > 10) {
+      return { valid: false, message: '2~10자로 입력해 주세요.' };
+    }
+    const normalized = nick.toLowerCase().replace(/[\s_\-\.]+/g, '');
+    for (const keyword of FORBIDDEN_NICK_KEYWORDS) {
+      if (normalized.includes(keyword)) {
+        return { valid: false, message: '운영자 및 관리자 사칭 방지를 위해 사용할 수 없는 단어가 포함되어 있습니다.' };
+      }
+    }
+    return { valid: true };
+  }
+
+  function handleNicknameInput() {
+    isNicknameChecked = false;
+    verifiedNickname = '';
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+    if (!status) return;
+
+    if (!nick) {
+      status.innerText = '2~10자 한글/영문/숫자';
+      status.className = 'text-[11px] font-medium text-on-surface-variant';
+      return;
+    }
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      status.innerText = check.message;
+      status.className = 'text-[11px] font-medium text-error font-semibold';
+    } else {
+      status.innerText = '중복 확인이 필요합니다';
+      status.className = 'text-[11px] font-medium text-amber-600';
+    }
+  }
+
+  async function checkNicknameDuplicate() {
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      isNicknameChecked = false;
+      verifiedNickname = '';
+      if (status) {
+        status.innerText = check.message;
+        status.className = 'text-[11px] font-medium text-error font-semibold';
+      }
+      return false;
+    }
+
+    const checkBtn = document.getElementById('btn-check-nick');
+    if (checkBtn) {
+      checkBtn.disabled = true;
+      checkBtn.innerText = '확인 중...';
+    }
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data: isAvailable, error } = await spClient.rpc('check_nickname_available', { p_nickname: nick });
+      if (error) throw error;
+
+      if (isAvailable) {
+        isNicknameChecked = true;
+        verifiedNickname = nick;
+        if (status) {
+          status.innerText = '✓ 사용 가능한 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-emerald-600 font-bold';
+        }
+        showToast('사용 가능한 닉네임입니다! ✨');
+        return true;
+      } else {
+        isNicknameChecked = false;
+        verifiedNickname = '';
+        if (status) {
+          status.innerText = '✕ 이미 사용 중이거나 사용할 수 없는 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-error font-bold';
+        }
+        return false;
+      }
+    } catch (err) {
+      if (status) {
+        status.innerText = '중복 확인 실패: ' + (err.message || '오류');
+        status.className = 'text-[11px] font-medium text-error';
+      }
+      return false;
+    } finally {
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.innerText = '중복 확인';
+      }
+    }
+  }
+
+  function setAuthTab(tab) {
+    currentAuthTab = tab;
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const tabsRow = document.getElementById('auth-tabs-row');
+    const btn = document.getElementById('auth-submit-btn');
+    const title = document.getElementById('auth-modal-title');
+    const standardFields = document.getElementById('auth-standard-fields');
+    const nickWrap = document.getElementById('auth-nickname-wrap');
+    const resetFields = document.getElementById('auth-reset-fields');
+    const forgotBtn = document.getElementById('btn-forgot-pw');
+    const backLoginBtn = document.getElementById('btn-back-login');
+    const errorBox = document.getElementById('auth-error');
+
+    if (errorBox) errorBox.classList.add('hidden');
+
+    if (tab === 'login') {
+      if (title) title.innerText = '로그인';
+      if (btn) btn.innerText = '로그인하기';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'signup') {
+      if (title) title.innerText = '무료 회원가입';
+      if (btn) btn.innerText = '무료 회원가입';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.remove('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'reset') {
+      if (title) title.innerText = '비밀번호 재설정';
+      if (btn) btn.innerText = '비밀번호 변경하기';
+      if (tabsRow) tabsRow.classList.add('hidden');
+      if (standardFields) standardFields.classList.add('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.remove('hidden');
+      if (forgotBtn) forgotBtn.classList.add('hidden');
+      if (backLoginBtn) backLoginBtn.classList.remove('hidden');
+    }
+  }
+
+  async function handlePasswordResetSubmit() {
+    const email = document.getElementById('reset-email').value.trim();
+    const nickname = document.getElementById('reset-nickname').value.trim();
+    const newPassword = document.getElementById('reset-password').value.trim();
+    const newPasswordConfirm = document.getElementById('reset-password-confirm').value.trim();
+    const errorBox = document.getElementById('auth-error');
+
+    if (!email || !nickname || !newPassword || !newPasswordConfirm) {
+      errorBox.innerText = '모든 항목을 빠짐없이 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword.length < 6) {
+      errorBox.innerText = '새 비밀번호는 최소 6자리 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword !== newPasswordConfirm) {
+      errorBox.innerText = '비밀번호 확인이 일치하지 않습니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const btn = document.getElementById('auth-submit-btn');
+    btn.disabled = true;
+    btn.innerText = '확인 및 변경 중...';
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data, error } = await spClient.rpc('reset_password_with_credentials', {
+        p_email: email,
+        p_nickname: nickname,
+        p_new_password: newPassword
+      });
+      if (error) throw error;
+
+      if (!data || !data.success) {
+        throw new Error(data?.message || '등록된 이메일과 닉네임 정보가 일치하지 않습니다.');
+      }
+
+      showToast('비밀번호가 성공적으로 변경되었습니다! 새 비밀번호로 로그인해 주세요. 🔑');
+      const authEmail = document.getElementById('auth-email');
+      if (authEmail) authEmail.value = email;
+      const authPw = document.getElementById('auth-password');
+      if (authPw) authPw.value = '';
+      setAuthTab('login');
+    } catch (err) {
+      errorBox.innerText = err.message || '비밀번호 재설정에 실패했습니다.';
+      errorBox.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      if (currentAuthTab === 'reset') {
+        btn.innerText = '비밀번호 변경하기';
+      }
+    }
+  }
+
+  async function handleAuthSubmit() {
+    if (currentAuthTab === 'reset') {
+      return handlePasswordResetSubmit();
+    }
+
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value.trim();
+    const errEl = document.getElementById('auth-error');
+
+    if (!email || !password) {
+      errEl.innerText = '이메일과 비밀번호를 모두 입력해 주세요.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    if (password.length < 6) {
+      errEl.innerText = '비밀번호는 최소 6자리 이상이어야 합니다.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    if (!spClient) {
+      errEl.innerText = 'Supabase 클라이언트를 초기화할 수 없습니다.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    const btn = document.getElementById('auth-submit-btn');
+    btn.disabled = true;
+    btn.innerText = '처리 중...';
+
+    try {
+      if (currentAuthTab === 'signup') {
+        const nick = (document.getElementById('auth-nickname')?.value || '').trim();
+        if (!nick) {
+          errEl.innerText = '닉네임을 입력해 주세요.';
+          errEl.classList.remove('hidden');
+          return;
+        }
+        if (!isNicknameChecked || verifiedNickname !== nick) {
+          const ok = await checkNicknameDuplicate();
+          if (!ok) {
+            errEl.innerText = '닉네임 중복 확인을 완료해 주세요.';
+            errEl.classList.remove('hidden');
+            return;
+          }
+        }
+
+        const { data, error } = await spClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              nickname: nick
+            }
+          }
+        });
+        if (error) throw error;
+
+        if (data?.user?.id) {
+          try {
+            await spClient.from('profiles').upsert({
+              id: data.user.id,
+              email: email,
+              nickname: nick
+            });
+          } catch (e) {
+            console.warn('Profile fallback sync:', e);
+          }
+        }
+
+        showToast('회원가입 완료! 자동 로그인되었습니다.');
+        closeAuthModal();
+        if (pendingActionAfterLogin === 'write') {
+          pendingActionAfterLogin = null;
+          setTimeout(openWriteModal, 350);
+        }
+      } else {
+        const { data, error } = await spClient.auth.signInWithPassword({ email, password });
+        if (error) {
+          if (error.message && error.message.includes('Invalid login credentials')) {
+            throw new Error('이메일 또는 비밀번호가 올바르지 않습니다.');
+          }
+          throw error;
+        }
+        showToast('반갑습니다! 로그인되었습니다.');
+        closeAuthModal();
+        if (pendingActionAfterLogin === 'write') {
+          pendingActionAfterLogin = null;
+          setTimeout(openWriteModal, 350);
+        }
+      }
+    } catch (err) {
+      errEl.innerText = err.message || '인증 처리에 실패했습니다.';
+      errEl.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.innerText = currentAuthTab === 'login' ? '로그인하기' : '무료 회원가입';
+    }
+  }
+
+  async function handleSignOut() {
+    if (spClient) {
+      await spClient.auth.signOut();
+      showToast('로그아웃되었습니다.', 'logout');
+    }
+  }
+
+  // Supabase Auth State Change Listener
+  if (spClient) {
+    spClient.auth.onAuthStateChange((event, session) => {
+      currentUser = session?.user || null;
+      const loggedOutBox = document.getElementById('auth-logged-out');
+      const loggedInBox = document.getElementById('auth-logged-in');
+      const badge = document.getElementById('user-badge');
+
+      if (currentUser) {
+        if (loggedOutBox) loggedOutBox.classList.add('hidden');
+        if (loggedInBox) {
+          loggedInBox.classList.remove('hidden');
+          loggedInBox.classList.add('flex');
+        }
+        if (badge) {
+          const nick = currentUser.user_metadata?.nickname || currentUser.email.split('@')[0];
+          badge.innerText = nick;
+          badge.title = `${nick} (${currentUser.email})`;
+        }
+      } else {
+        if (loggedInBox) {
+          loggedInBox.classList.add('hidden');
+          loggedInBox.classList.remove('flex');
+        }
+        if (loggedOutBox) loggedOutBox.classList.remove('hidden');
+      }
+    });
+  }
+
+  // Keyboard shortcut (ESC)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeWriteModal();
+      closeDetailModal();
+      closeAuthModal();
+    }
+  });
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    loadPosts();
+  });
+</script>
+</body>
+</html>

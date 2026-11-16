@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<title>니팅 스튜디오 | 손쉬운 맞춤형 대바늘 도안 계산기</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#faf9f6",
+            "secondary-container": "#fe875d",
+            "surface-variant": "#e3e2e0",
+            "surface-bright": "#faf9f6",
+            "on-tertiary": "#ffffff",
+            "background": "#faf9f6",
+            "tertiary": "#655a4e",
+            "on-primary-container": "#fffbff",
+            "on-secondary-container": "#722200",
+            "surface-container-low": "#f4f3f1",
+            "on-secondary": "#ffffff",
+            "surface-container": "#efeeeb",
+            "inverse-surface": "#2f312f",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#7f7365",
+            "on-primary": "#ffffff",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-background": "#1a1c1a",
+            "surface-container-highest": "#e3e2e0",
+            "surface-tint": "#9c4427",
+            "error": "#ba1a1a",
+            "inverse-primary": "#ffb59e",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e9e8e5",
+            "on-surface-variant": "#56423d",
+            "on-surface": "#1a1c1a",
+            "tertiary-fixed-dim": "#d3c4b4",
+            "outline": "#89726c",
+            "on-primary-fixed-variant": "#7d2d12",
+            "on-tertiary-container": "#fffbff",
+            "on-tertiary-fixed-variant": "#4f4539",
+            "secondary-fixed": "#ffdbcf",
+            "primary": "#984125",
+            "secondary": "#a0401c",
+            "on-primary-fixed": "#3a0b00",
+            "primary-fixed-dim": "#ffb59e",
+            "on-secondary-fixed": "#390c00",
+            "on-secondary-fixed-variant": "#802a05",
+            "tertiary-fixed": "#f0e0d0",
+            "primary-fixed": "#ffdbd0",
+            "primary-container": "#b8593b",
+            "inverse-on-surface": "#f2f1ee",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed": "#221a10",
+            "surface-dim": "#dbdad7",
+            "outline-variant": "#dcc1b9"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "gutter-desktop": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xxl": "3.5rem",
+            "gutter": "1rem",
+            "margin-desktop": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2.25rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "numeric-metric": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "numeric-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "display-hero": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "display-hero-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.025em", "fontWeight": "800" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Pretendard, sans-serif;
+      background-color: #faf9f6;
+      color: #1a1c1a;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    .craft-shadow {
+      box-shadow: 0 10px 30px -4px rgba(152, 65, 37, 0.05), 0 2px 8px 0 rgba(28, 25, 23, 0.03);
+    }
+    .craft-shadow-hover {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .craft-shadow-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px -6px rgba(152, 65, 37, 0.09), 0 4px 12px 0 rgba(28, 25, 23, 0.04);
+    }
+  </style>
+  <!-- Supabase CDN Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-full px-gutter md:px-margin-desktop h-16 max-w-7xl mx-auto bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-sm dark:shadow-none transition-all">
+<!-- Brand Logo -->
+<a class="text-xl md:text-2xl font-extrabold text-primary tracking-tight flex items-center gap-2 hover:opacity-90 transition-opacity" href="index.html" title="홈으로 이동">
+  <span class="text-2xl">🧶</span>
+  <span>니팅 스튜디오</span>
+</a>
+<!-- Desktop Navigation Links (Intent Matching: Active is '프로젝트 허브') -->
+<nav class="hidden md:flex items-center gap-space-lg">
+      <a class="text-on-surface-variant dark:text-surface-variant font-medium text-label-lg font-label-lg hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150 flex items-center gap-1" href="community.html">
+        <span class="material-symbols-outlined text-[17px]">forum</span>
+        <span>커뮤니티</span>
+      </a>
+    </nav>
+<!-- Trailing Primary Action -->
+<!-- Trailing Actions (Auth + CTA) -->
+<div class="flex items-center gap-2">
+  <div id="auth-logged-out" class="flex items-center">
+    <button type="button" onclick="openAuthModal()" class="px-3.5 py-1.5 rounded-full text-label-sm font-semibold border border-outline-variant hover:border-primary text-on-surface hover:text-primary transition-all duration-150 flex items-center gap-1.5 cursor-pointer bg-surface/50">
+      <span class="material-symbols-outlined text-[16px]">account_circle</span>
+      <span>로그인 / 회원가입</span>
+    </button>
+  </div>
+  <div id="auth-logged-in" class="hidden items-center gap-2">
+    <span id="user-badge" class="px-2.5 py-1 bg-primary/10 text-primary font-bold text-xs rounded-full max-w-[130px] truncate" title="로그인 계정"></span>
+    <button type="button" onclick="handleSignOut()" class="p-1.5 rounded-full hover:bg-surface-container text-outline hover:text-error transition-all cursor-pointer" title="로그아웃">
+      <span class="material-symbols-outlined text-[16px]">logout</span>
+    </button>
+  </div>
+  <a class="inline-flex items-center justify-center bg-primary text-on-primary px-4 py-1.5 rounded-full text-label-sm font-bold hover:bg-primary-container active:scale-[0.98] transition-all duration-150 shadow-sm gap-1" href="sweater.html">
+    <span>계산기 시작하기</span>
+    <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+  </a>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-space-xxl px-gutter md:px-margin-desktop max-w-6xl mx-auto w-full">
+<!-- Hero Section: Apple/Toss Style Centered & Spacious -->
+<section class="py-space-xl md:py-space-xxl text-center max-w-3xl mx-auto flex flex-col items-center">
+<!-- Tag Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-high border border-outline-variant/30 mb-space-lg text-primary text-label-md font-label-md">
+<span>✨ 푸르시오 없는 즐거운 뜨개 생활</span>
+</div>
+<!-- Hero Headline -->
+<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero tracking-tight text-on-surface mb-space-md leading-tight">
+        원하는 옷을 고르고 치수만 넣으세요.<br/>
+<span class="text-primary">1초 만에 맞춤 도안이 완성됩니다.</span>
+</h1>
+<!-- Subtitle -->
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-space-xl leading-relaxed">
+        복잡한 비례식 계산 없이, 내 손땀(게이지)과 체형에 딱 맞는 대바늘 도안을 무료로 만들어 드립니다.
+      </p>
+<!-- Trust Badges Strip -->
+<div class="flex flex-wrap items-center justify-center gap-y-2 gap-x-space-md text-label-md font-label-md text-tertiary">
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">verified</span>
+          실패 확률 0% 맞춤 계산
+        </span>
+<span class="hidden sm:inline text-outline-variant">·</span>
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">lock_open</span>
+          100% 무료 웹 계산기
+        </span>
+<span class="hidden sm:inline text-outline-variant">·</span>
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">straighten</span>
+          손땀(게이지) 완벽 반영
+        </span>
+</div>
+</section>
+<!-- Project Selector Hub Bento Grid (2x2) -->
+<section class="mb-space-xxl" id="hub-grid">
+<div class="flex items-end justify-between mb-space-lg">
+<div>
+<span class="text-primary font-label-md text-label-md uppercase tracking-wide">Projects</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1">도안 계산기 허브</h2>
+</div>
+<p class="text-body-sm font-body-sm text-tertiary hidden sm:block">체형과 손땀에 맞춘 정밀 편물 계산</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Card 1: ACTIVE / LIVE [Top-Down Sweater] -->
+<div class="relative bg-surface-container-lowest rounded-[28px] p-space-xl border border-primary/20 craft-shadow craft-shadow-hover flex flex-col justify-between overflow-hidden group">
+<!-- Subtle warm terracotta wash accent overlay -->
+<div class="absolute -right-16 -top-16 w-56 h-56 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<div>
+<!-- Status Badge & Icon -->
+<div class="flex items-center justify-between mb-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-sm font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                지금 바로 이용 가능
+              </span>
+<span class="text-3xl">🧶</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs group-hover:text-primary transition-colors">
+              탑다운 스웨터 계산기
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-lg leading-relaxed">
+              성인 남성/여성 맞춤 가슴둘레, 목둘레 캐스트온, 요크 레글런 늘림 및 5단계 영상 로드맵
+            </p>
+<!-- Micro-feature tags -->
+<div class="flex flex-wrap gap-space-xs mb-space-xl">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary text-label-sm font-label-sm">
+                여유분(Ease) 선택
+              </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary text-label-sm font-label-sm">
+                2D 제도 도면
+              </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary text-label-sm font-label-sm">
+                5단계 실전 가이드
+              </span>
+</div>
+</div>
+<!-- Action Button -->
+<a class="inline-flex items-center justify-between w-full bg-primary hover:bg-primary-container text-on-primary px-space-lg py-space-md rounded-2xl text-label-lg font-label-lg transition-all duration-150 active:scale-[0.98] shadow-sm" href="sweater.html">
+<span>스웨터 도안 만들기</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+<!-- Card 2: COMING SOON [Scarf & Muffler] -->
+<div class="bg-surface-container-lowest/60 rounded-[28px] p-space-xl border border-outline-variant/30 flex flex-col justify-between relative opacity-85">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-tertiary text-label-sm font-label-sm">
+                준비 중
+              </span>
+<span class="text-3xl opacity-80">🧣</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              목도리 &amp; 머플러 계산기
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-space-lg leading-relaxed">
+              변형 고무뜨기, 리브 패턴 등 원하는 길이별 코잡기 및 필요한 실 소요량 계산
+            </p>
+<div class="flex flex-wrap gap-space-xs mb-space-xl">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary/70 text-label-sm font-label-sm">
+                패턴 배수 맞춤
+              </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary/70 text-label-sm font-label-sm">
+                실 소요량 추정
+              </span>
+</div>
+</div>
+<div class="inline-flex items-center justify-between w-full bg-surface-container text-tertiary px-space-lg py-space-md rounded-2xl text-label-lg font-label-lg cursor-not-allowed">
+<span>오픈 알림 신청하기</span>
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+</div>
+<!-- Card 3: COMING SOON [Beanie & Watchcap] -->
+<div class="bg-surface-container-lowest/60 rounded-[28px] p-space-xl border border-outline-variant/30 flex flex-col justify-between relative opacity-85">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-tertiary text-label-sm font-label-sm">
+                준비 중
+              </span>
+<span class="text-3xl opacity-80">🧢</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              비니 &amp; 와치캡 계산기
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-space-lg leading-relaxed">
+              머리둘레별 맞춤 코수와 자연스러운 정수리 모아뜨기 줄임 계산
+            </p>
+<div class="flex flex-wrap gap-space-xs mb-space-xl">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary/70 text-label-sm font-label-sm">
+                정수리 왕관 줄임
+              </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary/70 text-label-sm font-label-sm">
+                접단(Brim) 높이 조절
+              </span>
+</div>
+</div>
+<div class="inline-flex items-center justify-between w-full bg-surface-container text-tertiary px-space-lg py-space-md rounded-2xl text-label-lg font-label-lg cursor-not-allowed">
+<span>오픈 알림 신청하기</span>
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+</div>
+<!-- Card 4: COMING SOON [Custom Socks] -->
+<div class="bg-surface-container-lowest/60 rounded-[28px] p-space-xl border border-outline-variant/30 flex flex-col justify-between relative opacity-85">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high text-tertiary text-label-sm font-label-sm">
+                준비 중
+              </span>
+<span class="text-3xl opacity-80">🧦</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">
+              맞춤 양말 계산기
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant/80 mb-space-lg leading-relaxed">
+              발길이와 발등 둘레에 맞춘 커프다운/토업 힐 플랩 계산
+            </p>
+<div class="flex flex-wrap gap-space-xs mb-space-xl">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary/70 text-label-sm font-label-sm">
+                커프다운 / 토업
+              </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container-low text-tertiary/70 text-label-sm font-label-sm">
+                뒤꿈치 거셋 자동 생성
+              </span>
+</div>
+</div>
+<div class="inline-flex items-center justify-between w-full bg-surface-container text-tertiary px-space-lg py-space-md rounded-2xl text-label-lg font-label-lg cursor-not-allowed">
+<span>오픈 알림 신청하기</span>
+<span class="material-symbols-outlined text-lg">lock</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ========================================== -->
+<!-- Essential Knitting Techniques Library (기본 뜨개 기법 라이브러리) -->
+<!-- ========================================== -->
+<section class="mb-space-xxl pt-space-lg" id="techniques">
+  <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-lg gap-2">
+    <div>
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label-sm font-label-sm mb-2">
+        <span class="material-symbols-outlined text-[15px]">smart_display</span>
+        <span>뜨개 실전 영상 가이드</span>
+      </div>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold">필수 대바늘 기본 기법</h2>
+    </div>
+    <p class="text-body-sm font-body-sm text-tertiary">스웨터, 목도리, 양말 뜰 때 가장 자주 쓰이는 6대 핵심 기법</p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md">
+    <!-- Card 1: German Twisted Cast-on -->
+    <div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/30 craft-shadow-hover flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-fixed text-primary">코잡기</span>
+          <span class="text-xs text-outline font-medium">난이도 ★☆☆</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1.5 flex items-center gap-1.5">
+          <span>독일식 꼬아 코잡기</span>
+        </h3>
+        <p class="text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          머리가 쏙 들어가는 신축성 있는 목둘레와 양말 입구를 만들 때 가장 강력 추천하는 탄력 코잡기입니다.
+        </p>
+      </div>
+      <button type="button" onclick="openTechVideo('독일식 꼬아 코잡기 (흔들코)', 'bTWYOV8Xits', '💡 <strong>추천 용도:</strong> 스웨터 목둘레, 비니 입구, 양말 발목 등 탄성이 필요한 모든 편물에 사용합니다.')" class="w-full py-2.5 px-4 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-bold text-label-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">play_circle</span>
+        <span>기법 영상 바로보기</span>
+      </button>
+    </div>
+
+    <!-- Card 2: M1R & M1L Increases -->
+    <div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/30 craft-shadow-hover flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-secondary-fixed text-secondary">코늘림</span>
+          <span class="text-xs text-outline font-medium">난이도 ★★☆</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1.5 flex items-center gap-1.5">
+          <span>M1R &amp; M1L 코늘림</span>
+        </h3>
+        <p class="text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          탑다운 스웨터 요크 레글런 늘림의 핵심! 구멍(바늘비우기) 없이 좌우 대칭으로 깔끔하게 코를 늘립니다.
+        </p>
+      </div>
+      <button type="button" onclick="openTechVideo('M1R &amp; M1L 레글런 코늘림', 'zqKO4kyEDPY', '💡 <strong>추천 용도:</strong> 탑다운 스웨터의 레글런 사선 늘림, 삼각 숄의 날개 늘림 등에 사용합니다.')" class="w-full py-2.5 px-4 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-bold text-label-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">play_circle</span>
+        <span>기법 영상 바로보기</span>
+      </button>
+    </div>
+
+    <!-- Card 3: Backward Loop Underarm Cast-on -->
+    <div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/30 craft-shadow-hover flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-fixed text-primary">감아코</span>
+          <span class="text-xs text-outline font-medium">난이도 ★☆☆</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1.5 flex items-center gap-1.5">
+          <span>감아코 만들기</span>
+        </h3>
+        <p class="text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          소매를 분리하고 앞판과 뒤판을 하나로 이을 때 겨드랑이 밑에 새 코를 빠르게 만드는 필수 기법입니다.
+        </p>
+      </div>
+      <button type="button" onclick="openTechVideo('소매분리 감아코 만들기', 'SAusIquLG1s', '💡 <strong>추천 용도:</strong> 스웨터 겨드랑이 감아코, 가디건 단추구멍 생성 등에 사용합니다.')" class="w-full py-2.5 px-4 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-bold text-label-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">play_circle</span>
+        <span>기법 영상 바로보기</span>
+      </button>
+    </div>
+
+    <!-- Card 4: SSK & K2tog Decreases -->
+    <div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/30 craft-shadow-hover flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-secondary-fixed text-secondary">코줄임</span>
+          <span class="text-xs text-outline font-medium">난이도 ★★☆</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1.5 flex items-center gap-1.5">
+          <span>소매 줄임 (SSK &amp; K2tog)</span>
+        </h3>
+        <p class="text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          소매통을 손목으로 갈수록 자연스럽게 좁힐 때, 시작 마커를 기준으로 좌우 대칭 코줄임을 진행합니다.
+        </p>
+      </div>
+      <button type="button" onclick="openTechVideo('소매 줄임 (SSK &amp; K2tog)', 'ovGOlKU5W1E', '💡 <strong>추천 용도:</strong> 소매통 줄임, 브이넥 넥라인 줄임, 모자 정수리 줄임 등에 사용합니다.')" class="w-full py-2.5 px-4 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-bold text-label-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">play_circle</span>
+        <span>기법 영상 바로보기</span>
+      </button>
+    </div>
+
+    <!-- Card 5: Italian Tubular Bind-off -->
+    <div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/30 craft-shadow-hover flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-tertiary-fixed text-tertiary">돗바늘마감</span>
+          <span class="text-xs text-outline font-medium">난이도 ★★★</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1.5 flex items-center gap-1.5">
+          <span>돗바늘 고무단 마감</span>
+        </h3>
+        <p class="text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          1코 고무단을 돗바늘로 바느질하듯 꿰매어 기성복 명품 니트처럼 둥글고 완벽한 탄력 엣지를 완성합니다.
+        </p>
+      </div>
+      <button type="button" onclick="openTechVideo('돗바늘 1코 고무단 마무리 (이탈리안 바인드오프)', '1FhG4_KkZ6g', '💡 <strong>추천 용도:</strong> 목둘레 넥밴드, 몸통 밑단, 소매 손목 시보리의 최고급 마감입니다.')" class="w-full py-2.5 px-4 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-bold text-label-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">play_circle</span>
+        <span>기법 영상 바로보기</span>
+      </button>
+    </div>
+
+    <!-- Card 6: Jeny's Stretchy Bind-off -->
+    <div class="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/30 craft-shadow-hover flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-tertiary-fixed text-tertiary">대바늘마감</span>
+          <span class="text-xs text-outline font-medium">난이도 ★☆☆</span>
+        </div>
+        <h3 class="font-headline-md text-headline-md text-on-surface font-bold mb-1.5 flex items-center gap-1.5">
+          <span>제니의 신축성 코막음</span>
+        </h3>
+        <p class="text-body-sm text-on-surface-variant leading-relaxed mb-4">
+          돗바늘 없이 대바늘로만 바늘비우기(Yarn Over)를 섞어 만드는 극강의 신축성 코막음! 절대 쨍기지 않습니다.
+        </p>
+      </div>
+      <button type="button" onclick="openTechVideo('제니의 신축성 코막음 (Jeny’s Bind-Off)', 'pIYoxS7eF1o', '💡 <strong>추천 용도:</strong> 양말 입구, 신축성이 많이 필요한 소매 끝과 스카프 마감에 최고입니다.')" class="w-full py-2.5 px-4 rounded-xl bg-primary/10 hover:bg-primary text-primary hover:text-on-primary font-bold text-label-sm flex items-center justify-center gap-1.5 transition-all cursor-pointer active:scale-95">
+        <span class="material-symbols-outlined text-[17px]">play_circle</span>
+        <span>기법 영상 바로보기</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Why Knitting Studio (3 Core Values Bento Strip) -->
+<section class="pt-space-xl border-t border-surface-container-highest/60" id="about">
+<div class="text-center max-w-2xl mx-auto mb-space-xl">
+<span class="text-primary font-label-md text-label-md">Why Knitting Studio</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mt-1 mb-space-xs">왜 니팅 스튜디오인가요?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          손뜨개질은 수학이 아닌 힐링이어야 합니다. 번거로운 계산은 스튜디오가 대신합니다.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Value 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/30 craft-shadow-hover transition-all">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-md text-primary">
+<span class="material-symbols-outlined text-2xl">straighten</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">게이지 실패 제로</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            손 힘이 쫀쫀하거나 느슨해도 문제없습니다. 내 손땀 그대로 입력하면 도안 수치가 자동 보정됩니다.
+          </p>
+</div>
+<!-- Value 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/30 craft-shadow-hover transition-all">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-md text-primary">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">30초 즉시 계산</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            골치 아픈 분수와 비례식 암산 없이, 가슴둘레와 단수·콧수만 넣으면 즉시 나만의 도안을 완성합니다.
+          </p>
+</div>
+<!-- Value 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/30 craft-shadow-hover transition-all">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center mb-space-md text-primary">
+<span class="material-symbols-outlined text-2xl">smart_display</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-space-xs">막힐 땐 영상 바로보기</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            M1R 늘림, 튜블러 코잡기 등 헷갈리는 핵심 기법을 도안 단계마다 유튜브 영상으로 직결해 드립니다.
+          </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component Anchor) -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest w-full py-space-xl px-gutter md:px-margin-desktop mt-auto border-t-0" id="faq">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md text-center md:text-left">
+<div>
+<span class="text-label-lg font-label-lg text-on-surface dark:text-inverse-on-surface block font-bold">
+          니팅 스튜디오 (Knitting Studio)
+        </span>
+<p class="text-body-sm font-body-sm text-tertiary mt-1 max-w-md">
+          수학 공식 없는 즐거운 핸드크래프트를 위해 무료로 제공되는 오픈 니팅 툴킷입니다.
+        </p>
+</div>
+<!-- Links from JSON -->
+<div class="flex flex-wrap items-center justify-center gap-space-md text-label-sm font-label-sm text-on-surface-variant dark:text-surface-variant">
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+          프로젝트 허브
+        </a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+          피드백 보내기
+        </a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+          자주 묻는 질문
+        </a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+          이용약관
+        </a>
+<a class="hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+          개인정보처리방침
+        </a>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-space-md pt-space-sm text-center md:text-left text-body-sm font-body-sm text-tertiary/70">
+      © 2025 니팅 스튜디오 (Knitting Studio). All rights reserved. Handcrafted with mathematical precision for knitters.
+    </div>
+</footer>
+
+<!-- ========================================== -->
+<!-- 🎬 IN-PAGE VIDEO MODAL (유튜브 153 완벽 방어 스마트 플레이어) -->
+<!-- ========================================== -->
+<div id="video-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="handleVideoModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-all duration-200 flex flex-col" id="video-modal-card" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 py-3.5 bg-surface-container-low border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[17px]">smart_display</span>
+        </span>
+        <h3 class="text-label-lg font-bold text-on-surface" id="video-modal-title">뜨개 기법 영상</h3>
+      </div>
+      <button type="button" onclick="closeVideoModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors" title="닫기 (ESC)">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- 16:9 Video Frame / Smart Local Fallback -->
+    <div class="relative w-full aspect-video bg-black overflow-hidden">
+      <!-- Web Mode: Native Embedded YouTube Iframe -->
+      <iframe id="video-modal-frame" class="w-full h-full" src="" title="뜨개 영상 플레이어" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+      <!-- Local file:// Fallback (153 에러 완전 차단) -->
+      <div id="video-local-player" class="hidden absolute inset-0 bg-stone-950 flex flex-col items-center justify-center text-center p-6 cursor-pointer group" onclick="openCurrentVideoExternal()">
+        <img id="video-local-thumb" src="" alt="동영상 썸네일" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
+        <div class="relative z-10 flex flex-col items-center gap-3">
+          <div class="w-16 h-16 rounded-full bg-red-600 group-hover:bg-red-700 text-white flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-all duration-200">
+            <span class="material-symbols-outlined text-[36px] ml-1">play_arrow</span>
+          </div>
+          <span class="bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold shadow-md">
+            ▶ 클릭 시 유튜브 고화질로 즉시 재생 (153 오류 없는 100% 정상 시청)
+          </span>
+          <span class="text-[11px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
+            💡 로컬 파일(file://) 보안 정책 우회 모드 활성화됨
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary & Tips Bar -->
+    <div id="video-modal-summary" class="px-5 py-2.5 bg-primary-fixed/20 text-body-sm font-body-sm text-primary border-b border-primary/10 flex items-center gap-2">
+      <!-- Injected dynamically -->
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between px-5 py-3 bg-surface-container-lowest text-label-sm text-on-surface-variant">
+      <div class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[16px] text-primary">lightbulb</span>
+        <span>웹 서버(Vercel/localhost)에서는 <strong>인앱 전체화면(⛶)</strong>으로 재생됩니다.</span>
+      </div>
+      <a id="video-modal-ext-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold cursor-pointer">
+        <span>유튜브 앱에서 보기</span>
+        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- TOAST NOTIFICATION -->
+<!-- ========================================== -->
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-[#1c1917] text-[#faf9f6] text-sm font-semibold shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-3 flex items-center gap-2">
+  <span class="material-symbols-outlined text-sm text-[#c46243]" id="toast-icon">check_circle</span>
+  <span id="toast-msg">알림</span>
+</div>
+
+<!-- ========================================== -->
+<!-- AUTH MODAL (Toss / Apple Minimalist) -->
+<!-- ========================================== -->
+<div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 opacity-0 pointer-events-none transition-opacity duration-200" onclick="handleAuthModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-transform duration-200" id="auth-modal-card" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">account_circle</span>
+        </span>
+        <h3 class="text-headline-md font-bold text-on-surface" id="auth-modal-title">로그인</h3>
+      </div>
+      <button onclick="closeAuthModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Toggle Tabs: 로그인 / 회원가입 -->
+    <div id="auth-tabs-row" class="grid grid-cols-2 p-1 bg-surface-container-low rounded-full mb-4 border border-on-surface/[0.04]">
+      <button id="tab-login" type="button" onclick="setAuthTab('login')" class="py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer">로그인</button>
+      <button id="tab-signup" type="button" onclick="setAuthTab('signup')" class="py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">회원가입</button>
+    </div>
+
+    <!-- Inputs Form -->
+    <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+      <!-- Standard Fields (Login / Signup) -->
+      <div id="auth-standard-fields" class="space-y-3">
+        <!-- Nickname Field (회원가입 시 표시) -->
+        <div id="auth-nickname-wrap" class="hidden">
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-label-sm font-semibold text-on-surface-variant" for="auth-nickname">닉네임</label>
+            <span id="nick-status" class="text-[11px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="auth-nickname" maxlength="10" placeholder="닉네임 입력" oninput="handleNicknameInput()" class="flex-1 px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+            <button type="button" id="btn-check-nick" onclick="checkNicknameDuplicate()" class="px-3 py-2 bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold rounded-xl border border-outline-variant/40 transition-colors whitespace-nowrap cursor-pointer active:scale-95 text-xs">
+              중복 확인
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">이메일 (아이디)</label>
+          <input type="email" id="auth-email" placeholder="example@knitting.com" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">비밀번호</label>
+          <input type="password" id="auth-password" placeholder="6자리 이상 비밀번호" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+      </div>
+
+      <!-- Reset Fields (비밀번호 재설정) -->
+      <div id="auth-reset-fields" class="hidden space-y-3">
+        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[11px] text-on-surface-variant flex items-start gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock_reset</span>
+          <span>가입 시 등록하신 <strong>이메일과 닉네임</strong>이 일치하면 즉시 새로운 비밀번호로 변경됩니다.</span>
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">가입한 이메일</label>
+          <input type="email" id="reset-email" placeholder="example@knitting.com" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">가입한 닉네임</label>
+          <input type="text" id="reset-nickname" placeholder="등록했던 닉네임" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">새 비밀번호</label>
+          <input type="password" id="reset-password" minlength="6" placeholder="6자리 이상 새 비밀번호" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">새 비밀번호 확인</label>
+          <input type="password" id="reset-password-confirm" minlength="6" placeholder="새 비밀번호 재입력" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+      </div>
+
+      <div id="auth-error" class="hidden text-xs text-error font-medium p-2.5 rounded-xl bg-error-container/40 border border-error/20"></div>
+
+      <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-full bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-sm transition-all active:scale-[0.98] mt-2 cursor-pointer">
+        로그인하기
+      </button>
+
+      <div id="auth-bottom-links" class="flex items-center justify-between text-xs text-on-surface-variant pt-2 px-1">
+        <button type="button" id="btn-forgot-pw" onclick="setAuthTab('reset')" class="text-xs text-on-surface-variant hover:text-primary underline cursor-pointer">
+          비밀번호를 잊으셨나요?
+        </button>
+        <button type="button" id="btn-back-login" onclick="setAuthTab('login')" class="hidden text-xs text-on-surface-variant hover:text-primary underline cursor-pointer">
+          ← 로그인으로 돌아가기
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+
+  let currentVideoId = '';
+
+  function openCurrentVideoExternal() {
+    if (currentVideoId) {
+      window.open('https://www.youtube.com/watch?v=' + currentVideoId, '_blank');
+    }
+  }
+
+  function openVideoModal(title, videoId, summaryText = '') {
+    currentVideoId = videoId;
+    const modal = document.getElementById('video-modal');
+    const card = document.getElementById('video-modal-card');
+    const frame = document.getElementById('video-modal-frame');
+    const titleEl = document.getElementById('video-modal-title');
+    const summaryEl = document.getElementById('video-modal-summary');
+    const extLink = document.getElementById('video-modal-ext-link');
+    const localPlayer = document.getElementById('video-local-player');
+    const localThumb = document.getElementById('video-local-thumb');
+
+    if (titleEl) titleEl.innerText = title;
+    if (summaryEl) {
+      if (summaryText) {
+        summaryEl.innerHTML = summaryText;
+        summaryEl.classList.remove('hidden');
+      } else {
+        summaryEl.classList.add('hidden');
+      }
+    }
+
+    const isLocalFile = window.location.protocol === 'file:';
+
+    if (isLocalFile && localPlayer) {
+      // Local file mode: show thumbnail player to completely avoid 153 error
+      localPlayer.classList.remove('hidden');
+      if (localThumb) localThumb.src = 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+      if (frame) frame.src = '';
+    } else {
+      // Web server / Vercel mode: load live iframe player with autoplay
+      if (localPlayer) localPlayer.classList.add('hidden');
+      if (frame) {
+        const originParam = window.location.origin && window.location.origin !== 'null' ? '&origin=' + encodeURIComponent(window.location.origin) : '';
+        frame.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&enablejsapi=1' + originParam;
+      }
+    }
+
+    if (extLink) {
+      extLink.href = 'https://www.youtube.com/watch?v=' + videoId;
+    }
+
+    if (modal && card) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const card = document.getElementById('video-modal-card');
+    const frame = document.getElementById('video-modal-frame');
+
+    if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+    if (card) card.classList.add('scale-95');
+    if (frame) frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function handleVideoModalBackdrop(e) {
+    if (e.target && e.target.id === 'video-modal') {
+      closeVideoModal();
+    }
+  }
+
+  function openTechVideo(title, videoId, summaryText = '') {
+    openVideoModal(title, videoId, summaryText);
+  }
+
+
+
+
+  // ☁️ SUPABASE CLIENT & AUTH CONTROLLER
+  const SUPABASE_URL = "https://vjuehrbdottiklcojlcl.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdWVocmJkb3R0aWtsY29qbGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3MjM4NzAsImV4cCI6MjExMDI5OTg3MH0.BDWbnmL0tsM2jpEGIyvIpYub9kC7oI5ZWgGuieLu0a8";
+
+  let spClient = null;
+  if (typeof supabase !== 'undefined') {
+    spClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  let currentAuthTab = 'login';
+  let currentUser = null;
+
+  function showToast(msg, icon = 'check_circle') {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    document.getElementById('toast-msg').innerText = msg;
+    document.getElementById('toast-icon').innerText = icon;
+    t.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    setTimeout(() => {
+      t.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 2800);
+  }
+
+  function openAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.remove('opacity-0', 'pointer-events-none');
+    document.getElementById('auth-modal-card').classList.remove('scale-95');
+    document.getElementById('auth-error').classList.add('hidden');
+  }
+
+  function closeAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.add('opacity-0', 'pointer-events-none');
+    document.getElementById('auth-modal-card').classList.add('scale-95');
+  }
+
+  function handleAuthModalBackdrop(e) {
+    if (e.target && e.target.id === 'auth-modal') {
+      closeAuthModal();
+    }
+  }
+
+  let isNicknameChecked = false;
+  let verifiedNickname = '';
+
+  const FORBIDDEN_NICK_KEYWORDS = [
+    '운영자', '관리자', '어드민', '마스터', '스태프', '매니저', '스튜디오', '공식',
+    '고객센터', '시스템', '운영팀', '관리팀', '뜨개스튜디오',
+    'admin', 'administrator', 'operator', 'master', 'manager', 'staff',
+    'root', 'support', 'system', 'official'
+  ];
+
+  function validateNicknameFormat(nick) {
+    if (!nick) return { valid: false, message: '닉네임을 입력해 주세요.' };
+    if (nick.length < 2 || nick.length > 10) {
+      return { valid: false, message: '2~10자로 입력해 주세요.' };
+    }
+    const normalized = nick.toLowerCase().replace(/[\s_\-\.]+/g, '');
+    for (const keyword of FORBIDDEN_NICK_KEYWORDS) {
+      if (normalized.includes(keyword)) {
+        return { valid: false, message: '운영자 및 관리자 사칭 방지를 위해 사용할 수 없는 단어가 포함되어 있습니다.' };
+      }
+    }
+    return { valid: true };
+  }
+
+  function handleNicknameInput() {
+    isNicknameChecked = false;
+    verifiedNickname = '';
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+    if (!status) return;
+
+    if (!nick) {
+      status.innerText = '2~10자 한글/영문/숫자';
+      status.className = 'text-[11px] font-medium text-on-surface-variant';
+      return;
+    }
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      status.innerText = check.message;
+      status.className = 'text-[11px] font-medium text-error font-semibold';
+    } else {
+      status.innerText = '중복 확인이 필요합니다';
+      status.className = 'text-[11px] font-medium text-amber-600';
+    }
+  }
+
+  async function checkNicknameDuplicate() {
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      isNicknameChecked = false;
+      verifiedNickname = '';
+      if (status) {
+        status.innerText = check.message;
+        status.className = 'text-[11px] font-medium text-error font-semibold';
+      }
+      return false;
+    }
+
+    const checkBtn = document.getElementById('btn-check-nick');
+    if (checkBtn) {
+      checkBtn.disabled = true;
+      checkBtn.innerText = '확인 중...';
+    }
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data: isAvailable, error } = await spClient.rpc('check_nickname_available', { p_nickname: nick });
+      if (error) throw error;
+
+      if (isAvailable) {
+        isNicknameChecked = true;
+        verifiedNickname = nick;
+        if (status) {
+          status.innerText = '✓ 사용 가능한 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-emerald-600 font-bold';
+        }
+        showToast('사용 가능한 닉네임입니다! ✨');
+        return true;
+      } else {
+        isNicknameChecked = false;
+        verifiedNickname = '';
+        if (status) {
+          status.innerText = '✕ 이미 사용 중이거나 사용할 수 없는 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-error font-bold';
+        }
+        return false;
+      }
+    } catch (err) {
+      if (status) {
+        status.innerText = '중복 확인 실패: ' + (err.message || '오류');
+        status.className = 'text-[11px] font-medium text-error';
+      }
+      return false;
+    } finally {
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.innerText = '중복 확인';
+      }
+    }
+  }
+
+  function setAuthTab(tab) {
+    currentAuthTab = tab;
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const tabsRow = document.getElementById('auth-tabs-row');
+    const btn = document.getElementById('auth-submit-btn');
+    const title = document.getElementById('auth-modal-title');
+    const standardFields = document.getElementById('auth-standard-fields');
+    const nickWrap = document.getElementById('auth-nickname-wrap');
+    const resetFields = document.getElementById('auth-reset-fields');
+    const forgotBtn = document.getElementById('btn-forgot-pw');
+    const backLoginBtn = document.getElementById('btn-back-login');
+    const errorBox = document.getElementById('auth-error');
+
+    if (errorBox) errorBox.classList.add('hidden');
+
+    if (tab === 'login') {
+      if (title) title.innerText = '로그인';
+      if (btn) btn.innerText = '로그인하기';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'signup') {
+      if (title) title.innerText = '무료 회원가입';
+      if (btn) btn.innerText = '무료 회원가입';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.remove('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'reset') {
+      if (title) title.innerText = '비밀번호 재설정';
+      if (btn) btn.innerText = '비밀번호 변경하기';
+      if (tabsRow) tabsRow.classList.add('hidden');
+      if (standardFields) standardFields.classList.add('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.remove('hidden');
+      if (forgotBtn) forgotBtn.classList.add('hidden');
+      if (backLoginBtn) backLoginBtn.classList.remove('hidden');
+    }
+  }
+
+  async function handlePasswordResetSubmit() {
+    const email = document.getElementById('reset-email').value.trim();
+    const nickname = document.getElementById('reset-nickname').value.trim();
+    const newPassword = document.getElementById('reset-password').value.trim();
+    const newPasswordConfirm = document.getElementById('reset-password-confirm').value.trim();
+    const errorBox = document.getElementById('auth-error');
+
+    if (!email || !nickname || !newPassword || !newPasswordConfirm) {
+      errorBox.innerText = '모든 항목을 빠짐없이 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword.length < 6) {
+      errorBox.innerText = '새 비밀번호는 최소 6자리 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword !== newPasswordConfirm) {
+      errorBox.innerText = '비밀번호 확인이 일치하지 않습니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const btn = document.getElementById('auth-submit-btn');
+    btn.disabled = true;
+    btn.innerText = '확인 및 변경 중...';
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data, error } = await spClient.rpc('reset_password_with_credentials', {
+        p_email: email,
+        p_nickname: nickname,
+        p_new_password: newPassword
+      });
+      if (error) throw error;
+
+      if (!data || !data.success) {
+        throw new Error(data?.message || '등록된 이메일과 닉네임 정보가 일치하지 않습니다.');
+      }
+
+      showToast('비밀번호가 성공적으로 변경되었습니다! 새 비밀번호로 로그인해 주세요. 🔑');
+      const authEmail = document.getElementById('auth-email');
+      if (authEmail) authEmail.value = email;
+      const authPw = document.getElementById('auth-password');
+      if (authPw) authPw.value = '';
+      setAuthTab('login');
+    } catch (err) {
+      errorBox.innerText = err.message || '비밀번호 재설정에 실패했습니다.';
+      errorBox.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      if (currentAuthTab === 'reset') {
+        btn.innerText = '비밀번호 변경하기';
+      }
+    }
+  }
+
+  async function handleAuthSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    if (currentAuthTab === 'reset') {
+      return handlePasswordResetSubmit();
+    }
+
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    const errorBox = document.getElementById('auth-error');
+    errorBox.classList.add('hidden');
+
+    if (!email || !password) {
+      errorBox.innerText = '이메일과 비밀번호를 모두 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (password.length < 6) {
+      errorBox.innerText = '비밀번호는 최소 6자 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      if (currentAuthTab === 'signup') {
+        const nick = (document.getElementById('auth-nickname')?.value || '').trim();
+        if (!nick) {
+          errorBox.innerText = '닉네임을 입력해 주세요.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (!isNicknameChecked || verifiedNickname !== nick) {
+          const ok = await checkNicknameDuplicate();
+          if (!ok) {
+            errorBox.innerText = '닉네임 중복 확인을 완료해 주세요.';
+            errorBox.classList.remove('hidden');
+            return;
+          }
+        }
+
+        const { data, error } = await spClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              nickname: nick
+            }
+          }
+        });
+        if (error) {
+          if (error.message.includes('already registered') || error.message.includes('already exists') || error.status === 400 || error.code === 'user_already_exists') {
+            throw new Error('이미 가입된 이메일입니다. 로그인 탭에서 로그인해 주세요.');
+          }
+          throw error;
+        }
+
+        if (data?.user?.id) {
+          try {
+            await spClient.from('profiles').upsert({
+              id: data.user.id,
+              email: email,
+              nickname: nick
+            });
+          } catch (e) {
+            console.warn('Profile fallback sync:', e);
+          }
+        }
+
+        if (!data.session) {
+          const { error: signinErr } = await spClient.auth.signInWithPassword({ email, password });
+          if (signinErr) throw signinErr;
+        }
+        showToast('회원가입 완료! 자동 로그인되었습니다.');
+        closeAuthModal();
+      } else {
+        const { data, error } = await spClient.auth.signInWithPassword({ email, password });
+        if (error) {
+          if (error.message.includes('Invalid login credentials')) {
+            throw new Error('이메일 또는 비밀번호가 올바르지 않습니다.');
+          }
+          throw error;
+        }
+        showToast('환영합니다! 로그인되었습니다.');
+        closeAuthModal();
+      }
+    } catch (err) {
+      errorBox.innerText = err.message || '인증 오류가 발생했습니다.';
+      errorBox.classList.remove('hidden');
+    }
+  }
+
+  async function handleSignOut() {
+    if (spClient) {
+      await spClient.auth.signOut();
+      showToast('로그아웃되었습니다.');
+    }
+  }
+
+  if (spClient) {
+    spClient.auth.onAuthStateChange((event, session) => {
+      currentUser = session ? session.user : null;
+      const loggedOutBox = document.getElementById('auth-logged-out');
+      const loggedInBox = document.getElementById('auth-logged-in');
+      const badge = document.getElementById('user-badge');
+
+      if (currentUser) {
+        if (loggedOutBox) loggedOutBox.classList.add('hidden');
+        if (loggedInBox) {
+          loggedInBox.classList.remove('hidden');
+          loggedInBox.classList.add('flex');
+        }
+        if (badge) {
+          const nick = currentUser.user_metadata?.nickname || currentUser.email.split('@')[0];
+          badge.innerText = nick;
+          badge.title = `${nick} (${currentUser.email})`;
+        }
+      } else {
+        if (loggedInBox) {
+          loggedInBox.classList.add('hidden');
+          loggedInBox.classList.remove('flex');
+        }
+        if (loggedOutBox) loggedOutBox.classList.remove('hidden');
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeVideoModal();
+      closeAuthModal();
+    }
+  });
+</script>
+
+</body></html>
+
