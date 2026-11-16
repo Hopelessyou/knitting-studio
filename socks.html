@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<title>1초 맞춤 양말 계산기 - 커프다운 &amp; 토업 실측 도안 | 니팅 스튜디오</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Container Queries and Forms -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#fe875d",
+            "primary": "#984125",
+            "surface": "#faf9f6",
+            "on-tertiary-container": "#fffbff",
+            "primary-fixed": "#ffdbd0",
+            "inverse-primary": "#ffb59e",
+            "on-secondary": "#ffffff",
+            "secondary": "#a0401c",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#f0e0d0",
+            "surface-variant": "#e3e2e0",
+            "inverse-surface": "#2f312f",
+            "tertiary-container": "#7f7365",
+            "secondary-fixed": "#ffdbcf",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#ffb59e",
+            "outline-variant": "#dcc1b9",
+            "outline": "#89726c",
+            "on-secondary-container": "#722200",
+            "on-tertiary-fixed": "#221a10",
+            "on-secondary-fixed": "#390c00",
+            "inverse-on-surface": "#f2f1ee",
+            "tertiary-fixed-dim": "#d3c4b4",
+            "error": "#ba1a1a",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f4f3f1",
+            "surface-container-highest": "#e3e2e0",
+            "on-secondary-fixed-variant": "#802a05",
+            "surface-container": "#efeeeb",
+            "on-tertiary-fixed-variant": "#4f4539",
+            "on-error": "#ffffff",
+            "on-surface": "#1a1c1a",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-primary-fixed-variant": "#7d2d12",
+            "on-surface-variant": "#56423d",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#3a0b00",
+            "surface-dim": "#dbdad7",
+            "tertiary": "#655a4e",
+            "surface-bright": "#faf9f6",
+            "on-primary-container": "#fffbff",
+            "surface-tint": "#9c4427",
+            "background": "#faf9f6",
+            "on-background": "#1a1c1a",
+            "primary-container": "#b8593b",
+            "surface-container-high": "#e9e8e5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xxl": "3.5rem",
+            "space-xs": "0.25rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "numeric-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display-hero-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.025em", "fontWeight": "800" }],
+            "display-hero": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "numeric-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -4px rgba(196, 98, 67, 0.06), 0 2px 8px 0 rgba(28, 25, 23, 0.03);
+    }
+    .info-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 9999px;
+      background-color: rgba(152, 65, 37, 0.12);
+      color: #984125;
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 1;
+      cursor: pointer;
+      border: 1px solid rgba(152, 65, 37, 0.25);
+      transition: all 0.15s ease;
+      vertical-align: middle;
+      padding: 0;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .info-btn:hover {
+      background-color: #984125;
+      color: #ffffff;
+      transform: scale(1.1);
+      border-color: #984125;
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
+      }
+      *, *::before, *::after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+      html, body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #1a1c1a !important;
+        font-size: 10pt !important;
+        line-height: 1.35 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      main {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        display: block !important;
+      }
+      header, footer, nav,
+      #hero-banner,
+      #calc-input-panel,
+      #admin-print-section,
+      #video-modal, #auth-modal, #info-modal, #toast,
+      .info-btn,
+      button,
+      a[href^="#"] {
+        display: none !important;
+      }
+      #print-only-header {
+        display: block !important;
+        margin-bottom: 12px !important;
+        border-bottom: 2px solid #984125 !important;
+        padding-bottom: 8px !important;
+      }
+      .print-brand-bar {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-end !important;
+      }
+      .print-title {
+        font-size: 15pt !important;
+        font-weight: 800 !important;
+        color: #984125 !important;
+      }
+      .print-subtitle {
+        font-size: 8pt !important;
+        color: #666666 !important;
+      }
+      .grid.grid-cols-1.lg\:grid-cols-12 {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #calc-result-panel {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #calc-result-summary {
+        display: block !important;
+        width: 100% !important;
+        padding: 10px 14px !important;
+        border: 1.5px solid #984125 !important;
+        border-radius: 10px !important;
+        background: #ffffff !important;
+        margin-bottom: 12px !important;
+      }
+      #roadmap {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      #roadmap > .space-y-6 > div {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        padding: 10px 14px !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 8px !important;
+        background: #ffffff !important;
+        margin-bottom: 10px !important;
+      }
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md">
+
+<!-- HEADER NAV -->
+<header class="bg-surface/90 dark:bg-surface/90 backdrop-blur-md text-primary docked full-width top-0 sticky z-40 border-b border-outline-variant/30 shadow-sm">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-3.5">
+    <a class="text-xl md:text-2xl font-extrabold text-primary tracking-tight flex items-center gap-2 hover:opacity-90 transition-opacity" href="index.html" title="메인 허브로 이동">
+      <span class="text-2xl">🧦</span>
+      <span>1초 맞춤 양말 계산기</span>
+      <span class="inline-flex items-center gap-1 text-xs font-bold bg-primary/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 ml-1">
+        <span class="material-symbols-outlined text-[15px]">home</span>
+        <span>홈</span>
+      </span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 text-label-lg" href="#calculator">계산기</a>
+      <a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors duration-150 text-label-lg" href="community.html">커뮤니티</a>
+      <a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors duration-150 text-label-lg" href="#roadmap">뜨개 로드맵</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <div id="auth-logged-out" class="flex items-center gap-2">
+        <button type="button" onclick="openAuthModal()" class="px-4 py-2 rounded-full text-label-md font-semibold bg-primary hover:bg-primary-container text-on-primary transition-all duration-150 shadow-sm flex items-center gap-1.5 cursor-pointer active:scale-95">
+          <span class="material-symbols-outlined text-[16px]">account_circle</span>
+          <span>로그인 / 저장</span>
+        </button>
+      </div>
+      <div id="auth-logged-in" class="hidden items-center gap-2">
+        <span id="user-badge" class="px-2.5 py-1 bg-primary/10 text-primary font-bold text-xs rounded-full max-w-[120px] truncate"></span>
+        <button type="button" onclick="saveSocksPattern()" class="px-3 py-1.5 rounded-full text-xs font-bold bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-1 shadow-xs cursor-pointer">
+          <span class="material-symbols-outlined text-[14px]">cloud_upload</span>
+          <span>저장</span>
+        </button>
+        <button type="button" onclick="handleSignOut()" class="p-1.5 rounded-full hover:bg-surface-container text-outline hover:text-error transition-all cursor-pointer" title="로그아웃">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN APP -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-6 md:px-10 py-8 flex flex-col gap-8">
+  
+  <!-- PRINT ONLY HEADER -->
+  <div id="print-only-header" style="display: none;">
+    <div class="print-brand-bar">
+      <div>
+        <div class="print-title">🧦 1초 맞춤 양말 실측 도안</div>
+        <div class="print-subtitle">니팅 스튜디오 (Knitting Studio) · 힐 플랩 &amp; 거셋 완벽 핏 양말 도안</div>
+      </div>
+      <div style="text-align: right;">
+        <span class="print-spec-highlight" id="print-spec-summary">발길이 240mm · 시작 60코 (커프다운)</span>
+        <div class="print-subtitle" id="print-date-text">발행일: 2026. 11. 16</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO BANNER -->
+  <section id="hero-banner" class="text-center pt-2 pb-2 flex flex-col items-center max-w-3xl mx-auto">
+    <div class="inline-flex items-center gap-1.5 bg-surface-container-low text-primary px-3.5 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant/30 mb-3">
+      <span class="material-symbols-outlined text-primary text-[15px]">footprint</span>
+      <span>내 발에 꼭 맞는 뒤꿈치 힐플랩 &amp; 무봉제 키치너 도안</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight text-balance">
+      발사이즈와 게이지만 넣으면 <span class="text-primary">인생 양말 완성!</span>
+    </h1>
+    <p class="mt-2 text-on-surface-variant max-w-xl mx-auto text-sm md:text-base">
+      복잡한 거셋 줄임과 뒤꿈치 턴 계산 없이, 흘러내리지 않고 구멍 안 나는 실측 양말 코수를 도출합니다.
+    </p>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- LEFT: INPUT CONTROLS -->
+    <div id="calc-input-panel" class="lg:col-span-5 w-full flex flex-col gap-6">
+            <!-- ========================================== -->
+      <!-- 📸 FINISHED EXAMPLE PREVIEW CARD (완성 예시 실물 미리보기 - 제작 방식별 동적 연동) -->
+      <!-- ========================================== -->
+      <div class="w-full bg-surface-container-lowest rounded-3xl p-5 border border-on-surface/[0.06] custom-shadow transition-all duration-200 overflow-hidden group">
+        <!-- Card Header -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+            <span class="text-label-md font-label-md text-primary font-bold">완성 예시 실물</span>
+          </div>
+          <span id="preview-badge" class="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
+            정석 힐플랩 핏
+          </span>
+        </div>
+
+        <!-- Image Container -->
+        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-surface-container-low border border-on-surface/[0.04]">
+          <img id="preview-img"
+               src="images/socks_cuffdown.jpg" 
+               alt="완성 예시 커프다운 양말" 
+               class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-300"
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-3.5 text-white pointer-events-none">
+            <span id="preview-title" class="text-xs font-bold drop-shadow-sm transition-all duration-200">🧦 클래식 커프다운 힐플랩 양말</span>
+            <span id="preview-sub" class="text-[11px] text-white/85 drop-shadow-sm transition-all duration-200">발목부터 시작해 뒤꿈치 각도를 가장 견고하게 감싸는 정석 구조</span>
+          </div>
+        </div>
+
+        <!-- Caption / Specs Note -->
+        <p id="preview-desc" class="mt-2.5 text-xs text-on-surface-variant leading-relaxed transition-all duration-200">
+          💡 <strong>제작 포인트:</strong> 네덜란드식 사각 뒤꿈치(Heel Flap &amp; Gusset)로 발등이 높은 발형에 가장 편안하며 구멍 없이 탄탄합니다.
+        </p>
+      </div>
+
+<section class="w-full bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow sticky top-20" id="calculator">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+            <span class="text-label-md text-primary font-bold">STEP 1 · 발 사이즈 &amp; 게이지 입력</span>
+          </div>
+          <span class="text-xs text-on-surface-variant/80 bg-surface-container-low px-2.5 py-0.5 rounded-full">약 30초 소요</span>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          
+          <!-- 1. 뜨개 방식 선택 -->
+          <div>
+            <label class="block text-label-md font-bold text-on-surface mb-2">뜨개 방식 선택</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <button type="button" onclick="selectSockMethod('cuffdown', this)" class="method-btn p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold flex flex-col items-center justify-center gap-1 transition-all">
+                <span class="text-base">⬇️</span>
+                <span>커프다운 (Cuff-down)</span>
+                <span class="text-[10px] opacity-75 font-normal">정석 힐플랩 (가장 튼튼)</span>
+              </button>
+              <button type="button" onclick="selectSockMethod('toeup', this)" class="method-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
+                <span class="text-base">⬆️</span>
+                <span>토업 (Toe-up)</span>
+                <span class="text-[10px] opacity-75 font-normal">발끝부터 실 끝까지 알뜰</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. 게이지 입력 (삭스얀 기본 30코/40단) -->
+          <div class="bg-surface-container-low rounded-2xl p-4 border border-on-surface/[0.05]">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-label-md font-bold text-on-surface">10cm 메리야스 게이지</span>
+              <span class="text-xs text-on-surface-variant">2.25~2.5mm 삭스얀 권장</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-surface-container-lowest p-3 rounded-xl border border-on-surface/[0.06] text-center">
+                <span class="text-xs text-on-surface-variant block mb-1">가로 코수 (10cm)</span>
+                <div class="flex items-center justify-center gap-2">
+                  <button type="button" onclick="adjustVal('socks-st', -1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">-</button>
+                  <input id="socks-st" type="number" value="30" min="18" max="45" class="w-12 text-center font-bold text-lg text-primary border-none p-0 focus:ring-0" onchange="recalculateSocks()"/>
+                  <span class="text-xs text-on-surface-variant">코</span>
+                  <button type="button" onclick="adjustVal('socks-st', 1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">+</button>
+                </div>
+              </div>
+              <div class="bg-surface-container-lowest p-3 rounded-xl border border-on-surface/[0.06] text-center">
+                <span class="text-xs text-on-surface-variant block mb-1">세로 단수 (10cm)</span>
+                <div class="flex items-center justify-center gap-2">
+                  <button type="button" onclick="adjustVal('socks-row', -1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">-</button>
+                  <input id="socks-row" type="number" value="40" min="20" max="60" class="w-12 text-center font-bold text-lg text-primary border-none p-0 focus:ring-0" onchange="recalculateSocks()"/>
+                  <span class="text-xs text-on-surface-variant">단</span>
+                  <button type="button" onclick="adjustVal('socks-row', 1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 발길이 (Foot Length) -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-label-md font-bold text-on-surface">실측 발길이 (신발 사이즈)</label>
+              <span class="text-xs text-primary font-bold" id="foot-len-display">240mm</span>
+            </div>
+            <div class="relative mb-2">
+              <input id="foot-len-input" type="number" value="240" min="200" max="300" step="5" class="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-3 text-center font-bold text-primary" onchange="recalculateSocks()"/>
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-on-surface-variant">mm</span>
+            </div>
+            <div class="flex gap-1.5 overflow-x-auto">
+              <button type="button" onclick="setFootLen(230)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">230mm</button>
+              <button type="button" onclick="setFootLen(240)" class="px-2.5 py-1 rounded-full text-xs bg-primary text-on-primary font-bold">240mm (여성표준)</button>
+              <button type="button" onclick="setFootLen(255)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">255mm</button>
+              <button type="button" onclick="setFootLen(270)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">270mm (남성표준)</button>
+            </div>
+          </div>
+
+          <!-- 4. 발등 둘레 (Foot Circumference) -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-label-md font-bold text-on-surface">발등/발둘레 (가장 볼록한 부위)</label>
+              <span class="text-xs text-primary font-bold" id="foot-circ-display">22cm</span>
+            </div>
+            <div class="relative mb-2">
+              <input id="foot-circ-input" type="number" value="22" min="18" max="28" class="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-3 text-center font-bold text-primary" onchange="recalculateSocks()"/>
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-on-surface-variant">cm</span>
+            </div>
+            <div class="flex gap-1.5 overflow-x-auto">
+              <button type="button" onclick="setFootCirc(20)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">20cm (칼발)</button>
+              <button type="button" onclick="setFootCirc(22)" class="px-2.5 py-1 rounded-full text-xs bg-primary text-on-primary font-bold">22cm (보통)</button>
+              <button type="button" onclick="setFootCirc(24)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">24cm (발볼넓음)</button>
+            </div>
+          </div>
+
+          <!-- 5. 발목 길이 옵션 -->
+          <div>
+            <label class="block text-label-md font-bold text-on-surface mb-1.5">발목 길이 (Leg Length)</label>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <button type="button" onclick="setSockLeg('short', this)" class="leg-btn p-2 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center">
+                숏 앵클 (5cm)
+                <span class="block text-[10px] font-normal opacity-75">스니커즈용</span>
+              </button>
+              <button type="button" onclick="setSockLeg('crew', this)" class="leg-btn p-2 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-center">
+                크루 (13cm)
+                <span class="block text-[10px] font-normal opacity-75">데일리 표준</span>
+              </button>
+              <button type="button" onclick="setSockLeg('high', this)" class="leg-btn p-2 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center">
+                하이 (18cm)
+                <span class="block text-[10px] font-normal opacity-75">부츠용 롱</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- RIGHT: CALCULATION RESULT & ROADMAP -->
+    <div id="calc-result-panel" class="lg:col-span-7 w-full flex flex-col gap-6">
+      
+      <!-- RESULT SUMMARY CARD -->
+      <section id="calc-result-summary" class="bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-on-surface">도출된 양말 맞춤 도안 수치</h2>
+          <span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            4등분 바늘 배수 최적화
+          </span>
+        </div>
+
+        <div class="bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-surface-container p-6 rounded-2xl border border-primary/20 text-center mb-5">
+          <span class="text-xs font-bold text-on-surface-variant block mb-1">시작 원형 코잡기 (Cast-on)</span>
+          <div class="my-2">
+            <span id="sock-res-caston" class="text-4xl md:text-5xl font-extrabold text-primary tracking-tight">60</span>
+            <span class="text-xl font-bold text-primary ml-1">코</span>
+          </div>
+          <p class="text-xs text-on-surface-variant mt-1" id="sock-formula-desc">
+            발둘레 22cm (-10% 적용 실치수 19.8cm) ➔ 4의 배수 맞춤 60코 (매직루프 앞뒤 30코씩)
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
+            <span class="text-xs text-on-surface-variant block mb-1">힐 플랩 (뒤꿈치 벽)</span>
+            <div class="text-xl font-bold text-on-surface">
+              <span id="sock-flap-sts">30</span>코 / <span id="sock-flap-rows">30</span>단
+            </div>
+            <span class="text-[11px] text-outline">반코로 슬립스티치 강화</span>
+          </div>
+          <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
+            <span class="text-xs text-on-surface-variant block mb-1">발가락 줄임 시작점</span>
+            <div class="text-xl font-bold text-primary">
+              뒤꿈치부터 <span id="sock-toe-start-cm">19.5</span>cm
+            </div>
+            <span class="text-[11px] text-outline">총 발길이 24cm - 4.5cm</span>
+          </div>
+          <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
+            <span class="text-xs text-on-surface-variant block mb-1">예상 실 소요량</span>
+            <div class="text-xl font-bold text-primary">
+              약 <span id="sock-yarn-balls">1</span>볼 (한 켤레)
+            </div>
+            <span class="text-[11px] text-outline">1볼 100g (약 400m) 기준</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5-STEP ROADMAP -->
+            <!-- ROADMAP SECTION (제작 방식별 실시간 동적 렌더링) -->
+            <!-- ROADMAP SECTION (제작 방식별 실시간 동적 렌더링) -->
+      <section class="bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow" id="roadmap">
+        <div class="mb-6 pb-4 border-b border-on-surface/[0.06] flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider block mb-1">PRACTICAL ROADMAP</span>
+            <h2 id="sock-roadmap-title" class="text-xl font-bold text-on-surface">실전 양말 뜨개 5단계 가이드 (커프다운 - 힐플랩 정석)</h2>
+          </div>
+          <span id="sock-roadmap-badge" class="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">닳지 않는 뒤꿈치 특급 공식</span>
+        </div>
+
+        <div id="sock-roadmap-container" class="space-y-6">
+          <!-- Dynamically populated by renderSocksRoadmap() -->
+        </div>
+      </section>
+
+      <!-- ADMIN PRINT BANNER -->
+      <div id="admin-print-section" class="hidden bg-surface-container-lowest p-6 rounded-3xl border border-primary/20 custom-shadow flex-col sm:flex-row items-center justify-between gap-4 my-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+            <span class="material-symbols-outlined text-[22px]">print</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h4 class="text-label-lg font-bold text-on-surface">도안 인쇄 및 PDF 내보내기</h4>
+              <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300">관리자 전용</span>
+            </div>
+            <p class="text-xs text-on-surface-variant">불필요한 웹 UI를 제거하고 힐플랩/거셋 수치와 5단계 실전 가이드만 A4 2장 규격으로 출력합니다.</p>
+          </div>
+        </div>
+        <button type="button" onclick="triggerPrint()" class="px-5 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-sm transition-all flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95">
+          <span class="material-symbols-outlined text-[18px]">print</span>
+          <span>A4 도안 인쇄하기</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-surface-container-low full-width border-t border-outline-variant/30 mt-16">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6 md:px-10 py-8">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">🧦</span>
+      <span class="text-label-lg font-bold text-on-surface">1초 맞춤 양말 계산기</span>
+      <span class="text-xs text-on-surface-variant ml-2 border-l border-outline-variant/50 pl-2">Handcrafted with mathematical precision for knitters</span>
+    </div>
+    <nav class="flex flex-wrap items-center justify-center gap-4 text-xs text-on-surface-variant">
+      <a class="hover:text-primary transition-colors" href="index.html">메인 허브</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="sweater.html">스웨터 계산기</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="scarf.html">목도리 계산기</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="beanie.html">비니 계산기</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="community.html">커뮤니티</a>
+    </nav>
+    <p class="text-xs text-on-surface-variant">© 2026 니팅 스튜디오. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+  let currentMethod = 'cuffdown'; // 'cuffdown', 'toeup'
+  let currentLeg = 'crew';        // 'short', 'crew', 'high'
+
+    const SOCKS_METHOD_PREVIEWS = {
+    cuffdown: {
+      badge: '정석 힐플랩 핏',
+      img: 'images/socks_cuffdown.jpg',
+      alt: '커프다운 양말 완성 예시',
+      title: '🧦 클래식 커프다운 힐플랩 양말',
+      sub: '발목부터 시작해 뒤꿈치 각도를 가장 견고하게 감싸는 정석 구조',
+      desc: '💡 <strong>제작 포인트:</strong> 네덜란드식 사각 뒤꿈치(Heel Flap & Gusset)로 발등이 높은 발형에 가장 편안하며 구멍 없이 탄탄합니다.'
+    },
+    toeup: {
+      badge: '알뜰 토업 핏',
+      img: 'images/socks_toeup.jpg',
+      alt: '토업 양말 완성 예시',
+      title: '🦶 매끄러운 토업 저먼쇼트로우 양말',
+      sub: '발끝 터키식 코잡기로 시작해 실이 끝날 때까지 발목 길이를 자유 조절',
+      desc: '💡 <strong>제작 포인트:</strong> 주디스 매직 캐스트온과 저먼 쇼트로우(GSR)로 발끝과 뒤꿈치에 꿰맨 자국 없이 매끄럽게 완성됩니다.'
+    }
+  };
+
+  function updateSocksPreviewCard(m) {
+    const data = SOCKS_METHOD_PREVIEWS[m] || SOCKS_METHOD_PREVIEWS['cuffdown'];
+    const imgEl = document.getElementById('preview-img');
+    const badgeEl = document.getElementById('preview-badge');
+    const titleEl = document.getElementById('preview-title');
+    const subEl = document.getElementById('preview-sub');
+    const descEl = document.getElementById('preview-desc');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0.3';
+      setTimeout(() => {
+        imgEl.src = data.img;
+        imgEl.alt = data.alt;
+        imgEl.style.opacity = '1';
+      }, 120);
+    }
+    if (badgeEl) badgeEl.textContent = data.badge;
+    if (titleEl) titleEl.textContent = data.title;
+    if (subEl) subEl.textContent = data.sub;
+    if (descEl) descEl.innerHTML = data.desc;
+  }
+
+  function selectSockMethod(m, btn) {
+    updateSocksPreviewCard(m);
+    currentMethod = m;
+    document.querySelectorAll('.method-btn').forEach(b => {
+      b.className = 'method-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40';
+    });
+    btn.className = 'method-btn p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold flex flex-col items-center justify-center gap-1 transition-all';
+    recalculateSocks();
+  }
+
+  function setSockLeg(l, btn) {
+    currentLeg = l;
+    document.querySelectorAll('.leg-btn').forEach(b => {
+      b.className = 'leg-btn p-2 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center';
+    });
+    btn.className = 'leg-btn p-2 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-center';
+    recalculateSocks();
+  }
+
+  function setFootLen(fl) {
+    document.getElementById('foot-len-input').value = fl;
+    recalculateSocks();
+  }
+
+  function setFootCirc(fc) {
+    document.getElementById('foot-circ-input').value = fc;
+    recalculateSocks();
+  }
+
+  function adjustVal(id, delta) {
+    const el = document.getElementById(id);
+    let v = parseInt(el.value, 10) + delta;
+    if (v < parseInt(el.min, 10)) v = parseInt(el.min, 10);
+    if (v > parseInt(el.max, 10)) v = parseInt(el.max, 10);
+    el.value = v;
+    recalculateSocks();
+  }
+
+  
+  // ==========================================
+  // 🎬 YOUTUBE VIDEO MODAL CONTROLLER
+  // ==========================================
+  let currentVideoId = '';
+
+  function openVideoModal(title, videoId, summaryText = '') {
+    currentVideoId = videoId;
+    const modal = document.getElementById('video-modal');
+    const card = document.getElementById('video-modal-card');
+    const frame = document.getElementById('video-modal-frame');
+    const titleEl = document.getElementById('video-modal-title');
+    const summaryEl = document.getElementById('video-modal-summary');
+    const extLink = document.getElementById('video-modal-ext-link');
+    const localPlayer = document.getElementById('video-local-player');
+    const localThumb = document.getElementById('video-local-thumb');
+
+    if (titleEl) titleEl.innerText = title;
+    if (summaryEl) {
+      if (summaryText) {
+        summaryEl.innerHTML = summaryText;
+        summaryEl.classList.remove('hidden');
+      } else {
+        summaryEl.classList.add('hidden');
+      }
+    }
+
+    const isLocalFile = window.location.protocol === 'file:';
+
+    if (isLocalFile && localPlayer) {
+      localPlayer.classList.remove('hidden');
+      if (localThumb) localThumb.src = 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+      if (frame) {
+        frame.classList.add('hidden');
+        frame.src = '';
+      }
+    } else {
+      if (localPlayer) localPlayer.classList.add('hidden');
+      if (frame) {
+        frame.classList.remove('hidden');
+        frame.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin || 'http://localhost');
+      }
+    }
+
+    if (extLink) {
+      extLink.href = 'https://www.youtube.com/watch?v=' + videoId;
+    }
+
+    if (modal && card) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function playLocalVideoDirect() {
+    if (currentVideoId) {
+      window.open('https://www.youtube.com/watch?v=' + currentVideoId, '_blank');
+    }
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const card = document.getElementById('video-modal-card');
+    const frame = document.getElementById('video-modal-frame');
+
+    if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+    if (card) card.classList.add('scale-95');
+    if (frame) frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function handleVideoModalBackdrop(e) {
+    if (e.target && e.target.id === 'video-modal') {
+      closeVideoModal();
+    }
+  }
+
+  // ==========================================
+  // 📚 SOCKS ROADMAP & VIDEO MAPPING
+  // ==========================================
+  const SOCKS_VIDEOS = {
+    cuffdown: {
+      1: { title: 'STEP 1: 독일식 꼬아 코잡기 (발목 신축성 코잡기)', videoId: 'e79E5qUu3a8', desc: '발목이 조이지 않고 신축성 있게 늘어나는 독일식 꼬아 코잡기 (German Twisted Cast-on)' },
+      2: { title: 'STEP 2: 힐 플랩 (Heel Flap: 뒤꿈치 벽 올리기)', videoId: 'b_s6m1_2gE0', desc: '뒤꿈치 마찰을 견디는 1코 걸러뜨기 보강 스티치 (Eye of Partridge)' },
+      3: { title: 'STEP 3: 힐 턴 (Heel Turn: 입체 뒤꿈치 컵 만들기)', videoId: '4R_2rQ-j4R4', desc: '되돌아뜨기와 모아뜨기로 각진 모서리를 둥글게 깎아내는 힐턴 공식' },
+      4: { title: 'STEP 4: 거셋 코줍기 (Gusset Pickup & 발등 줄임)', videoId: 'gN7tVn4n7Y8', desc: '발등 경계선 구멍 없이 줍는 코줍기 비법 및 삼각 거셋 줄임' },
+      5: { title: 'STEP 5: 발가락 줄임 & 무봉제 키치너 스티치 마감', videoId: 'wZ4oWv_b6lM', desc: '돗바늘로 솔기 없이 편평하게 이어주는 무봉제 키치너 스티치 (Kitchener Stitch)' }
+    },
+    toeup: {
+      1: { title: 'STEP 1: 주디스 매직 캐스트온 (터키식 무봉제 발끝 코잡기)', videoId: 'k_G5a1-7xU4', desc: '발가락 끝에 솔기가 전혀 생기지 않는 완벽한 무봉제 주디스 매직 코잡기 (Judy\'s Magic Cast-On)' },
+      2: { title: 'STEP 2: 토업 발가락 사선 늘림 (M1R & M1L)', videoId: 'gU9J4p_7Uo4', desc: '2단마다 양쪽 끝에서 4코씩 늘려 자연스러운 발볼 곡선을 만드는 요령' },
+      3: { title: 'STEP 3: 토업 발바닥 직진 & 중간 피팅 노하우', videoId: '4j6s3x9q-Yo', desc: '뜨면서 발을 직접 넣어 길이를 맞추고 뒤꿈치 시작점을 찾는 방법' },
+      4: { title: 'STEP 4: 저먼 쇼트로우(GSR) 뒤꿈치 입체 턴', videoId: 'v9Vq8Z3X2J4', desc: '독일식 되돌아뜨기 더블스티치로 구멍 없이 매끄럽게 완성하는 숏로우 힐' },
+      5: { title: 'STEP 5: 제니식 신축성 코막음 (Jeny\'s Stretchy BO)', videoId: 'pIYoxS7eF1o', desc: '바늘비우기를 더해 발목이 2배 이상 부드럽게 늘어나는 제니식 슈퍼 신축성 코막음' }
+    }
+  };
+
+  function openStepVideo(stepNum) {
+    const methodVideos = SOCKS_VIDEOS[currentMethod] || SOCKS_VIDEOS['cuffdown'];
+    const item = methodVideos[stepNum];
+    if (item) {
+      openVideoModal(item.title, item.videoId, `💡 <strong>${item.title}</strong><br>${item.desc}`);
+    }
+  }
+
+  function renderSocksRoadmap(method, castOn, halfSts, flapRows, pickupSts, footLenMm, footCircCm, toeStartCm) {
+    const toolsChecklist = `
+      <!-- 🛠️ 시작 전 필수 준비물 & 추천 도구 체크리스트 -->
+      <div class="p-4 sm:p-5 bg-surface-container rounded-2xl border border-on-surface/[0.06] mb-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2.5 border-b border-on-surface/[0.06]">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">construction</span>
+            <h3 class="text-sm font-bold text-on-surface">맞춤 양말 필수 준비물 &amp; 추천 도구 체크리스트</h3>
+          </div>
+          <span class="text-[11px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
+            준비 완료 후 체크(☑)해 보세요
+          </span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+          <!-- 1. 양말 전용 줄바늘 (매직루프) -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">straighten</span>
+                <span>1. 양말 줄바늘 (80~100cm)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">2.25mm ~ 2.75mm (유연한 케이블)</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">치아오구/니트프로 등 케이블이 부드러운 줄바늘로 '매직루프(Magic Loop)' 원형뜨기를 구사합니다. (23cm 숏팁이나 DPN도 가능)</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>양말 줄바늘 완료</span>
+            </label>
+          </div>
+
+          <!-- 2. 개폐형 클립 마커 -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">lock</span>
+                <span>2. 개폐형 옷핀 마커 (4~6개)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">여닫이형 전구핀 (Bulb Pin)</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">막힌 링 마커는 바늘 사이에서 빠지므로, 편물 코 자체에 직접 걸어둘 수 있는 개폐형 마커가 뒤꿈치(GSR) 전환점 표시에 필수입니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>개폐형 마커 완료</span>
+            </label>
+          </div>
+
+          <!-- 3. 양말 자 (Sock Ruler) -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">square_foot</span>
+                <span>3. 양말 게이지 자 (Sock Ruler)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">발가락~뒤꿈치 아치 정밀 측정</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">일반 줄자보다 편물 안쪽에 쏙 끼워 발끝부터 뒤꿈치 시작점까지 1mm 오차 없이 측정할 수 있는 단단한 게이지 자입니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>양말 게이지 자 완료</span>
+            </label>
+          </div>
+
+          <!-- 4. 돗바늘 & 양말 블로커 -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">dry_cleaning</span>
+                <span>4. 돗바늘 &amp; 양말 블로커(선택)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">키치너 스티치 &amp; 세탁 후 성형</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">커프다운 발끝 메리야스 잇기(Kitchener)용 돗바늘과 세탁 후 발목 주름을 쫙 펴주는 양말 모형 건조틀(블로커)입니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>돗바늘/블로커 완료</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const titleEl = document.getElementById('sock-roadmap-title');
+    const badgeEl = document.getElementById('sock-roadmap-badge');
+    const container = document.getElementById('sock-roadmap-container');
+    if (!container) return;
+
+    if (method === 'toeup') {
+      if (titleEl) titleEl.textContent = '실전 양말 뜨개 5단계 가이드 (토업 - 주디스 매직 & 저먼쇼트로우)';
+      if (badgeEl) badgeEl.textContent = '실 끝까지 알뜰하게 뜨는 토업 마스터 공식';
+
+      const toeStartSts = Math.max(16, Math.round(castOn * 0.35 / 2) * 2);
+      const toeIncTimes = Math.max(1, (castOn - toeStartSts) / 4);
+      const footLenCm = footLenMm / 10;
+      const toeStraightCm = (footLenCm - 5.5).toFixed(1);
+
+      let legDesc = '종아리 중간 15cm';
+      if (currentLeg === 'ankle') legDesc = '발목 5cm (스니커즈 삭스)';
+      if (currentLeg === 'long') legDesc = '장목 22cm (부츠 롱삭스)';
+
+      container.innerHTML = toolsChecklist + `
+        <!-- 📖 양말 필수 영문 약어 1초 사전 -->
+        <div class="p-4 bg-surface-container rounded-2xl border border-on-surface/[0.06] mb-5">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-primary">
+              <span class="material-symbols-outlined text-[17px]">menu_book</span>
+              <span>토업(Toe-up) 양말 도안 필수 기호 1초 사전</span>
+            </div>
+            <span class="text-[11px] text-outline font-medium">손쉬운 도안 해독</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">BOR</strong>
+              <span class="text-on-surface-variant text-[11px]">원형 시작 마커</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">Judy's CO</strong>
+              <span class="text-on-surface-variant text-[11px]">무봉제 발끝 코잡기</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">M1R / M1L</strong>
+              <span class="text-on-surface-variant text-[11px]">오른코/왼코 늘림</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">GSR / DS</strong>
+              <span class="text-on-surface-variant text-[11px]">독일식 더블스티치</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">K1tbl</strong>
+              <span class="text-on-surface-variant text-[11px]">꼬아 겉뜨기</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">Jeny's BO</strong>
+              <span class="text-on-surface-variant text-[11px]">슈퍼 신축성 코막음</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 01 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">01</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                발끝 주디스 매직 캐스트온 (<span class="text-primary font-extrabold">${toeStartSts}코</span> 무봉제 시작)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 2.25~2.5mm 줄바늘 (80cm)</span>
+              <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [기초 세팅 &amp; 바늘 걸기]</p>
+              <p>80cm 줄바늘의 바늘 2개를 나란히 쥐고, 실을 8자로 번갈아 감아 <strong>위 바늘(발등)에 ${toeStartSts/2}코</strong>, <strong>아래 바늘(발바닥)에 ${toeStartSts/2}코</strong>, 총 <strong>${toeStartSts}코</strong>를 코잡기합니다. 시작 매듭을 짓지 않고 실 꼬리만 살짝 잡아준 채 감아야 발끝에 멍울이 생기지 않습니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [첫 단 매끄러운 원형 연결]</p>
+              <p>• <strong>윗바늘 (${toeStartSts/2}코)</strong>: 편평하게 겉뜨기로 뜹니다.<br>
+              • <strong>아랫바늘 (${toeStartSts/2}코)</strong>: 실 루프의 꼬임을 풀기 위해 뒷루프를 찔러 꼬아뜨기(K1tbl)로 떠서 바늘비우기 구멍을 완벽히 메워줍니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>실패 방지 프로 팁</strong>: 시작 코를 잡은 직후 라운드 시작점(BOR) 마커를 반드시 꽂아두세요. 위아래 바늘이 뒤집히지 않아야 발가락 사선 늘림 위치가 어긋나지 않습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">02</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                발가락 사선 대칭 늘림 (Toe Shaping ➔ <span class="text-primary font-extrabold">${castOn}코</span> 도달)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">총 ${toeIncTimes}회 대칭 늘림</span>
+              <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [2단 1세트 대칭 늘림 레시피]</p>
+              <p>• <strong>1단 (늘림단)</strong>:<br>
+              &nbsp;&nbsp;- 1번 바늘(발등): <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">K1, M1R, 마지막 1코 전까지 겉뜨기, M1L, K1</code><br>
+              &nbsp;&nbsp;- 2번 바늘(발바닥): <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">K1, M1R, 마지막 1코 전까지 겉뜨기, M1L, K1</code> (한 바퀴에 4코 증가)<br>
+              • <strong>2단 (평단)</strong>: 늘림 없이 모든 코를 겉뜨기로 1바퀴 평온하게 뜹니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>M1 늘림 구멍 안 생기는 비결</strong>: 싱커루프를 뒤에서 앞으로 주울 때는 앞루프를 찔러 뜨고(M1R), 앞에서 뒤로 주울 때는 뒷루프를 찔러 꼬아뜨면(M1L) 구멍 없이 탄탄한 솔기가 세워집니다.</p>
+            </div>
+            <div class="p-2.5 bg-surface-container rounded-xl text-xs text-on-surface-variant flex items-center justify-between">
+              <span>🏁 <strong>다음 단계 진입 조건</strong>: 바늘에 총 <strong>${castOn}코</strong>(발등 ${halfSts}코 / 발바닥 ${halfSts}코)가 완성되면 발가락 곡선 종료!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">03</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                발등 &amp; 발바닥 메리야스 직진 (<span class="text-primary font-extrabold">${toeStraightCm}cm</span> 지점까지)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">신어보며 피팅 가능</span>
+              <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [발길이 직진 진행]</p>
+              <p>늘림과 줄임 없이 <strong>${castOn}코</strong> 그대로 원형 메리야스뜨기로 직진합니다. 발끝 꼭짓점부터 편물을 편평하게 펴고 줄자로 측정하여 총 길이 <strong>${toeStraightCm}cm</strong>에 도달할 때까지 뜹니다. (뒤꿈치 힐컵이 약 5.5cm를 차지하므로 총 발길이 ${footLenMm}mm에서 5.5cm를 뺀 치수입니다.)</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>토업만의 특급 혜택 (중간 피팅)</strong>: 뜨개 바늘 케이블을 쭉 당겨놓고 직접 발을 넣어 신어보세요! 발가락 끝이 닿지 않고 발등 둘레가 부드럽게 감싸는지, 발목이 꺾이는 발등 뼈 지점까지 왔는지 거울 앞에서 정확히 확인할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 04 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">04</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                저먼 쇼트로우(GSR) 뒤꿈치 입체 턴 (독일식 더블코 기법)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">발바닥 ${halfSts}코로 진행</span>
+              <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [1단계: 더블코(DS) 만들며 중앙으로 좁히기]</p>
+              <p>• 1번 바늘(발등 ${halfSts}코)은 쉬게 두고, 2번 바늘(발바닥 ${halfSts}코)만 평면 왕복합니다.<br>
+              • <strong>겉면</strong>: 마지막 1코 전까지 겉뜨기 ➔ 턴 ➔ 실을 앞으로 바짝 당겨 바늘 위에 2개 루프 걸치기(더블코 DS) ➔ 안뜨기로 끝 1코 전까지 진행 ➔ 턴 ➔ 더블코 만들기.<br>
+              • 매 단마다 더블코 안쪽에서 턴을 반복하여 중앙에 약 <strong>${Math.round(halfSts/3)}코</strong>가 남을 때까지 좁힙니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [2단계: 더블코 모아뜨며 힐컵 넓히기]</p>
+              <p>중앙 코를 뜨고 더블코를 만날 때마다 2가닥 루프를 1코처럼 겉뜨기(모아뜨기)하고 1코를 더 진행 후 턴합니다. 반대편도 동일하게 안뜨기로 더블코를 정리하여 원래의 <strong>${halfSts}코</strong>로 모두 복원되면 둥근 입체 뒤꿈치가 완성됩니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>바늘구멍 0% 비결</strong>: 더블코를 만들 때 실을 뒤로 강하게 당겨주세요. 당김이 느슨하면 코 사이 구멍이 생깁니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 05 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">05</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                발목 레그 고무단 직진 &amp; 제니식 슈퍼 신축성 바인드오프
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">2배 신축성 마감</span>
+              <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [발목 레그 고무단 직진]</p>
+              <p>뒤꿈치가 완성되면 발등 코와 다시 합쳐 원형으로 <strong>1코 꼬아고무뜨기 (K1tbl, P1)</strong>를 진행합니다. 원하는 길이(약 <strong>${legDesc}</strong>)까지 올리세요. 실이 끝날 때까지 자유롭게 길이를 조절할 수 있습니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [제니식 슈퍼 신축성 코막음 (Jeny's Stretchy BO)]</p>
+              <p>• <strong>겉뜨기 코 앞</strong>: 실을 역방향으로 감아 바늘비우기(Reverse YO) ➔ 겉뜨기 ➔ 바늘비우기 루프와 이전 코를 덮어씌움.<br>
+              • <strong>안뜨기 코 앞</strong>: 실을 정방향으로 감아 바늘비우기(Regular YO) ➔ 안뜨기 ➔ 바늘비우기 루프와 이전 코를 덮어씌움.<br>
+              ➔ 일반 코막음처럼 당김이 전혀 없고 2배 이상 쑥쑥 늘어나 종아리를 조이지 않습니다.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      // Cuff-down
+      if (titleEl) titleEl.textContent = '실전 양말 뜨개 5단계 가이드 (커프다운 - 힐플랩 정석)';
+      if (badgeEl) badgeEl.textContent = '닳지 않는 사각 뒤꿈치 마스터 공식';
+
+      container.innerHTML = toolsChecklist + `
+        <!-- 📖 양말 필수 영문 약어 1초 사전 -->
+        <div class="p-4 bg-surface-container rounded-2xl border border-on-surface/[0.06] mb-5">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="flex items-center gap-1.5 text-xs font-bold text-primary">
+              <span class="material-symbols-outlined text-[17px]">menu_book</span>
+              <span>커프다운(Cuff-down) 양말 도안 필수 기호 1초 사전</span>
+            </div>
+            <span class="text-[11px] text-outline font-medium">손쉬운 도안 해독</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">BOR</strong>
+              <span class="text-on-surface-variant text-[11px]">원형 시작 마커</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">K1tbl</strong>
+              <span class="text-on-surface-variant text-[11px]">꼬아 겉뜨기 (고무단)</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">Sl1 wyif</strong>
+              <span class="text-on-surface-variant text-[11px]">실 앞 걸러뜨기 (힐플랩)</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">SSK</strong>
+              <span class="text-on-surface-variant text-[11px]">왼코 모아뜨기 (줄임)</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">K2tog</strong>
+              <span class="text-on-surface-variant text-[11px]">오른코 모아뜨기 (줄임)</span>
+            </div>
+            <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <strong class="text-primary font-bold block mb-0.5">Kitchener</strong>
+              <span class="text-on-surface-variant text-[11px]">무봉제 돗바늘 마감</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 01 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">01</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                발목 커프 1코 꼬아고무뜨기 (<span class="text-primary font-extrabold">${castOn}코</span>) &amp; 매직루프 분배
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 2.25~2.5mm 줄바늘 (80cm)</span>
+              <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [신축성 코잡기 &amp; 1:1 바늘 분배]</p>
+              <p>발목이 조이지 않고 편안하게 늘어나도록 <strong>독일식 꼬아 코잡기(German Twisted Cast-on)</strong>로 <strong class="text-primary">${castOn}코</strong>를 잡습니다. 80cm 줄바늘 케이블을 반으로 접어 <strong>1번 앞바늘(발등)에 ${halfSts}코</strong>, <strong>2번 뒷바늘(발바닥/뒤꿈치)에 ${halfSts}코</strong>로 정확히 양분합니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [1코 꼬아고무단 (K1tbl, P1) 진행]</p>
+              <p>• 겉뜨기(K)를 뜰 때 바늘을 뒷루프(Through the back loop)로 찔러 꼬아뜨고, 안뜨기는 일반 안뜨기로 진행합니다.<br>
+              • 발목 고무단을 약 3~5cm(원하는 길이) 올린 뒤, 메리야스뜨기로 전환하여 발목 레그를 총 12~15cm 직진합니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>실패 방지 팁</strong>: 첫 단을 연결할 때 코가 바늘 안쪽에서 배배 꼬이지 않았는지 반드시 바닥에 펴놓고 확인하세요. 꼬인 채 연결되면 뫼비우스의 띠가 되어 풀고 다시 떠야 합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">02</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                힐 플랩 (Heel Flap: 뒤꿈치 벽 올리기, 총 <span class="text-primary font-extrabold">${flapRows}단</span>)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">보강 슬립스티치</span>
+              <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [바늘 분리 &amp; 평면 왕복 세팅]</p>
+              <p>1번 바늘(발등 <strong>${halfSts}코</strong>)은 건드리지 않고 케이블에 쉬게 둡니다. 2번 바늘(뒤판 <strong>${halfSts}코</strong>)만 가지고 평면 왕복뜨기로 뒤꿈치 벽을 올립니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [아이오브파트리지(Eye of Partridge) 보강 패턴]</p>
+              <p>• <strong>1단 (겉면)</strong>: <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">[Sl1 wyib(걸러뜨기), K1] 반복</code><br>
+              • <strong>2단 (안면)</strong>: <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">Sl1 wyif, 전체 안뜨기</code><br>
+              • <strong>3단 (겉면)</strong>: <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">Sl1 wyib, K2, [Sl1 wyib, K1] 반복</code><br>
+              • <strong>4단 (안면)</strong>: <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">Sl1 wyif, 전체 안뜨기</code><br>
+              ➔ 총 <strong>${flapRows}단</strong>을 떠서 마찰에 강한 두 겹 도톰한 조직을 만듭니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>체인 루프 팁</strong>: 매 단 첫 코를 항상 실을 앞으로 두고 안뜨기 방향으로 걸러뜨면 가장자리에 큼직한 체인 사슬(약 ${Math.round(flapRows/2)}개)이 생겨 다음 단계 코줍기가 매우 쉬워집니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">03</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                힐 턴 (Heel Turn: 입체 둥근 뒤꿈치 컵 회전)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">3분할 컵 형성</span>
+              <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [3분할 되돌아뜨기 레시피]</p>
+              <p>뒤꿈치 <strong>${halfSts}코</strong>를 3등분(대략 좌/우 각 ${Math.round(halfSts/3)}코, 중앙 ${halfSts - Math.round(halfSts/3)*2}코)하여 중앙 구간을 기준으로 왕복합니다.<br>
+              • <strong>1단 (겉면)</strong>: 중앙 코를 지나 1코 더 뜨고 ➔ <strong>SSK</strong>(왼코 모아뜨기) ➔ <strong>K1</strong> ➔ 턴.<br>
+              • <strong>2단 (안면)</strong>: 첫 코 걸러뜨기 ➔ 안뜨기로 중앙 지나 1코 더 뜨고 ➔ <strong>P2tog</strong>(안뜨기 모아뜨기) ➔ <strong>P1</strong> ➔ 턴.<br>
+              • <strong>3단 이후</strong>: 벌어진 틈(Gap) 바로 앞 코와 틈 건너 코를 모아뜨기(SSK 또는 P2tog)하며 좌우 잔여 코를 모두 없앱니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>힐컵의 원리</strong>: 직각으로 올라갔던 뒤꿈치 벽이 모아뜨기를 거치며 사람의 발뒤꿈치 모양으로 자연스럽게 둥근 볼륨 컵이 만들어집니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 04 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">04</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                거셋 코줍기 (Gusset) &amp; 발등 복원 줄임 (양쪽 각 <span class="text-primary font-extrabold">${pickupSts}코</span> 줍기)
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">구멍 방지 특급 공식</span>
+              <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [코줍기 순서]</p>
+              <p>1. 힐턴 남은 코의 절반을 뜬 뒤 ➔ 힐플랩 왼쪽 가장자리 사슬에서 <strong>${pickupSts}코</strong>를 줍습니다.<br>
+              2. 1번 바늘(발등 ${halfSts}코)을 겉뜨기로 지나갑니다.<br>
+              3. 힐플랩 오른쪽 가장자리 사슬에서 <strong>${pickupSts}코</strong>를 줍고 ➔ 힐턴 나머지 코를 뜹니다.</p>
+            </div>
+            <div class="p-3 bg-primary/5 rounded-xl border border-primary/15 text-on-surface-variant">
+              <p>💡 <strong>발등 모서리 구멍 방지 비결</strong>: 발등 코와 힐플랩 벽이 만나는 빈 틈새에서 실 한 가닥(싱커루프)을 추가로 주워 <strong>꼬아뜨기</strong>를 해주세요. 양말 초보자가 가장 스트레스받는 옆구리 구멍이 100% 생기지 않습니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [삼각 거셋 줄임]</p>
+              <p>• <strong>1라운드 (줄임단)</strong>: 발등 코 그대로 직진 ➔ 발바닥 시작 지점에서 <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">K1, SSK</code> ➔ 발바닥 끝 3코 전에서 <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">K2tog, K1</code>.<br>
+              • <strong>2라운드 (평단)</strong>: 모든 코 겉뜨기 1바퀴.<br>
+              ➔ 원래 시작 코수인 <strong>${castOn}코</strong>(발등 ${halfSts}코 / 발바닥 ${halfSts}코)가 될 때까지 반복합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 05 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">05</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                발바닥 직진 (<span class="text-primary font-extrabold">${toeStartCm}cm</span>) &amp; 키치너 스티치 마감
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">무봉제 돗바늘 마감</span>
+              <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [발바닥 길이 직진 &amp; 계측]</p>
+              <p>거셋 줄임이 끝나면 ${castOn}코 그대로 원형 메리야스뜨기로 직진합니다. 뒤꿈치 가장 뒷부분부터 줄자로 측정하여 총 길이 <strong>${toeStartCm}cm</strong>에 도달할 때까지 뜹니다. (발가락 줄임이 약 4.5cm 소요되므로 총 발길이 ${footLenMm}mm에서 4.5cm 뺀 위치입니다.)</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [발가락 줄임 공식]</p>
+              <p>• <strong>1라운드</strong>: [발등 바늘: K1, SSK, 마지막 3코 전까지 겉뜨기, K2tog, K1] + [발바닥 바늘 동일하게 반복]. (4코 감소)<br>
+              • <strong>2라운드</strong>: 모든 코 겉뜨기.<br>
+              ➔ 바늘에 총 16~20코(앞바늘 8~10코, 뒷바늘 8~10코)가 남을 때까지 반복합니다.</p>
+            </div>
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">🪡 [무봉제 키치너 스티치 (Kitchener Stitch) 4박자 리듬]</p>
+              <p>실을 40cm 남기고 자른 후 돗바늘에 뀁니다.<br>
+              • <strong>앞바늘</strong>: <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">겉뜨기 방향 찌르고 빼고 ➔ 안뜨기 방향 찌르고 걸어두기</code><br>
+              • <strong>뒷바늘</strong>: <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">안뜨기 방향 찌르고 빼고 ➔ 겉뜨기 방향 찌르고 걸어두기</code><br>
+              ➔ 코 크기와 동일한 텐션으로 꿰매면 봉제선 없이 메리야스뜨기처럼 완벽하게 이어집니다.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  function recalculateSocks() {
+    const gaugeSts = parseInt(document.getElementById('socks-st').value, 10) || 30;
+    const gaugeRows = parseInt(document.getElementById('socks-row').value, 10) || 40;
+    const footLenMm = parseInt(document.getElementById('foot-len-input').value, 10) || 240;
+    const footCircCm = parseInt(document.getElementById('foot-circ-input').value, 10) || 22;
+
+    document.getElementById('foot-len-display').textContent = `${footLenMm}mm`;
+    document.getElementById('foot-circ-display').textContent = `${footCircCm}cm`;
+
+    // 1. Negative ease -10% on foot circumference
+    const targetCircCm = footCircCm * 0.90;
+    const rawSts = (targetCircCm * gaugeSts) / 10;
+    // Round to multiple of 4 (e.g. 56, 60, 64)
+    let castOn = Math.round(rawSts / 4) * 4;
+    if (castOn < 48) castOn = 48;
+    if (castOn > 76) castOn = 76;
+
+    const halfSts = castOn / 2; // e.g. 30 sts
+    const flapRows = halfSts;   // standard square heel flap (usually equal to half stitches)
+    const pickupSts = Math.round(flapRows / 2) + 1;
+
+    // Foot length math (Toe decrease is approx 4.5~5cm)
+    const footLenCm = footLenMm / 10;
+    const toeDecreaseLenCm = 4.5;
+    const toeStartCm = (footLenCm - toeDecreaseLenCm).toFixed(1);
+
+    // Update UI
+    document.getElementById('sock-res-caston').textContent = castOn;
+    document.getElementById('sock-formula-desc').textContent = `발둘레 ${footCircCm}cm (네거티브 이즈 -10% 적용 실치수 ${targetCircCm.toFixed(1)}cm) ➔ 4의 배수 맞춤 ${castOn}코 (앞뒤 ${halfSts}코씩 분배)`;
+
+    document.getElementById('sock-flap-sts').textContent = halfSts;
+    document.getElementById('sock-flap-rows').textContent = flapRows;
+    document.getElementById('sock-toe-start-cm').textContent = toeStartCm;
+
+    // 실시간 동적 설명서 렌더링 호출
+    renderSocksRoadmap(currentMethod, castOn, halfSts, flapRows, pickupSts, footLenMm, footCircCm, toeStartCm);
+
+    // Print Header
+    const specEl = document.getElementById('print-spec-summary');
+    if (specEl) {
+      specEl.textContent = `발길이 ${footLenMm}mm (발둘레 ${footCircCm}cm) · 시작 ${castOn}코 (` + (currentMethod === 'toeup' ? '토업 저먼쇼트로우' : '커프다운 힐플랩') + `)`;
+    }
+  }
+
+  function triggerPrint() {
+    window.print();
+  }
+
+  function checkIsAdmin(user) {
+    if (!user) return false;
+    const email = (user.email || '').toLowerCase().trim();
+    if (email === '1gmlakd1@gmail.com' || email.startsWith('admin@')) return true;
+    if (user.user_metadata && (user.user_metadata.is_admin === true || user.user_metadata.role === 'admin')) return true;
+    return false;
+  }
+
+  function updateAdminUI(isAdmin) {
+    const adminSection = document.getElementById('admin-print-section');
+    if (adminSection) {
+      if (isAdmin) {
+        adminSection.classList.remove('hidden');
+        adminSection.classList.add('flex');
+      } else {
+        adminSection.classList.add('hidden');
+        adminSection.classList.remove('flex');
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    recalculateSocks();
+    if (window.location.search.includes('admin=1')) {
+      updateAdminUI(true);
+    }
+  });
+
+
+  async function saveSocksPattern() {
+    if (!currentUser || !spClient) {
+      openAuthModal();
+      return;
+    }
+    const sockSt = document.getElementById('socks-st')?.value;
+    const sockRow = document.getElementById('socks-row')?.value;
+    const footLen = document.getElementById('foot-len-input')?.value;
+    const footCirc = document.getElementById('foot-circ-input')?.value;
+    const data = {
+      type: 'socks',
+      method: currentMethod,
+      leg: currentLeg,
+      socks_st: sockSt,
+      socks_row: sockRow,
+      foot_len: footLen,
+      foot_circ: footCirc,
+      updated_at: new Date().toISOString()
+    };
+    localStorage.setItem('knit_socks_pattern', JSON.stringify(data));
+    showToast('맞춤 양말 도안 설정이 안전하게 저장되었습니다! ✨');
+  }
+
+
+  // ☁️ SUPABASE CLIENT & AUTH CONTROLLER
+  const SUPABASE_URL = "https://vjuehrbdottiklcojlcl.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdWVocmJkb3R0aWtsY29qbGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3MjM4NzAsImV4cCI6MjExMDI5OTg3MH0.BDWbnmL0tsM2jpEGIyvIpYub9kC7oI5ZWgGuieLu0a8";
+
+  let spClient = null;
+  if (typeof supabase !== 'undefined') {
+    spClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  let currentAuthTab = 'login';
+  let currentUser = null;
+  let isUserAdmin = false;
+
+  function showToast(msg, icon = 'check_circle') {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    const msgEl = document.getElementById('toast-msg');
+    const iconEl = document.getElementById('toast-icon');
+    if (msgEl) msgEl.innerText = msg;
+    if (iconEl) iconEl.innerText = icon;
+    t.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    setTimeout(() => {
+      t.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 2800);
+  }
+
+  function openAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.remove('opacity-0', 'pointer-events-none');
+    const card = document.getElementById('auth-modal-card');
+    if (card) card.classList.remove('scale-95');
+    const err = document.getElementById('auth-error');
+    if (err) err.classList.add('hidden');
+  }
+
+  function closeAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.add('opacity-0', 'pointer-events-none');
+    const card = document.getElementById('auth-modal-card');
+    if (card) card.classList.add('scale-95');
+  }
+
+  function handleAuthModalBackdrop(e) {
+    if (e.target && e.target.id === 'auth-modal') {
+      closeAuthModal();
+    }
+  }
+
+  let isNicknameChecked = false;
+  let verifiedNickname = '';
+
+  const FORBIDDEN_NICK_KEYWORDS = [
+    '운영자', '관리자', '어드민', '마스터', '스태프', '매니저', '스튜디오', '공식',
+    '고객센터', '시스템', '운영팀', '관리팀', '뜨개스튜디오',
+    'admin', 'administrator', 'operator', 'master', 'manager', 'staff',
+    'root', 'support', 'system', 'official'
+  ];
+
+  function validateNicknameFormat(nick) {
+    if (!nick) return { valid: false, message: '닉네임을 입력해 주세요.' };
+    if (nick.length < 2 || nick.length > 10) {
+      return { valid: false, message: '2~10자로 입력해 주세요.' };
+    }
+    const normalized = nick.toLowerCase().replace(/[\s_\-\.]+/g, '');
+    for (const keyword of FORBIDDEN_NICK_KEYWORDS) {
+      if (normalized.includes(keyword)) {
+        return { valid: false, message: '운영자 및 관리자 사칭 방지를 위해 사용할 수 없는 단어가 포함되어 있습니다.' };
+      }
+    }
+    return { valid: true };
+  }
+
+  function handleNicknameInput() {
+    isNicknameChecked = false;
+    verifiedNickname = '';
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+    if (!status) return;
+
+    if (!nick) {
+      status.innerText = '2~10자 한글/영문/숫자';
+      status.className = 'text-[11px] font-medium text-on-surface-variant';
+      return;
+    }
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      status.innerText = check.message;
+      status.className = 'text-[11px] font-medium text-error font-semibold';
+    } else {
+      status.innerText = '중복 확인이 필요합니다';
+      status.className = 'text-[11px] font-medium text-amber-600';
+    }
+  }
+
+  async function checkNicknameDuplicate() {
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      isNicknameChecked = false;
+      verifiedNickname = '';
+      if (status) {
+        status.innerText = check.message;
+        status.className = 'text-[11px] font-medium text-error font-semibold';
+      }
+      return false;
+    }
+
+    const checkBtn = document.getElementById('btn-check-nick');
+    if (checkBtn) {
+      checkBtn.disabled = true;
+      checkBtn.innerText = '확인 중...';
+    }
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data: isAvailable, error } = await spClient.rpc('check_nickname_available', { p_nickname: nick });
+      if (error) throw error;
+
+      if (isAvailable) {
+        isNicknameChecked = true;
+        verifiedNickname = nick;
+        if (status) {
+          status.innerText = '✓ 사용 가능한 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-emerald-600 font-bold';
+        }
+        showToast('사용 가능한 닉네임입니다! ✨');
+        return true;
+      } else {
+        isNicknameChecked = false;
+        verifiedNickname = '';
+        if (status) {
+          status.innerText = '✕ 이미 사용 중이거나 사용할 수 없는 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-error font-bold';
+        }
+        return false;
+      }
+    } catch (err) {
+      if (status) {
+        status.innerText = '중복 확인 실패: ' + (err.message || '오류');
+        status.className = 'text-[11px] font-medium text-error';
+      }
+      return false;
+    } finally {
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.innerText = '중복 확인';
+      }
+    }
+  }
+
+  function setAuthTab(tab) {
+    currentAuthTab = tab;
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const tabsRow = document.getElementById('auth-tabs-row');
+    const btn = document.getElementById('auth-submit-btn');
+    const title = document.getElementById('auth-modal-title');
+    const standardFields = document.getElementById('auth-standard-fields');
+    const nickWrap = document.getElementById('auth-nickname-wrap');
+    const resetFields = document.getElementById('auth-reset-fields');
+    const forgotBtn = document.getElementById('btn-forgot-pw');
+    const backLoginBtn = document.getElementById('btn-back-login');
+    const errorBox = document.getElementById('auth-error');
+
+    if (errorBox) errorBox.classList.add('hidden');
+
+    if (tab === 'login') {
+      if (title) title.innerText = '로그인';
+      if (btn) btn.innerText = '로그인하기';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'signup') {
+      if (title) title.innerText = '무료 회원가입';
+      if (btn) btn.innerText = '무료 회원가입';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.remove('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'reset') {
+      if (title) title.innerText = '비밀번호 재설정';
+      if (btn) btn.innerText = '비밀번호 변경하기';
+      if (tabsRow) tabsRow.classList.add('hidden');
+      if (standardFields) standardFields.classList.add('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.remove('hidden');
+      if (forgotBtn) forgotBtn.classList.add('hidden');
+      if (backLoginBtn) backLoginBtn.classList.remove('hidden');
+    }
+  }
+
+  async function handlePasswordResetSubmit() {
+    const email = document.getElementById('reset-email').value.trim();
+    const nickname = document.getElementById('reset-nickname').value.trim();
+    const newPassword = document.getElementById('reset-password').value.trim();
+    const newPasswordConfirm = document.getElementById('reset-password-confirm').value.trim();
+    const errorBox = document.getElementById('auth-error');
+
+    if (!email || !nickname || !newPassword || !newPasswordConfirm) {
+      errorBox.innerText = '모든 항목을 빠짐없이 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword.length < 6) {
+      errorBox.innerText = '새 비밀번호는 최소 6자리 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword !== newPasswordConfirm) {
+      errorBox.innerText = '비밀번호 확인이 일치하지 않습니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const btn = document.getElementById('auth-submit-btn');
+    btn.disabled = true;
+    btn.innerText = '확인 및 변경 중...';
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data, error } = await spClient.rpc('reset_password_with_credentials', {
+        p_email: email,
+        p_nickname: nickname,
+        p_new_password: newPassword
+      });
+      if (error) throw error;
+
+      if (!data || !data.success) {
+        throw new Error(data?.message || '등록된 이메일과 닉네임 정보가 일치하지 않습니다.');
+      }
+
+      showToast('비밀번호가 성공적으로 변경되었습니다! 새 비밀번호로 로그인해 주세요. 🔑');
+      const authEmail = document.getElementById('auth-email');
+      if (authEmail) authEmail.value = email;
+      const authPw = document.getElementById('auth-password');
+      if (authPw) authPw.value = '';
+      setAuthTab('login');
+    } catch (err) {
+      errorBox.innerText = err.message || '비밀번호 재설정에 실패했습니다.';
+      errorBox.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      if (currentAuthTab === 'reset') {
+        btn.innerText = '비밀번호 변경하기';
+      }
+    }
+  }
+
+  async function handleAuthSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    if (currentAuthTab === 'reset') {
+      return handlePasswordResetSubmit();
+    }
+
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    const errorBox = document.getElementById('auth-error');
+    errorBox.classList.add('hidden');
+
+    if (!email || !password) {
+      errorBox.innerText = '이메일과 비밀번호를 모두 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (password.length < 6) {
+      errorBox.innerText = '비밀번호는 최소 6자 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      if (currentAuthTab === 'signup') {
+        const nick = (document.getElementById('auth-nickname')?.value || '').trim();
+        if (!nick) {
+          errorBox.innerText = '닉네임을 입력해 주세요.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (!isNicknameChecked || verifiedNickname !== nick) {
+          errorBox.innerText = '닉네임 중복 확인 버튼을 눌러 확인을 완료해 주세요.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        const btn = document.getElementById('auth-submit-btn');
+        btn.disabled = true;
+        btn.innerText = '가입 진행 중...';
+
+        const { data, error } = await spClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { nickname: verifiedNickname }
+          }
+        });
+        if (error) throw error;
+
+        showToast(`환영합니다, ${verifiedNickname}님! ✨`);
+        closeAuthModal();
+      } else {
+        const btn = document.getElementById('auth-submit-btn');
+        btn.disabled = true;
+        btn.innerText = '로그인 중...';
+
+        const { data, error } = await spClient.auth.signInWithPassword({
+          email,
+          password
+        });
+        if (error) throw error;
+
+        const nick = data.user?.user_metadata?.nickname || email.split('@')[0];
+        showToast(`${nick}님, 반가워요! 🧶`);
+        closeAuthModal();
+      }
+    } catch (err) {
+      let msg = err.message || '인증에 실패했습니다.';
+      if (msg.includes('Invalid login credentials')) {
+        msg = '이메일 또는 비밀번호가 일치하지 않습니다.';
+      } else if (msg.includes('User already registered')) {
+        msg = '이미 가입된 이메일 주소입니다. 로그인해 주세요.';
+      }
+      errorBox.innerText = msg;
+      errorBox.classList.remove('hidden');
+    } finally {
+      const btn = document.getElementById('auth-submit-btn');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = (currentAuthTab === 'signup') ? '무료 회원가입' : '로그인하기';
+      }
+    }
+  }
+
+  async function handleSignOut() {
+    if (!spClient) return;
+    await spClient.auth.signOut();
+    showToast('로그아웃 되었습니다.');
+  }
+
+  function checkIsAdminLocally() {
+    if (window.location.search.includes('admin=1')) return true;
+    if (localStorage.getItem('KNIT_ADMIN') === 'true') return true;
+    return false;
+  }
+
+  async function checkIsAdmin(user) {
+    if (!user) return checkIsAdminLocally();
+    const email = (user.email || '').toLowerCase().trim();
+    const ADMIN_EMAILS = ['1gmlakd1@gmail.com', 'admin@knitting-studio.com'];
+    if (ADMIN_EMAILS.includes(email) || email.startsWith('admin@')) {
+      return true;
+    }
+    if (user.user_metadata?.is_admin === true || user.user_metadata?.role === 'admin' || user.app_metadata?.role === 'admin') {
+      return true;
+    }
+    if (checkIsAdminLocally()) {
+      return true;
+    }
+    try {
+      if (spClient) {
+        const { data, error } = await spClient.from('profiles').select('is_admin').eq('id', user.id).maybeSingle();
+        if (!error && data && data.is_admin === true) {
+          return true;
+        }
+      }
+    } catch (e) {
+      console.warn('Admin check error:', e);
+    }
+    return false;
+  }
+
+  function updateAdminUI(isAdmin) {
+    const adminSection = document.getElementById('admin-print-section');
+    if (adminSection) {
+      if (isAdmin) {
+        adminSection.classList.remove('hidden');
+        adminSection.classList.add('flex');
+      } else {
+        adminSection.classList.add('hidden');
+        adminSection.classList.remove('flex');
+      }
+    }
+  }
+
+  window.setAdminMode = function(flag) {
+    if (flag) {
+      localStorage.setItem('KNIT_ADMIN', 'true');
+      isUserAdmin = true;
+    } else {
+      localStorage.removeItem('KNIT_ADMIN');
+      isUserAdmin = false;
+    }
+    updateAdminUI(isUserAdmin);
+    showToast(flag ? '👑 관리자 모드 활성화 (인쇄 기능 표시)' : '일반 사용자 모드로 전환되었습니다.');
+  };
+
+  function handleAdminPrint() {
+    if (!isUserAdmin) {
+      showToast('관리자 계정 전용 기능입니다.', 'lock');
+      return;
+    }
+    window.print();
+  }
+
+  if (spClient) {
+    spClient.auth.onAuthStateChange(async (event, session) => {
+      currentUser = session ? session.user : null;
+      const loggedOutBox = document.getElementById('auth-logged-out');
+      const loggedInBox = document.getElementById('auth-logged-in');
+      const badge = document.getElementById('user-badge');
+
+      if (currentUser) {
+        if (loggedOutBox) loggedOutBox.classList.add('hidden');
+        if (loggedInBox) {
+          loggedInBox.classList.remove('hidden');
+          loggedInBox.classList.add('flex');
+        }
+        const nick = currentUser.user_metadata?.nickname || currentUser.email.split('@')[0];
+        if (badge) {
+          badge.innerText = nick;
+          badge.title = `${nick} (${currentUser.email})`;
+        }
+        isUserAdmin = await checkIsAdmin(currentUser);
+      } else {
+        if (loggedInBox) {
+          loggedInBox.classList.add('hidden');
+          loggedInBox.classList.remove('flex');
+        }
+        if (loggedOutBox) loggedOutBox.classList.remove('hidden');
+        isUserAdmin = checkIsAdminLocally();
+      }
+      updateAdminUI(isUserAdmin);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAuthModal();
+    }
+  });
+
+</script>
+
+
+
+
+<!-- ========================================== -->
+<!-- 🎬 IN-PAGE VIDEO MODAL (유튜브 153 완벽 방어 스마트 플레이어) -->
+<!-- ========================================== -->
+<div id="video-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="handleVideoModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-all duration-200 flex flex-col" id="video-modal-card" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 py-3.5 bg-surface-container-low border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[17px]">smart_display</span>
+        </span>
+        <h3 class="text-label-lg font-bold text-on-surface" id="video-modal-title">뜨개 기법 영상</h3>
+      </div>
+      <button type="button" onclick="closeVideoModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors" title="닫기 (ESC)">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- 16:9 Video Frame / Smart Local Fallback -->
+    <div class="relative w-full aspect-video bg-black overflow-hidden">
+      <!-- Web Mode: Native Embedded YouTube Iframe -->
+      <iframe id="video-modal-frame" class="w-full h-full" src="" title="뜨개 영상 플레이어" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+      <!-- Local file:// Fallback (153 에러 완전 차단) -->
+      <div id="video-local-player" class="hidden absolute inset-0 bg-stone-950 flex flex-col items-center justify-center text-center p-6 cursor-pointer group" onclick="openCurrentVideoExternal()">
+        <img id="video-local-thumb" src="" alt="동영상 썸네일" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
+        <div class="relative z-10 flex flex-col items-center gap-3">
+          <div class="w-16 h-16 rounded-full bg-red-600 group-hover:bg-red-700 text-white flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-all duration-200">
+            <span class="material-symbols-outlined text-[36px] ml-1">play_arrow</span>
+          </div>
+          <span class="bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold shadow-md">
+            ▶ 클릭 시 유튜브 고화질로 즉시 재생 (153 오류 없는 100% 정상 시청)
+          </span>
+          <span class="text-[11px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
+            💡 로컬 파일(file://) 보안 정책 우회 모드 활성화됨
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary & Tips Bar -->
+    <div id="video-modal-summary" class="px-5 py-2.5 bg-primary-fixed/20 text-body-sm font-body-sm text-primary border-b border-primary/10 flex items-center gap-2">
+      <!-- Injected dynamically -->
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between px-5 py-3 bg-surface-container-lowest text-label-sm text-on-surface-variant">
+      <div class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[16px] text-primary">lightbulb</span>
+        <span>웹 서버(Vercel/localhost)에서는 <strong>인앱 전체화면(⛶)</strong>으로 재생됩니다.</span>
+      </div>
+      <a id="video-modal-ext-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold cursor-pointer">
+        <span>유튜브 앱에서 보기</span>
+        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- TOAST NOTIFICATION -->
+<!-- ========================================== -->
+
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-[#1c1917] text-[#faf9f6] text-sm font-semibold shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-3 flex items-center gap-2">
+  <span class="material-symbols-outlined text-sm text-[#c46243]" id="toast-icon">check_circle</span>
+  <span id="toast-msg">알림</span>
+</div>
+
+<!-- ========================================== -->
+<!-- AUTH MODAL (Toss / Apple Minimalist) -->
+<!-- ========================================== -->
+<!-- ☁️ AUTH MODAL (Supabase) -->
+<!-- ========================================== -->
+<div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 opacity-0 pointer-events-none transition-opacity duration-200" onclick="handleAuthModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-transform duration-200" id="auth-modal-card" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">account_circle</span>
+        </span>
+        <h3 class="text-headline-md font-bold text-on-surface" id="auth-modal-title">로그인</h3>
+      </div>
+      <button onclick="closeAuthModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Toggle Tabs: 로그인 / 회원가입 -->
+    <div id="auth-tabs-row" class="grid grid-cols-2 p-1 bg-surface-container-low rounded-full mb-4 border border-on-surface/[0.04]">
+      <button id="tab-login" type="button" onclick="setAuthTab('login')" class="py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer">로그인</button>
+      <button id="tab-signup" type="button" onclick="setAuthTab('signup')" class="py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">회원가입</button>
+    </div>
+
+    <!-- Inputs Form -->
+    <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+      <!-- Standard Fields (Login / Signup) -->
+      <div id="auth-standard-fields" class="space-y-3">
+        <!-- Nickname Field (회원가입 시 표시) -->
+        <div id="auth-nickname-wrap" class="hidden">
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-label-sm font-semibold text-on-surface-variant" for="auth-nickname">닉네임</label>
+            <span id="nick-status" class="text-[11px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="auth-nickname" maxlength="10" placeholder="닉네임 입력" oninput="handleNicknameInput()" class="flex-1 px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+            <button type="button" id="btn-check-nick" onclick="checkNicknameDuplicate()" class="px-3 py-2 bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold rounded-xl border border-outline-variant/40 transition-colors whitespace-nowrap cursor-pointer active:scale-95 text-xs">
+              중복 확인
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">이메일 (아이디)</label>
+          <input type="email" id="auth-email" placeholder="example@knitting.com" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">비밀번호</label>
+          <input type="password" id="auth-password" placeholder="6자리 이상 비밀번호" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+      </div>
+
+      <!-- Reset Fields (비밀번호 재설정) -->
+      <div id="auth-reset-fields" class="hidden space-y-3">
+        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[11px] text-on-surface-variant flex items-start gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock_reset</span>
+          <span>가입 시 등록하신 <strong>이메일과 닉네임</strong>이 일치하면 즉시 새로운 비밀번호로 변경됩니다.</span>
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">가입한 이메일</label>
+          <input type="email" id="reset-email" placeholder="example@knitting.com" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">가입한 닉네임</label>
+          <input type="text" id="reset-nickname" placeholder="등록했던 닉네임" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">새 비밀번호</label>
+          <input type="password" id="reset-password" minlength="6" placeholder="6자리 이상 새 비밀번호" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">새 비밀번호 확인</label>
+          <input type="password" id="reset-password-confirm" minlength="6" placeholder="새 비밀번호 재입력" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+      </div>
+
+      <div id="auth-error" class="hidden text-xs text-error font-medium p-2.5 rounded-xl bg-error-container/40 border border-error/20"></div>
+
+      <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-full bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-sm transition-all active:scale-[0.98] mt-2 cursor-pointer">
+        로그인하기
+      </button>
+
+      <div id="auth-bottom-links" class="flex items-center justify-between text-xs text-on-surface-variant pt-2 px-1">
+        <button type="button" id="btn-forgot-pw" onclick="setAuthTab('reset')" class="text-xs text-on-surface-variant hover:text-primary underline cursor-pointer">
+          비밀번호를 잊으셨나요?
+        </button>
+        <button type="button" id="btn-back-login" onclick="setAuthTab('login')" class="hidden text-xs text-on-surface-variant hover:text-primary underline cursor-pointer">
+          ← 로그인으로 돌아가기
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- EXTENDED LOGIC: Video Controller & Supabase -->
+<!-- ========================================== -->
+
+</body>
+</html>

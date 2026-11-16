@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<title>1초 목도리 계산기 - 맞춤형 머플러 & 숄 도안 | 니팅 스튜디오</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Container Queries and Forms -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-container": "#fe875d",
+            "primary": "#984125",
+            "surface": "#faf9f6",
+            "on-tertiary-container": "#fffbff",
+            "primary-fixed": "#ffdbd0",
+            "inverse-primary": "#ffb59e",
+            "on-secondary": "#ffffff",
+            "secondary": "#a0401c",
+            "on-error-container": "#93000a",
+            "tertiary-fixed": "#f0e0d0",
+            "surface-variant": "#e3e2e0",
+            "inverse-surface": "#2f312f",
+            "tertiary-container": "#7f7365",
+            "secondary-fixed": "#ffdbcf",
+            "error-container": "#ffdad6",
+            "primary-fixed-dim": "#ffb59e",
+            "outline-variant": "#dcc1b9",
+            "outline": "#89726c",
+            "on-secondary-container": "#722200",
+            "on-tertiary-fixed": "#221a10",
+            "on-secondary-fixed": "#390c00",
+            "inverse-on-surface": "#f2f1ee",
+            "tertiary-fixed-dim": "#d3c4b4",
+            "error": "#ba1a1a",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f4f3f1",
+            "surface-container-highest": "#e3e2e0",
+            "on-secondary-fixed-variant": "#802a05",
+            "surface-container": "#efeeeb",
+            "on-tertiary-fixed-variant": "#4f4539",
+            "on-error": "#ffffff",
+            "on-surface": "#1a1c1a",
+            "secondary-fixed-dim": "#ffb59c",
+            "on-primary-fixed-variant": "#7d2d12",
+            "on-surface-variant": "#56423d",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-primary-fixed": "#3a0b00",
+            "surface-dim": "#dbdad7",
+            "tertiary": "#655a4e",
+            "surface-bright": "#faf9f6",
+            "on-primary-container": "#fffbff",
+            "surface-tint": "#9c4427",
+            "background": "#faf9f6",
+            "on-background": "#1a1c1a",
+            "primary-container": "#b8593b",
+            "surface-container-high": "#e9e8e5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "space-md": "1rem",
+            "margin": "1.25rem",
+            "space-xxl": "3.5rem",
+            "space-xs": "0.25rem",
+            "margin-desktop": "2.5rem",
+            "space-xl": "2.25rem",
+            "space-lg": "1.5rem",
+            "gutter": "1rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "numeric-metric": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-lg": ["17px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "display-hero-mobile": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.025em", "fontWeight": "800" }],
+            "display-hero": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "numeric-metric": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -4px rgba(196, 98, 67, 0.06), 0 2px 8px 0 rgba(28, 25, 23, 0.03);
+    }
+    .info-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 9999px;
+      background-color: rgba(152, 65, 37, 0.12);
+      color: #984125;
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 1;
+      cursor: pointer;
+      border: 1px solid rgba(152, 65, 37, 0.25);
+      transition: all 0.15s ease;
+      vertical-align: middle;
+      padding: 0;
+      user-select: none;
+      flex-shrink: 0;
+    }
+    .info-btn:hover {
+      background-color: #984125;
+      color: #ffffff;
+      transform: scale(1.1);
+      border-color: #984125;
+    }
+
+    /* Print Optimization (@media print) */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm 10mm 12mm;
+      }
+      *, *::before, *::after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+      html, body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #1a1c1a !important;
+        font-size: 10pt !important;
+        line-height: 1.35 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      main {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        display: block !important;
+      }
+      header, footer, nav,
+      #hero-banner,
+      #calc-input-panel,
+      #admin-print-section,
+      #video-modal, #auth-modal, #info-modal, #toast,
+      .info-btn,
+      button,
+      a[href^="#"] {
+        display: none !important;
+      }
+      #print-only-header {
+        display: block !important;
+        margin-bottom: 12px !important;
+        border-bottom: 2px solid #984125 !important;
+        padding-bottom: 8px !important;
+      }
+      .print-brand-bar {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: flex-end !important;
+      }
+      .print-title {
+        font-size: 15pt !important;
+        font-weight: 800 !important;
+        color: #984125 !important;
+      }
+      .print-subtitle {
+        font-size: 8pt !important;
+        color: #666666 !important;
+      }
+      .grid.grid-cols-1.lg\:grid-cols-12 {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #calc-result-panel {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      #calc-result-summary {
+        display: block !important;
+        width: 100% !important;
+        padding: 10px 14px !important;
+        border: 1.5px solid #984125 !important;
+        border-radius: 10px !important;
+        background: #ffffff !important;
+        margin-bottom: 12px !important;
+      }
+      #roadmap {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      #roadmap > .space-y-6 > div {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        padding: 10px 14px !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 8px !important;
+        background: #ffffff !important;
+        margin-bottom: 10px !important;
+      }
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md">
+
+<!-- HEADER NAV -->
+<header class="bg-surface/90 dark:bg-surface/90 backdrop-blur-md text-primary docked full-width top-0 sticky z-40 border-b border-outline-variant/30 shadow-sm">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-3.5">
+    <a class="text-xl md:text-2xl font-extrabold text-primary tracking-tight flex items-center gap-2 hover:opacity-90 transition-opacity" href="index.html" title="메인 허브로 이동">
+      <span class="text-2xl">🧣</span>
+      <span>1초 목도리 계산기</span>
+      <span class="inline-flex items-center gap-1 text-xs font-bold bg-primary/10 text-primary px-2.5 py-1 rounded-full border border-primary/20 ml-1">
+        <span class="material-symbols-outlined text-[15px]">home</span>
+        <span>홈</span>
+      </span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 text-label-lg" href="#calculator">계산기</a>
+      <a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors duration-150 text-label-lg" href="community.html">커뮤니티</a>
+      <a class="text-on-surface-variant font-medium hover:text-on-surface transition-colors duration-150 text-label-lg" href="#roadmap">뜨개 로드맵</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <div id="auth-logged-out" class="flex items-center gap-2">
+        <button type="button" onclick="openAuthModal()" class="px-4 py-2 rounded-full text-label-md font-semibold bg-primary hover:bg-primary-container text-on-primary transition-all duration-150 shadow-sm flex items-center gap-1.5 cursor-pointer active:scale-95">
+          <span class="material-symbols-outlined text-[16px]">account_circle</span>
+          <span>로그인 / 저장</span>
+        </button>
+      </div>
+      <div id="auth-logged-in" class="hidden items-center gap-2">
+        <span id="user-badge" class="px-2.5 py-1 bg-primary/10 text-primary font-bold text-xs rounded-full max-w-[120px] truncate"></span>
+        <button type="button" onclick="saveScarfPattern()" class="px-3 py-1.5 rounded-full text-xs font-bold bg-primary text-on-primary hover:bg-primary-container transition-all flex items-center gap-1 shadow-xs cursor-pointer">
+          <span class="material-symbols-outlined text-[14px]">cloud_upload</span>
+          <span>저장</span>
+        </button>
+        <button type="button" onclick="handleSignOut()" class="p-1.5 rounded-full hover:bg-surface-container text-outline hover:text-error transition-all cursor-pointer" title="로그아웃">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN APP -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-6 md:px-10 py-8 flex flex-col gap-8">
+  
+  <!-- PRINT ONLY HEADER -->
+  <div id="print-only-header" style="display: none;">
+    <div class="print-brand-bar">
+      <div>
+        <div class="print-title">🧣 1초 목도리 & 머플러 맞춤 도안</div>
+        <div class="print-subtitle">니팅 스튜디오 (Knitting Studio) · 수학적 오차 없는 실측 맞춤 도안</div>
+      </div>
+      <div style="text-align: right;">
+        <span class="print-spec-highlight" id="print-spec-summary">너비 25cm · 길이 180cm · 변형고무뜨기</span>
+        <div class="print-subtitle" id="print-date-text">발행일: 2026. 11. 16</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO BANNER -->
+  <section id="hero-banner" class="text-center pt-2 pb-2 flex flex-col items-center max-w-3xl mx-auto">
+    <div class="inline-flex items-center gap-1.5 bg-surface-container-low text-primary px-3.5 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant/30 mb-3">
+      <span class="material-symbols-outlined text-primary text-[15px]">straighten</span>
+      <span>원하는 폭과 길이만 넣으면 코수 완벽 계산</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-on-surface tracking-tight text-balance">
+      내 손땀(게이지)으로 만드는 <span class="text-primary">인생 목도리 도안</span>
+    </h1>
+    <p class="mt-2 text-on-surface-variant max-w-xl mx-auto text-sm md:text-base">
+      변형고무뜨기부터 가터뜨기까지, 패턴 배수 고민 없이 시작 코수와 실 소요량을 1초 만에 도출해 드립니다.
+    </p>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- LEFT: INPUT CONTROLS -->
+    <div id="calc-input-panel" class="lg:col-span-5 w-full flex flex-col gap-6">
+            <!-- ========================================== -->
+      <!-- 📸 FINISHED EXAMPLE PREVIEW CARD (완성 예시 실물 미리보기 - 무늬별 동적 연동) -->
+      <!-- ========================================== -->
+      <div class="w-full bg-surface-container-lowest rounded-3xl p-5 border border-on-surface/[0.06] custom-shadow transition-all duration-200 overflow-hidden group">
+        <!-- Card Header -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+            <span class="text-label-md font-label-md text-primary font-bold">완성 예시 실물</span>
+          </div>
+          <span id="preview-badge" class="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
+            도톰 볼륨핏
+          </span>
+        </div>
+
+        <!-- Image Container -->
+        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-surface-container-low border border-on-surface/[0.04]">
+          <img id="preview-img"
+               src="images/scarf_brioche.jpg" 
+               alt="완성 예시 변형고무뜨기 목도리" 
+               class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-300"
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-3.5 text-white pointer-events-none">
+            <span id="preview-title" class="text-xs font-bold drop-shadow-sm transition-all duration-200">☁️ 변형고무뜨기 &amp; 아이코드 엣지 목도리</span>
+            <span id="preview-sub" class="text-[11px] text-white/85 drop-shadow-sm transition-all duration-200">가장자리 말림 없이 도톰하고 푹신한 기성복 프리미엄 핏</span>
+          </div>
+        </div>
+
+        <!-- Caption / Specs Note -->
+        <p id="preview-desc" class="mt-2.5 text-xs text-on-surface-variant leading-relaxed transition-all duration-200">
+          💡 <strong>제작 포인트:</strong> 아이코드 엣지가 양옆을 단단하게 잡아주어 사방으로 돌돌 말리지 않고 반듯하게 떨어집니다.
+        </p>
+      </div>
+
+<section class="w-full bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow sticky top-20" id="calculator">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+            <span class="text-label-md text-primary font-bold">STEP 1 · 기본 스펙 설정</span>
+          </div>
+          <span class="text-xs text-on-surface-variant/80 bg-surface-container-low px-2.5 py-0.5 rounded-full">약 30초 소요</span>
+        </div>
+
+        <div class="flex flex-col gap-6">
+          
+          <!-- 1. 뜨개 패턴 선택 -->
+          <div>
+            <label class="block text-label-md font-bold text-on-surface mb-2">뜨개 패턴 선택</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <button type="button" onclick="selectPattern('brioche', this)" class="pattern-btn p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold flex flex-col items-center justify-center gap-1 transition-all">
+                <span class="text-base">☁️</span>
+                <span>변형고무뜨기</span>
+                <span class="text-[10px] opacity-75 font-normal">도톰 &amp; 폭신함 (추천)</span>
+              </button>
+              <button type="button" onclick="selectPattern('rib1', this)" class="pattern-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
+                <span class="text-base">🧶</span>
+                <span>1코 고무뜨기</span>
+                <span class="text-[10px] opacity-75 font-normal">클래식한 리브</span>
+              </button>
+              <button type="button" onclick="selectPattern('rib2', this)" class="pattern-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
+                <span class="text-base">👔</span>
+                <span>2코 고무뜨기</span>
+                <span class="text-[10px] opacity-75 font-normal">쫀쫀한 탄력 핏</span>
+              </button>
+              <button type="button" onclick="selectPattern('garter', this)" class="pattern-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
+                <span class="text-base">🧣</span>
+                <span>가터뜨기</span>
+                <span class="text-[10px] opacity-75 font-normal">말림 없음 (초보자)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. 게이지 입력 -->
+          <div class="bg-surface-container-low rounded-2xl p-4 border border-on-surface/[0.05]">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-label-md font-bold text-on-surface">10cm 메리야스 게이지</span>
+              <span class="text-xs text-on-surface-variant">4.5~6.0mm 바늘 권장</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="bg-surface-container-lowest p-3 rounded-xl border border-on-surface/[0.06] text-center">
+                <span class="text-xs text-on-surface-variant block mb-1">가로 코수 (10cm)</span>
+                <div class="flex items-center justify-center gap-2">
+                  <button type="button" onclick="adjustVal('st-count', -1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">-</button>
+                  <input id="st-count" type="number" value="18" min="8" max="35" class="w-12 text-center font-bold text-lg text-primary border-none p-0 focus:ring-0" onchange="recalculateScarf()"/>
+                  <span class="text-xs text-on-surface-variant">코</span>
+                  <button type="button" onclick="adjustVal('st-count', 1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">+</button>
+                </div>
+              </div>
+              <div class="bg-surface-container-lowest p-3 rounded-xl border border-on-surface/[0.06] text-center">
+                <span class="text-xs text-on-surface-variant block mb-1">세로 단수 (10cm)</span>
+                <div class="flex items-center justify-center gap-2">
+                  <button type="button" onclick="adjustVal('row-count', -1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">-</button>
+                  <input id="row-count" type="number" value="24" min="10" max="45" class="w-12 text-center font-bold text-lg text-primary border-none p-0 focus:ring-0" onchange="recalculateScarf()"/>
+                  <span class="text-xs text-on-surface-variant">단</span>
+                  <button type="button" onclick="adjustVal('row-count', 1)" class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-xs">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 목표 너비 (Width) -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-label-md font-bold text-on-surface">목도리 완성 너비</label>
+              <span class="text-xs text-primary font-bold" id="width-display">25cm</span>
+            </div>
+            <div class="relative mb-2">
+              <input id="width-input" type="number" value="25" min="10" max="50" class="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-3 text-center font-bold text-primary" onchange="recalculateScarf()"/>
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-on-surface-variant">cm</span>
+            </div>
+            <div class="flex gap-1.5 overflow-x-auto">
+              <button type="button" onclick="setWidth(18)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">18cm (쁘띠)</button>
+              <button type="button" onclick="setWidth(25)" class="px-2.5 py-1 rounded-full text-xs bg-primary text-on-primary font-bold">25cm (기본)</button>
+              <button type="button" onclick="setWidth(35)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">35cm (와이드)</button>
+            </div>
+          </div>
+
+          <!-- 4. 목표 길이 (Length) -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-label-md font-bold text-on-surface">목도리 완성 총길이</label>
+              <span class="text-xs text-primary font-bold" id="length-display">180cm</span>
+            </div>
+            <div class="relative mb-2">
+              <input id="length-input" type="number" value="180" min="80" max="260" class="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-3 text-center font-bold text-primary" onchange="recalculateScarf()"/>
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-on-surface-variant">cm</span>
+            </div>
+            <div class="flex gap-1.5 overflow-x-auto">
+              <button type="button" onclick="setLength(120)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">120cm (숏)</button>
+              <button type="button" onclick="setLength(180)" class="px-2.5 py-1 rounded-full text-xs bg-primary text-on-primary font-bold">180cm (스탠다드)</button>
+              <button type="button" onclick="setLength(220)" class="px-2.5 py-1 rounded-full text-xs bg-surface-container-low border border-on-surface/[0.08] hover:border-primary">220cm (롱앤헤비)</button>
+            </div>
+          </div>
+
+          <!-- 5. 엣지 마감 옵션 -->
+          <div>
+            <label class="block text-label-md font-bold text-on-surface mb-1.5">가장자리(엣지) 마감 기법</label>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <button type="button" onclick="setEdge('icord', this)" class="edge-btn p-2.5 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-center">
+                아이코드 엣지 (+4코)
+                <span class="block text-[10px] font-normal opacity-75">말림 방지 명품 모서리</span>
+              </button>
+              <button type="button" onclick="setEdge('slip', this)" class="edge-btn p-2.5 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center">
+                걸러뜨기 체인 엣지 (+2코)
+                <span class="block text-[10px] font-normal opacity-75">자연스럽고 깔끔한 체인</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- RIGHT: CALCULATION RESULT & ROADMAP -->
+    <div id="calc-result-panel" class="lg:col-span-7 w-full flex flex-col gap-6">
+      
+      <!-- RESULT SUMMARY CARD -->
+      <section id="calc-result-summary" class="bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-on-surface">도출된 맞춤 도안 수치</h2>
+          <span class="inline-flex items-center gap-1.5 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            실시간 오차 보정 완료
+          </span>
+        </div>
+
+        <div class="bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-surface-container p-6 rounded-2xl border border-primary/20 text-center mb-5">
+          <span class="text-xs font-bold text-on-surface-variant block mb-1">시작 잡아야 할 코수 (Cast-on)</span>
+          <div class="my-2">
+            <span id="res-caston" class="text-4xl md:text-5xl font-extrabold text-primary tracking-tight">47</span>
+            <span class="text-xl font-bold text-primary ml-1">코</span>
+          </div>
+          <p class="text-xs text-on-surface-variant mt-1" id="res-calc-formula">
+            패턴 배수 맞춤 코수 43코 + 아이코드 엣지 4코 = 총 47코
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
+            <span class="text-xs text-on-surface-variant block mb-1">총 떠야 할 단수</span>
+            <div class="text-xl font-bold text-on-surface">
+              <span id="res-rows">432</span><span class="text-sm font-semibold ml-0.5">단</span>
+            </div>
+            <span class="text-[11px] text-outline" id="res-length-spec">완성 길이 180cm 기준</span>
+          </div>
+          <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
+            <span class="text-xs text-on-surface-variant block mb-1">예상 실 소요량</span>
+            <div class="text-xl font-bold text-primary">
+              약 <span id="res-yarn-balls">5~6</span><span class="text-sm font-semibold ml-0.5">볼</span>
+            </div>
+            <span class="text-[11px] text-outline">1볼 40g (약 80m) 기준</span>
+          </div>
+          <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
+            <span class="text-xs text-on-surface-variant block mb-1">적용된 패턴 규칙</span>
+            <div class="text-sm font-bold text-on-surface mt-1" id="res-pattern-rule">
+              변형고무뜨기 (3n+2)
+            </div>
+            <span class="text-[11px] text-outline" id="res-edge-rule">양 끝 아이코드 2코씩</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5-STEP ROADMAP -->
+            <!-- ROADMAP SECTION (선택 무늬 조직에 따라 실시간 동적 렌더링) -->
+            <!-- ROADMAP SECTION (선택 무늬 조직에 따라 실시간 동적 렌더링) -->
+      <section class="bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow" id="roadmap">
+        <div class="mb-6 pb-4 border-b border-on-surface/[0.06] flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider block mb-1">PRACTICAL ROADMAP</span>
+            <h2 id="scarf-roadmap-title" class="text-xl font-bold text-on-surface">실전 목도리 뜨개 5단계 가이드 (변형고무뜨기)</h2>
+          </div>
+          <span id="scarf-roadmap-badge" class="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">도톰 폭신 기성복 프리미엄 공식</span>
+        </div>
+
+        <div id="scarf-roadmap-container" class="space-y-6">
+          <!-- Dynamically populated by renderScarfRoadmap() -->
+        </div>
+      </section>
+
+      <!-- ADMIN PRINT BANNER -->
+      <div id="admin-print-section" class="hidden bg-surface-container-lowest p-6 rounded-3xl border border-primary/20 custom-shadow flex-col sm:flex-row items-center justify-between gap-4 my-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary shrink-0">
+            <span class="material-symbols-outlined text-[22px]">print</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h4 class="text-label-lg font-bold text-on-surface">도안 인쇄 및 PDF 내보내기</h4>
+              <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300">관리자 전용</span>
+            </div>
+            <p class="text-xs text-on-surface-variant">불필요한 웹 UI를 제거하고 핵심 수치와 5단계 실전 가이드만 A4 2장 규격으로 출력합니다.</p>
+          </div>
+        </div>
+        <button type="button" onclick="triggerPrint()" class="px-5 py-2.5 rounded-full bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-sm transition-all flex items-center gap-1.5 shrink-0 cursor-pointer active:scale-95">
+          <span class="material-symbols-outlined text-[18px]">print</span>
+          <span>A4 도안 인쇄하기</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-surface-container-low full-width border-t border-outline-variant/30 mt-16">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-6 md:px-10 py-8">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">🧣</span>
+      <span class="text-label-lg font-bold text-on-surface">1초 목도리 계산기</span>
+      <span class="text-xs text-on-surface-variant ml-2 border-l border-outline-variant/50 pl-2">Handcrafted with mathematical precision for knitters</span>
+    </div>
+    <nav class="flex flex-wrap items-center justify-center gap-4 text-xs text-on-surface-variant">
+      <a class="hover:text-primary transition-colors" href="index.html">메인 허브</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="sweater.html">스웨터 계산기</a>
+      <span>·</span>
+      <a class="hover:text-primary transition-colors" href="community.html">커뮤니티</a>
+    </nav>
+    <p class="text-xs text-on-surface-variant">© 2026 니팅 스튜디오. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+  let currentPattern = 'brioche'; // 'brioche', 'rib1', 'rib2', 'garter'
+  let currentEdge = 'icord';      // 'icord' (+4코), 'slip' (+2코)
+
+    const SCARF_PATTERN_PREVIEWS = {
+    brioche: {
+      badge: '도톰 볼륨핏',
+      img: 'images/scarf_brioche.jpg',
+      alt: '변형고무뜨기 목도리 완성 예시',
+      title: '☁️ 변형고무뜨기 & 아이코드 엣지 목도리',
+      sub: '가장자리 말림 없이 도톰하고 푹신한 기성복 프리미엄 핏',
+      desc: '💡 <strong>제작 포인트:</strong> 아이코드 엣지가 양옆을 단단하게 잡아주어 사방으로 돌돌 말리지 않고 반듯하게 떨어집니다.'
+    },
+    rib1: {
+      badge: '클래식 리브핏',
+      img: 'images/scarf_rib.jpg',
+      alt: '1코 고무뜨기 목도리 완성 예시',
+      title: '👔 클래식 1코 고무뜨기 머플러',
+      sub: '단정하고 촘촘한 수직 골로 포멀한 코트에 매치하기 가장 좋은 스탠다드 핏',
+      desc: '💡 <strong>제작 포인트:</strong> 겉뜨기와 안뜨기 텐션을 고르게 유지하면 칼주름처럼 반듯한 리브 라인이 살아납니다.'
+    },
+    rib2: {
+      badge: '캐주얼 골지핏',
+      img: 'images/scarf_rib.jpg',
+      alt: '2코 고무뜨기 목도리 완성 예시',
+      title: '🧶 도톰한 2코 고무뜨기 롱 머플러',
+      sub: '도톰한 골선으로 볼륨감과 탄력이 우수하여 풍성하게 두르기 좋은 핏',
+      desc: '💡 <strong>제작 포인트:</strong> 양 끝단을 아이코드로 마감하여 고무단 특유의 가로 당김 현상을 방지합니다.'
+    },
+    garter: {
+      badge: '내추럴 가터핏',
+      img: 'images/scarf_brioche.jpg',
+      alt: '가터뜨기 목도리 완성 예시',
+      title: '🧣 내추럴 가터뜨기 목도리',
+      sub: '초보자도 절대 말리지 않고 폭신한 가로 물결 조직이 편안한 데일리 핏',
+      desc: '💡 <strong>제작 포인트:</strong> 앞뒤 모두 겉뜨기만으로 왕복하여 끝단이 말리지 않아 가장 다루기 편합니다.'
+    }
+  };
+
+  function updateScarfPreviewCard(pat) {
+    const data = SCARF_PATTERN_PREVIEWS[pat] || SCARF_PATTERN_PREVIEWS['brioche'];
+    const imgEl = document.getElementById('preview-img');
+    const badgeEl = document.getElementById('preview-badge');
+    const titleEl = document.getElementById('preview-title');
+    const subEl = document.getElementById('preview-sub');
+    const descEl = document.getElementById('preview-desc');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0.3';
+      setTimeout(() => {
+        imgEl.src = data.img;
+        imgEl.alt = data.alt;
+        imgEl.style.opacity = '1';
+      }, 120);
+    }
+    if (badgeEl) badgeEl.textContent = data.badge;
+    if (titleEl) titleEl.textContent = data.title;
+    if (subEl) subEl.textContent = data.sub;
+    if (descEl) descEl.innerHTML = data.desc;
+  }
+
+  function selectPattern(pat, btn) {
+    updateScarfPreviewCard(pat);
+    currentPattern = pat;
+    document.querySelectorAll('.pattern-btn').forEach(b => {
+      b.className = 'pattern-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40';
+    });
+    btn.className = 'pattern-btn p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold flex flex-col items-center justify-center gap-1 transition-all';
+    recalculateScarf();
+  }
+
+  function setEdge(edge, btn) {
+    currentEdge = edge;
+    document.querySelectorAll('.edge-btn').forEach(b => {
+      b.className = 'edge-btn p-2.5 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center';
+    });
+    btn.className = 'edge-btn p-2.5 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-center';
+    recalculateScarf();
+  }
+
+  function setWidth(w) {
+    document.getElementById('width-input').value = w;
+    recalculateScarf();
+  }
+
+  function setLength(l) {
+    document.getElementById('length-input').value = l;
+    recalculateScarf();
+  }
+
+  function adjustVal(id, delta) {
+    const el = document.getElementById(id);
+    let v = parseInt(el.value, 10) + delta;
+    if (v < parseInt(el.min, 10)) v = parseInt(el.min, 10);
+    if (v > parseInt(el.max, 10)) v = parseInt(el.max, 10);
+    el.value = v;
+    recalculateScarf();
+  }
+
+  
+  // ==========================================
+  // 🎬 YOUTUBE VIDEO MODAL CONTROLLER
+  // ==========================================
+  let currentVideoId = '';
+
+  function openVideoModal(title, videoId, summaryText = '') {
+    currentVideoId = videoId;
+    const modal = document.getElementById('video-modal');
+    const card = document.getElementById('video-modal-card');
+    const frame = document.getElementById('video-modal-frame');
+    const titleEl = document.getElementById('video-modal-title');
+    const summaryEl = document.getElementById('video-modal-summary');
+    const extLink = document.getElementById('video-modal-ext-link');
+    const localPlayer = document.getElementById('video-local-player');
+    const localThumb = document.getElementById('video-local-thumb');
+
+    if (titleEl) titleEl.innerText = title;
+    if (summaryEl) {
+      if (summaryText) {
+        summaryEl.innerHTML = summaryText;
+        summaryEl.classList.remove('hidden');
+      } else {
+        summaryEl.classList.add('hidden');
+      }
+    }
+
+    const isLocalFile = window.location.protocol === 'file:';
+
+    if (isLocalFile && localPlayer) {
+      localPlayer.classList.remove('hidden');
+      if (localThumb) localThumb.src = 'https://img.youtube.com/vi/' + videoId + '/hqdefault.jpg';
+      if (frame) {
+        frame.classList.add('hidden');
+        frame.src = '';
+      }
+    } else {
+      if (localPlayer) localPlayer.classList.add('hidden');
+      if (frame) {
+        frame.classList.remove('hidden');
+        frame.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin || 'http://localhost');
+      }
+    }
+
+    if (extLink) {
+      extLink.href = 'https://www.youtube.com/watch?v=' + videoId;
+    }
+
+    if (modal && card) {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function playLocalVideoDirect() {
+    if (currentVideoId) {
+      window.open('https://www.youtube.com/watch?v=' + currentVideoId, '_blank');
+    }
+  }
+
+  function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const card = document.getElementById('video-modal-card');
+    const frame = document.getElementById('video-modal-frame');
+
+    if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+    if (card) card.classList.add('scale-95');
+    if (frame) frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function handleVideoModalBackdrop(e) {
+    if (e.target && e.target.id === 'video-modal') {
+      closeVideoModal();
+    }
+  }
+
+  // ==========================================
+  // 📚 SCARF ROADMAP & VIDEO MAPPING
+  // ==========================================
+  const SCARF_VIDEOS = {
+    brioche: {
+      1: { title: 'STEP 1: 목도리 여유로운 시작 코잡기', videoId: 'e79E5qUu3a8', desc: '시작단이 오그라들지 않도록 바늘 2개를 겹쳐 코를 잡는 신축성 롱테일 코잡기 요령' },
+      2: { title: 'STEP 2: 변형고무뜨기 손동작 (실 앞 걸러뜨기 + 바늘비우기)', videoId: 'ErQhrw4zYOw', desc: '초보자도 헷갈리지 않는 변형고무뜨기 3코 1세트 리듬 손동작 비법' },
+      3: { title: 'STEP 3: 사방 말림 방지 아이코드(I-Cord) 엣지 공식', videoId: 'SAusIquLG1s', desc: '양 끝 2~3코를 걸러뜨고 겉뜨기하여 가장자리가 돌돌 말리지 않게 잡아주는 테두리 공식' },
+      4: { title: 'STEP 4: 새 실 티 안 나게 잇기 & 수직 길이 측정', videoId: 'zqKO4kyEDPY', desc: '매듭 없이 실 중간을 꼬아 잇는 매직 조인 기법과 편물 늘어짐 방지 측정법' },
+      5: { title: 'STEP 5: 신축성 코막음 & 가벼운 스팀 블로킹', videoId: 'pIYoxS7eF1o', desc: '끝단이 당기지 않고 부드럽게 마감되는 신축성 바인드오프와 다림질 스팀 팁' }
+    },
+    rib1: {
+      1: { title: 'STEP 1: 1코 고무뜨기 짝수 코잡기', videoId: 'e79E5qUu3a8', desc: '독일식 꼬아 코잡기로 짝수 코를 잡아 넥웨어 텐션을 정갈하게 정돈하는 방법' },
+      2: { title: 'STEP 2: 1코 고무뜨기 (K1, P1) 칼주름 텐션 유지법', videoId: 'zqKO4kyEDPY', desc: '겉뜨기 안뜨기 전환 시 실이 늘어지지 않고 수직 골선이 선명하게 서는 손가락 텐션 팁' },
+      3: { title: 'STEP 3: 깔끔한 셀비지 모서리 걸러뜨기', videoId: 'SAusIquLG1s', desc: '첫 코 안뜨기 방향 걸러뜨기로 옆선에 반듯한 사슬 체인 만드는 엣지 기법' },
+      4: { title: 'STEP 4: 중간 실 연결 & 텐션 흐트러짐 방지', videoId: 'zqKO4kyEDPY', desc: '고무단 골 사이로 꼬리실을 숨겨 새 실을 연결하는 깔끔한 마무리 요령' },
+      5: { title: 'STEP 5: 1코 고무뜨기 돗바늘 튜블러 코막음', videoId: '1BIYjNoZbUc', desc: '기성복 명품 머플러처럼 끝단이 탄력 있게 둥글려지는 이탈리안 바인드오프' }
+    },
+    rib2: {
+      1: { title: 'STEP 1: 2코 고무뜨기 (4n+2) 코잡기', videoId: 'e79E5qUu3a8', desc: '4의 배수에 2코를 더해 대칭 골선을 만드는 안정적인 시작 코잡기' },
+      2: { title: 'STEP 2: 2코 고무뜨기 (K2, P2) 풍성한 볼륨 골지 뜨기', videoId: 'zqKO4kyEDPY', desc: '겉2 안2 반복으로 도톰한 입체감과 복원력을 살리는 손동작' },
+      3: { title: 'STEP 3: 고무단 가로 당김 방지 엣지 처리', videoId: 'SAusIquLG1s', desc: '양 끝단을 반듯하게 세워 고무단 특유의 말림과 퍼짐을 제어하는 요령' },
+      4: { title: 'STEP 4: 새 실 연결 & 길이 측정', videoId: 'zqKO4kyEDPY', desc: '목에 2바퀴 두를 수 있는 충분한 길이를 정확히 재는 노하우' },
+      5: { title: 'STEP 5: 2코 고무뜨기 돗바늘 바인드오프', videoId: '1BIYjNoZbUc', desc: '돗바늘로 겉코와 안코를 번갈아 꿰매어 신축성 있게 닫아주는 완성 마감법' }
+    },
+    garter: {
+      1: { title: 'STEP 1: 편안한 롱테일 코잡기', videoId: 'e79E5qUu3a8', desc: '가터뜨기 조직의 폭신한 두께에 맞춰 바늘 굵기에 여유를 주는 코잡기' },
+      2: { title: 'STEP 2: 모든 단 겉뜨기(Garter Stitch) 무한 직진 노하우', videoId: 'zqKO4kyEDPY', desc: '앞뒤 뒤집어도 계속 겉뜨기만 진행하여 물결 요철을 균일하게 살리는 방법' },
+      3: { title: 'STEP 3: 가터뜨기 체인 엣지 (첫코 걸러뜨기)', videoId: 'SAusIquLG1s', desc: '첫 코를 실 앞에 두고 안뜨기 방향으로 걸러떠서 울퉁불퉁하지 않은 체인 모서리 완성' },
+      4: { title: 'STEP 4: 실 잇기 & 가로 골선 카운팅', videoId: 'zqKO4kyEDPY', desc: '물결 1줄이 2단! 단수 표시기를 활용해 목표 길이를 쉽게 카운트하는 팁' },
+      5: { title: 'STEP 5: 겉뜨기 덮어씌워 코막음 & 블로킹', videoId: 'pIYoxS7eF1o', desc: '초보자도 1분 만에 완성하는 깔끔한 덮어씌워 코막음과 가벼운 스팀 정돈' }
+    }
+  };
+
+  function openStepVideo(stepNum) {
+    const patVideos = SCARF_VIDEOS[currentPattern] || SCARF_VIDEOS['brioche'];
+    const item = patVideos[stepNum];
+    if (item) {
+      openVideoModal(item.title, item.videoId, `💡 <strong>${item.title}</strong><br>${item.desc}`);
+    }
+  }
+
+  function renderScarfRoadmap(pattern, edge, totalCaston, bodySts, edgeSts, totalRows, targetW, targetL) {
+    const titleEl = document.getElementById('scarf-roadmap-title');
+    const badgeEl = document.getElementById('scarf-roadmap-badge');
+    const container = document.getElementById('scarf-roadmap-container');
+    if (!container) return;
+
+    const edgeTitle = (edge === 'icord') ? '사방 말림 방지: 아이코드(I-Cord) 3코 엣지' : '깔끔한 체인 셀비지 엣지 (1코 걸러뜨기)';
+    const edgeDesc = (edge === 'icord') 
+      ? '시작 2~3코는 겉뜨기로 뜨고, 단의 마지막 2~3코는 실을 앞에 둔 채 안뜨기 방향으로 걸러떠서 통통한 튜브 테두리를 형성합니다. 목도리 특유의 돌돌 말림을 100% 방지하고 명품 머플러 같은 모서리를 완성합니다.'
+      : '첫 코를 안뜨기 방향으로 걸러뜨고(Sl1 wyif) 마지막 코를 겉뜨기로 떠서 목도리 양옆에 정갈하게 땋은 머리 모양 사슬 체인을 만듭니다.';
+
+        const toolsChecklist = `
+      <!-- 🛠️ 시작 전 필수 준비물 & 추천 도구 체크리스트 -->
+      <div class="p-4 sm:p-5 bg-surface-container rounded-2xl border border-on-surface/[0.06] mb-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2.5 border-b border-on-surface/[0.06]">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[20px]">construction</span>
+            <h3 class="text-sm font-bold text-on-surface">목도리 &amp; 머플러 필수 준비물 &amp; 추천 도구 체크리스트</h3>
+          </div>
+          <span class="text-[11px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
+            준비 완료 후 체크(☑)해 보세요
+          </span>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+          <!-- 1. 대바늘 규격 -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">straighten</span>
+                <span>1. 평면 대바늘 (60~80cm 줄바늘)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">5.0mm ~ 7.0mm (취향별 실 굵기)</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">긴 막대바늘보다 줄바늘을 평면뜨기로 쓰면 코 빠짐이 없고 손목 무게 부담이 적습니다. 변형고무뜨기는 0.5mm 굵게 권장합니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>대바늘 준비 완료</span>
+            </label>
+          </div>
+
+          <!-- 2. 엣지 구분 마커 -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">bookmark</span>
+                <span>2. 엣지 경계 마커 (2개)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">양 끝 아이코드 / 셀비지 분리</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">양 끝 2~3코의 엣지 구간과 중앙 메인 패턴 사이에 마커 2개를 걸어두면 멍때리며 떠도 무늬가 틀리지 않습니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>마커 2개 준비 완료</span>
+            </label>
+          </div>
+
+          <!-- 3. 줄자 & 실 소요량 체크 -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">straighten</span>
+                <span>3. 유연한 줄자 (1.5~2m)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">너비 및 목표 총장(180~200cm) 확인</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">목도리는 무게 때문에 뜨면서 아래로 늘어납니다. 바닥에 편평하게 펴고 수시로 너비와 길이를 점검합니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>줄자 준비 완료</span>
+            </label>
+          </div>
+
+          <!-- 4. 굵은 돗바늘 & 블로킹 와이어(선택) -->
+          <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+            <div>
+              <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+                <span class="material-symbols-outlined text-[16px]">iron</span>
+                <span>4. 돗바늘 &amp; 블로킹 T핀(선택)</span>
+              </div>
+              <p class="text-on-surface text-[12px] font-semibold mb-1">실정리 &amp; 사방 가장자리 말림 방지</p>
+              <p class="text-on-surface-variant text-[11px] leading-relaxed">시작/끝 꼬리실을 숨겨줄 굵은 돗바늘과 완성 후 스팀을 쐬어 반듯한 직사각형으로 핏을 고정하는 블로킹 핀입니다.</p>
+            </div>
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+              <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+              <span>돗바늘/핀 준비 완료</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    `;
+    const cheatSheet = `
+      <!-- 📖 목도리 필수 뜨개 약어 1초 사전 -->
+      <div class="p-4 bg-surface-container rounded-2xl border border-on-surface/[0.06] mb-5">
+        <div class="flex items-center justify-between mb-2.5">
+          <div class="flex items-center gap-1.5 text-xs font-bold text-primary">
+            <span class="material-symbols-outlined text-[17px]">menu_book</span>
+            <span>목도리 &amp; 머플러 도안 필수 기호 1초 사전</span>
+          </div>
+          <span class="text-[11px] text-outline font-medium">손쉬운 도안 해독</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
+          <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+            <strong class="text-primary font-bold block mb-0.5">Sl1 wyif</strong>
+            <span class="text-on-surface-variant text-[11px]">실 앞 걸러뜨기</span>
+          </div>
+          <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+            <strong class="text-primary font-bold block mb-0.5">YO</strong>
+            <span class="text-on-surface-variant text-[11px]">바늘비우기</span>
+          </div>
+          <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+            <strong class="text-primary font-bold block mb-0.5">K / P</strong>
+            <span class="text-on-surface-variant text-[11px]">겉뜨기 / 안뜨기</span>
+          </div>
+          <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+            <strong class="text-primary font-bold block mb-0.5">K2tog</strong>
+            <span class="text-on-surface-variant text-[11px]">2코 모아 겉뜨기</span>
+          </div>
+          <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+            <strong class="text-primary font-bold block mb-0.5">I-Cord</strong>
+            <span class="text-on-surface-variant text-[11px]">튜브 테두리 모서리</span>
+          </div>
+          <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+            <strong class="text-primary font-bold block mb-0.5">Blocking</strong>
+            <span class="text-on-surface-variant text-[11px]">스팀 편물 정돈</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    if (pattern === 'garter') {
+      if (titleEl) titleEl.textContent = '실전 목도리 뜨개 5단계 가이드 (가터뜨기 - 초보자 추천)';
+      if (badgeEl) badgeEl.textContent = '말림 0% 초간단 데일리 공식';
+
+      container.innerHTML = toolsChecklist + cheatSheet + `
+        <!-- STEP 01 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">01</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                시작 코잡기 (<span class="text-primary font-extrabold">${totalCaston}코</span>) &amp; 여유로운 텐션
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">폭 ${targetW}cm 기준</span>
+              <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [코잡기 &amp; 마커 배치]</p>
+              <p>바늘 2개를 겹치거나 0.5mm 굵은 바늘로 <strong>${totalCaston}코</strong>를 여유 있게 잡습니다. 시작 부분이 짱짱하면 목도리 끝이 좁아지므로 텐션을 느슨하게 유지하세요.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">02</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                모든 단 겉뜨기(Garter Stitch) 무한 직진 노하우
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">앞뒤 무한 겉뜨기</span>
+              <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [물결 요철 손동작]</p>
+              <p>편물을 뒤집어도 안뜨기 없이 오직 <strong>겉뜨기</strong>만 왕복합니다. 앞뒤 모두 볼록한 가로 물결무늬가 생겨 양면 구분이 없고 도톰합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">03</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">${edgeTitle}</h3>
+            </div>
+            <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>${edgeDesc}</p>
+          </div>
+        </div>
+
+        <!-- STEP 04 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">04</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                새 실 티 안 나게 잇기 &amp; 길이 측정 (목표: <span class="text-primary font-extrabold">${targetL}cm</span>)
+              </h3>
+            </div>
+            <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>1. 가터뜨기는 2단마다 물결 골선 1줄이 생깁니다. 목표 <strong>${totalRows}단</strong>(골선 약 ${Math.round(totalRows/2)}줄)까지 직진합니다.<br>
+            2. 실 교체는 편물 가장자리 모서리에서 진행하여 매듭이 겉면에 드러나지 않게 감춥니다.</p>
+          </div>
+        </div>
+
+        <!-- STEP 05 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">05</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                겉뜨기 덮어씌워 코막음 &amp; 가벼운 스팀 블로킹
+              </h3>
+            </div>
+            <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>마지막 단에서 여유롭게 겉뜨기 덮어씌워 코막음을 진행하고, 다리미를 3cm 띄워 스팀만 살짝 쐬어주면 단정한 데일리 가터 목도리가 완성됩니다!</p>
+          </div>
+        </div>
+      `;
+    } else if (pattern === 'rib1' || pattern === 'rib2') {
+      const ribName = (pattern === 'rib2') ? '2코 고무뜨기 (K2, P2)' : '1코 고무뜨기 (K1, P1)';
+      const ribSub = (pattern === 'rib2') ? '도톰하고 탄력 있는 캐주얼 골' : '단정하고 촘촘한 수직 정석 리브';
+      if (titleEl) titleEl.textContent = `실전 목도리 뜨개 5단계 가이드 (${ribName})`;
+      if (badgeEl) badgeEl.textContent = '칼주름 수직 골선 마스터 공식';
+
+      container.innerHTML = toolsChecklist + cheatSheet + `
+        <!-- STEP 01 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">01</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                시작 코잡기 (<span class="text-primary font-extrabold">${totalCaston}코</span>) &amp; 골선 대칭 세팅
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">폭 ${targetW}cm 기준</span>
+              <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [신축성 코잡기 &amp; 마커 배치]</p>
+              <p>독일식 꼬아 코잡기로 <strong>${totalCaston}코</strong>를 잡습니다. [모서리 엣지 ${edgeSts/2}코] + [고무단 본판 ${bodySts}코] + [모서리 엣지 ${edgeSts/2}코]로 마커 2개를 꽂아 첫 단을 세팅합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">02</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                ${ribName} 칼주름 텐션 손동작
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">${ribSub}</span>
+              <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [수직 골선 텐션 팁]</p>
+              <p>겉뜨기에서 안뜨기로 실을 앞으로 넘길 때 실이 늘어지기 쉽습니다. 실을 바짝 당겨 넘기면 골선 사이 구멍이 생기지 않고 반듯하게 정돈됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">03</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">${edgeTitle}</h3>
+            </div>
+            <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>${edgeDesc}</p>
+          </div>
+        </div>
+
+        <!-- STEP 04 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">04</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                새 실 티 안 나게 잇기 &amp; 길이 측정 (목표: <span class="text-primary font-extrabold">${targetL}cm</span>)
+              </h3>
+            </div>
+            <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>1. <strong>고무단 안쪽 실 잇기</strong>: 새 실을 이을 때 안뜨기 골 뒤쪽에서 꼬아 이어 매듭이 겉면에 드러나지 않게 감춥니다.<br>
+            2. 목표 <strong>${targetL}cm</strong>(약 <strong>${totalRows}단</strong>)까지 골선을 가지런히 유지하며 뜹니다.</p>
+          </div>
+        </div>
+
+        <!-- STEP 05 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">05</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                고무단 돗바늘 바인드오프 (신축성 마감)
+              </h3>
+            </div>
+            <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>겉코와 안코의 루프를 돗바늘로 번갈아 꿰매어 기성복 명품 니트처럼 끝단이 탄력 있게 둥글려지는 튜블러 코막음으로 마감합니다.</p>
+          </div>
+        </div>
+      `;
+    } else {
+      // Brioche
+      if (titleEl) titleEl.textContent = '실전 목도리 뜨개 5단계 가이드 (변형고무뜨기 - 도톰 볼륨핏)';
+      if (badgeEl) badgeEl.textContent = '도톰 폭신 기성복 프리미엄 마스터 공식';
+
+      container.innerHTML = toolsChecklist + cheatSheet + `
+        <!-- STEP 01 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">01</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                시작 코잡기 (<span class="text-primary font-extrabold">${totalCaston}코</span>) &amp; 텐션 조절 팁
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">폭 ${targetW}cm 기준</span>
+              <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📌 [바늘 2개 겹쳐 코잡기 &amp; 마커 배치]</p>
+              <p>변형고무뜨기 첫 단을 너무 짱짱하게 잡으면 완성 후 시작 부분이 오그라듭니다. 바늘 2개를 겹쳐서 <strong class="text-primary">${totalCaston}코</strong>를 여유 있게 잡습니다.<br>
+              • <strong>마커 분배</strong>: [오른쪽 엣지 ${edgeSts/2}코] + [가운데 변형고무 본판 ${bodySts}코] + [왼쪽 엣지 ${edgeSts/2}코]로 마커 2개를 꽂아 첫 단부터 헷갈리지 않게 세팅합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">02</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                변형고무뜨기 3코 1세트 반복 손동작 요령
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">도톰 폭신 볼륨감</span>
+              <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                <span>기법 영상 재생</span>
+              </button>
+            </div>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
+              <p class="font-bold text-primary mb-1">📐 [3코 1세트 핵심 공식]</p>
+              <p>• <code class="bg-surface-container px-1 py-0.5 rounded text-primary font-bold">[실을 앞에 두고 ➔ 1코 안뜨기 방향으로 걸러뜨고 ➔ 다음 2코를 한꺼번에 겉뜨기(K2tog)]</code>를 반복합니다.<br>
+              • 바늘비우기와 걸러뜨기가 자동으로 한 쌍을 이루며 공기를 가득 품은 두 겹 두께의 폭신한 볼륨 니트가 만들어집니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 03 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">03</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">${edgeTitle}</h3>
+            </div>
+            <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>${edgeDesc}</p>
+          </div>
+        </div>
+
+        <!-- STEP 04 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">04</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                새 실 티 안 나게 잇기 &amp; 길이 측정 (목표: <span class="text-primary font-extrabold">${targetL}cm</span>)
+              </h3>
+            </div>
+            <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>1. <strong>매직 조인(Magic Join)</strong>: 볼과 볼 사이를 묶지 않고 꼬리실을 살짝 풀어 교차시키면 겉에서 매듭이 전혀 보이지 않습니다.<br>
+            2. 편물을 바닥에 편평하게 펴고 측정하여 목표 길이 <strong>${targetL}cm</strong>(약 <strong>${totalRows}단</strong>)에 도달할 때까지 직진합니다.</p>
+          </div>
+        </div>
+
+        <!-- STEP 05 -->
+        <div class="p-5 md:p-6 rounded-2xl bg-surface-container-low border border-on-surface/[0.05] transition-all hover:border-primary/30">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 mb-3.5">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-sm flex items-center justify-center shrink-0 shadow-xs">05</span>
+              <h3 class="text-base md:text-lg font-bold text-on-surface">
+                신축성 코막음 &amp; 가벼운 스팀 블로킹
+              </h3>
+            </div>
+            <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
+              <span class="material-symbols-outlined text-[16px]">play_circle</span>
+              <span>기법 영상 재생</span>
+            </button>
+          </div>
+          <div class="text-xs md:text-sm text-on-surface leading-relaxed space-y-3 pl-0 sm:pl-10">
+            <p>1. <strong>제니식 슈퍼 신축성 코막음</strong>: 변형고무뜨기의 폭신한 신축성에 맞춰 바늘비우기를 더한 신축성 코막음으로 마무리합니다.<br>
+            2. <strong>스팀 정돈</strong>: 완성 후 다리미 스팀을 3cm 띄워 쐬어주면 가장자리가 반듯하게 펴져 기성복 같은 직사각형 실루엣이 완성됩니다.</p>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  function recalculateScarf() {
+    const gaugeSts = parseInt(document.getElementById('st-count').value, 10) || 18;
+    const gaugeRows = parseInt(document.getElementById('row-count').value, 10) || 24;
+    const targetW = parseInt(document.getElementById('width-input').value, 10) || 25;
+    const targetL = parseInt(document.getElementById('length-input').value, 10) || 180;
+
+    document.getElementById('width-display').textContent = `${targetW}cm`;
+    document.getElementById('length-display').textContent = `${targetL}cm`;
+
+    // Pure stitch calculation based on target width
+    const rawSts = Math.round((targetW * gaugeSts) / 10);
+    const edgeSts = (currentEdge === 'icord') ? 4 : 2;
+
+    let bodySts = rawSts - edgeSts;
+    if (bodySts < 4) bodySts = 4;
+
+    // Pattern Multiple Constraint
+    if (currentPattern === 'brioche') {
+      // 3의 배수 + 2코
+      bodySts = Math.round((bodySts - 2) / 3) * 3 + 2;
+      if (bodySts < 5) bodySts = 5;
+    } else if (currentPattern === 'rib1') {
+      // 2의 배수
+      if (bodySts % 2 !== 0) bodySts += 1;
+    } else if (currentPattern === 'rib2') {
+      // 4의 배수 + 2코
+      bodySts = Math.round((bodySts - 2) / 4) * 4 + 2;
+      if (bodySts < 6) bodySts = 6;
+    }
+
+    const totalCaston = bodySts + edgeSts;
+    const totalRows = Math.round((targetL * gaugeRows) / 10);
+
+    // Approximate Yarn Estimate: Area (m2) * density
+    const areaM2 = (targetW / 100) * (targetL / 100);
+    // Average scarf wool: approx 450~550g per m2
+    let estGrams = areaM2 * 500;
+    if (currentPattern === 'brioche') estGrams *= 1.25; // Brioche consumes 25% more yarn
+    const balls = Math.ceil(estGrams / 40); // 40g per ball
+
+    // Update UI elements
+    document.getElementById('res-caston').textContent = totalCaston;
+    document.getElementById('res-rows').textContent = totalRows;
+    document.getElementById('res-yarn-balls').textContent = `${balls}~${balls + 1}`;
+    document.getElementById('res-length-spec').textContent = `완성 길이 ${targetL}cm 기준`;
+
+    const edgeName = (currentEdge === 'icord') ? '아이코드 엣지 4코' : '걸러뜨기 엣지 2코';
+    document.getElementById('res-calc-formula').textContent = `패턴 코수 ${bodySts}코 + ${edgeName} = 총 ${totalCaston}코`;
+
+    const patNames = {
+      'brioche': '변형고무뜨기 (3n+2)',
+      'rib1': '1코 고무뜨기 (2의 배수)',
+      'rib2': '2코 고무뜨기 (4n+2)',
+      'garter': '가터뜨기 (자유 배수)'
+    };
+    document.getElementById('res-pattern-rule').textContent = patNames[currentPattern];
+    document.getElementById('res-edge-rule').textContent = (currentEdge === 'icord') ? '양 끝 아이코드 2코씩' : '양 끝 체인 걸러뜨기 1코씩';
+
+    // 실시간 동적 설명서 렌더링 호출
+    renderScarfRoadmap(currentPattern, currentEdge, totalCaston, bodySts, edgeSts, totalRows, targetW, targetL);
+
+    // Print header update
+    const specEl = document.getElementById('print-spec-summary');
+    if (specEl) {
+      specEl.textContent = `너비 ${targetW}cm · 길이 ${targetL}cm · 시작 ${totalCaston}코 (${patNames[currentPattern]})`;
+    }
+  }
+
+  function triggerPrint() {
+    window.print();
+  }
+
+  // Supabase Auth and Admin Handling
+  function checkIsAdmin(user) {
+    if (!user) return false;
+    const email = (user.email || '').toLowerCase().trim();
+    if (email === '1gmlakd1@gmail.com' || email.startsWith('admin@')) return true;
+    if (user.user_metadata && (user.user_metadata.is_admin === true || user.user_metadata.role === 'admin')) return true;
+    return false;
+  }
+
+  function updateAdminUI(isAdmin) {
+    const adminSection = document.getElementById('admin-print-section');
+    if (adminSection) {
+      if (isAdmin) {
+        adminSection.classList.remove('hidden');
+        adminSection.classList.add('flex');
+      } else {
+        adminSection.classList.add('hidden');
+        adminSection.classList.remove('flex');
+      }
+    }
+  }
+
+  // Initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    recalculateScarf();
+    // Check local admin param
+    if (window.location.search.includes('admin=1')) {
+      updateAdminUI(true);
+    }
+  });
+
+
+  async function saveScarfPattern() {
+    if (!currentUser || !spClient) {
+      openAuthModal();
+      return;
+    }
+    const gaugeSt = document.getElementById('gauge-st')?.value;
+    const gaugeRow = document.getElementById('gauge-row')?.value;
+    const width = document.getElementById('width-input')?.value;
+    const length = document.getElementById('length-input')?.value;
+    const data = {
+      type: 'scarf',
+      pattern: currentPattern,
+      edge: currentEdge,
+      gauge_st: gaugeSt,
+      gauge_row: gaugeRow,
+      width: width,
+      length: length,
+      updated_at: new Date().toISOString()
+    };
+    localStorage.setItem('knit_scarf_pattern', JSON.stringify(data));
+    showToast('목도리 도안 설정이 안전하게 저장되었습니다! ✨');
+  }
+
+
+  // ☁️ SUPABASE CLIENT & AUTH CONTROLLER
+  const SUPABASE_URL = "https://vjuehrbdottiklcojlcl.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdWVocmJkb3R0aWtsY29qbGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3MjM4NzAsImV4cCI6MjExMDI5OTg3MH0.BDWbnmL0tsM2jpEGIyvIpYub9kC7oI5ZWgGuieLu0a8";
+
+  let spClient = null;
+  if (typeof supabase !== 'undefined') {
+    spClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  let currentAuthTab = 'login';
+  let currentUser = null;
+  let isUserAdmin = false;
+
+  function showToast(msg, icon = 'check_circle') {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    const msgEl = document.getElementById('toast-msg');
+    const iconEl = document.getElementById('toast-icon');
+    if (msgEl) msgEl.innerText = msg;
+    if (iconEl) iconEl.innerText = icon;
+    t.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-3');
+    setTimeout(() => {
+      t.classList.add('opacity-0', 'pointer-events-none', 'translate-y-3');
+    }, 2800);
+  }
+
+  function openAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.remove('opacity-0', 'pointer-events-none');
+    const card = document.getElementById('auth-modal-card');
+    if (card) card.classList.remove('scale-95');
+    const err = document.getElementById('auth-error');
+    if (err) err.classList.add('hidden');
+  }
+
+  function closeAuthModal() {
+    const m = document.getElementById('auth-modal');
+    if (!m) return;
+    m.classList.add('opacity-0', 'pointer-events-none');
+    const card = document.getElementById('auth-modal-card');
+    if (card) card.classList.add('scale-95');
+  }
+
+  function handleAuthModalBackdrop(e) {
+    if (e.target && e.target.id === 'auth-modal') {
+      closeAuthModal();
+    }
+  }
+
+  let isNicknameChecked = false;
+  let verifiedNickname = '';
+
+  const FORBIDDEN_NICK_KEYWORDS = [
+    '운영자', '관리자', '어드민', '마스터', '스태프', '매니저', '스튜디오', '공식',
+    '고객센터', '시스템', '운영팀', '관리팀', '뜨개스튜디오',
+    'admin', 'administrator', 'operator', 'master', 'manager', 'staff',
+    'root', 'support', 'system', 'official'
+  ];
+
+  function validateNicknameFormat(nick) {
+    if (!nick) return { valid: false, message: '닉네임을 입력해 주세요.' };
+    if (nick.length < 2 || nick.length > 10) {
+      return { valid: false, message: '2~10자로 입력해 주세요.' };
+    }
+    const normalized = nick.toLowerCase().replace(/[\s_\-\.]+/g, '');
+    for (const keyword of FORBIDDEN_NICK_KEYWORDS) {
+      if (normalized.includes(keyword)) {
+        return { valid: false, message: '운영자 및 관리자 사칭 방지를 위해 사용할 수 없는 단어가 포함되어 있습니다.' };
+      }
+    }
+    return { valid: true };
+  }
+
+  function handleNicknameInput() {
+    isNicknameChecked = false;
+    verifiedNickname = '';
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+    if (!status) return;
+
+    if (!nick) {
+      status.innerText = '2~10자 한글/영문/숫자';
+      status.className = 'text-[11px] font-medium text-on-surface-variant';
+      return;
+    }
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      status.innerText = check.message;
+      status.className = 'text-[11px] font-medium text-error font-semibold';
+    } else {
+      status.innerText = '중복 확인이 필요합니다';
+      status.className = 'text-[11px] font-medium text-amber-600';
+    }
+  }
+
+  async function checkNicknameDuplicate() {
+    const nickInput = document.getElementById('auth-nickname');
+    const nick = (nickInput ? nickInput.value : '').trim();
+    const status = document.getElementById('nick-status');
+
+    const check = validateNicknameFormat(nick);
+    if (!check.valid) {
+      isNicknameChecked = false;
+      verifiedNickname = '';
+      if (status) {
+        status.innerText = check.message;
+        status.className = 'text-[11px] font-medium text-error font-semibold';
+      }
+      return false;
+    }
+
+    const checkBtn = document.getElementById('btn-check-nick');
+    if (checkBtn) {
+      checkBtn.disabled = true;
+      checkBtn.innerText = '확인 중...';
+    }
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data: isAvailable, error } = await spClient.rpc('check_nickname_available', { p_nickname: nick });
+      if (error) throw error;
+
+      if (isAvailable) {
+        isNicknameChecked = true;
+        verifiedNickname = nick;
+        if (status) {
+          status.innerText = '✓ 사용 가능한 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-emerald-600 font-bold';
+        }
+        showToast('사용 가능한 닉네임입니다! ✨');
+        return true;
+      } else {
+        isNicknameChecked = false;
+        verifiedNickname = '';
+        if (status) {
+          status.innerText = '✕ 이미 사용 중이거나 사용할 수 없는 닉네임입니다';
+          status.className = 'text-[11px] font-medium text-error font-bold';
+        }
+        return false;
+      }
+    } catch (err) {
+      if (status) {
+        status.innerText = '중복 확인 실패: ' + (err.message || '오류');
+        status.className = 'text-[11px] font-medium text-error';
+      }
+      return false;
+    } finally {
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.innerText = '중복 확인';
+      }
+    }
+  }
+
+  function setAuthTab(tab) {
+    currentAuthTab = tab;
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const tabsRow = document.getElementById('auth-tabs-row');
+    const btn = document.getElementById('auth-submit-btn');
+    const title = document.getElementById('auth-modal-title');
+    const standardFields = document.getElementById('auth-standard-fields');
+    const nickWrap = document.getElementById('auth-nickname-wrap');
+    const resetFields = document.getElementById('auth-reset-fields');
+    const forgotBtn = document.getElementById('btn-forgot-pw');
+    const backLoginBtn = document.getElementById('btn-back-login');
+    const errorBox = document.getElementById('auth-error');
+
+    if (errorBox) errorBox.classList.add('hidden');
+
+    if (tab === 'login') {
+      if (title) title.innerText = '로그인';
+      if (btn) btn.innerText = '로그인하기';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'signup') {
+      if (title) title.innerText = '무료 회원가입';
+      if (btn) btn.innerText = '무료 회원가입';
+      if (tabsRow) tabsRow.classList.remove('hidden');
+      if (standardFields) standardFields.classList.remove('hidden');
+      if (nickWrap) nickWrap.classList.remove('hidden');
+      if (resetFields) resetFields.classList.add('hidden');
+      if (forgotBtn) forgotBtn.classList.remove('hidden');
+      if (backLoginBtn) backLoginBtn.classList.add('hidden');
+      if (tabSignup) tabSignup.className = 'py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer';
+      if (tabLogin) tabLogin.className = 'py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer';
+    } else if (tab === 'reset') {
+      if (title) title.innerText = '비밀번호 재설정';
+      if (btn) btn.innerText = '비밀번호 변경하기';
+      if (tabsRow) tabsRow.classList.add('hidden');
+      if (standardFields) standardFields.classList.add('hidden');
+      if (nickWrap) nickWrap.classList.add('hidden');
+      if (resetFields) resetFields.classList.remove('hidden');
+      if (forgotBtn) forgotBtn.classList.add('hidden');
+      if (backLoginBtn) backLoginBtn.classList.remove('hidden');
+    }
+  }
+
+  async function handlePasswordResetSubmit() {
+    const email = document.getElementById('reset-email').value.trim();
+    const nickname = document.getElementById('reset-nickname').value.trim();
+    const newPassword = document.getElementById('reset-password').value.trim();
+    const newPasswordConfirm = document.getElementById('reset-password-confirm').value.trim();
+    const errorBox = document.getElementById('auth-error');
+
+    if (!email || !nickname || !newPassword || !newPasswordConfirm) {
+      errorBox.innerText = '모든 항목을 빠짐없이 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword.length < 6) {
+      errorBox.innerText = '새 비밀번호는 최소 6자리 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (newPassword !== newPasswordConfirm) {
+      errorBox.innerText = '비밀번호 확인이 일치하지 않습니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const btn = document.getElementById('auth-submit-btn');
+    btn.disabled = true;
+    btn.innerText = '확인 및 변경 중...';
+
+    try {
+      if (!spClient) throw new Error('Supabase 클라이언트가 초기화되지 않았습니다.');
+      const { data, error } = await spClient.rpc('reset_password_with_credentials', {
+        p_email: email,
+        p_nickname: nickname,
+        p_new_password: newPassword
+      });
+      if (error) throw error;
+
+      if (!data || !data.success) {
+        throw new Error(data?.message || '등록된 이메일과 닉네임 정보가 일치하지 않습니다.');
+      }
+
+      showToast('비밀번호가 성공적으로 변경되었습니다! 새 비밀번호로 로그인해 주세요. 🔑');
+      const authEmail = document.getElementById('auth-email');
+      if (authEmail) authEmail.value = email;
+      const authPw = document.getElementById('auth-password');
+      if (authPw) authPw.value = '';
+      setAuthTab('login');
+    } catch (err) {
+      errorBox.innerText = err.message || '비밀번호 재설정에 실패했습니다.';
+      errorBox.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      if (currentAuthTab === 'reset') {
+        btn.innerText = '비밀번호 변경하기';
+      }
+    }
+  }
+
+  async function handleAuthSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+
+    if (currentAuthTab === 'reset') {
+      return handlePasswordResetSubmit();
+    }
+
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    const errorBox = document.getElementById('auth-error');
+    errorBox.classList.add('hidden');
+
+    if (!email || !password) {
+      errorBox.innerText = '이메일과 비밀번호를 모두 입력해 주세요.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    if (password.length < 6) {
+      errorBox.innerText = '비밀번호는 최소 6자 이상이어야 합니다.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    try {
+      if (currentAuthTab === 'signup') {
+        const nick = (document.getElementById('auth-nickname')?.value || '').trim();
+        if (!nick) {
+          errorBox.innerText = '닉네임을 입력해 주세요.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+        if (!isNicknameChecked || verifiedNickname !== nick) {
+          errorBox.innerText = '닉네임 중복 확인 버튼을 눌러 확인을 완료해 주세요.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        const btn = document.getElementById('auth-submit-btn');
+        btn.disabled = true;
+        btn.innerText = '가입 진행 중...';
+
+        const { data, error } = await spClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { nickname: verifiedNickname }
+          }
+        });
+        if (error) throw error;
+
+        showToast(`환영합니다, ${verifiedNickname}님! ✨`);
+        closeAuthModal();
+      } else {
+        const btn = document.getElementById('auth-submit-btn');
+        btn.disabled = true;
+        btn.innerText = '로그인 중...';
+
+        const { data, error } = await spClient.auth.signInWithPassword({
+          email,
+          password
+        });
+        if (error) throw error;
+
+        const nick = data.user?.user_metadata?.nickname || email.split('@')[0];
+        showToast(`${nick}님, 반가워요! 🧶`);
+        closeAuthModal();
+      }
+    } catch (err) {
+      let msg = err.message || '인증에 실패했습니다.';
+      if (msg.includes('Invalid login credentials')) {
+        msg = '이메일 또는 비밀번호가 일치하지 않습니다.';
+      } else if (msg.includes('User already registered')) {
+        msg = '이미 가입된 이메일 주소입니다. 로그인해 주세요.';
+      }
+      errorBox.innerText = msg;
+      errorBox.classList.remove('hidden');
+    } finally {
+      const btn = document.getElementById('auth-submit-btn');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = (currentAuthTab === 'signup') ? '무료 회원가입' : '로그인하기';
+      }
+    }
+  }
+
+  async function handleSignOut() {
+    if (!spClient) return;
+    await spClient.auth.signOut();
+    showToast('로그아웃 되었습니다.');
+  }
+
+  function checkIsAdminLocally() {
+    if (window.location.search.includes('admin=1')) return true;
+    if (localStorage.getItem('KNIT_ADMIN') === 'true') return true;
+    return false;
+  }
+
+  async function checkIsAdmin(user) {
+    if (!user) return checkIsAdminLocally();
+    const email = (user.email || '').toLowerCase().trim();
+    const ADMIN_EMAILS = ['1gmlakd1@gmail.com', 'admin@knitting-studio.com'];
+    if (ADMIN_EMAILS.includes(email) || email.startsWith('admin@')) {
+      return true;
+    }
+    if (user.user_metadata?.is_admin === true || user.user_metadata?.role === 'admin' || user.app_metadata?.role === 'admin') {
+      return true;
+    }
+    if (checkIsAdminLocally()) {
+      return true;
+    }
+    try {
+      if (spClient) {
+        const { data, error } = await spClient.from('profiles').select('is_admin').eq('id', user.id).maybeSingle();
+        if (!error && data && data.is_admin === true) {
+          return true;
+        }
+      }
+    } catch (e) {
+      console.warn('Admin check error:', e);
+    }
+    return false;
+  }
+
+  function updateAdminUI(isAdmin) {
+    const adminSection = document.getElementById('admin-print-section');
+    if (adminSection) {
+      if (isAdmin) {
+        adminSection.classList.remove('hidden');
+        adminSection.classList.add('flex');
+      } else {
+        adminSection.classList.add('hidden');
+        adminSection.classList.remove('flex');
+      }
+    }
+  }
+
+  window.setAdminMode = function(flag) {
+    if (flag) {
+      localStorage.setItem('KNIT_ADMIN', 'true');
+      isUserAdmin = true;
+    } else {
+      localStorage.removeItem('KNIT_ADMIN');
+      isUserAdmin = false;
+    }
+    updateAdminUI(isUserAdmin);
+    showToast(flag ? '👑 관리자 모드 활성화 (인쇄 기능 표시)' : '일반 사용자 모드로 전환되었습니다.');
+  };
+
+  function handleAdminPrint() {
+    if (!isUserAdmin) {
+      showToast('관리자 계정 전용 기능입니다.', 'lock');
+      return;
+    }
+    window.print();
+  }
+
+  if (spClient) {
+    spClient.auth.onAuthStateChange(async (event, session) => {
+      currentUser = session ? session.user : null;
+      const loggedOutBox = document.getElementById('auth-logged-out');
+      const loggedInBox = document.getElementById('auth-logged-in');
+      const badge = document.getElementById('user-badge');
+
+      if (currentUser) {
+        if (loggedOutBox) loggedOutBox.classList.add('hidden');
+        if (loggedInBox) {
+          loggedInBox.classList.remove('hidden');
+          loggedInBox.classList.add('flex');
+        }
+        const nick = currentUser.user_metadata?.nickname || currentUser.email.split('@')[0];
+        if (badge) {
+          badge.innerText = nick;
+          badge.title = `${nick} (${currentUser.email})`;
+        }
+        isUserAdmin = await checkIsAdmin(currentUser);
+      } else {
+        if (loggedInBox) {
+          loggedInBox.classList.add('hidden');
+          loggedInBox.classList.remove('flex');
+        }
+        if (loggedOutBox) loggedOutBox.classList.remove('hidden');
+        isUserAdmin = checkIsAdminLocally();
+      }
+      updateAdminUI(isUserAdmin);
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAuthModal();
+    }
+  });
+
+</script>
+
+
+
+
+<!-- ========================================== -->
+<!-- 🎬 IN-PAGE VIDEO MODAL (유튜브 153 완벽 방어 스마트 플레이어) -->
+<!-- ========================================== -->
+<div id="video-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4 opacity-0 pointer-events-none transition-all duration-200" onclick="handleVideoModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-all duration-200 flex flex-col" id="video-modal-card" onclick="event.stopPropagation()">
+    <!-- Header -->
+    <div class="flex items-center justify-between px-5 py-3.5 bg-surface-container-low border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2">
+        <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[17px]">smart_display</span>
+        </span>
+        <h3 class="text-label-lg font-bold text-on-surface" id="video-modal-title">뜨개 기법 영상</h3>
+      </div>
+      <button type="button" onclick="closeVideoModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors" title="닫기 (ESC)">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- 16:9 Video Frame / Smart Local Fallback -->
+    <div class="relative w-full aspect-video bg-black overflow-hidden">
+      <!-- Web Mode: Native Embedded YouTube Iframe -->
+      <iframe id="video-modal-frame" class="w-full h-full" src="" title="뜨개 영상 플레이어" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+      <!-- Local file:// Fallback (153 에러 완전 차단) -->
+      <div id="video-local-player" class="hidden absolute inset-0 bg-stone-950 flex flex-col items-center justify-center text-center p-6 cursor-pointer group" onclick="openCurrentVideoExternal()">
+        <img id="video-local-thumb" src="" alt="동영상 썸네일" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-200" />
+        <div class="relative z-10 flex flex-col items-center gap-3">
+          <div class="w-16 h-16 rounded-full bg-red-600 group-hover:bg-red-700 text-white flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-all duration-200">
+            <span class="material-symbols-outlined text-[36px] ml-1">play_arrow</span>
+          </div>
+          <span class="bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold shadow-md">
+            ▶ 클릭 시 유튜브 고화질로 즉시 재생 (153 오류 없는 100% 정상 시청)
+          </span>
+          <span class="text-[11px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
+            💡 로컬 파일(file://) 보안 정책 우회 모드 활성화됨
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary & Tips Bar -->
+    <div id="video-modal-summary" class="px-5 py-2.5 bg-primary-fixed/20 text-body-sm font-body-sm text-primary border-b border-primary/10 flex items-center gap-2">
+      <!-- Injected dynamically -->
+    </div>
+
+    <!-- Footer -->
+    <div class="flex items-center justify-between px-5 py-3 bg-surface-container-lowest text-label-sm text-on-surface-variant">
+      <div class="flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[16px] text-primary">lightbulb</span>
+        <span>웹 서버(Vercel/localhost)에서는 <strong>인앱 전체화면(⛶)</strong>으로 재생됩니다.</span>
+      </div>
+      <a id="video-modal-ext-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-primary hover:underline font-semibold cursor-pointer">
+        <span>유튜브 앱에서 보기</span>
+        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- TOAST NOTIFICATION -->
+<!-- ========================================== -->
+
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-[#1c1917] text-[#faf9f6] text-sm font-semibold shadow-2xl transition-all duration-300 opacity-0 pointer-events-none translate-y-3 flex items-center gap-2">
+  <span class="material-symbols-outlined text-sm text-[#c46243]" id="toast-icon">check_circle</span>
+  <span id="toast-msg">알림</span>
+</div>
+
+<!-- ========================================== -->
+<!-- AUTH MODAL (Toss / Apple Minimalist) -->
+<!-- ========================================== -->
+<!-- ☁️ AUTH MODAL (Supabase) -->
+<!-- ========================================== -->
+<div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 opacity-0 pointer-events-none transition-opacity duration-200" onclick="handleAuthModalBackdrop(event)">
+  <div class="bg-surface-container-lowest w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-on-surface/[0.08] transform scale-95 transition-transform duration-200" id="auth-modal-card" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between mb-4">
+      <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[18px]">account_circle</span>
+        </span>
+        <h3 class="text-headline-md font-bold text-on-surface" id="auth-modal-title">로그인</h3>
+      </div>
+      <button onclick="closeAuthModal()" class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer">
+        <span class="material-symbols-outlined text-[20px]">close</span>
+      </button>
+    </div>
+
+    <!-- Toggle Tabs: 로그인 / 회원가입 -->
+    <div id="auth-tabs-row" class="grid grid-cols-2 p-1 bg-surface-container-low rounded-full mb-4 border border-on-surface/[0.04]">
+      <button id="tab-login" type="button" onclick="setAuthTab('login')" class="py-1.5 text-center text-label-md font-bold rounded-full bg-surface-container-lowest text-primary shadow-xs transition-all cursor-pointer">로그인</button>
+      <button id="tab-signup" type="button" onclick="setAuthTab('signup')" class="py-1.5 text-center text-label-md font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all cursor-pointer">회원가입</button>
+    </div>
+
+    <!-- Inputs Form -->
+    <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+      <!-- Standard Fields (Login / Signup) -->
+      <div id="auth-standard-fields" class="space-y-3">
+        <!-- Nickname Field (회원가입 시 표시) -->
+        <div id="auth-nickname-wrap" class="hidden">
+          <div class="flex items-center justify-between mb-1">
+            <label class="block text-label-sm font-semibold text-on-surface-variant" for="auth-nickname">닉네임</label>
+            <span id="nick-status" class="text-[11px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
+          </div>
+          <div class="flex gap-2">
+            <input type="text" id="auth-nickname" maxlength="10" placeholder="닉네임 입력" oninput="handleNicknameInput()" class="flex-1 px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+            <button type="button" id="btn-check-nick" onclick="checkNicknameDuplicate()" class="px-3 py-2 bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold rounded-xl border border-outline-variant/40 transition-colors whitespace-nowrap cursor-pointer active:scale-95 text-xs">
+              중복 확인
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">이메일 (아이디)</label>
+          <input type="email" id="auth-email" placeholder="example@knitting.com" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">비밀번호</label>
+          <input type="password" id="auth-password" placeholder="6자리 이상 비밀번호" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+      </div>
+
+      <!-- Reset Fields (비밀번호 재설정) -->
+      <div id="auth-reset-fields" class="hidden space-y-3">
+        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[11px] text-on-surface-variant flex items-start gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock_reset</span>
+          <span>가입 시 등록하신 <strong>이메일과 닉네임</strong>이 일치하면 즉시 새로운 비밀번호로 변경됩니다.</span>
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">가입한 이메일</label>
+          <input type="email" id="reset-email" placeholder="example@knitting.com" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">가입한 닉네임</label>
+          <input type="text" id="reset-nickname" placeholder="등록했던 닉네임" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">새 비밀번호</label>
+          <input type="password" id="reset-password" minlength="6" placeholder="6자리 이상 새 비밀번호" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+        <div>
+          <label class="block text-label-sm font-semibold text-on-surface-variant mb-1">새 비밀번호 확인</label>
+          <input type="password" id="reset-password-confirm" minlength="6" placeholder="새 비밀번호 재입력" class="w-full px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
+        </div>
+      </div>
+
+      <div id="auth-error" class="hidden text-xs text-error font-medium p-2.5 rounded-xl bg-error-container/40 border border-error/20"></div>
+
+      <button type="submit" id="auth-submit-btn" class="w-full py-3 rounded-full bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-sm transition-all active:scale-[0.98] mt-2 cursor-pointer">
+        로그인하기
+      </button>
+
+      <div id="auth-bottom-links" class="flex items-center justify-between text-xs text-on-surface-variant pt-2 px-1">
+        <button type="button" id="btn-forgot-pw" onclick="setAuthTab('reset')" class="text-xs text-on-surface-variant hover:text-primary underline cursor-pointer">
+          비밀번호를 잊으셨나요?
+        </button>
+        <button type="button" id="btn-back-login" onclick="setAuthTab('login')" class="hidden text-xs text-on-surface-variant hover:text-primary underline cursor-pointer">
+          ← 로그인으로 돌아가기
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- EXTENDED LOGIC: Video Controller & Supabase -->
+<!-- ========================================== -->
+
+</body>
+</html>

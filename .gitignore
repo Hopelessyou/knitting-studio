@@ -1,0 +1,9 @@
+03_Vercel_배포패키지/
+스웨터_제작_프로젝트/
+main_hub.html
+pc_sweater_master.html
+로컬서버_실행(153오류해결).bat
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

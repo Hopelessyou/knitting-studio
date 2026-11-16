@@ -412,7 +412,41 @@
     </div>
   </div>
 
-  <section id="hero-banner" class="text-center pt-2 pb-2 flex flex-col items-center max-w-3xl mx-auto"><div class="inline-flex items-center gap-1.5 bg-surface-container-low text-primary px-3.5 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant/30 mb-3"><span class="material-symbols-outlined text-primary text-[15px]" data-icon="tune">tune</span><span>단순하고 직관적인 맞춤형 도안</span></div><h1 class="text-display-hero-mobile md:text-headline-lg font-display-hero-mobile md:font-headline-lg text-on-surface tracking-tight text-balance font-extrabold">내 손땀(게이지)과 가슴둘레만 넣으면 <span class="text-primary">도안 완성!</span></h1><p class="mt-2 text-body-md font-body-md text-on-surface-variant max-w-xl mx-auto">복잡한 제도 공식 없이, 30초 만에 완벽한 실측 탑다운 레글런 핏을 도출해 드립니다.</p></section><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"><div id="calc-input-panel" class="lg:col-span-5 w-full flex flex-col gap-6"><section class="w-full bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow transition-all duration-200 sticky top-20" id="calculator"><div class="flex items-center justify-between mb-6"><div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span><span class="text-label-md font-label-md text-primary font-bold">STEP 1 · 기본 정보</span></div><span class="text-label-sm font-label-sm text-on-surface-variant/80 bg-surface-container-low px-2.5 py-0.5 rounded-full">약 30초 소요</span></div><div class="flex flex-col gap-6"><div><div class="flex items-center gap-1.5 mb-2">
+  <section id="hero-banner" class="text-center pt-2 pb-2 flex flex-col items-center max-w-3xl mx-auto"><div class="inline-flex items-center gap-1.5 bg-surface-container-low text-primary px-3.5 py-1 rounded-full text-label-sm font-label-sm border border-outline-variant/30 mb-3"><span class="material-symbols-outlined text-primary text-[15px]" data-icon="tune">tune</span><span>단순하고 직관적인 맞춤형 도안</span></div><h1 class="text-display-hero-mobile md:text-headline-lg font-display-hero-mobile md:font-headline-lg text-on-surface tracking-tight text-balance font-extrabold">내 손땀(게이지)과 가슴둘레만 넣으면 <span class="text-primary">도안 완성!</span></h1><p class="mt-2 text-body-md font-body-md text-on-surface-variant max-w-xl mx-auto">복잡한 제도 공식 없이, 30초 만에 완벽한 실측 탑다운 레글런 핏을 도출해 드립니다.</p></section><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"><div id="calc-input-panel" class="lg:col-span-5 w-full flex flex-col gap-6">      <!-- ========================================== -->
+      <!-- 📸 FINISHED EXAMPLE PREVIEW CARD (완성 예시 실물 미리보기 - 핏 스타일별 동적 연동) -->
+      <!-- ========================================== -->
+      <div class="w-full bg-surface-container-lowest rounded-3xl p-5 border border-on-surface/[0.06] custom-shadow transition-all duration-200 overflow-hidden group">
+        <!-- Card Header -->
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+            <span class="text-label-md font-label-md text-primary font-bold">완성 예시 실물</span>
+          </div>
+          <span id="preview-badge" class="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
+            루즈 오버핏
+          </span>
+        </div>
+
+        <!-- Image Container -->
+        <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-surface-container-low border border-on-surface/[0.04]">
+          <img id="preview-img"
+               src="images/sweater_loose.jpg" 
+               alt="완성 예시 루즈 오버핏 스웨터" 
+               class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-300"
+               loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-3.5 text-white pointer-events-none">
+            <span id="preview-title" class="text-xs font-bold drop-shadow-sm transition-all duration-200">🧶 노르딕 루즈 오버핏 스웨터 (+15cm)</span>
+            <span id="preview-sub" class="text-[11px] text-white/85 drop-shadow-sm transition-all duration-200">여유로운 가슴둘레와 드롭 숄더 실루엣의 북유럽 감성 풀오버</span>
+          </div>
+        </div>
+
+        <!-- Caption / Specs Note -->
+        <p id="preview-desc" class="mt-2.5 text-xs text-on-surface-variant leading-relaxed transition-all duration-200">
+          💡 <strong>제작 포인트:</strong> 래글런 늘림선 4곳이 대칭으로 정갈하게 뻗어 암홀이 조이지 않고 편안합니다.
+        </p>
+      </div>
+
+<section class="w-full bg-surface-container-lowest rounded-3xl p-6 md:p-8 border border-on-surface/[0.06] custom-shadow transition-all duration-200 sticky top-20" id="calculator"><div class="flex items-center justify-between mb-6"><div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span><span class="text-label-md font-label-md text-primary font-bold">STEP 1 · 기본 정보</span></div><span class="text-label-sm font-label-sm text-on-surface-variant/80 bg-surface-container-low px-2.5 py-0.5 rounded-full">약 30초 소요</span></div><div class="flex flex-col gap-6"><div><div class="flex items-center gap-1.5 mb-2">
   <label class="block text-label-md font-label-md text-on-surface font-medium">착용 대상</label>
   <button type="button" class="info-btn" onclick="openInfoModal('착용 대상 선택 가이드', '여성은 표준 목둘레 약 41cm, 남성은 약 44cm 기준으로 기본 캐스트온 코수와 어깨 너비 비율이 자동 보정됩니다.<br><br>더 루즈하고 넉넉한 핏을 원하시는 여성분도 남성 옵션을 선택하실 수 있습니다.', '💡 체형에 맞는 표준 목둘레 비율을 자동으로 계산해 줍니다.')" title="설명 보기">i</button>
 </div><div class="grid grid-cols-2 p-1 bg-surface-container rounded-full border border-on-surface/[0.05]"><button class="gender-btn py-2 px-space-md rounded-full text-label-md font-label-md font-semibold transition-all duration-150 bg-primary text-on-primary shadow-sm" id="gender-f" type="button">여성 (Women)</button><button class="gender-btn py-2 px-space-md rounded-full text-label-md font-label-md font-semibold transition-all duration-150 text-on-surface-variant hover:text-on-surface" id="gender-m" type="button">남성 (Men)</button></div></div><div class="bg-surface-container-low rounded-2xl p-4 md:p-5 border border-on-surface/[0.05]"><div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-3 gap-0.5"><div class="flex items-center gap-1.5">
@@ -481,6 +515,85 @@
       <span class="material-symbols-outlined text-[15px] text-primary">verified</span>
       <span>초보자 맞춤 검증됨</span>
     </span>
+  </div>
+
+    <!-- 🛠️ 시작 전 필수 준비물 & 추천 도구 체크리스트 -->
+  <div class="mb-6 p-4 sm:p-5 bg-surface-container-low rounded-2xl border border-on-surface/[0.06]">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-2.5 border-b border-on-surface/[0.06]">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-[20px]">construction</span>
+        <h3 class="text-sm font-bold text-on-surface">스웨터 제작 필수 준비물 &amp; 추천 도구 체크리스트</h3>
+      </div>
+      <span class="text-[11px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
+        준비 완료 후 체크(☑)해 보세요
+      </span>
+    </div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+      <!-- 1. 대바늘 세트 -->
+      <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+        <div>
+          <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+            <span class="material-symbols-outlined text-[16px]">straighten</span>
+            <span>1. 대바늘 2종 (줄바늘)</span>
+          </div>
+          <p class="text-on-surface text-[12px] font-semibold mb-1">메인 4.5~5.0mm / 립 3.5~4.0mm</p>
+          <p class="text-on-surface-variant text-[11px] leading-relaxed">몸통용 케이블 80~100cm 필수. 목둘레/소매 고무단은 0.5~1.0mm 얇은 바늘로 쫀쫀하게 작업합니다.</p>
+        </div>
+        <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+          <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+          <span>대바늘 2종 준비 완료</span>
+        </label>
+      </div>
+
+      <!-- 2. 스티치 마커 -->
+      <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+        <div>
+          <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+            <span class="material-symbols-outlined text-[16px]">bookmark</span>
+            <span>2. 스티치 마커 (8개)</span>
+          </div>
+          <p class="text-on-surface text-[12px] font-semibold mb-1">시작점 1개 + 레글런 모서리 7개</p>
+          <p class="text-on-surface-variant text-[11px] leading-relaxed">앞·뒤판과 양 소매를 잇는 4개 레글런 라인에 걸어 M1R/M1L 늘림 위치를 표시합니다. 원형 시작점(BOR)은 색상을 달리하세요.</p>
+        </div>
+        <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+          <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+          <span>마커 8개 준비 완료</span>
+        </label>
+      </div>
+
+      <!-- 3. 별실 & 소매 분리 도구 -->
+      <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+        <div>
+          <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+            <span class="material-symbols-outlined text-[16px]">cable</span>
+            <span>3. 별실 또는 실리콘 코드</span>
+          </div>
+          <p class="text-on-surface text-[12px] font-semibold mb-1">길이 약 1m 2줄 (소매 쉼코용)</p>
+          <p class="text-on-surface-variant text-[11px] leading-relaxed">요크 완성 후 소매 코를 잠시 쉬게 걸어둘 부드러운 면사 별실이나 실리콘 튜브 홀더를 준비합니다.</p>
+        </div>
+        <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+          <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+          <span>별실/홀더 준비 완료</span>
+        </label>
+      </div>
+
+      <!-- 4. 측정 & 마무리 소품 -->
+      <div class="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05] flex flex-col justify-between hover:border-primary/20 transition-all">
+        <div>
+          <div class="flex items-center gap-1.5 font-bold text-primary mb-1">
+            <span class="material-symbols-outlined text-[16px]">cut</span>
+            <span>4. 줄자 &amp; 돗바늘 &amp; 쪽가위</span>
+          </div>
+          <p class="text-on-surface text-[12px] font-semibold mb-1">실시간 치수 측정 및 실정리</p>
+          <p class="text-on-surface-variant text-[11px] leading-relaxed">요크 깊이·총장 수시 측정용 부드러운 줄자와 겨드랑이 틈새 메꿈·이탈리안 돗바늘 바인드오프용 굵은 돗바늘입니다.</p>
+        </div>
+        <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+          <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
+          <span>줄자/돗바늘 준비 완료</span>
+        </label>
+      </div>
+    </div>
   </div>
 
   <!-- 📖 신규: 초보자를 위한 뜨개 핵심 영문 약어 1초 사전 -->
@@ -1167,7 +1280,49 @@
     }
 
     // Fit Selection
+      const SWEATER_FIT_PREVIEWS = {
+    tailored: {
+      badge: '정핏 데일리',
+      img: 'images/sweater_tailored.jpg',
+      alt: '정핏 래글런 스웨터 완성 예시',
+      title: '✨ 단정한 정핏 래글런 풀오버 (+6~8cm)',
+      sub: '단정한 기본 데일리 여유분의 슬림 & 클래식 핏으로 코트 이너에 최적',
+      desc: '💡 <strong>제작 포인트:</strong> 어깨선과 가슴둘레를 체형에 꼭 맞추어 코트나 자켓 안에 받쳐 입기 가장 이상적입니다.'
+    },
+    loose: {
+      badge: '루즈 오버핏',
+      img: 'images/sweater_loose.jpg',
+      alt: '루즈 오버핏 스웨터 완성 예시',
+      title: '🧶 노르딕 루즈 오버핏 스웨터 (+15cm)',
+      sub: '여유로운 가슴둘레와 드롭 숄더 실루엣의 북유럽 감성 풀오버',
+      desc: '💡 <strong>제작 포인트:</strong> 래글런 늘림선 4곳이 대칭으로 정갈하게 뻗어 암홀이 조이지 않고 편안합니다.'
+    }
+  };
+
+  function updateSweaterPreviewCard(fitType) {
+    const data = SWEATER_FIT_PREVIEWS[fitType] || SWEATER_FIT_PREVIEWS['loose'];
+    const imgEl = document.getElementById('preview-img');
+    const badgeEl = document.getElementById('preview-badge');
+    const titleEl = document.getElementById('preview-title');
+    const subEl = document.getElementById('preview-sub');
+    const descEl = document.getElementById('preview-desc');
+
+    if (imgEl) {
+      imgEl.style.opacity = '0.3';
+      setTimeout(() => {
+        imgEl.src = data.img;
+        imgEl.alt = data.alt;
+        imgEl.style.opacity = '1';
+      }, 120);
+    }
+    if (badgeEl) badgeEl.textContent = data.badge;
+    if (titleEl) titleEl.textContent = data.title;
+    if (subEl) subEl.textContent = data.sub;
+    if (descEl) descEl.innerHTML = data.desc;
+  }
+
     function selectFit(fitType) {
+      updateSweaterPreviewCard(fitType);
       currentFit = fitType;
       const cardTailored = document.getElementById('fit-tailored');
       const cardLoose = document.getElementById('fit-loose');
