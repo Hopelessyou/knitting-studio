@@ -118,6 +118,10 @@
     };
   </script>
 <style>
+    html {
+      font-size: 18px; /* 2pt 상향 조정 */
+    }
+
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       line-height: 1;
@@ -336,7 +340,7 @@
             <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
             <span class="text-label-md font-label-md text-primary font-bold">완성 예시 실물</span>
           </div>
-          <span id="preview-badge" class="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
+          <span id="preview-badge" class="text-[13px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
             클래식 폴딩핏
           </span>
         </div>
@@ -350,7 +354,7 @@
                loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-3.5 text-white pointer-events-none">
             <span id="preview-title" class="text-xs font-bold drop-shadow-sm transition-all duration-200">🧢 클래식 리브 비니 (접단 7cm)</span>
-            <span id="preview-sub" class="text-[11px] text-white/85 drop-shadow-sm transition-all duration-200">접단 7cm로 귀를 덮는 가장 대중적이고 안정적인 스탠다드 핏</span>
+            <span id="preview-sub" class="text-[13px] text-white/85 drop-shadow-sm transition-all duration-200">접단 7cm로 귀를 덮는 가장 대중적이고 안정적인 스탠다드 핏</span>
           </div>
         </div>
 
@@ -378,17 +382,17 @@
               <button type="button" onclick="selectStyle('classic', this)" class="style-btn p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold flex flex-col items-center justify-center gap-1 transition-all">
                 <span class="text-base">🧢</span>
                 <span>클래식 비니</span>
-                <span class="text-[10px] opacity-75 font-normal">접단 7cm (기본)</span>
+                <span class="text-[12px] opacity-75 font-normal">접단 7cm (기본)</span>
               </button>
               <button type="button" onclick="selectStyle('watchcap', this)" class="style-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
                 <span class="text-base">⚓</span>
                 <span>숏 와치캡</span>
-                <span class="text-[10px] opacity-75 font-normal">레옹 숏핏 (귀 위)</span>
+                <span class="text-[12px] opacity-75 font-normal">레옹 숏핏 (귀 위)</span>
               </button>
               <button type="button" onclick="selectStyle('slouchy', this)" class="style-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
                 <span class="text-base">👒</span>
                 <span>슬라우치 비니</span>
-                <span class="text-[10px] opacity-75 font-normal">루즈핏 (정수리 처짐)</span>
+                <span class="text-[12px] opacity-75 font-normal">루즈핏 (정수리 처짐)</span>
               </button>
             </div>
           </div>
@@ -444,11 +448,11 @@
             <div class="grid grid-cols-2 gap-2 text-xs">
               <button type="button" onclick="setRib('1x1', this)" class="rib-btn p-2.5 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-center">
                 1코 고무뜨기 (K1, P1)
-                <span class="block text-[10px] font-normal opacity-75">밀착감 &amp; 신축성 최고</span>
+                <span class="block text-[12px] font-normal opacity-75">밀착감 &amp; 신축성 최고</span>
               </button>
               <button type="button" onclick="setRib('2x2', this)" class="rib-btn p-2.5 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center">
                 2코 고무뜨기 (K2, P2)
-                <span class="block text-[10px] font-normal opacity-75">볼륨감 있는 캐주얼 골</span>
+                <span class="block text-[12px] font-normal opacity-75">볼륨감 있는 캐주얼 골</span>
               </button>
             </div>
           </div>
@@ -487,21 +491,21 @@
             <div class="text-xl font-bold text-on-surface">
               <span id="beanie-total-height">25</span><span class="text-sm font-semibold ml-0.5">cm</span>
             </div>
-            <span class="text-[11px] text-outline" id="beanie-brim-spec">접단 7cm + 바디 13cm + 줄임 5cm</span>
+            <span class="text-[13px] text-outline" id="beanie-brim-spec">접단 7cm + 바디 13cm + 줄임 5cm</span>
           </div>
           <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
             <span class="text-xs text-on-surface-variant block mb-1">정수리 줄임 시작점</span>
             <div class="text-xl font-bold text-primary">
               바닥에서 <span id="beanie-crown-start">20</span><span class="text-sm font-semibold ml-0.5">cm</span>
             </div>
-            <span class="text-[11px] text-outline">총 약 <span id="beanie-total-rows">56</span>단 직진 후 줄임</span>
+            <span class="text-[13px] text-outline">총 약 <span id="beanie-total-rows">56</span>단 직진 후 줄임</span>
           </div>
           <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
             <span class="text-xs text-on-surface-variant block mb-1">예상 실 소요량</span>
             <div class="text-xl font-bold text-primary">
               약 <span id="beanie-yarn-balls">2</span><span class="text-sm font-semibold ml-0.5">볼</span>
             </div>
-            <span class="text-[11px] text-outline">1볼 40~50g 기준 약 70~90g</span>
+            <span class="text-[13px] text-outline">1볼 40~50g 기준 약 70~90g</span>
           </div>
         </div>
       </section>
@@ -532,7 +536,7 @@
           <div>
             <div class="flex items-center gap-2">
               <h4 class="text-label-lg font-bold text-on-surface">도안 인쇄 및 PDF 내보내기</h4>
-              <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300">관리자 전용</span>
+              <span class="text-[13px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300">관리자 전용</span>
             </div>
             <p class="text-xs text-on-surface-variant">불필요한 웹 UI를 제거하고 8등분 줄임 공식과 5단계 실전 가이드만 A4 2장 규격으로 출력합니다.</p>
           </div>
@@ -772,7 +776,7 @@
             <span class="material-symbols-outlined text-primary text-[20px]">construction</span>
             <h3 class="text-sm font-bold text-on-surface">비니 &amp; 와치캡 필수 준비물 &amp; 추천 도구 체크리스트</h3>
           </div>
-          <span class="text-[11px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
+          <span class="text-[13px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
             준비 완료 후 체크(☑)해 보세요
           </span>
         </div>
@@ -786,9 +790,9 @@
                 <span>1. 40cm 숏서큘러 2종</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">몸통 4.5~5.0mm / 립 3.5~4.0mm</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">비니 머리둘레에 딱 맞는 40cm 줄바늘 필수. 고무단은 0.5~1.0mm 얇은 바늘로 짱짱하게 잡습니다.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">비니 머리둘레에 딱 맞는 40cm 줄바늘 필수. 고무단은 0.5~1.0mm 얇은 바늘로 짱짱하게 잡습니다.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>40cm 바늘 2종 완료</span>
             </label>
@@ -802,9 +806,9 @@
                 <span>2. 정수리 전환 바늘 (필수⚠️)</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">80cm 줄바늘 (매직루프) or DPNs</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">정수리 코수가 8~16코로 줄면 40cm 바늘로는 편물이 당겨져 뜰 수 없습니다! 반드시 80cm 줄바늘이나 장갑바늘로 교체해야 합니다.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">정수리 코수가 8~16코로 줄면 40cm 바늘로는 편물이 당겨져 뜰 수 없습니다! 반드시 80cm 줄바늘이나 장갑바늘로 교체해야 합니다.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>정수리 전환 바늘 완료</span>
             </label>
@@ -818,9 +822,9 @@
                 <span>3. 스티치 마커 (5~9개)</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">시작점 1개 + 4/8등분 쐐기용</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">원형 시작점(BOR) 마커 1개와 정수리 4등분/8등분 줄임 섹션마다 마커를 걸어 균형 잡힌 원뿔/왕관 라인을 만듭니다.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">원형 시작점(BOR) 마커 1개와 정수리 4등분/8등분 줄임 섹션마다 마커를 걸어 균형 잡힌 원뿔/왕관 라인을 만듭니다.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>스티치 마커 완료</span>
             </label>
@@ -834,9 +838,9 @@
                 <span>4. 돗바늘 &amp; 줄자 &amp; 폼폼메이커</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">정수리 오므리기 &amp; 기장 측정</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">남은 코를 돗바늘에 통과시켜 단단히 오므립니다. 롤업 높이(4cm/7cm) 측정용 줄자와 취향에 따른 폼폼메이커를 준비하세요.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">남은 코를 돗바늘에 통과시켜 단단히 오므립니다. 롤업 높이(4cm/7cm) 측정용 줄자와 취향에 따른 폼폼메이커를 준비하세요.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>마무리 소품 완료</span>
             </label>
@@ -852,32 +856,32 @@
             <span class="material-symbols-outlined text-[17px]">menu_book</span>
             <span>비니 &amp; 모자 도안 필수 기호 1초 사전</span>
           </div>
-          <span class="text-[11px] text-outline font-medium">손쉬운 도안 해독</span>
+          <span class="text-[13px] text-outline font-medium">손쉬운 도안 해독</span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
           <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong class="text-primary font-bold block mb-0.5">BOR</strong>
-            <span class="text-on-surface-variant text-[11px]">원형 시작 마커</span>
+            <span class="text-on-surface-variant text-[13px]">원형 시작 마커</span>
           </div>
           <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong class="text-primary font-bold block mb-0.5">K / P</strong>
-            <span class="text-on-surface-variant text-[11px]">겉뜨기 / 안뜨기</span>
+            <span class="text-on-surface-variant text-[13px]">겉뜨기 / 안뜨기</span>
           </div>
           <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong class="text-primary font-bold block mb-0.5">K2tog</strong>
-            <span class="text-on-surface-variant text-[11px]">오른코 모아뜨기</span>
+            <span class="text-on-surface-variant text-[13px]">오른코 모아뜨기</span>
           </div>
           <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong class="text-primary font-bold block mb-0.5">Brim</strong>
-            <span class="text-on-surface-variant text-[11px]">모자 접단(고무단)</span>
+            <span class="text-on-surface-variant text-[13px]">모자 접단(고무단)</span>
           </div>
           <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong class="text-primary font-bold block mb-0.5">Crown</strong>
-            <span class="text-on-surface-variant text-[11px]">정수리 줄임 구간</span>
+            <span class="text-on-surface-variant text-[13px]">정수리 줄임 구간</span>
           </div>
           <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong class="text-primary font-bold block mb-0.5">Magic Loop</strong>
-            <span class="text-on-surface-variant text-[11px]">케이블 루프 기법</span>
+            <span class="text-on-surface-variant text-[13px]">케이블 루프 기법</span>
           </div>
         </div>
       </div>
@@ -898,7 +902,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 3.5~4.0mm 줄바늘 (40cm)</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 3.5~4.0mm 줄바늘 (40cm)</span>
               <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -927,7 +931,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">도커 숏 롤업</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">도커 숏 롤업</span>
               <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -955,7 +959,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">초고속 완성</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">초고속 완성</span>
               <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -983,7 +987,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">8방향 대칭 급줄임</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">8방향 대칭 급줄임</span>
               <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1016,7 +1020,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">원형 통과 마감</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">원형 통과 마감</span>
               <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1051,7 +1055,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 4.0~4.5mm 줄바늘 (40cm)</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 4.0~4.5mm 줄바늘 (40cm)</span>
               <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1076,7 +1080,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">논롤업 심플 밴드</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">논롤업 심플 밴드</span>
               <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1101,7 +1105,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">내추럴 처짐 실루엣</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">내추럴 처짐 실루엣</span>
               <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1129,7 +1133,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">자연스러운 주름 형성</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">자연스러운 주름 형성</span>
               <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1157,7 +1161,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">스팀 블로킹</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">스팀 블로킹</span>
               <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1188,7 +1192,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 3.5~4.0mm 줄바늘 (40cm)</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 3.5~4.0mm 줄바늘 (40cm)</span>
               <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1217,7 +1221,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">귀를 덮는 안정감</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">귀를 덮는 안정감</span>
               <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1245,7 +1249,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">수직 계측</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">수직 계측</span>
               <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1270,7 +1274,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">8방향 대칭 줄임</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">8방향 대칭 줄임</span>
               <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1303,7 +1307,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">원형 통과 마감</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">원형 통과 마감</span>
               <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1515,17 +1519,17 @@
 
     if (!nick) {
       status.innerText = '2~10자 한글/영문/숫자';
-      status.className = 'text-[11px] font-medium text-on-surface-variant';
+      status.className = 'text-[13px] font-medium text-on-surface-variant';
       return;
     }
 
     const check = validateNicknameFormat(nick);
     if (!check.valid) {
       status.innerText = check.message;
-      status.className = 'text-[11px] font-medium text-error font-semibold';
+      status.className = 'text-[13px] font-medium text-error font-semibold';
     } else {
       status.innerText = '중복 확인이 필요합니다';
-      status.className = 'text-[11px] font-medium text-amber-600';
+      status.className = 'text-[13px] font-medium text-amber-600';
     }
   }
 
@@ -1540,7 +1544,7 @@
       verifiedNickname = '';
       if (status) {
         status.innerText = check.message;
-        status.className = 'text-[11px] font-medium text-error font-semibold';
+        status.className = 'text-[13px] font-medium text-error font-semibold';
       }
       return false;
     }
@@ -1561,7 +1565,7 @@
         verifiedNickname = nick;
         if (status) {
           status.innerText = '✓ 사용 가능한 닉네임입니다';
-          status.className = 'text-[11px] font-medium text-emerald-600 font-bold';
+          status.className = 'text-[13px] font-medium text-emerald-600 font-bold';
         }
         showToast('사용 가능한 닉네임입니다! ✨');
         return true;
@@ -1570,14 +1574,14 @@
         verifiedNickname = '';
         if (status) {
           status.innerText = '✕ 이미 사용 중이거나 사용할 수 없는 닉네임입니다';
-          status.className = 'text-[11px] font-medium text-error font-bold';
+          status.className = 'text-[13px] font-medium text-error font-bold';
         }
         return false;
       }
     } catch (err) {
       if (status) {
         status.innerText = '중복 확인 실패: ' + (err.message || '오류');
-        status.className = 'text-[11px] font-medium text-error';
+        status.className = 'text-[13px] font-medium text-error';
       }
       return false;
     } finally {
@@ -1926,7 +1930,7 @@
           <span class="bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold shadow-md">
             ▶ 클릭 시 유튜브 고화질로 즉시 재생 (153 오류 없는 100% 정상 시청)
           </span>
-          <span class="text-[11px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
+          <span class="text-[13px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
             💡 로컬 파일(file://) 보안 정책 우회 모드 활성화됨
           </span>
         </div>
@@ -1994,7 +1998,7 @@
         <div id="auth-nickname-wrap" class="hidden">
           <div class="flex items-center justify-between mb-1">
             <label class="block text-label-sm font-semibold text-on-surface-variant" for="auth-nickname">닉네임</label>
-            <span id="nick-status" class="text-[11px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
+            <span id="nick-status" class="text-[13px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
           </div>
           <div class="flex gap-2">
             <input type="text" id="auth-nickname" maxlength="10" placeholder="닉네임 입력" oninput="handleNicknameInput()" class="flex-1 px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
@@ -2017,7 +2021,7 @@
 
       <!-- Reset Fields (비밀번호 재설정) -->
       <div id="auth-reset-fields" class="hidden space-y-3">
-        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[11px] text-on-surface-variant flex items-start gap-2">
+        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[13px] text-on-surface-variant flex items-start gap-2">
           <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock_reset</span>
           <span>가입 시 등록하신 <strong>이메일과 닉네임</strong>이 일치하면 즉시 새로운 비밀번호로 변경됩니다.</span>
         </div>

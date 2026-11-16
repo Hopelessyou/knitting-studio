@@ -21,7 +21,7 @@ export default function RoadmapStepCard({
           </span>
           <div>
             <h3 className="text-base font-bold text-on-surface">{title}</h3>
-            {subtitle && <p className="text-xs text-on-surface-variant mt-0.5">{subtitle}</p>}
+            {subtitle && <p className="text-sm text-on-surface-variant mt-0.5">{subtitle}</p>}
           </div>
         </div>
         {onVideoOpen && (
@@ -37,7 +37,7 @@ export default function RoadmapStepCard({
       </div>
 
       {/* 4-Part Structured Body */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs leading-relaxed">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm leading-relaxed">
         {/* 1. Setup */}
         {setup && (
           <div className="p-3 bg-surface-container-low rounded-xl border border-on-surface/[0.04]">

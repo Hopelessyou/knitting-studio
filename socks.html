@@ -118,6 +118,10 @@
     };
   </script>
 <style>
+    html {
+      font-size: 18px; /* 2pt 상향 조정 */
+    }
+
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       line-height: 1;
@@ -336,7 +340,7 @@
             <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
             <span class="text-label-md font-label-md text-primary font-bold">완성 예시 실물</span>
           </div>
-          <span id="preview-badge" class="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
+          <span id="preview-badge" class="text-[13px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full border border-primary/20 transition-all duration-200">
             정석 힐플랩 핏
           </span>
         </div>
@@ -350,7 +354,7 @@
                loading="lazy" />
           <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex flex-col justify-end p-3.5 text-white pointer-events-none">
             <span id="preview-title" class="text-xs font-bold drop-shadow-sm transition-all duration-200">🧦 클래식 커프다운 힐플랩 양말</span>
-            <span id="preview-sub" class="text-[11px] text-white/85 drop-shadow-sm transition-all duration-200">발목부터 시작해 뒤꿈치 각도를 가장 견고하게 감싸는 정석 구조</span>
+            <span id="preview-sub" class="text-[13px] text-white/85 drop-shadow-sm transition-all duration-200">발목부터 시작해 뒤꿈치 각도를 가장 견고하게 감싸는 정석 구조</span>
           </div>
         </div>
 
@@ -378,12 +382,12 @@
               <button type="button" onclick="selectSockMethod('cuffdown', this)" class="method-btn p-3 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold flex flex-col items-center justify-center gap-1 transition-all">
                 <span class="text-base">⬇️</span>
                 <span>커프다운 (Cuff-down)</span>
-                <span class="text-[10px] opacity-75 font-normal">정석 힐플랩 (가장 튼튼)</span>
+                <span class="text-[12px] opacity-75 font-normal">정석 힐플랩 (가장 튼튼)</span>
               </button>
               <button type="button" onclick="selectSockMethod('toeup', this)" class="method-btn p-3 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant font-medium flex flex-col items-center justify-center gap-1 transition-all hover:border-primary/40">
                 <span class="text-base">⬆️</span>
                 <span>토업 (Toe-up)</span>
-                <span class="text-[10px] opacity-75 font-normal">발끝부터 실 끝까지 알뜰</span>
+                <span class="text-[12px] opacity-75 font-normal">발끝부터 실 끝까지 알뜰</span>
               </button>
             </div>
           </div>
@@ -457,15 +461,15 @@
             <div class="grid grid-cols-3 gap-2 text-xs">
               <button type="button" onclick="setSockLeg('short', this)" class="leg-btn p-2 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center">
                 숏 앵클 (5cm)
-                <span class="block text-[10px] font-normal opacity-75">스니커즈용</span>
+                <span class="block text-[12px] font-normal opacity-75">스니커즈용</span>
               </button>
               <button type="button" onclick="setSockLeg('crew', this)" class="leg-btn p-2 rounded-xl border-2 border-primary bg-primary/10 text-primary font-bold text-center">
                 크루 (13cm)
-                <span class="block text-[10px] font-normal opacity-75">데일리 표준</span>
+                <span class="block text-[12px] font-normal opacity-75">데일리 표준</span>
               </button>
               <button type="button" onclick="setSockLeg('high', this)" class="leg-btn p-2 rounded-xl border border-on-surface/[0.08] bg-surface-container-low text-on-surface-variant text-center">
                 하이 (18cm)
-                <span class="block text-[10px] font-normal opacity-75">부츠용 롱</span>
+                <span class="block text-[12px] font-normal opacity-75">부츠용 롱</span>
               </button>
             </div>
           </div>
@@ -504,21 +508,21 @@
             <div class="text-xl font-bold text-on-surface">
               <span id="sock-flap-sts">30</span>코 / <span id="sock-flap-rows">30</span>단
             </div>
-            <span class="text-[11px] text-outline">반코로 슬립스티치 강화</span>
+            <span class="text-[13px] text-outline">반코로 슬립스티치 강화</span>
           </div>
           <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
             <span class="text-xs text-on-surface-variant block mb-1">발가락 줄임 시작점</span>
             <div class="text-xl font-bold text-primary">
               뒤꿈치부터 <span id="sock-toe-start-cm">19.5</span>cm
             </div>
-            <span class="text-[11px] text-outline">총 발길이 24cm - 4.5cm</span>
+            <span class="text-[13px] text-outline">총 발길이 24cm - 4.5cm</span>
           </div>
           <div class="bg-surface-container-low p-4 rounded-xl text-center border border-on-surface/[0.04]">
             <span class="text-xs text-on-surface-variant block mb-1">예상 실 소요량</span>
             <div class="text-xl font-bold text-primary">
               약 <span id="sock-yarn-balls">1</span>볼 (한 켤레)
             </div>
-            <span class="text-[11px] text-outline">1볼 100g (약 400m) 기준</span>
+            <span class="text-[13px] text-outline">1볼 100g (약 400m) 기준</span>
           </div>
         </div>
       </section>
@@ -549,7 +553,7 @@
           <div>
             <div class="flex items-center gap-2">
               <h4 class="text-label-lg font-bold text-on-surface">도안 인쇄 및 PDF 내보내기</h4>
-              <span class="text-[11px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300">관리자 전용</span>
+              <span class="text-[13px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300">관리자 전용</span>
             </div>
             <p class="text-xs text-on-surface-variant">불필요한 웹 UI를 제거하고 힐플랩/거셋 수치와 5단계 실전 가이드만 A4 2장 규격으로 출력합니다.</p>
           </div>
@@ -786,7 +790,7 @@
             <span class="material-symbols-outlined text-primary text-[20px]">construction</span>
             <h3 class="text-sm font-bold text-on-surface">맞춤 양말 필수 준비물 &amp; 추천 도구 체크리스트</h3>
           </div>
-          <span class="text-[11px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
+          <span class="text-[13px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
             준비 완료 후 체크(☑)해 보세요
           </span>
         </div>
@@ -800,9 +804,9 @@
                 <span>1. 양말 줄바늘 (80~100cm)</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">2.25mm ~ 2.75mm (유연한 케이블)</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">치아오구/니트프로 등 케이블이 부드러운 줄바늘로 '매직루프(Magic Loop)' 원형뜨기를 구사합니다. (23cm 숏팁이나 DPN도 가능)</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">치아오구/니트프로 등 케이블이 부드러운 줄바늘로 '매직루프(Magic Loop)' 원형뜨기를 구사합니다. (23cm 숏팁이나 DPN도 가능)</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>양말 줄바늘 완료</span>
             </label>
@@ -816,9 +820,9 @@
                 <span>2. 개폐형 옷핀 마커 (4~6개)</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">여닫이형 전구핀 (Bulb Pin)</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">막힌 링 마커는 바늘 사이에서 빠지므로, 편물 코 자체에 직접 걸어둘 수 있는 개폐형 마커가 뒤꿈치(GSR) 전환점 표시에 필수입니다.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">막힌 링 마커는 바늘 사이에서 빠지므로, 편물 코 자체에 직접 걸어둘 수 있는 개폐형 마커가 뒤꿈치(GSR) 전환점 표시에 필수입니다.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>개폐형 마커 완료</span>
             </label>
@@ -832,9 +836,9 @@
                 <span>3. 양말 게이지 자 (Sock Ruler)</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">발가락~뒤꿈치 아치 정밀 측정</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">일반 줄자보다 편물 안쪽에 쏙 끼워 발끝부터 뒤꿈치 시작점까지 1mm 오차 없이 측정할 수 있는 단단한 게이지 자입니다.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">일반 줄자보다 편물 안쪽에 쏙 끼워 발끝부터 뒤꿈치 시작점까지 1mm 오차 없이 측정할 수 있는 단단한 게이지 자입니다.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>양말 게이지 자 완료</span>
             </label>
@@ -848,9 +852,9 @@
                 <span>4. 돗바늘 &amp; 양말 블로커(선택)</span>
               </div>
               <p class="text-on-surface text-[12px] font-semibold mb-1">키치너 스티치 &amp; 세탁 후 성형</p>
-              <p class="text-on-surface-variant text-[11px] leading-relaxed">커프다운 발끝 메리야스 잇기(Kitchener)용 돗바늘과 세탁 후 발목 주름을 쫙 펴주는 양말 모형 건조틀(블로커)입니다.</p>
+              <p class="text-on-surface-variant text-[13px] leading-relaxed">커프다운 발끝 메리야스 잇기(Kitchener)용 돗바늘과 세탁 후 발목 주름을 쫙 펴주는 양말 모형 건조틀(블로커)입니다.</p>
             </div>
-            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none">
+            <label class="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[13px] text-on-surface-variant cursor-pointer select-none">
               <input type="checkbox" class="rounded text-primary focus:ring-primary/30 w-3.5 h-3.5 cursor-pointer accent-primary">
               <span>돗바늘/블로커 완료</span>
             </label>
@@ -885,32 +889,32 @@
               <span class="material-symbols-outlined text-[17px]">menu_book</span>
               <span>토업(Toe-up) 양말 도안 필수 기호 1초 사전</span>
             </div>
-            <span class="text-[11px] text-outline font-medium">손쉬운 도안 해독</span>
+            <span class="text-[13px] text-outline font-medium">손쉬운 도안 해독</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">BOR</strong>
-              <span class="text-on-surface-variant text-[11px]">원형 시작 마커</span>
+              <span class="text-on-surface-variant text-[13px]">원형 시작 마커</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">Judy's CO</strong>
-              <span class="text-on-surface-variant text-[11px]">무봉제 발끝 코잡기</span>
+              <span class="text-on-surface-variant text-[13px]">무봉제 발끝 코잡기</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">M1R / M1L</strong>
-              <span class="text-on-surface-variant text-[11px]">오른코/왼코 늘림</span>
+              <span class="text-on-surface-variant text-[13px]">오른코/왼코 늘림</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">GSR / DS</strong>
-              <span class="text-on-surface-variant text-[11px]">독일식 더블스티치</span>
+              <span class="text-on-surface-variant text-[13px]">독일식 더블스티치</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">K1tbl</strong>
-              <span class="text-on-surface-variant text-[11px]">꼬아 겉뜨기</span>
+              <span class="text-on-surface-variant text-[13px]">꼬아 겉뜨기</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">Jeny's BO</strong>
-              <span class="text-on-surface-variant text-[11px]">슈퍼 신축성 코막음</span>
+              <span class="text-on-surface-variant text-[13px]">슈퍼 신축성 코막음</span>
             </div>
           </div>
         </div>
@@ -925,7 +929,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 2.25~2.5mm 줄바늘 (80cm)</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 2.25~2.5mm 줄바늘 (80cm)</span>
               <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -958,7 +962,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">총 ${toeIncTimes}회 대칭 늘림</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">총 ${toeIncTimes}회 대칭 늘림</span>
               <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -992,7 +996,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">신어보며 피팅 가능</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">신어보며 피팅 가능</span>
               <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1020,7 +1024,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">발바닥 ${halfSts}코로 진행</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">발바닥 ${halfSts}코로 진행</span>
               <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1054,7 +1058,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">2배 신축성 마감</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">2배 신축성 마감</span>
               <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1088,32 +1092,32 @@
               <span class="material-symbols-outlined text-[17px]">menu_book</span>
               <span>커프다운(Cuff-down) 양말 도안 필수 기호 1초 사전</span>
             </div>
-            <span class="text-[11px] text-outline font-medium">손쉬운 도안 해독</span>
+            <span class="text-[13px] text-outline font-medium">손쉬운 도안 해독</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">BOR</strong>
-              <span class="text-on-surface-variant text-[11px]">원형 시작 마커</span>
+              <span class="text-on-surface-variant text-[13px]">원형 시작 마커</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">K1tbl</strong>
-              <span class="text-on-surface-variant text-[11px]">꼬아 겉뜨기 (고무단)</span>
+              <span class="text-on-surface-variant text-[13px]">꼬아 겉뜨기 (고무단)</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">Sl1 wyif</strong>
-              <span class="text-on-surface-variant text-[11px]">실 앞 걸러뜨기 (힐플랩)</span>
+              <span class="text-on-surface-variant text-[13px]">실 앞 걸러뜨기 (힐플랩)</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">SSK</strong>
-              <span class="text-on-surface-variant text-[11px]">왼코 모아뜨기 (줄임)</span>
+              <span class="text-on-surface-variant text-[13px]">왼코 모아뜨기 (줄임)</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">K2tog</strong>
-              <span class="text-on-surface-variant text-[11px]">오른코 모아뜨기 (줄임)</span>
+              <span class="text-on-surface-variant text-[13px]">오른코 모아뜨기 (줄임)</span>
             </div>
             <div class="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
               <strong class="text-primary font-bold block mb-0.5">Kitchener</strong>
-              <span class="text-on-surface-variant text-[11px]">무봉제 돗바늘 마감</span>
+              <span class="text-on-surface-variant text-[13px]">무봉제 돗바늘 마감</span>
             </div>
           </div>
         </div>
@@ -1128,7 +1132,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 2.25~2.5mm 줄바늘 (80cm)</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">권장 2.25~2.5mm 줄바늘 (80cm)</span>
               <button type="button" onclick="openStepVideo(1)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1161,7 +1165,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">보강 슬립스티치</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">보강 슬립스티치</span>
               <button type="button" onclick="openStepVideo(2)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1197,7 +1201,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">3분할 컵 형성</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">3분할 컵 형성</span>
               <button type="button" onclick="openStepVideo(3)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1228,7 +1232,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">구멍 방지 특급 공식</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">구멍 방지 특급 공식</span>
               <button type="button" onclick="openStepVideo(4)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1264,7 +1268,7 @@
               </h3>
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-[11px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">무봉제 돗바늘 마감</span>
+              <span class="text-[13px] font-bold bg-primary-fixed/50 text-primary px-2.5 py-1 rounded-full border border-primary/20">무봉제 돗바늘 마감</span>
               <button type="button" onclick="openStepVideo(5)" class="inline-flex items-center gap-1.5 text-xs text-primary hover:text-on-primary hover:bg-primary bg-primary-fixed/40 px-3 py-1 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95">
                 <span class="material-symbols-outlined text-[16px]">play_circle</span>
                 <span>기법 영상 재생</span>
@@ -1480,17 +1484,17 @@
 
     if (!nick) {
       status.innerText = '2~10자 한글/영문/숫자';
-      status.className = 'text-[11px] font-medium text-on-surface-variant';
+      status.className = 'text-[13px] font-medium text-on-surface-variant';
       return;
     }
 
     const check = validateNicknameFormat(nick);
     if (!check.valid) {
       status.innerText = check.message;
-      status.className = 'text-[11px] font-medium text-error font-semibold';
+      status.className = 'text-[13px] font-medium text-error font-semibold';
     } else {
       status.innerText = '중복 확인이 필요합니다';
-      status.className = 'text-[11px] font-medium text-amber-600';
+      status.className = 'text-[13px] font-medium text-amber-600';
     }
   }
 
@@ -1505,7 +1509,7 @@
       verifiedNickname = '';
       if (status) {
         status.innerText = check.message;
-        status.className = 'text-[11px] font-medium text-error font-semibold';
+        status.className = 'text-[13px] font-medium text-error font-semibold';
       }
       return false;
     }
@@ -1526,7 +1530,7 @@
         verifiedNickname = nick;
         if (status) {
           status.innerText = '✓ 사용 가능한 닉네임입니다';
-          status.className = 'text-[11px] font-medium text-emerald-600 font-bold';
+          status.className = 'text-[13px] font-medium text-emerald-600 font-bold';
         }
         showToast('사용 가능한 닉네임입니다! ✨');
         return true;
@@ -1535,14 +1539,14 @@
         verifiedNickname = '';
         if (status) {
           status.innerText = '✕ 이미 사용 중이거나 사용할 수 없는 닉네임입니다';
-          status.className = 'text-[11px] font-medium text-error font-bold';
+          status.className = 'text-[13px] font-medium text-error font-bold';
         }
         return false;
       }
     } catch (err) {
       if (status) {
         status.innerText = '중복 확인 실패: ' + (err.message || '오류');
-        status.className = 'text-[11px] font-medium text-error';
+        status.className = 'text-[13px] font-medium text-error';
       }
       return false;
     } finally {
@@ -1891,7 +1895,7 @@
           <span class="bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-xs font-bold shadow-md">
             ▶ 클릭 시 유튜브 고화질로 즉시 재생 (153 오류 없는 100% 정상 시청)
           </span>
-          <span class="text-[11px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
+          <span class="text-[13px] text-white/80 bg-black/60 px-3 py-1 rounded-full">
             💡 로컬 파일(file://) 보안 정책 우회 모드 활성화됨
           </span>
         </div>
@@ -1959,7 +1963,7 @@
         <div id="auth-nickname-wrap" class="hidden">
           <div class="flex items-center justify-between mb-1">
             <label class="block text-label-sm font-semibold text-on-surface-variant" for="auth-nickname">닉네임</label>
-            <span id="nick-status" class="text-[11px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
+            <span id="nick-status" class="text-[13px] font-medium text-on-surface-variant">2~10자 한글/영문/숫자</span>
           </div>
           <div class="flex gap-2">
             <input type="text" id="auth-nickname" maxlength="10" placeholder="닉네임 입력" oninput="handleNicknameInput()" class="flex-1 px-3.5 py-2.5 rounded-xl border border-on-surface/[0.1] bg-surface-container-low text-on-surface text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
@@ -1982,7 +1986,7 @@
 
       <!-- Reset Fields (비밀번호 재설정) -->
       <div id="auth-reset-fields" class="hidden space-y-3">
-        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[11px] text-on-surface-variant flex items-start gap-2">
+        <div class="p-3 bg-surface-container rounded-2xl border border-outline-variant/30 text-[13px] text-on-surface-variant flex items-start gap-2">
           <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock_reset</span>
           <span>가입 시 등록하신 <strong>이메일과 닉네임</strong>이 일치하면 즉시 새로운 비밀번호로 변경됩니다.</span>
         </div>

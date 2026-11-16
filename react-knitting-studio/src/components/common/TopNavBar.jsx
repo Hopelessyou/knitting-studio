@@ -19,7 +19,7 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
             <h1 className="font-serif font-bold text-lg text-on-surface tracking-tight leading-tight">
               니팅 스튜디오
             </h1>
-            <p className="text-[10px] text-on-surface-variant font-medium tracking-wide">
+            <p className="text-xs text-on-surface-variant font-medium tracking-wide">
               KNITTING STUDIO · REACT EDITION
             </p>
           </div>
@@ -32,7 +32,7 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
               <button
                 key={tab.id}
                 onClick={() => onSelectTab(tab.id)}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                   isActive
                     ? 'bg-primary text-white shadow-sm'
                     : 'text-on-surface-variant hover:text-on-surface hover:bg-white/60'
@@ -72,7 +72,7 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
             <button
               key={tab.id}
               onClick={() => onSelectTab(tab.id)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all ${
+              className={`px-3 py-1 rounded-full text-sm font-semibold shrink-0 transition-all ${
                 isActive
                   ? 'bg-primary text-white shadow-sm'
                   : 'text-on-surface-variant bg-white/70'

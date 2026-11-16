@@ -42,9 +42,9 @@ export default function ResultSummaryCard({
         </div>
         {formula && (
           <div className="text-right sm:border-l sm:border-primary/20 sm:pl-5">
-            <span className="text-[11px] font-semibold text-outline block mb-0.5">배수 규칙 &amp; 산출 공식</span>
+            <span className="text-xs font-semibold text-outline block mb-0.5">배수 규칙 &amp; 산출 공식</span>
             <span className="text-xs font-bold text-on-surface">{formula}</span>
-            {ruleDesc && <p className="text-[11px] text-on-surface-variant mt-0.5">{ruleDesc}</p>}
+            {ruleDesc && <p className="text-xs text-on-surface-variant mt-0.5">{ruleDesc}</p>}
           </div>
         )}
       </div>
@@ -54,9 +54,9 @@ export default function ResultSummaryCard({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
           {specs.map((item, i) => (
             <div key={i} className="p-3 bg-surface-container rounded-xl border border-on-surface/[0.04]">
-              <span className="text-[11px] font-medium text-on-surface-variant block mb-1">{item.label}</span>
+              <span className="text-xs font-medium text-on-surface-variant block mb-1">{item.label}</span>
               <strong className="text-base font-bold text-on-surface">{item.value}</strong>
-              {item.sub && <p className="text-[10px] text-outline mt-0.5">{item.sub}</p>}
+              {item.sub && <p className="text-xs text-outline mt-0.5">{item.sub}</p>}
             </div>
           ))}
         </div>

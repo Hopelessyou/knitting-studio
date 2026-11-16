@@ -17,14 +17,14 @@ export default function VocabDictionary() {
           <span className="material-symbols-outlined text-[17px]">menu_book</span>
           <span>1초 만에 이해하는 뜨개 필수 영문 약어 사전</span>
         </div>
-        <span className="text-[11px] text-outline font-medium">도안 &amp; 영상 필수 기호</span>
+        <span className="text-xs text-outline font-medium">도안 &amp; 영상 필수 기호</span>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-center text-xs">
         {VOCAB_DATA.map((item, i) => (
           <div key={i} className="p-2 bg-surface-container-lowest rounded-xl border border-on-surface/[0.05]">
             <strong className="text-primary font-bold block mb-0.5">{item.abbr}</strong>
-            <span className="text-on-surface font-semibold text-[11px] block">{item.label}</span>
-            <span className="text-on-surface-variant text-[10px]">{item.desc}</span>
+            <span className="text-on-surface font-semibold text-xs block">{item.label}</span>
+            <span className="text-on-surface-variant text-xs">{item.desc}</span>
           </div>
         ))}
       </div>

@@ -44,7 +44,7 @@ export default function ToolChecklist({ category = 'sweater' }) {
           <span className="material-symbols-outlined text-primary text-[20px]">construction</span>
           <h3 className="text-sm font-bold text-on-surface">제작 전 필수 준비물 &amp; 추천 도구 체크리스트</h3>
         </div>
-        <span className="text-[11px] font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
+        <span className="text-xs font-semibold text-secondary bg-secondary/10 px-2.5 py-1 rounded-full self-start sm:self-auto">
           준비 현황: {completedCount} / {tools.length} 완료
         </span>
       </div>
@@ -66,12 +66,12 @@ export default function ToolChecklist({ category = 'sweater' }) {
                   <span className="material-symbols-outlined text-[16px]">{item.icon}</span>
                   <span>{item.title}</span>
                 </div>
-                <p className="text-on-surface text-[12px] font-semibold mb-1">{item.spec}</p>
-                <p className="text-on-surface-variant text-[11px] leading-relaxed">{item.desc}</p>
+                <p className="text-on-surface text-sm font-semibold mb-1">{item.spec}</p>
+                <p className="text-on-surface-variant text-xs leading-relaxed">{item.desc}</p>
               </div>
               <label
                 onClick={() => toggleCheck(item.id)}
-                className="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-[11px] text-on-surface-variant cursor-pointer select-none"
+                className="mt-2.5 pt-2 border-t border-on-surface/[0.04] flex items-center gap-1.5 text-xs text-on-surface-variant cursor-pointer select-none"
               >
                 <input
                   type="checkbox"

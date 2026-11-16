@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-size: 18px; /* 기본 16px에서 2pt(약 2.67px) 상향 조정 */
+  }
   body {
     background-color: #fff8f3;
     color: #201b13;
+    line-height: 1.6;
   }
 }
 

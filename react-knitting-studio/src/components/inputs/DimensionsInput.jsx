@@ -5,7 +5,7 @@ export default function DimensionsInput({ title, subtitle, value, min, max, step
     <div className="bg-surface-container-lowest rounded-3xl p-5 border border-on-surface/[0.08] shadow-sm mb-6">
       <div className="flex items-center justify-between mb-3">
         <div>
-          <span className="text-[11px] font-bold text-secondary uppercase tracking-wider block mb-0.5">
+          <span className="text-xs font-bold text-secondary uppercase tracking-wider block mb-0.5">
             DIMENSIONS
           </span>
           <h3 className="text-base font-bold text-on-surface">{title}</h3>
@@ -16,7 +16,7 @@ export default function DimensionsInput({ title, subtitle, value, min, max, step
         </div>
       </div>
 
-      {subtitle && <p className="text-xs text-on-surface-variant mb-3">{subtitle}</p>}
+      {subtitle && <p className="text-sm text-on-surface-variant mb-3">{subtitle}</p>}
 
       {/* Range Slider */}
       <input
