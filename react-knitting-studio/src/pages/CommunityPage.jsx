@@ -188,14 +188,20 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
       return;
     }
 
-    const authorNick = currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '니터';
+    const isAdmin = currentUser?.user_metadata?.role === 'admin' 
+      || currentUser?.user_metadata?.is_admin === true 
+      || currentUser?.email === 'admin@knitting-studio.com'
+      || currentUser?.email === 'admin';
+    const authorNick = isAdmin ? '관리자' : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '니터');
+    const authorBadge = isAdmin ? '공식 관리자' : '열정 니터';
+
     const newPost = {
       id: 'post-' + Date.now(),
       category: newCategory,
       title: newTitle.trim(),
       content: newContent.trim(),
       author: authorNick,
-      badge: '열정 니터',
+      badge: authorBadge,
       date: '방금 전',
       image: newImage || null,
       gauge: newGauge.trim() || null,
@@ -250,12 +256,16 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
       return;
     }
 
-    const authorNick = currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '니터';
+    const isAdmin = currentUser?.user_metadata?.role === 'admin' 
+      || currentUser?.user_metadata?.is_admin === true 
+      || currentUser?.email === 'admin@knitting-studio.com'
+      || currentUser?.email === 'admin';
+    const authorNick = isAdmin ? '관리자' : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '니터');
     const updated = posts.map((p) => {
       if (p.id === detailPost.id) {
         const newComments = [
           ...p.comments,
-          { author: authorNick, text: commentText.trim(), date: '방금 전' }
+          { author: authorNick, text: commentText.trim(), date: '방금 전', isAdmin }
         ];
         return { ...p, comments: newComments };
       }

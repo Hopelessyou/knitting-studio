@@ -10,7 +10,11 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
     { id: 'community', label: '커뮤니티', icon: 'forum' }
   ];
 
-  const userNickname = currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '';
+  const isAdmin = currentUser?.user_metadata?.role === 'admin' 
+    || currentUser?.user_metadata?.is_admin === true 
+    || currentUser?.email === 'admin@knitting-studio.com'
+    || currentUser?.email === 'admin';
+  const userNickname = isAdmin ? '관리자' : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '');
 
   return (
     <header className="sticky top-0 z-40 bg-[#fff8f3]/95 backdrop-blur-md border-b border-[#201b13]/[0.08] shadow-2xs">
@@ -63,6 +67,12 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
           {currentUser ? (
             <div className="flex items-center gap-2 bg-surface-container px-3.5 py-1.5 rounded-full border border-on-surface/[0.08]">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-2xs"></span>
+              {isAdmin && (
+                <span className="px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-extrabold flex items-center gap-1 shadow-2xs">
+                  <span className="material-symbols-outlined text-[13px]">verified_user</span>
+                  <span>관리자</span>
+                </span>
+              )}
               <span className="text-xs font-extrabold text-on-surface max-w-[110px] truncate" title={userNickname}>
                 {userNickname} 님
               </span>

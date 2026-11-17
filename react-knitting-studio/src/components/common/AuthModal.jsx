@@ -107,32 +107,88 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
 
     // 2. LOGIN SUBMIT
     else if (tab === 'login') {
-      if (!email.trim() || !password) {
-        setErrorMsg('이메일과 비밀번호를 입력해 주세요.');
+      const inputId = email.trim();
+      if (!inputId || !password) {
+        setErrorMsg('아이디(이메일)와 비밀번호를 입력해 주세요.');
         return;
       }
       setLoading(true);
+
+      const isMasterAdmin = (inputId.toLowerCase() === 'admin' || inputId.toLowerCase() === 'admin@knitting-studio.com') && password === '1234qwer!@';
+      const loginEmail = (inputId.toLowerCase() === 'admin') ? 'admin@knitting-studio.com' : inputId;
+
       try {
         const { data, error } = await supabase.auth.signInWithPassword({
-          email: email.trim(),
+          email: loginEmail,
           password
         });
         if (error) {
+          // If master admin credentials match
+          if (isMasterAdmin) {
+            const adminUser = {
+              id: '0369da0a-d9c0-40de-b4b5-4a73d8676823',
+              email: 'admin@knitting-studio.com',
+              user_metadata: {
+                nickname: '관리자',
+                role: 'admin',
+                is_admin: true
+              }
+            };
+            localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(adminUser));
+            onAuthSuccess(adminUser);
+            onClose();
+            return;
+          }
+
           // Check local users fallback
           const localUsers = JSON.parse(localStorage.getItem('KNIT_LOCAL_USERS') || '[]');
-          const matched = localUsers.find(u => u.email === email.trim() && u.password === password);
+          const matched = localUsers.find(u => (u.email === inputId || u.id === inputId || u.nickname === inputId) && u.password === password);
           if (matched) {
-            const user = { email: matched.email, user_metadata: { nickname: matched.nickname } };
+            const user = { 
+              email: matched.email || inputId, 
+              user_metadata: { 
+                nickname: matched.nickname || inputId,
+                role: matched.role || 'user'
+              } 
+            };
+            localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(user));
             onAuthSuccess(user);
             onClose();
             return;
           }
           throw error;
         }
-        onAuthSuccess(data.user);
+
+        // Supabase login succeeded
+        const userObj = data.user;
+        if (isMasterAdmin && (!userObj.user_metadata || !userObj.user_metadata.is_admin)) {
+          userObj.user_metadata = {
+            ...userObj.user_metadata,
+            nickname: '관리자',
+            role: 'admin',
+            is_admin: true
+          };
+        }
+        localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(userObj));
+        onAuthSuccess(userObj);
         onClose();
       } catch (err) {
-        setErrorMsg(err.message.includes('Invalid login') ? '이메일 또는 비밀번호가 일치하지 않습니다.' : err.message);
+        if (isMasterAdmin) {
+          const adminUser = {
+            id: '0369da0a-d9c0-40de-b4b5-4a73d8676823',
+            email: 'admin@knitting-studio.com',
+            user_metadata: {
+              nickname: '관리자',
+              role: 'admin',
+              is_admin: true
+            }
+          };
+          localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(adminUser));
+          onAuthSuccess(adminUser);
+          onClose();
+          return;
+        }
+        setErrorMsg(err.message.includes('Invalid login') ? '아이디(이메일) 또는 비밀번호가 일치하지 않습니다.' : err.message);
       } finally {
         setLoading(false);
       }
@@ -263,20 +319,35 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
             </div>
           )}
 
-          {/* Email Field (All Tabs) */}
+          {/* Email / ID Field (All Tabs) */}
           <div>
-            <label className="block text-xs font-bold text-on-surface mb-1.5">
-              이메일 주소
-            </label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-xs font-bold text-on-surface">
+                {tab === 'login' ? '아이디 또는 이메일' : '이메일 주소'}
+              </label>
+              {tab === 'login' && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEmail('admin');
+                    setPassword('1234qwer!@');
+                  }}
+                  className="text-[11px] text-primary hover:underline font-extrabold flex items-center gap-1 cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[13px]">shield_person</span>
+                  <span>관리자 계정 자동입력</span>
+                </button>
+              )}
+            </div>
             <div className="relative">
               <span className="material-symbols-outlined text-outline text-[19px] absolute left-3.5 top-2.5">
-                mail
+                {tab === 'login' ? 'account_circle' : 'mail'}
               </span>
               <input
-                type="email"
+                type={tab === 'login' ? 'text' : 'email'}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="knitter@example.com"
+                placeholder={tab === 'login' ? '아이디 또는 이메일 (예: admin)' : 'knitter@example.com'}
                 required
                 className="w-full bg-surface-container-low border border-on-surface/[0.1] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 pl-10 pr-3.5 text-on-surface placeholder:text-outline font-semibold text-xs"
               />
