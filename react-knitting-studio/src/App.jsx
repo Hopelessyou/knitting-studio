@@ -67,16 +67,29 @@ export default function App() {
       if (session?.user) {
         setCurrentUser(session.user);
         localStorage.setItem('KNIT_ACTIVE_USER', JSON.stringify(session.user));
+        localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(session.user));
       }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  const isAdmin = currentUser?.user_metadata?.role === 'admin' 
-    || currentUser?.user_metadata?.is_admin === true 
-    || currentUser?.email === 'admin@knitting-studio.com'
-    || currentUser?.email === 'admin';
+  // Strictly define administrator status
+  const isAdmin = Boolean(
+    currentUser && (
+      currentUser?.user_metadata?.role === 'admin' ||
+      currentUser?.user_metadata?.is_admin === true ||
+      currentUser?.email === 'admin@knitting-studio.com' ||
+      currentUser?.email === 'admin'
+    )
+  );
+
+  // Security: If not admin, instantly kick out of admin tab
+  useEffect(() => {
+    if (!isAdmin && activeTab === 'admin') {
+      setActiveTab('home');
+    }
+  }, [isAdmin, activeTab]);
 
   // Dynamic print permission based on system policy
   const isPrintAllowed = (() => {
@@ -116,12 +129,15 @@ export default function App() {
   const handleAuthSuccess = (user) => {
     setCurrentUser(user);
     localStorage.setItem('KNIT_ACTIVE_USER', JSON.stringify(user));
+    localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(user));
   };
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     setCurrentUser(null);
     localStorage.removeItem('KNIT_ACTIVE_USER');
+    localStorage.removeItem('KNIT_CURRENT_USER');
+    localStorage.removeItem('KNIT_ADMIN');
     if (activeTab === 'admin') {
       setActiveTab('home');
     }
@@ -154,6 +170,7 @@ export default function App() {
         activeTab={activeTab}
         onSelectTab={setActiveTab}
         currentUser={currentUser}
+        isAdmin={isAdmin}
         onOpenAuth={() => setIsAuthOpen(true)}
         onSignOut={handleSignOut}
       />

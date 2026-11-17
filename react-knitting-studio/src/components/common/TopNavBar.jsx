@@ -1,11 +1,29 @@
 ﻿import React from 'react';
 
-export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenAuth, onSignOut }) {
-  const isAdmin = currentUser?.user_metadata?.role === 'admin' 
-    || currentUser?.user_metadata?.is_admin === true 
-    || currentUser?.email === 'admin@knitting-studio.com'
-    || currentUser?.email === 'admin';
-  const userNickname = isAdmin ? '관리자' : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '');
+export default function TopNavBar({
+  activeTab,
+  onSelectTab,
+  currentUser,
+  isAdmin: propIsAdmin,
+  onOpenAuth,
+  onSignOut
+}) {
+  // Strictly enforce administrator check: must be true ONLY for the admin account
+  const isAdmin = Boolean(
+    propIsAdmin !== undefined
+      ? propIsAdmin
+      : (
+          currentUser &&
+          (currentUser?.user_metadata?.role === 'admin' ||
+            currentUser?.user_metadata?.is_admin === true ||
+            currentUser?.email === 'admin@knitting-studio.com' ||
+            currentUser?.email === 'admin')
+        )
+  );
+
+  const userNickname = isAdmin
+    ? '관리자'
+    : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '');
 
   const baseTabs = [
     { id: 'home', label: '홈', icon: 'home' },
@@ -16,7 +34,8 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
     { id: 'community', label: '커뮤니티', icon: 'forum' }
   ];
 
-  const tabs = isAdmin
+  // 일반 회원 및 비로그인 상태에서는 '관리자 센터' 탭이 절대 포함되지 않음
+  const tabs = isAdmin === true
     ? [...baseTabs, { id: 'admin', label: '관리자 센터', icon: 'shield_person', isAdminTab: true }]
     : baseTabs;
 
@@ -46,6 +65,8 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
         {/* Desktop Navigation Tabs */}
         <nav className="hidden lg:flex items-center gap-1.5 bg-surface-container-low p-1.5 rounded-full border border-on-surface/[0.08]">
           {tabs.map((tab) => {
+            // 철저한 이중 가드: 일반 회원은 관리자 탭 렌더링 원천 배제
+            if (tab.id === 'admin' && !isAdmin) return null;
             const isActive = activeTab === tab.id;
             return (
               <button
@@ -80,7 +101,8 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
           {currentUser ? (
             <div className="flex items-center gap-2 bg-surface-container px-3.5 py-1.5 rounded-full border border-on-surface/[0.08]">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-2xs"></span>
-              {isAdmin && (
+              {/* 관리자에게만 관리자 뱃지/버튼 표시 (일반 회원은 닉네임과 로그아웃만 표시) */}
+              {isAdmin === true && (
                 <button
                   type="button"
                   onClick={() => onSelectTab('admin')}
@@ -114,7 +136,8 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
             </button>
           )}
 
-          {isAdmin && (
+          {/* 도안 인쇄 버튼: 오직 관리자에게만 노출 */}
+          {isAdmin === true && (
             <button 
               onClick={() => window.print()}
               className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs"
@@ -130,6 +153,8 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
       {/* Mobile Tab Scroller */}
       <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto px-4 py-2.5 border-t border-on-surface/[0.06] scrollbar-none bg-surface-container-low/70">
         {tabs.map((tab) => {
+          // 철저한 이중 가드: 일반 회원은 관리자 탭 렌더링 원천 배제
+          if (tab.id === 'admin' && !isAdmin) return null;
           const isActive = activeTab === tab.id;
           return (
             <button
