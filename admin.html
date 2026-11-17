@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<title>니팅 스튜디오 관리자 센터 🛡️</title>
+<!-- Google Fonts: Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#984125",
+            "primary-hover": "#7d321b",
+            "surface": "#faf9f6",
+            "surface-container": "#efeeeb",
+            "surface-container-low": "#f4f3f1",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#1a1c1a",
+            "on-surface-variant": "#56423d",
+            "outline": "#89726c",
+            "error": "#ba1a1a"
+          },
+          "fontFamily": {
+            "body": ["Plus Jakarta Sans", "sans-serif"],
+            "headline": ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+</script>
+<!-- Supabase JS Client v2 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  body {
+    background-color: #fff8f3;
+    font-family: 'Pretendard', 'Plus Jakarta Sans', sans-serif;
+    color: #1a1c1a;
+  }
+</style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#fff8f3] text-[#1a1c1a]">
+
+  <!-- Top Global Bar -->
+  <header class="sticky top-0 z-40 bg-[#fff8f3]/95 backdrop-blur-md border-b border-[#201b13]/[0.08] shadow-2xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[4.25rem] py-2 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-2xl bg-primary text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-all">
+          <span class="material-symbols-outlined text-[26px]">gesture</span>
+        </div>
+        <div>
+          <h1 class="font-serif font-extrabold text-xl text-on-surface tracking-tight leading-tight group-hover:text-primary transition-colors">
+            니팅 스튜디오
+          </h1>
+          <p class="text-xs text-on-surface-variant font-bold tracking-wide">
+            SUPER ADMIN CENTER · 관리자 전용
+          </p>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <a href="community.html" class="px-4 py-2 rounded-full text-xs font-bold bg-surface-container hover:bg-surface-container-low text-on-surface transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">forum</span>
+          <span>커뮤니티</span>
+        </a>
+        <a href="index.html" class="px-4 py-2 rounded-full text-xs font-bold bg-primary hover:bg-primary-hover text-white transition-all shadow-xs flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">home</span>
+          <span>사용자 홈</span>
+        </a>
+        <button id="admin-logout-btn" type="button" onclick="handleAdminLogout()" class="px-3.5 py-2 rounded-full text-xs font-bold text-outline hover:text-error transition-all">
+          로그아웃
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Access Denied Screen (Shown when NOT Admin) -->
+  <div id="access-denied-box" class="hidden max-w-2xl mx-auto px-4 py-24 text-center">
+    <div class="bg-surface-container-lowest p-8 sm:p-12 rounded-3xl border-2 border-rose-300 shadow-xl">
+      <div class="w-16 h-16 rounded-3xl bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-4">
+        <span class="material-symbols-outlined text-3xl">shield_lock</span>
+      </div>
+      <h2 class="text-2xl font-bold font-serif text-on-surface mb-2">
+        관리자 전용 보안 접근 제한
+      </h2>
+      <p class="text-sm text-on-surface-variant max-w-md mx-auto mb-6 leading-relaxed">
+        해당 페이지는 최고 관리자(admin) 계정으로 로그인한 경우에만 접근하실 수 있습니다. 일반 회원은 접근이 차단됩니다.
+      </p>
+      <div class="flex items-center justify-center gap-3">
+        <a href="index.html" class="px-5 py-2.5 rounded-full text-xs font-bold bg-surface-container hover:bg-surface-container-high text-on-surface transition-all">
+          홈으로 돌아가기
+        </a>
+        <a href="community.html" class="px-5 py-2.5 rounded-full text-xs font-bold bg-primary hover:bg-primary-hover text-white transition-all shadow-xs">
+          관리자 로그인하러 가기
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Main Dashboard (Shown when Admin Authenticated) -->
+  <main id="admin-dashboard-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+    <!-- Admin Hero Banner -->
+    <div class="bg-gradient-to-r from-[#201b13] via-[#332a21] to-[#201b13] text-white rounded-3xl p-6 sm:p-8 shadow-xl mb-8 relative overflow-hidden">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+        <div>
+          <div className="flex items-center gap-2.5 mb-2">
+            <span class="px-3 py-1 rounded-full bg-primary text-white text-[11px] font-extrabold inline-flex items-center gap-1 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">shield_person</span>
+              <span>SUPER ADMIN CENTER</span>
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-serif font-extrabold tracking-tight mt-1">
+            니팅 스튜디오 관리자 센터 🛡️
+          </h2>
+          <p class="text-xs sm:text-sm text-white/80 mt-1 max-w-2xl leading-relaxed">
+            회원 권한 및 상태 관리, 커뮤니티 게시글/댓글 필터링, 상단 긴급 공지 배너 및 시스템 설정을 통합 제어합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Tab Buttons -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-6 scrollbar-none border-b border-on-surface/[0.08]">
+      <button onclick="switchTab('overview')" id="tab-btn-overview" class="tab-btn active px-4 py-2.5 rounded-2xl text-xs font-extrabold bg-primary text-white shadow-sm flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-[17px]">dashboard</span>
+        <span>종합 대시보드</span>
+      </button>
+      <button onclick="switchTab('users')" id="tab-btn-users" class="tab-btn px-4 py-2.5 rounded-2xl text-xs font-bold bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-on-surface/[0.06] flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-[17px]">group</span>
+        <span>회원 관리</span>
+        <span id="badge-users-count" class="px-2 py-0.5 rounded-full text-[10px] bg-surface-container text-on-surface font-extrabold">6</span>
+      </button>
+      <button onclick="switchTab('posts')" id="tab-btn-posts" class="tab-btn px-4 py-2.5 rounded-2xl text-xs font-bold bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-on-surface/[0.06] flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-[17px]">article</span>
+        <span>글 관리</span>
+        <span id="badge-posts-count" class="px-2 py-0.5 rounded-full text-[10px] bg-surface-container text-on-surface font-extrabold">6</span>
+      </button>
+      <button onclick="switchTab('comments')" id="tab-btn-comments" class="tab-btn px-4 py-2.5 rounded-2xl text-xs font-bold bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-on-surface/[0.06] flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-[17px]">forum</span>
+        <span>댓글 관리</span>
+        <span id="badge-comments-count" class="px-2 py-0.5 rounded-full text-[10px] bg-surface-container text-on-surface font-extrabold">8</span>
+      </button>
+      <button onclick="switchTab('system')" id="tab-btn-system" class="tab-btn px-4 py-2.5 rounded-2xl text-xs font-bold bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-on-surface/[0.06] flex items-center gap-2 cursor-pointer">
+        <span class="material-symbols-outlined text-[17px]">tune</span>
+        <span>시스템 설정 &amp; 백업</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW -->
+    <div id="section-overview" class="space-y-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider block mb-2">총 회원수</span>
+          <div class="flex items-baseline gap-2">
+            <span id="stat-total-users" class="text-3xl font-extrabold font-serif text-on-surface">6</span>
+            <span class="text-xs text-emerald-600 font-bold">정상 활동</span>
+          </div>
+          <p class="text-[11px] text-outline mt-1.5">테스트 계정 2개 포함</p>
+        </div>
+        <div class="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider block mb-2">커뮤니티 글수</span>
+          <div class="flex items-baseline gap-2">
+            <span id="stat-total-posts" class="text-3xl font-extrabold font-serif text-on-surface">6</span>
+            <span class="text-xs text-primary font-bold">공개 피드</span>
+          </div>
+          <p class="text-[11px] text-outline mt-1.5">상단 공지 고정 지원</p>
+        </div>
+        <div class="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider block mb-2">누적 댓글수</span>
+          <div class="flex items-baseline gap-2">
+            <span id="stat-total-comments" class="text-3xl font-extrabold font-serif text-on-surface">8</span>
+            <span class="text-xs text-emerald-600 font-bold">활성 소통</span>
+          </div>
+          <p class="text-[11px] text-outline mt-1.5">블라인드 마스킹 지원</p>
+        </div>
+        <div class="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider block mb-2">도안 인쇄 권한</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-xl font-extrabold font-serif text-primary">관리자 전용</span>
+          </div>
+          <p class="text-[11px] text-outline mt-1.5">일반회원 접근 차단 중</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: USERS -->
+    <div id="section-users" class="hidden space-y-6">
+      <div class="bg-surface-container-lowest rounded-3xl border border-on-surface/[0.08] shadow-xs overflow-hidden">
+        <div class="p-5 border-b border-on-surface/[0.06] flex items-center justify-between">
+          <h3 class="text-base font-bold text-on-surface">등록 회원 목록</h3>
+          <span class="text-xs text-outline font-bold">관리자 및 일반 테스트 계정</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-surface-container-low text-on-surface-variant font-bold border-b border-on-surface/[0.06]">
+                <th class="py-3 px-4">닉네임</th>
+                <th class="py-3 px-4">아이디 / 이메일</th>
+                <th class="py-3 px-4 text-center">권한</th>
+                <th class="py-3 px-4 text-center">계정 상태</th>
+                <th class="py-3 px-4 text-right">관리 작업</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body" class="divide-y divide-on-surface/[0.04]">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: POSTS -->
+    <div id="section-posts" class="hidden space-y-6">
+      <div class="bg-surface-container-lowest rounded-3xl border border-on-surface/[0.08] shadow-xs overflow-hidden">
+        <div class="p-5 border-b border-on-surface/[0.06] flex items-center justify-between">
+          <h3 class="text-base font-bold text-on-surface">게시글 관리 및 상단 공지 고정</h3>
+          <span class="text-xs text-outline font-bold">📌 공지 고정 / 🚫 숨김 / 🗑️ 삭제</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-surface-container-low text-on-surface-variant font-bold border-b border-on-surface/[0.06]">
+                <th class="py-3 px-4 text-center">상태</th>
+                <th class="py-3 px-4">제목</th>
+                <th class="py-3 px-4">작성자</th>
+                <th class="py-3 px-4 text-center">반응</th>
+                <th class="py-3 px-4 text-right">작업 관리</th>
+              </tr>
+            </thead>
+            <tbody id="posts-table-body" class="divide-y divide-on-surface/[0.04]">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: COMMENTS -->
+    <div id="section-comments" class="hidden space-y-6">
+      <div class="bg-surface-container-lowest rounded-3xl border border-on-surface/[0.08] shadow-xs overflow-hidden">
+        <div class="p-5 border-b border-on-surface/[0.06] flex items-center justify-between">
+          <h3 class="text-base font-bold text-on-surface">댓글 관리 및 악성 댓글 블라인드</h3>
+          <span class="text-xs text-outline font-bold">🚫 블라인드 처리 / 🗑️ 삭제</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-surface-container-low text-on-surface-variant font-bold border-b border-on-surface/[0.06]">
+                <th class="py-3 px-4">원문 제목</th>
+                <th class="py-3 px-4">작성자</th>
+                <th class="py-3 px-4">댓글 내용</th>
+                <th class="py-3 px-4 text-right">작업 관리</th>
+              </tr>
+            </thead>
+            <tbody id="comments-table-body" class="divide-y divide-on-surface/[0.04]">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: SYSTEM -->
+    <div id="section-system" class="hidden space-y-6">
+      <div class="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
+        <h3 class="text-base font-bold text-on-surface mb-2">데이터 백업 및 초기화</h3>
+        <p class="text-xs text-outline mb-4">현재 회원 목록 및 커뮤니티 게시글/댓글 데이터를 JSON으로 백업합니다.</p>
+        <button type="button" onclick="exportDataJSON()" class="px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs cursor-pointer">
+          전체 데이터 JSON 내보내기
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Script -->
+  <script>
+    const SUPABASE_URL = "https://vjuehrbdottiklcojlcl.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdWVocmJkb3R0aWtsY29qbGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ3MjM4NzAsImV4cCI6MjExMDI5OTg3MH0.BDWbnmL0tsM2jpEGIyvIpYub9kC7oI5ZWgGuieLu0a8";
+    let spClient = null;
+    if (window.supabase) {
+      spClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    let currentUser = null;
+    let isAdmin = false;
+
+    function checkAuth() {
+      const stored = localStorage.getItem('KNIT_CURRENT_USER');
+      if (stored) {
+        try {
+          currentUser = JSON.parse(stored);
+        } catch(e){}
+      }
+      
+      isAdmin = currentUser && (
+        currentUser.email === 'admin@knitting-studio.com' ||
+        currentUser.email === 'admin' ||
+        currentUser.user_metadata?.role === 'admin' ||
+        currentUser.user_metadata?.is_admin === true
+      );
+
+      if (!isAdmin) {
+        document.getElementById('access-denied-box').classList.remove('hidden');
+        document.getElementById('admin-dashboard-container').classList.add('hidden');
+      } else {
+        document.getElementById('access-denied-box').classList.add('hidden');
+        document.getElementById('admin-dashboard-container').classList.remove('hidden');
+        renderDashboard();
+      }
+    }
+
+    function handleAdminLogout() {
+      localStorage.removeItem('KNIT_CURRENT_USER');
+      localStorage.removeItem('KNIT_ACTIVE_USER');
+      localStorage.removeItem('KNIT_ADMIN');
+      if (spClient) spClient.auth.signOut();
+      window.location.href = 'index.html';
+    }
+
+    function switchTab(tabId) {
+      ['overview', 'users', 'posts', 'comments', 'system'].forEach(id => {
+        document.getElementById('section-' + id).classList.add('hidden');
+        const btn = document.getElementById('tab-btn-' + id);
+        btn.className = 'tab-btn px-4 py-2.5 rounded-2xl text-xs font-bold bg-surface-container-lowest text-on-surface-variant hover:text-on-surface border border-on-surface/[0.06] flex items-center gap-2 cursor-pointer';
+      });
+      document.getElementById('section-' + tabId).classList.remove('hidden');
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      activeBtn.className = 'tab-btn active px-4 py-2.5 rounded-2xl text-xs font-extrabold bg-primary text-white shadow-sm flex items-center gap-2 cursor-pointer';
+    }
+
+    const DEFAULT_USERS = [
+      { email: 'admin@knitting-studio.com', nickname: '관리자', role: 'admin', status: '정상' },
+      { email: 'test@knitting-studio.com', nickname: '일반회원', role: 'member', status: '정상' },
+      { email: 'winter_warmth@knitting.com', nickname: '포근한겨울', role: 'member', status: '정상' },
+      { email: 'pattern_lab@knitting.com', nickname: '도안연구원', role: 'member', status: '정상' },
+      { email: 'socks_lover@knitting.com', nickname: '양말꿈나무', role: 'member', status: '정상' },
+      { email: 'spammer_bot@casino.xyz', nickname: '대박이벤트', role: 'member', status: '차단됨' }
+    ];
+
+    function renderDashboard() {
+      // 1. Users table
+      const tbody = document.getElementById('users-table-body');
+      tbody.innerHTML = '';
+      DEFAULT_USERS.forEach((u, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-container/40';
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-bold text-on-surface">${u.nickname}</td>
+          <td class="py-3 px-4 font-medium text-on-surface-variant">${u.email}</td>
+          <td class="py-3 px-4 text-center">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${u.role === 'admin' ? 'bg-primary text-white' : 'bg-surface-container text-on-surface'}">${u.role === 'admin' ? '관리자' : '일반회원'}</span>
+          </td>
+          <td class="py-3 px-4 text-center">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${u.status === '정상' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">${u.status}</span>
+          </td>
+          <td class="py-3 px-4 text-right">
+            ${u.role !== 'admin' ? '<button onclick="toggleUserStatus(' + idx + ')" class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high font-bold">' + (u.status === '정상' ? '차단' : '해제') + '</button>' : '-'}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // 2. Posts table
+      const postsBody = document.getElementById('posts-table-body');
+      postsBody.innerHTML = '';
+      const savedPosts = JSON.parse(localStorage.getItem('KNIT_COMMUNITY_POSTS_V4') || '[]');
+      document.getElementById('badge-posts-count').innerText = savedPosts.length || 6;
+      document.getElementById('stat-total-posts').innerText = savedPosts.length || 6;
+
+      savedPosts.forEach((p, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-surface-container/40';
+        tr.innerHTML = `
+          <td class="py-3 px-4 text-center">
+            ${p.isPinned ? '<span class="px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold">📌 공지</span>' : '<span class="text-outline text-[11px]">일반</span>'}
+          </td>
+          <td class="py-3 px-4 font-bold text-on-surface max-w-xs truncate">${p.title}</td>
+          <td class="py-3 px-4 text-on-surface-variant">${p.author}</td>
+          <td class="py-3 px-4 text-center">👍 ${p.likes || 0}</td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="togglePinPost('${p.id}')" class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high font-bold">${p.isPinned ? '고정해제' : '상단고정'}</button>
+          </td>
+        `;
+        postsBody.appendChild(tr);
+      });
+    }
+
+    function toggleUserStatus(idx) {
+      DEFAULT_USERS[idx].status = DEFAULT_USERS[idx].status === '정상' ? '차단됨' : '정상';
+      renderDashboard();
+    }
+
+    function togglePinPost(postId) {
+      const savedPosts = JSON.parse(localStorage.getItem('KNIT_COMMUNITY_POSTS_V4') || '[]');
+      const post = savedPosts.find(p => p.id === postId);
+      if (post) {
+        post.isPinned = !post.isPinned;
+        localStorage.setItem('KNIT_COMMUNITY_POSTS_V4', JSON.stringify(savedPosts));
+        renderDashboard();
+      }
+    }
+
+    function exportDataJSON() {
+      const data = {
+        exportedAt: new Date().toISOString(),
+        users: DEFAULT_USERS,
+        posts: JSON.parse(localStorage.getItem('KNIT_COMMUNITY_POSTS_V4') || '[]')
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'knitting_studio_admin_backup.json';
+      a.click();
+    }
+
+    // Run on load
+    checkAuth();
+  </script>
+</body>
+</html>

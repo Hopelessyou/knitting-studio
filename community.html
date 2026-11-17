@@ -119,6 +119,10 @@
         <span class="material-symbols-outlined text-[17px]">forum</span>
         <span>커뮤니티</span>
       </a>
+      <a id="admin-center-nav-link" class="hidden text-primary bg-primary/10 hover:bg-primary/20 px-3 py-1 rounded-full font-bold text-xs flex items-center gap-1 transition-all" href="admin.html">
+        <span class="material-symbols-outlined text-[15px]">shield_person</span>
+        <span>관리자 센터</span>
+      </a>
     </nav>
 
     <div class="flex items-center gap-2.5">
@@ -1522,6 +1526,14 @@
           const nick = isAdmin ? '관리자 👑' : (currentUser.user_metadata?.nickname || currentUser.email.split('@')[0]);
           badge.innerText = nick;
           badge.title = `${nick} (${currentUser.email})`;
+          const adminLink = document.getElementById('admin-center-nav-link');
+          if (adminLink) {
+            if (isAdmin) {
+              adminLink.classList.remove('hidden');
+            } else {
+              adminLink.classList.add('hidden');
+            }
+          }
         }
       } else {
         if (loggedInBox) {
@@ -1529,6 +1541,8 @@
           loggedInBox.classList.remove('flex');
         }
         if (loggedOutBox) loggedOutBox.classList.remove('hidden');
+        const adminLink = document.getElementById('admin-center-nav-link');
+        if (adminLink) adminLink.classList.add('hidden');
       }
     });
   }
