@@ -31,6 +31,10 @@ export default function useScarfCalc(gaugeSts = 18, gaugeRows = 24, targetW = 25
       bodySts,
       edgeSts,
       totalRows,
+      targetW,
+      targetL,
+      pattern,
+      edge,
       yarnBalls: `${balls}~${balls + 1}볼 (${balls * 40}g)`
     };
   }, [gaugeSts, gaugeRows, targetW, targetL, pattern, edge]);

@@ -6,8 +6,7 @@ import VocabDictionary from '../components/common/VocabDictionary';
 import GaugeInput from '../components/inputs/GaugeInput';
 import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
-import RoadmapContainer from '../components/roadmap/RoadmapContainer';
-import RoadmapStepCard from '../components/roadmap/RoadmapStepCard';
+import ScarfRoadmap from '../components/roadmap/ScarfRoadmap';
 
 export default function ScarfPage({ onOpenVideo }) {
   const [gaugeSts, setGaugeSts] = useState(18);
@@ -58,9 +57,9 @@ export default function ScarfPage({ onOpenVideo }) {
             max={45}
             onChange={setTargetW}
             presets={[
-              { label: '슬림', val: 20 },
-              { label: '스탠다드', val: 25 },
-              { label: '와이드', val: 32 }
+              { label: '슬림 (20)', val: 20 },
+              { label: '스탠다드 (25)', val: 25 },
+              { label: '와이드 (32)', val: 32 }
             ]}
           />
 
@@ -73,9 +72,9 @@ export default function ScarfPage({ onOpenVideo }) {
             step={5}
             onChange={setTargetL}
             presets={[
-              { label: '미니 쁘띠', val: 140 },
-              { label: '표준 성인', val: 180 },
-              { label: '롱 머플러', val: 210 }
+              { label: '미니 쁘띠 (140)', val: 140 },
+              { label: '표준 성인 (180)', val: 180 },
+              { label: '롱 머플러 (210)', val: 210 }
             ]}
           />
         </div>
@@ -103,61 +102,8 @@ export default function ScarfPage({ onOpenVideo }) {
       {/* 4. Vocab Dictionary */}
       <VocabDictionary />
 
-      {/* 5. Roadmap */}
-      <RoadmapContainer
-        title={`실전 목도리 뜨개 5단계 가이드 (${patternNames[pattern]})`}
-        badge="사방 말림 방지 프리미엄 공식"
-      >
-        <RoadmapStepCard
-          stepNumber="01"
-          title="느슨하고 신축성 있는 코잡기"
-          subtitle="끝단이 오그라들지 않는 신축성 캐스트온"
-          setup={<p>• <strong>바늘</strong>: 5.5mm~6.0mm (평면 줄바늘)<br/>• <strong>마커</strong>: 엣지 경계 표시 마커 2개</p>}
-          recipe={<p>• 롱테일 코잡기를 할 때 바늘 2개를 겹쳐 쥐고 총 <strong>{calc.totalCastOn}코</strong>를 잡은 뒤 한 바늘을 뺍니다.</p>}
-          proTip={<p>• 코잡기가 팽팽하면 목도리 첫 단만 가로 폭이 좁아지는 호리병 현상이 발생합니다. 넉넉하게 잡으세요.</p>}
-          milestone={<p>• 균일한 간격으로 {calc.totalCastOn}코가 바늘에 자리 잡았습니다.</p>}
-        />
-
-        <RoadmapStepCard
-          stepNumber="02"
-          title="엣지 세팅 &amp; 패턴 반복 직진"
-          subtitle="양 끝이 돌돌 말리지 않는 명품 엣지 튜브를 형성합니다."
-          setup={<p>• 양 끝 2코씩 엣지 마커 배치</p>}
-          recipe={<p>• 시작 2코 겉뜨기 → 마커 넘김 → 패턴 반복 → 마커 넘김 → 끝 2코 실 앞에 두고 걸러뜨기를 무한 반복합니다.</p>}
-          proTip={<p>• 변형고무뜨기는 바늘비우기 루프와 다음 코가 X자로 만나는 지점을 한꺼번에 찔러 겉뜨기(K2tog)하면 도톰한 볼륨이 살아납니다.</p>}
-          milestone={<p>• 패턴 10단 이상 진행 시 가장자리가 말리지 않고 통통한 튜브 엣지가 완성되는 것을 눈으로 확인합니다.</p>}
-        />
-
-        <RoadmapStepCard
-          stepNumber="03"
-          title="일정한 손장력 유지 &amp; 길이 측정"
-          subtitle="가장자리 선이 삐뚤빼뚤해지지 않는 장력 유지 팁"
-          setup={<p>• <strong>도구</strong>: 줄자</p>}
-          recipe={<p>• 바닥에 목도리를 편평하게 펴고 목표 길이 <strong>{targetL}cm ({calc.totalRows}단)</strong>까지 직진합니다.</p>}
-          proTip={<p>• 목도리를 들고 재면 무게 때문에 늘어납니다. 반드시 평평한 테이블에 내려놓고 살살 펴서 길이를 재세요.</p>}
-          milestone={<p>• 목표 길이 {targetL}cm에 도달하면 코막음 준비를 합니다.</p>}
-        />
-
-        <RoadmapStepCard
-          stepNumber="04"
-          title="신축성 있는 탄력 바인드오프 (코막음)"
-          subtitle="시작단과 동일한 너비로 똑 떨어지는 마감"
-          setup={<p>• <strong>바늘</strong>: 0.5mm 더 굵은 바늘 사용 권장</p>}
-          recipe={<p>• 겉뜨기 코에는 겉뜨기, 안뜨기 코에는 안뜨기를 뜨며 덮어씌우는 고무단 코막음(Ribbed BO)을 진행합니다.</p>}
-          proTip={<p>• 코를 넘길 때 실을 세게 당기면 끝단이 팽팽하게 오그라듭니다. 루프 높이를 여유 있게 유지하세요.</p>}
-          milestone={<p>• 마지막 1코에 실을 통과시켜 20cm 남기고 자릅니다.</p>}
-        />
-
-        <RoadmapStepCard
-          stepNumber="05"
-          title="꼬리실 정리 &amp; 스팀 블로킹 (Blocking)"
-          subtitle="털실 결이 정돈되고 가장자리가 반듯해지는 기적의 마법"
-          setup={<p>• <strong>도구</strong>: 굵은 돗바늘, 스팀다리미 (또는 분무기 &amp; T핀)</p>}
-          recipe={<p>• 시작과 끝 꼬리실을 아이코드 튜브 안쪽으로 쏙 집어넣어 숨깁니다. 다리미를 편물에 직접 대지 않고 2cm 위에서 스팀만 쐬어줍니다.</p>}
-          proTip={<p>• 스팀을 쐬어주면 울 섬유가 숨을 쉬며 올록볼록했던 기복이 기성복 매장 제품처럼 매끄럽게 펴집니다.</p>}
-          milestone={<p>• 포근하고 부드러운 핸드메이드 목도리가 완성되었습니다!</p>}
-        />
-      </RoadmapContainer>
+      {/* 5. Masterclass Detailed Roadmap */}
+      <ScarfRoadmap calc={calc} onOpenVideo={onOpenVideo} />
     </div>
   );
 }

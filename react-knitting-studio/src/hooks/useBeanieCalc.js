@@ -28,17 +28,23 @@ export default function useBeanieCalc(gaugeSts = 18, gaugeRows = 24, headCirc = 
     const crownStartRows = Math.round((crownStartHeightCm * gaugeRows) / 10);
     const totalRows = Math.round((totalHeightCm * gaugeRows) / 10);
     const wedgeSts = castOn / 8;
+    const kSts = Math.max(1, wedgeSts - 2);
+    const ribName = (rib === '1x1') ? '1코 고무뜨기 (K1, P1)' : (rib === '2x2') ? '2코 고무뜨기 (K2, P2)' : '메리야스 겉뜨기';
 
     return {
       castOn,
       wedgeSts,
+      kSts,
       brimHeightCm,
       totalHeightCm,
       crownDecreaseCm,
       crownStartHeightCm,
       crownStartRows,
       totalRows,
-      yarnBalls: '2~3볼 (100~150g)'
+      ribName,
+      headCirc,
+      style,
+      rib
     };
   }, [gaugeSts, gaugeRows, headCirc, style, rib]);
 }

@@ -17,12 +17,14 @@ export default function useSocksCalc(gaugeSts = 32, gaugeRows = 42, footLengthMm
     const totalRows = Math.round((footLenCm * gaugeRows) / 10);
 
     // Toeup specific
-    const toeStartSts = Math.max(16, Math.round(castOn * 0.35 / 2) * 2);
+    const toeStartSts = Math.max(16, Math.round((castOn * 0.35) / 2) * 2);
     const toeIncTimes = Math.max(1, (castOn - toeStartSts) / 4);
 
     // Cuffdown specific
     const flapRows = halfSts;
     const pickupSts = Math.floor(flapRows / 2) + 1;
+    const legLengthCm = 15;
+    const legRows = Math.round((legLengthCm * gaugeRows) / 10);
 
     return {
       castOn,
@@ -33,7 +35,11 @@ export default function useSocksCalc(gaugeSts = 32, gaugeRows = 42, footLengthMm
       toeIncTimes,
       flapRows,
       pickupSts,
-      yarnBalls: '1~2볼 (50~100g 삭얀)'
+      legLengthCm,
+      legRows,
+      footLengthMm,
+      footCircCm,
+      method
     };
   }, [gaugeSts, gaugeRows, footLengthMm, footCircCm, method]);
 }
