@@ -115,12 +115,18 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
       setLoading(true);
 
       const isMasterAdmin = (inputId.toLowerCase() === 'admin' || inputId.toLowerCase() === 'admin@knitting-studio.com') && password === '1234qwer!@';
-      const loginEmail = (inputId.toLowerCase() === 'admin') ? 'admin@knitting-studio.com' : inputId;
+      const isTestMember = (inputId.toLowerCase() === 'test' || inputId.toLowerCase() === 'test@knitting-studio.com') && (password === '1234' || password === '1234qwer!@');
+
+      const loginEmail = isMasterAdmin 
+        ? 'admin@knitting-studio.com' 
+        : (isTestMember ? 'test@knitting-studio.com' : (inputId.toLowerCase() === 'admin' ? 'admin@knitting-studio.com' : (inputId.toLowerCase() === 'test' ? 'test@knitting-studio.com' : inputId)));
+
+      const loginPassword = isTestMember ? '1234qwer!@' : password;
 
       try {
         const { data, error } = await supabase.auth.signInWithPassword({
           email: loginEmail,
-          password
+          password: loginPassword
         });
         if (error) {
           // If master admin credentials match
@@ -135,7 +141,26 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               }
             };
             localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(adminUser));
+            localStorage.setItem('KNIT_ACTIVE_USER', JSON.stringify(adminUser));
             onAuthSuccess(adminUser);
+            onClose();
+            return;
+          }
+
+          // If normal test member credentials match
+          if (isTestMember) {
+            const testUser = {
+              id: '8110b8b1-1e91-4ed8-962d-15adb815d5b5',
+              email: 'test@knitting-studio.com',
+              user_metadata: {
+                nickname: '일반회원',
+                role: 'member',
+                is_admin: false
+              }
+            };
+            localStorage.setItem('KNIT_CURRENT_USER', JSON.stringify(testUser));
+            localStorage.setItem('KNIT_ACTIVE_USER', JSON.stringify(testUser));
+            onAuthSuccess(testUser);
             onClose();
             return;
           }
@@ -326,17 +351,31 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                 {tab === 'login' ? '아이디 또는 이메일' : '이메일 주소'}
               </label>
               {tab === 'login' && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setEmail('admin');
-                    setPassword('1234qwer!@');
-                  }}
-                  className="text-[11px] text-primary hover:underline font-extrabold flex items-center gap-1 cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-[13px]">shield_person</span>
-                  <span>관리자 계정 자동입력</span>
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEmail('test');
+                      setPassword('1234');
+                    }}
+                    className="text-[11px] text-on-surface-variant hover:text-primary hover:underline font-bold flex items-center gap-1 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[13px]">person</span>
+                    <span>일반회원(test)</span>
+                  </button>
+                  <span className="text-outline/40 text-[10px]">|</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEmail('admin');
+                      setPassword('1234qwer!@');
+                    }}
+                    className="text-[11px] text-primary hover:underline font-extrabold flex items-center gap-1 cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[13px]">shield_person</span>
+                    <span>관리자(admin)</span>
+                  </button>
+                </div>
               )}
             </div>
             <div className="relative">
@@ -427,7 +466,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="비밀번호 입력"
                 required
-                minLength={6}
+                minLength={tab === 'signup' ? 6 : undefined}
                 className="w-full bg-surface-container-low border border-on-surface/[0.1] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 pl-10 pr-10 text-on-surface placeholder:text-outline font-semibold text-xs"
               />
               <button

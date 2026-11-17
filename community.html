@@ -491,7 +491,12 @@
             <label class="block font-semibold text-on-surface" for="auth-email" id="label-email">아이디 또는 이메일</label>
             <button type="button" onclick="document.getElementById('auth-email').value='admin'; document.getElementById('auth-password').value='1234qwer!@';" class="text-[11px] text-primary hover:underline font-bold flex items-center gap-1 cursor-pointer">
               <span class="material-symbols-outlined text-[13px]">shield_person</span>
-              <span>관리자 계정 자동입력</span>
+              <span>관리자(admin)</span>
+            </button>
+            <span class="text-outline/40 text-[10px]">|</span>
+            <button type="button" onclick="document.getElementById('auth-email').value='test'; document.getElementById('auth-password').value='1234';" class="text-[11px] text-on-surface-variant hover:text-primary hover:underline font-bold flex items-center gap-1 cursor-pointer">
+              <span class="material-symbols-outlined text-[13px]">person</span>
+              <span>일반(test)</span>
             </button>
           </div>
           <input type="text" id="auth-email" placeholder="아이디 또는 이메일 (예: admin)" class="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 px-3 text-on-surface" />
@@ -1366,11 +1371,15 @@
     }
 
     const isMasterAdmin = (email.toLowerCase() === 'admin' || email.toLowerCase() === 'admin@knitting-studio.com') && password === '1234qwer!@';
+    const isTestMember = (email.toLowerCase() === 'test' || email.toLowerCase() === 'test@knitting-studio.com') && (password === '1234' || password === '1234qwer!@');
+    
     if (email.toLowerCase() === 'admin') {
       email = 'admin@knitting-studio.com';
+    } else if (email.toLowerCase() === 'test') {
+      email = 'test@knitting-studio.com';
     }
 
-    if (password.length < 6) {
+    if (currentAuthTab === 'signup' && password.length < 6) {
       errEl.innerText = '비밀번호는 최소 6자리 이상이어야 합니다.';
       errEl.classList.remove('hidden');
       return;
@@ -1435,7 +1444,8 @@
       } else {
         let authUser = null;
         try {
-          const { data, error } = await spClient.auth.signInWithPassword({ email, password });
+          const reqPw = isTestMember ? '1234qwer!@' : password;
+          const { data, error } = await spClient.auth.signInWithPassword({ email, password: reqPw });
           if (error) throw error;
           authUser = data.user;
         } catch (spErr) {
@@ -1447,6 +1457,16 @@
                 nickname: '관리자',
                 role: 'admin',
                 is_admin: true
+              }
+            };
+          } else if (isTestMember) {
+            authUser = {
+              id: '8110b8b1-1e91-4ed8-962d-15adb815d5b5',
+              email: 'test@knitting-studio.com',
+              user_metadata: {
+                nickname: '일반회원',
+                role: 'member',
+                is_admin: false
               }
             };
           } else {
