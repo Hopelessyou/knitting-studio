@@ -4,8 +4,8 @@ const INITIAL_SAMPLE_POSTS = [
   {
     id: 'post-1',
     category: 'gallery',
-    title: '생애 첫 탑다운 레글런 스웨터 완성했어요! 도안 계산기 덕분에 목둘레가 딱 맞아요',
-    content: '게이지 18코 24단으로 계산기 돌려서 시작했는데, 목둘레 코잡기부터 요크 늘림까지 한 번도 푸르시오 없이 2주 만에 끝냈습니다! 실은 캐시미어 블렌드 울 사용했어요.',
+    title: '생애 첫 탑다운 레글런 스웨터 완성! 도안 계산기 덕분에 목둘레가 딱 맞아요',
+    content: '게이지 18코 24단으로 계산기 돌려서 시작했는데, 목둘레 튜블러 코잡기부터 요크 M1R/M1L 사선 늘림, 소매 분리까지 한 번도 푸르시오 없이 2주 만에 끝냈습니다! 실은 캐시미어 블렌드 울 8볼 사용했어요. 초보자분들도 계산기 도안대로만 뜨면 실패 안 하실 거예요.',
     author: '포근한겨울',
     badge: '스웨터 마스터',
     date: '30분 전',
@@ -17,34 +17,35 @@ const INITIAL_SAMPLE_POSTS = [
     views: 185,
     userLiked: false,
     comments: [
-      { author: '뜨개요정', text: '와 목둘레 튜블러 코잡기 정말 깔끔하네요!', date: '25분 전' },
-      { author: '털실러버', text: '색상이 너무 고급스러워요 축하드립니다~', date: '10분 전' }
+      { author: '뜨개요정', text: '와 목둘레 튜블러 코잡기 정말 깔끔하네요! 핏이 너무 예쁩니다.', date: '25분 전' },
+      { author: '털실러버', text: '색상이 너무 고급스러워요 축하드립니다~ 실 정보 좀 더 알 수 있을까요?', date: '10분 전' }
     ]
   },
   {
     id: 'post-2',
     category: 'tips',
-    title: '왕관 줄임 비니 정수리 안 솟게 줄이는 3가지 꿀팁',
-    content: '8등분 왕관 줄임할 때 마지막 16코 남았을 때 바로 돗바늘로 오므리지 마시고, 2코 모아뜨기 한 바퀴 더 돌려 8코로 만든 뒤 조여주시면 꼭짓점이 울퉁불퉁 솟지 않고 완벽한 반구가 됩니다.',
+    title: '왕관 줄임 비니 정수리 울퉁불퉁 솟지 않게 줄이는 3가지 꿀팁',
+    content: '8등분 왕관 줄임할 때 마지막 16코 남았을 때 바로 돗바늘로 오므리지 마시고, 2코 모아뜨기 한 바퀴 더 돌려 8코로 만든 뒤 조여주시면 꼭짓점이 뿔처럼 울퉁불퉁 솟지 않고 완벽한 반구형 핏이 나옵니다. 바늘도 마지막 줄임 전 숏서큘러에서 장갑바늘이나 매직루프로 교체하면 코 늘어짐을 방지할 수 있어요.',
     author: '도안연구원',
     badge: '테크니컬 니터',
     date: '2시간 전',
     image: '/images/beanie_watchcap.jpg',
     gauge: '20코 26단',
-    needle: '4.0mm 숏팁',
+    needle: '4.0mm 숏팁 40cm',
     yarn: '메리노울 2볼',
     likes: 88,
     views: 342,
     userLiked: false,
     comments: [
-      { author: '초보탈출', text: '맨날 정수리가 솟아서 고민이었는데 꿀팁 감사합니다!', date: '1시간 전' }
+      { author: '초보탈출', text: '맨날 정수리가 솟아서 고민이었는데 마지막 8코 줄임 꿀팁 감사합니다!', date: '1시간 전' },
+      { author: '모자장인', text: '숏팁에서 매직루프로 바꾸는 타이밍 설명이 아주 정확하시네요.', date: '40분 전' }
     ]
   },
   {
     id: 'post-3',
     category: 'qna',
-    title: '저먼 숏로우(GSR) 양말 뒤꿈치 구멍 안 생기는 턴 방법 질문드립니다',
-    content: '되돌아뜨기 할 때 더블스티치를 너무 세게 당기면 다음 단에서 바늘이 안 들어가고, 살살 당기면 구멍이 숭숭 뚫려요. 적당한 장력 노하우가 있을까요?',
+    title: '저먼 숏로우(GSR) 양말 뒤꿈치 구멍 안 생기는 턴 텐션 질문드립니다',
+    content: '되돌아뜨기 할 때 더블스티치를 만들면서 실을 뒤로 넘길 때 너무 세게 당기면 다음 단에서 바늘이 안 들어가고, 살살 당기면 뒤꿈치 경계면에 구멍이 숭숭 뚫려요. 적당한 손장력 텐션 노하우가 있을까요? 오팔 삭얀 4ply에 2.5mm 줄바늘 사용 중입니다.',
     author: '양말꿈나무',
     badge: '질문 해결대기',
     date: '3시간 전',
@@ -56,14 +57,14 @@ const INITIAL_SAMPLE_POSTS = [
     views: 120,
     userLiked: false,
     comments: [
-      { author: '양말장인', text: '실을 뒤로 넘길 때 90도 각도로 수직으로 당겨서 다리가 바늘 위에 단단히 걸리게 해주면 구멍이 전혀 안 납니다!', date: '2시간 전' }
+      { author: '양말장인', text: '실을 뒤로 넘길 때 사선이 아니라 바늘과 90도 수직 각도로 딱 소리 나지 않을 정도로만 당겨서 두 가닥 다리가 바늘 위에 단단히 안착되게 해주면 구멍이 전혀 안 납니다!', date: '2시간 전' }
     ]
   },
   {
     id: 'post-4',
     category: 'gallery',
-    title: '변형고무뜨기 목도리 2미터 완성! 아이코드 가장자리 추천합니다',
-    content: '양쪽 3코씩 아이코드 가장자리 넣고 떴더니 사방이 전혀 말리지 않고 두툼한 호텔 담요 같은 질감이 나왔어요. 선물용으로 최고입니다.',
+    title: '변형고무뜨기 목도리 2미터 완성! 양쪽 아이코드 3코 엣지 추천해요',
+    content: '양쪽 3코씩 아이코드 가장자리 넣고 떴더니 사방이 전혀 말리지 않고 두툼한 호텔 담요 같은 에어쿠션 질감이 나왔어요. 선물용으로 떴는데 받는 분이 백화점 브랜드 목도리 같다고 너무 좋아하네요. 실 소요량 계산기대로 5볼 딱 맞았습니다.',
     author: '겨울바람',
     badge: '따뜻한 이웃',
     date: '5시간 전',
@@ -74,7 +75,47 @@ const INITIAL_SAMPLE_POSTS = [
     likes: 63,
     views: 290,
     userLiked: false,
-    comments: []
+    comments: [
+      { author: '니팅홀릭', text: '아이코드 엣지 진짜 깔끔하네요! 다음 목도리는 꼭 이 기법으로 떠봐야겠어요.', date: '3시간 전' }
+    ]
+  },
+  {
+    id: 'post-5',
+    category: 'tips',
+    title: '세탁 전 vs 세탁 후 게이지 블로킹 수축률 비교 (울 100% vs 아크릴 혼방)',
+    content: '메리노울 100%는 미온수 울샴푸 세탁 및 스팀 블로킹 시 가로 폭이 약 4~5% 늘어나고 세로 단수가 약간 줄어듭니다. 반면 아크릴 혼방은 탄성이 강해 게이지 변동이 거의 없습니다. 탑다운 스웨터 뜨실 때 꼭 10x10cm 스와치 세탁 후 치수로 계산기에 입력하세요!',
+    author: '게이지박사',
+    badge: '도안 검수위원',
+    date: '8시간 전',
+    image: null,
+    gauge: '스와치 정밀 측정',
+    needle: '각종 호수 비교',
+    yarn: '메리노울 vs 아크릴혼방',
+    likes: 54,
+    views: 245,
+    userLiked: false,
+    comments: [
+      { author: '꼼꼼니터', text: '스와치 세탁 전후 차이 데이터 공유 감사합니다. 스웨터 뜨기 전 필수 필독서네요.', date: '6시간 전' }
+    ]
+  },
+  {
+    id: 'post-6',
+    category: 'lounge',
+    title: '다들 드라마 보면서 뜨개질할 때 안 틀리는 나만의 루틴이 있으신가요?',
+    content: '단순 무한 메리야스 뜨기 구간은 자막 없는 한국 드라마 볼 때 몰아서 뜨고, 레글런 사선 늘림이나 무늬 뜨기 구간은 라디오나 팟캐스트만 틀어놓고 카운터 어플 켜둡니다 ㅎㅎ 여러분만의 힐링 뜨개 루틴이 궁금해요!',
+    author: '힐링니터',
+    badge: '사랑방 단골',
+    date: '12시간 전',
+    image: null,
+    gauge: '힐링 무한단',
+    needle: '내 손에 익은 바늘',
+    yarn: '포근한 모든 실',
+    likes: 31,
+    views: 180,
+    userLiked: false,
+    comments: [
+      { author: '주말니터', text: '저랑 완전 똑같으세요! 자막 있는 미드 볼 때는 절대 코 늘림 하면 안 됩니다 ㅋㅋㅋ', date: '9시간 전' }
+    ]
   }
 ];
 
@@ -83,6 +124,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('newest');
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Modals state
   const [isWriteOpen, setIsWriteOpen] = useState(false);
@@ -102,7 +144,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
 
   // Load posts
   useEffect(() => {
-    const saved = localStorage.getItem('KNIT_COMMUNITY_POSTS_V3');
+    const saved = localStorage.getItem('KNIT_COMMUNITY_POSTS_V4');
     if (saved) {
       try {
         setPosts(JSON.parse(saved));
@@ -111,13 +153,13 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
       }
     } else {
       setPosts(INITIAL_SAMPLE_POSTS);
-      localStorage.setItem('KNIT_COMMUNITY_POSTS_V3', JSON.stringify(INITIAL_SAMPLE_POSTS));
+      localStorage.setItem('KNIT_COMMUNITY_POSTS_V4', JSON.stringify(INITIAL_SAMPLE_POSTS));
     }
   }, []);
 
   const savePosts = (updated) => {
     setPosts(updated);
-    localStorage.setItem('KNIT_COMMUNITY_POSTS_V3', JSON.stringify(updated));
+    localStorage.setItem('KNIT_COMMUNITY_POSTS_V4', JSON.stringify(updated));
   };
 
   const handleOpenWrite = () => {
@@ -250,8 +292,8 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      {/* 1. Hero Section */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
+      {/* 1. Hero Welcome Section */}
+      <div className="text-center max-w-3xl mx-auto mb-8">
         <span className="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
           KNITTERS LOUNGE & COMMUNITY
         </span>
@@ -273,16 +315,41 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
             <strong className="text-primary">{totalLikes}회</strong>
           </div>
           <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest border border-on-surface/[0.08] text-xs font-semibold text-on-surface shadow-xs">
-            <span>💬 따뜻한 댓글</span>
+            <span>💬 뜨개 질문 & 답변</span>
             <strong className="text-primary">{totalComments}개</strong>
           </div>
         </div>
       </div>
 
-      {/* 2. Category & Search Toolbar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-on-surface/[0.08] pb-6 mb-8">
+      {/* 2. Trending Spotlight Banner */}
+      <div 
+        onClick={() => {
+          const target = posts.find(p => p.id === 'post-2');
+          if (target) setDetailPost(target);
+        }}
+        className="mb-8 p-4 rounded-2xl bg-gradient-to-r from-primary/10 via-surface-container-low to-primary/5 border border-primary/20 flex items-center justify-between cursor-pointer hover:border-primary/40 transition-all shadow-xs group"
+      >
+        <div className="flex items-center gap-3">
+          <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-xs">
+            🔥
+          </span>
+          <div>
+            <span className="text-xs font-bold text-primary block">이번 주 가장 인기 있는 뜨개 노하우</span>
+            <span className="text-sm font-serif font-bold text-on-surface group-hover:text-primary transition-colors">
+              정수리 안 솟는 8등분 왕관 비니 줄임 공식 (조회 3.4k · 응원 342)
+            </span>
+          </div>
+        </div>
+        <span className="text-xs font-bold text-primary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+          <span>바로보기</span>
+          <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </span>
+      </div>
+
+      {/* 3. Category & Search Toolbar */}
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-on-surface/[0.08] pb-6 mb-8">
         {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
           {[
             { id: 'all', label: '전체' },
             { id: 'gallery', label: '🧵 완성작 갤러리' },
@@ -305,9 +372,10 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
           ))}
         </div>
 
-        {/* Right Tools: Search & Write CTA */}
-        <div className="flex items-center gap-3">
-          <div className="relative flex-1 sm:w-64">
+        {/* Right Tools: Search, Sort & Write CTA */}
+        <div className="flex items-center gap-2.5">
+          {/* Search Box */}
+          <div className="relative flex-1 sm:w-56">
             <span className="material-symbols-outlined text-outline text-[18px] absolute left-3 top-2.5">
               search
             </span>
@@ -316,10 +384,22 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="기법, 실, 작성자 검색..."
-              className="w-full bg-surface-container-lowest border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-full py-2 pl-9 pr-3 text-xs text-on-surface"
+              className="w-full bg-surface-container-lowest border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-full py-2 pl-9 pr-3 text-xs text-on-surface placeholder:text-outline"
             />
           </div>
 
+          {/* Sort Dropdown */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="bg-surface-container-lowest border border-on-surface/[0.08] rounded-full py-2 px-3 text-xs text-on-surface cursor-pointer"
+          >
+            <option value="newest">최신순</option>
+            <option value="popular">인기순</option>
+            <option value="comments">댓글 많은 순</option>
+          </select>
+
+          {/* Write CTA */}
           <button
             type="button"
             onClick={handleOpenWrite}
@@ -331,7 +411,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
         </div>
       </div>
 
-      {/* 3. Posts Grid */}
+      {/* 4. 3-Column Posts Feed Grid */}
       {filteredPosts.length === 0 ? (
         <div className="text-center py-20 bg-surface-container-lowest rounded-3xl border border-on-surface/[0.06]">
           <span className="text-4xl block mb-3">🧶</span>
@@ -346,16 +426,16 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {filteredPosts.map((post) => (
             <article
               key={post.id}
               onClick={() => setDetailPost(post)}
-              className="group bg-surface-container-lowest rounded-3xl overflow-hidden border border-on-surface/[0.08] shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="group bg-surface-container-lowest rounded-3xl overflow-hidden border border-on-surface/[0.08] shadow-xs hover:shadow-lg hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
               <div>
                 {/* Photo Thumbnail if exists */}
-                {post.image && (
+                {post.image ? (
                   <div className="relative aspect-[16/10] overflow-hidden bg-surface-container">
                     <img
                       src={post.image}
@@ -363,10 +443,19 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                      {post.category === 'gallery' && '완성작 갤러리'}
-                      {post.category === 'tips' && '도안·게이지 팁'}
-                      {post.category === 'qna' && 'Q&A 질문'}
-                      {post.category === 'lounge' && '자유 수다'}
+                      {post.category === 'gallery' && '🧵 완성작 갤러리'}
+                      {post.category === 'tips' && '📐 게이지·도안 팁'}
+                      {post.category === 'qna' && '🧶 실·바늘 Q&A'}
+                      {post.category === 'lounge' && '☕ 자유 수다'}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="p-5 pb-0">
+                    <span className="inline-block bg-primary/10 text-primary text-[10px] font-bold px-2.5 py-1 rounded-full mb-1">
+                      {post.category === 'gallery' && '🧵 완성작 갤러리'}
+                      {post.category === 'tips' && '📐 게이지·도안 팁'}
+                      {post.category === 'qna' && '🧶 실·바늘 Q&A'}
+                      {post.category === 'lounge' && '☕ 자유 수다'}
                     </span>
                   </div>
                 )}
@@ -377,7 +466,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-on-surface">{post.author}</span>
                       {post.badge && (
-                        <span className="text-[10px] bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">
+                        <span className="text-[10px] bg-surface-container text-on-surface-variant font-medium px-2 py-0.5 rounded-full">
                           {post.badge}
                         </span>
                       )}
@@ -393,16 +482,21 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                   </p>
 
                   {/* Knitwear Spec Tags */}
-                  {(post.gauge || post.yarn) && (
+                  {(post.gauge || post.yarn || post.needle) && (
                     <div className="flex flex-wrap gap-1.5 mb-2">
                       {post.gauge && (
-                        <span className="text-[11px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
                           📐 {post.gauge}
                         </span>
                       )}
                       {post.yarn && (
-                        <span className="text-[11px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
+                        <span className="text-[10px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
                           🧶 {post.yarn}
+                        </span>
+                      )}
+                      {post.needle && (
+                        <span className="text-[10px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
+                          🪡 {post.needle}
                         </span>
                       )}
                     </div>
@@ -431,8 +525,9 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                     <span>{post.comments.length}</span>
                   </span>
                 </div>
-                <span className="text-primary font-semibold text-xs group-hover:translate-x-0.5 transition-transform">
-                  더보기 →
+                <span className="text-primary font-semibold text-xs group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5">
+                  <span>상세보기</span>
+                  <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                 </span>
               </div>
             </article>
@@ -440,16 +535,60 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
         </div>
       )}
 
-      {/* 4. Write Modal */}
+      {/* 5. Pagination */}
+      <div className="flex items-center justify-center gap-2 mb-10">
+        <button
+          type="button"
+          onClick={() => setCurrentPage(1)}
+          className={
+            "w-9 h-9 rounded-full text-xs font-bold transition-all cursor-pointer " +
+            (currentPage === 1 ? 'bg-primary text-white shadow-xs' : 'bg-surface-container text-on-surface hover:bg-surface-container-high')
+          }
+        >
+          1
+        </button>
+        <button
+          type="button"
+          onClick={() => setCurrentPage(2)}
+          className={
+            "w-9 h-9 rounded-full text-xs font-bold transition-all cursor-pointer " +
+            (currentPage === 2 ? 'bg-primary text-white shadow-xs' : 'bg-surface-container text-on-surface hover:bg-surface-container-high')
+          }
+        >
+          2
+        </button>
+        <button
+          type="button"
+          onClick={() => setCurrentPage(3)}
+          className={
+            "w-9 h-9 rounded-full text-xs font-bold transition-all cursor-pointer " +
+            (currentPage === 3 ? 'bg-primary text-white shadow-xs' : 'bg-surface-container text-on-surface hover:bg-surface-container-high')
+          }
+        >
+          3
+        </button>
+        <button
+          type="button"
+          className="px-3.5 h-9 rounded-full text-xs font-bold bg-surface-container text-on-surface hover:bg-surface-container-high transition-all cursor-pointer flex items-center gap-1"
+        >
+          <span>다음</span>
+          <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </button>
+      </div>
+
+      {/* 6. Write Modal */}
       {isWriteOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-surface-container-lowest w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08]">
             <div className="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
-              <h3 className="font-serif font-bold text-base text-on-surface">새 뜨개 글 쓰기 🧶</h3>
+              <div className="flex items-center gap-2">
+                <span className="text-xl">🧶</span>
+                <h3 className="font-serif font-bold text-base text-on-surface">새 뜨개 글 쓰기</h3>
+              </div>
               <button
                 type="button"
                 onClick={() => setIsWriteOpen(false)}
-                className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant"
+                className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
@@ -495,7 +634,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
 
               <div className="grid grid-cols-3 gap-2">
                 <div>
-                  <label className="block font-semibold text-on-surface mb-1">게이지</label>
+                  <label className="block font-semibold text-on-surface mb-1">게이지 (선택)</label>
                   <input
                     type="text"
                     value={newGauge}
@@ -505,7 +644,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold text-on-surface mb-1">바늘 호수</label>
+                  <label className="block font-semibold text-on-surface mb-1">바늘 호수 (선택)</label>
                   <input
                     type="text"
                     value={newNeedle}
@@ -515,7 +654,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold text-on-surface mb-1">사용한 실</label>
+                  <label className="block font-semibold text-on-surface mb-1">사용한 실 (선택)</label>
                   <input
                     type="text"
                     value={newYarn}
@@ -535,7 +674,16 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                   className="w-full text-xs text-outline file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:bg-surface-container file:text-primary file:font-bold cursor-pointer"
                 />
                 {newImage && (
-                  <img src={newImage} alt="미리보기" className="mt-2 h-28 rounded-xl object-cover border" />
+                  <div className="relative mt-2 inline-block">
+                    <img src={newImage} alt="미리보기" className="h-28 rounded-xl object-cover border" />
+                    <button
+                      type="button"
+                      onClick={() => setNewImage(null)}
+                      className="absolute top-1 right-1 w-6 h-6 rounded-full bg-black/60 text-white flex items-center justify-center text-xs"
+                    >
+                      ✕
+                    </button>
+                  </div>
                 )}
               </div>
 
@@ -553,7 +701,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
 
               <button
                 type="submit"
-                className="w-full py-3 rounded-2xl bg-primary text-white font-bold text-sm shadow-sm hover:bg-primary-hover transition-all cursor-pointer"
+                className="w-full py-3 rounded-2xl bg-primary text-white font-bold text-sm shadow-sm hover:bg-primary-hover active:scale-98 transition-all cursor-pointer"
               >
                 게시글 등록하기
               </button>
@@ -562,10 +710,17 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
         </div>
       )}
 
-      {/* 5. Detail & Comments Modal */}
+      {/* 7. Detail & Comments Modal */}
       {detailPost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setDetailPost(null)}>
-          <div className="bg-surface-container-lowest w-full max-w-2xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] flex flex-col" onClick={(e) => e.stopPropagation()}>
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200" 
+          onClick={() => setDetailPost(null)}
+        >
+          <div 
+            className="bg-surface-container-lowest w-full max-w-2xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] flex flex-col" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
             <div className="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
               <div className="flex items-center gap-2">
                 <span className="text-xs bg-primary/10 text-primary font-bold px-2.5 py-1 rounded-full">
@@ -579,12 +734,13 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
               <button
                 type="button"
                 onClick={() => setDetailPost(null)}
-                className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer"
+                className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer transition-colors"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
             </div>
 
+            {/* Modal Body */}
             <div className="p-6 overflow-y-auto flex-1 text-sm">
               <h2 className="text-xl font-bold font-serif text-on-surface mb-3">
                 {detailPost.title}
@@ -610,22 +766,37 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                 {detailPost.content}
               </p>
 
-              {/* Specs */}
+              {/* Specs Grid */}
               {(detailPost.gauge || detailPost.needle || detailPost.yarn) && (
                 <div className="bg-surface-container-low p-4 rounded-2xl mb-6 grid grid-cols-3 gap-2 text-xs">
-                  {detailPost.gauge && <div><span className="text-outline block text-[10px]">게이지</span><strong>{detailPost.gauge}</strong></div>}
-                  {detailPost.needle && <div><span className="text-outline block text-[10px]">바늘</span><strong>{detailPost.needle}</strong></div>}
-                  {detailPost.yarn && <div><span className="text-outline block text-[10px]">실</span><strong>{detailPost.yarn}</strong></div>}
+                  {detailPost.gauge && (
+                    <div>
+                      <span className="text-outline block text-[10px]">게이지</span>
+                      <strong className="text-on-surface">{detailPost.gauge}</strong>
+                    </div>
+                  )}
+                  {detailPost.needle && (
+                    <div>
+                      <span className="text-outline block text-[10px]">바늘 호수</span>
+                      <strong className="text-on-surface">{detailPost.needle}</strong>
+                    </div>
+                  )}
+                  {detailPost.yarn && (
+                    <div>
+                      <span className="text-outline block text-[10px]">사용한 실</span>
+                      <strong className="text-on-surface">{detailPost.yarn}</strong>
+                    </div>
+                  )}
                 </div>
               )}
 
-              {/* Likes */}
+              {/* Likes Button */}
               <div className="flex items-center justify-center my-6">
                 <button
                   type="button"
                   onClick={() => handleToggleLike(detailPost.id)}
                   className={
-                    "px-6 py-2.5 rounded-full border flex items-center gap-2 text-sm font-bold cursor-pointer transition-all " +
+                    "px-6 py-2.5 rounded-full border flex items-center gap-2 text-sm font-bold cursor-pointer transition-all active:scale-95 " +
                     (detailPost.userLiked
                       ? 'bg-primary text-white border-primary shadow-sm'
                       : 'border-on-surface/10 hover:border-primary/50 text-on-surface')
@@ -646,15 +817,19 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                 </h4>
 
                 <div className="flex flex-col gap-3 mb-4">
-                  {detailPost.comments.map((c, idx) => (
-                    <div key={idx} className="bg-surface-container-low p-3.5 rounded-2xl text-xs">
-                      <div className="flex items-center justify-between text-on-surface-variant mb-1">
-                        <strong className="text-on-surface">{c.author}</strong>
-                        <span className="text-[10px] text-outline">{c.date}</span>
+                  {detailPost.comments.length === 0 ? (
+                    <p className="text-xs text-outline py-2">첫 번째 응원의 댓글을 남겨보세요!</p>
+                  ) : (
+                    detailPost.comments.map((c, idx) => (
+                      <div key={idx} className="bg-surface-container-low p-3.5 rounded-2xl text-xs">
+                        <div className="flex items-center justify-between text-on-surface-variant mb-1">
+                          <strong className="text-on-surface">{c.author}</strong>
+                          <span className="text-[10px] text-outline">{c.date}</span>
+                        </div>
+                        <p className="text-on-surface leading-normal">{c.text}</p>
                       </div>
-                      <p className="text-on-surface leading-normal">{c.text}</p>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </div>
 
                 <form onSubmit={handleAddComment} className="flex gap-2">
@@ -667,7 +842,7 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs hover:bg-primary-hover cursor-pointer shrink-0"
+                    className="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs hover:bg-primary-hover active:scale-95 cursor-pointer shrink-0 transition-all"
                   >
                     등록
                   </button>
