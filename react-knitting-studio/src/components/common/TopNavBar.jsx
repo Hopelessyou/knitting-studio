@@ -1,18 +1,21 @@
-import React from 'react';
+﻿import React from 'react';
 
-export default function TopNavBar({ activeTab, onSelectTab }) {
+export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenAuth, onSignOut }) {
   const tabs = [
     { id: 'home', label: '홈', icon: 'home' },
     { id: 'sweater', label: '스웨터', sub: '탑다운 레글런' },
     { id: 'beanie', label: '비니 / 와치캡', sub: '8등분 왕관 줄임' },
     { id: 'socks', label: '맞춤 양말', sub: '토업 & 커프다운' },
-    { id: 'scarf', label: '목도리 / 머플러', sub: '변형고무 & 리브' }
+    { id: 'scarf', label: '목도리 / 머플러', sub: '변형고무 & 리브' },
+    { id: 'community', label: '커뮤니티', icon: 'forum' }
   ];
 
+  const userNickname = currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '';
+
   return (
-    <header className="sticky top-0 z-40 bg-[#fff8f3]/90 backdrop-blur-md border-b border-[#201b13]/[0.08]">
+    <header className="sticky top-0 z-40 bg-[#fff8f3]/95 backdrop-blur-md border-b border-[#201b13]/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* /html/body/div/div/header/div[1]/div[1] -> Home Button */}
+        {/* Header Logo -> Home Navigation */}
         <button
           type="button"
           onClick={() => onSelectTab('home')}
@@ -32,20 +35,22 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
           </div>
         </button>
 
-        <nav className="hidden md:flex items-center gap-1 bg-surface-container-low p-1.5 rounded-full border border-on-surface/[0.06]">
+        {/* Desktop Navigation Tabs */}
+        <nav className="hidden lg:flex items-center gap-1 bg-surface-container-low p-1.5 rounded-full border border-on-surface/[0.06]">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => onSelectTab(tab.id)}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
-                  isActive
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'text-on-surface-variant hover:text-on-surface hover:bg-white/60'
-                }`}
+                className={
+                  "px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 " +
+                  (isActive
+                    ? "bg-primary text-white shadow-sm"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-white/60")
+                }
               >
-                {tab.icon && <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>}
+                {tab.icon && <span className="material-symbols-outlined text-[15px]">{tab.icon}</span>}
                 <span>{tab.label}</span>
                 {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
               </button>
@@ -53,10 +58,37 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
           })}
         </nav>
 
+        {/* Right Action Tools: Auth & External */}
         <div className="flex items-center gap-2">
+          {currentUser ? (
+            <div className="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full border border-on-surface/[0.06]">
+              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span className="text-xs font-bold text-on-surface max-w-[100px] truncate" title={userNickname}>
+                {userNickname} 님
+              </span>
+              <button
+                type="button"
+                onClick={onSignOut}
+                className="text-[11px] text-outline hover:text-error ml-1 font-medium cursor-pointer"
+                title="로그아웃"
+              >
+                로그아웃
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={onOpenAuth}
+              className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-surface-container-low hover:bg-surface-container border border-on-surface/[0.08] text-primary transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+            >
+              <span className="material-symbols-outlined text-[16px]">account_circle</span>
+              <span>로그인 / 회원가입</span>
+            </button>
+          )}
+
           <button 
             onClick={() => window.print()}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:bg-surface-container transition-colors"
+            className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:bg-surface-container transition-colors"
           >
             <span className="material-symbols-outlined text-[16px]">print</span>
             <span>도안 인쇄</span>
@@ -73,18 +105,19 @@ export default function TopNavBar({ activeTab, onSelectTab }) {
       </div>
 
       {/* Mobile Tab Scroller */}
-      <div className="md:hidden flex items-center gap-1 overflow-x-auto px-4 py-2 border-t border-on-surface/[0.04] scrollbar-none bg-surface-container-low/50">
+      <div className="lg:hidden flex items-center gap-1 overflow-x-auto px-4 py-2 border-t border-on-surface/[0.04] scrollbar-none bg-surface-container-low/50">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <button
               key={tab.id}
               onClick={() => onSelectTab(tab.id)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all ${
-                isActive
-                  ? 'bg-primary text-white shadow-sm'
-                  : 'text-on-surface-variant bg-white/70'
-              }`}
+              className={
+                "px-3 py-1 rounded-full text-xs font-semibold shrink-0 transition-all " +
+                (isActive
+                  ? "bg-primary text-white shadow-sm"
+                  : "text-on-surface-variant bg-white/70")
+              }
             >
               {tab.label}
             </button>

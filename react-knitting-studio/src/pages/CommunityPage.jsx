@@ -1,0 +1,682 @@
+﻿import React, { useState, useEffect } from 'react';
+
+const INITIAL_SAMPLE_POSTS = [
+  {
+    id: 'post-1',
+    category: 'gallery',
+    title: '생애 첫 탑다운 레글런 스웨터 완성했어요! 도안 계산기 덕분에 목둘레가 딱 맞아요',
+    content: '게이지 18코 24단으로 계산기 돌려서 시작했는데, 목둘레 코잡기부터 요크 늘림까지 한 번도 푸르시오 없이 2주 만에 끝냈습니다! 실은 캐시미어 블렌드 울 사용했어요.',
+    author: '포근한겨울',
+    badge: '스웨터 마스터',
+    date: '30분 전',
+    image: '/images/sweater_loose.jpg',
+    gauge: '18코 24단',
+    needle: '4.5mm 조립식 바늘',
+    yarn: '캐시미어 울 8볼',
+    likes: 42,
+    views: 185,
+    userLiked: false,
+    comments: [
+      { author: '뜨개요정', text: '와 목둘레 튜블러 코잡기 정말 깔끔하네요!', date: '25분 전' },
+      { author: '털실러버', text: '색상이 너무 고급스러워요 축하드립니다~', date: '10분 전' }
+    ]
+  },
+  {
+    id: 'post-2',
+    category: 'tips',
+    title: '왕관 줄임 비니 정수리 안 솟게 줄이는 3가지 꿀팁',
+    content: '8등분 왕관 줄임할 때 마지막 16코 남았을 때 바로 돗바늘로 오므리지 마시고, 2코 모아뜨기 한 바퀴 더 돌려 8코로 만든 뒤 조여주시면 꼭짓점이 울퉁불퉁 솟지 않고 완벽한 반구가 됩니다.',
+    author: '도안연구원',
+    badge: '테크니컬 니터',
+    date: '2시간 전',
+    image: '/images/beanie_watchcap.jpg',
+    gauge: '20코 26단',
+    needle: '4.0mm 숏팁',
+    yarn: '메리노울 2볼',
+    likes: 88,
+    views: 342,
+    userLiked: false,
+    comments: [
+      { author: '초보탈출', text: '맨날 정수리가 솟아서 고민이었는데 꿀팁 감사합니다!', date: '1시간 전' }
+    ]
+  },
+  {
+    id: 'post-3',
+    category: 'qna',
+    title: '저먼 숏로우(GSR) 양말 뒤꿈치 구멍 안 생기는 턴 방법 질문드립니다',
+    content: '되돌아뜨기 할 때 더블스티치를 너무 세게 당기면 다음 단에서 바늘이 안 들어가고, 살살 당기면 구멍이 숭숭 뚫려요. 적당한 장력 노하우가 있을까요?',
+    author: '양말꿈나무',
+    badge: '질문 해결대기',
+    date: '3시간 전',
+    image: '/images/socks_toeup.jpg',
+    gauge: '30코 42단',
+    needle: '2.5mm 80cm 줄바늘',
+    yarn: '오팔 삭얀 4ply',
+    likes: 19,
+    views: 120,
+    userLiked: false,
+    comments: [
+      { author: '양말장인', text: '실을 뒤로 넘길 때 90도 각도로 수직으로 당겨서 다리가 바늘 위에 단단히 걸리게 해주면 구멍이 전혀 안 납니다!', date: '2시간 전' }
+    ]
+  },
+  {
+    id: 'post-4',
+    category: 'gallery',
+    title: '변형고무뜨기 목도리 2미터 완성! 아이코드 가장자리 추천합니다',
+    content: '양쪽 3코씩 아이코드 가장자리 넣고 떴더니 사방이 전혀 말리지 않고 두툼한 호텔 담요 같은 질감이 나왔어요. 선물용으로 최고입니다.',
+    author: '겨울바람',
+    badge: '따뜻한 이웃',
+    date: '5시간 전',
+    image: '/images/scarf_rib.jpg',
+    gauge: '14코 18단',
+    needle: '6.0mm 대바늘',
+    yarn: '알파카 벌키 5볼',
+    likes: 63,
+    views: 290,
+    userLiked: false,
+    comments: []
+  }
+];
+
+export default function CommunityPage({ currentUser, onOpenAuthModal }) {
+  const [posts, setPosts] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('newest');
+
+  // Modals state
+  const [isWriteOpen, setIsWriteOpen] = useState(false);
+  const [detailPost, setDetailPost] = useState(null);
+
+  // New post form state
+  const [newCategory, setNewCategory] = useState('gallery');
+  const [newTitle, setNewTitle] = useState('');
+  const [newContent, setNewContent] = useState('');
+  const [newGauge, setNewGauge] = useState('');
+  const [newNeedle, setNewNeedle] = useState('');
+  const [newYarn, setNewYarn] = useState('');
+  const [newImage, setNewImage] = useState(null);
+
+  // Comment input state
+  const [commentText, setCommentText] = useState('');
+
+  // Load posts
+  useEffect(() => {
+    const saved = localStorage.getItem('KNIT_COMMUNITY_POSTS_V3');
+    if (saved) {
+      try {
+        setPosts(JSON.parse(saved));
+      } catch (e) {
+        setPosts(INITIAL_SAMPLE_POSTS);
+      }
+    } else {
+      setPosts(INITIAL_SAMPLE_POSTS);
+      localStorage.setItem('KNIT_COMMUNITY_POSTS_V3', JSON.stringify(INITIAL_SAMPLE_POSTS));
+    }
+  }, []);
+
+  const savePosts = (updated) => {
+    setPosts(updated);
+    localStorage.setItem('KNIT_COMMUNITY_POSTS_V3', JSON.stringify(updated));
+  };
+
+  const handleOpenWrite = () => {
+    if (!currentUser) {
+      alert('게시글을 작성하려면 먼저 로그인해 주세요! 🧶');
+      onOpenAuthModal();
+      return;
+    }
+    setIsWriteOpen(true);
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      setNewImage(evt.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmitPost = (e) => {
+    e.preventDefault();
+    if (!newTitle.trim() || !newContent.trim()) {
+      alert('제목과 본문을 입력해 주세요.');
+      return;
+    }
+
+    const authorNick = currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '니터';
+    const newPost = {
+      id: 'post-' + Date.now(),
+      category: newCategory,
+      title: newTitle.trim(),
+      content: newContent.trim(),
+      author: authorNick,
+      badge: '열정 니터',
+      date: '방금 전',
+      image: newImage || null,
+      gauge: newGauge.trim() || null,
+      needle: newNeedle.trim() || null,
+      yarn: newYarn.trim() || null,
+      likes: 0,
+      views: 1,
+      userLiked: false,
+      comments: []
+    };
+
+    const updated = [newPost, ...posts];
+    savePosts(updated);
+    setIsWriteOpen(false);
+
+    // Reset
+    setNewTitle('');
+    setNewContent('');
+    setNewGauge('');
+    setNewNeedle('');
+    setNewYarn('');
+    setNewImage(null);
+  };
+
+  const handleToggleLike = (postId, e) => {
+    if (e) e.stopPropagation();
+    const updated = posts.map((p) => {
+      if (p.id === postId) {
+        const nextLiked = !p.userLiked;
+        return {
+          ...p,
+          userLiked: nextLiked,
+          likes: nextLiked ? p.likes + 1 : Math.max(0, p.likes - 1)
+        };
+      }
+      return p;
+    });
+    savePosts(updated);
+
+    if (detailPost && detailPost.id === postId) {
+      const target = updated.find(p => p.id === postId);
+      setDetailPost(target);
+    }
+  };
+
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    if (!commentText.trim()) return;
+    if (!currentUser) {
+      alert('댓글을 남기려면 먼저 로그인해 주세요! 🧶');
+      onOpenAuthModal();
+      return;
+    }
+
+    const authorNick = currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '니터';
+    const updated = posts.map((p) => {
+      if (p.id === detailPost.id) {
+        const newComments = [
+          ...p.comments,
+          { author: authorNick, text: commentText.trim(), date: '방금 전' }
+        ];
+        return { ...p, comments: newComments };
+      }
+      return p;
+    });
+    savePosts(updated);
+    setDetailPost(updated.find(p => p.id === detailPost.id));
+    setCommentText('');
+  };
+
+  // Filtered & Sorted list
+  const filteredPosts = posts
+    .filter((p) => {
+      if (activeCategory !== 'all' && p.category !== activeCategory) return false;
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        return (
+          p.title.toLowerCase().includes(q) ||
+          p.content.toLowerCase().includes(q) ||
+          p.author.toLowerCase().includes(q) ||
+          (p.yarn && p.yarn.toLowerCase().includes(q))
+        );
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'popular') return b.likes - a.likes;
+      if (sortBy === 'comments') return b.comments.length - a.comments.length;
+      return 0; // newest as stored
+    });
+
+  const totalLikes = posts.reduce((sum, p) => sum + (p.likes || 0), 0);
+  const totalComments = posts.reduce((sum, p) => sum + (p.comments?.length || 0), 0);
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      {/* 1. Hero Section */}
+      <div className="text-center max-w-3xl mx-auto mb-10">
+        <span className="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
+          KNITTERS LOUNGE & COMMUNITY
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-on-surface mb-3 tracking-tight">
+          뜨개인들의 따뜻한 사랑방, <span className="text-primary">니팅 커뮤니티</span> 🧶
+        </h2>
+        <p className="text-base text-on-surface-variant leading-relaxed">
+          나만의 맞춤 스웨터·양말 완성작을 자랑하고, 게이지 꿀팁과 실·바늘 노하우를 자유롭게 나눠보세요.
+        </p>
+
+        {/* Realtime Stats Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest border border-on-surface/[0.08] text-xs font-semibold text-on-surface shadow-xs">
+            <span>🧵 공유된 작품</span>
+            <strong className="text-primary">{posts.length}개</strong>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest border border-on-surface/[0.08] text-xs font-semibold text-on-surface shadow-xs">
+            <span>❤️ 누적 응원</span>
+            <strong className="text-primary">{totalLikes}회</strong>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container-lowest border border-on-surface/[0.08] text-xs font-semibold text-on-surface shadow-xs">
+            <span>💬 따뜻한 댓글</span>
+            <strong className="text-primary">{totalComments}개</strong>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Category & Search Toolbar */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-on-surface/[0.08] pb-6 mb-8">
+        {/* Category Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+          {[
+            { id: 'all', label: '전체' },
+            { id: 'gallery', label: '🧵 완성작 갤러리' },
+            { id: 'tips', label: '📐 게이지·도안 팁' },
+            { id: 'qna', label: '🧶 실·바늘 Q&A' },
+            { id: 'lounge', label: '☕ 자유 수다' }
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={
+                "px-4 py-2 rounded-full text-xs font-bold transition-all shrink-0 cursor-pointer " +
+                (activeCategory === cat.id
+                  ? 'bg-primary text-white shadow-sm'
+                  : 'bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high')
+              }
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Right Tools: Search & Write CTA */}
+        <div className="flex items-center gap-3">
+          <div className="relative flex-1 sm:w-64">
+            <span className="material-symbols-outlined text-outline text-[18px] absolute left-3 top-2.5">
+              search
+            </span>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="기법, 실, 작성자 검색..."
+              className="w-full bg-surface-container-lowest border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-full py-2 pl-9 pr-3 text-xs text-on-surface"
+            />
+          </div>
+
+          <button
+            type="button"
+            onClick={handleOpenWrite}
+            className="px-4 py-2 bg-primary text-white font-bold rounded-full text-xs shadow-sm hover:bg-primary-hover transition-all flex items-center gap-1.5 cursor-pointer shrink-0 active:scale-95"
+          >
+            <span className="material-symbols-outlined text-[16px]">edit</span>
+            <span>새 글 쓰기</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 3. Posts Grid */}
+      {filteredPosts.length === 0 ? (
+        <div className="text-center py-20 bg-surface-container-lowest rounded-3xl border border-on-surface/[0.06]">
+          <span className="text-4xl block mb-3">🧶</span>
+          <p className="text-sm font-bold text-on-surface">등록된 게시글이 없습니다.</p>
+          <p className="text-xs text-outline mt-1">첫 번째 따뜻한 뜨개 이야기를 나눠보세요!</p>
+          <button
+            type="button"
+            onClick={handleOpenWrite}
+            className="mt-4 px-4 py-2 bg-primary text-white font-bold rounded-full text-xs shadow-sm hover:bg-primary-hover cursor-pointer"
+          >
+            첫 글 작성하기
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPosts.map((post) => (
+            <article
+              key={post.id}
+              onClick={() => setDetailPost(post)}
+              className="group bg-surface-container-lowest rounded-3xl overflow-hidden border border-on-surface/[0.08] shadow-xs hover:shadow-md hover:border-primary/30 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+            >
+              <div>
+                {/* Photo Thumbnail if exists */}
+                {post.image && (
+                  <div className="relative aspect-[16/10] overflow-hidden bg-surface-container">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                      {post.category === 'gallery' && '완성작 갤러리'}
+                      {post.category === 'tips' && '도안·게이지 팁'}
+                      {post.category === 'qna' && 'Q&A 질문'}
+                      {post.category === 'lounge' && '자유 수다'}
+                    </span>
+                  </div>
+                )}
+
+                {/* Card Content */}
+                <div className="p-5">
+                  <div className="flex items-center justify-between text-xs text-on-surface-variant mb-2">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-on-surface">{post.author}</span>
+                      {post.badge && (
+                        <span className="text-[10px] bg-primary/10 text-primary font-semibold px-2 py-0.5 rounded-full">
+                          {post.badge}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-outline text-[11px]">{post.date}</span>
+                  </div>
+
+                  <h3 className="text-base font-bold font-serif text-on-surface group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-3 mb-4">
+                    {post.content}
+                  </p>
+
+                  {/* Knitwear Spec Tags */}
+                  {(post.gauge || post.yarn) && (
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {post.gauge && (
+                        <span className="text-[11px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
+                          📐 {post.gauge}
+                        </span>
+                      )}
+                      {post.yarn && (
+                        <span className="text-[11px] font-medium bg-surface-container text-on-surface-variant px-2 py-0.5 rounded-md">
+                          🧶 {post.yarn}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Bottom Card Footer */}
+              <div className="px-5 py-3 border-t border-on-surface/[0.04] bg-surface-container-low/40 flex items-center justify-between text-xs text-on-surface-variant">
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={(e) => handleToggleLike(post.id, e)}
+                    className={
+                      "flex items-center gap-1 cursor-pointer transition-colors " +
+                      (post.userLiked ? 'text-primary font-bold' : 'hover:text-primary')
+                    }
+                  >
+                    <span className="material-symbols-outlined text-[16px]">
+                      {post.userLiked ? 'favorite' : 'favorite_border'}
+                    </span>
+                    <span>{post.likes}</span>
+                  </button>
+                  <span className="flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[16px]">chat_bubble_outline</span>
+                    <span>{post.comments.length}</span>
+                  </span>
+                </div>
+                <span className="text-primary font-semibold text-xs group-hover:translate-x-0.5 transition-transform">
+                  더보기 →
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {/* 4. Write Modal */}
+      {isWriteOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-surface-container-lowest w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08]">
+            <div className="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
+              <h3 className="font-serif font-bold text-base text-on-surface">새 뜨개 글 쓰기 🧶</h3>
+              <button
+                type="button"
+                onClick={() => setIsWriteOpen(false)}
+                className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitPost} className="p-6 flex flex-col gap-4 text-xs">
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-semibold text-on-surface mb-1">카테고리</label>
+                  <select
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    className="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-3 text-on-surface"
+                  >
+                    <option value="gallery">🧵 완성작 갤러리</option>
+                    <option value="tips">📐 게이지·도안 팁</option>
+                    <option value="qna">🧶 실·바늘 Q&A</option>
+                    <option value="lounge">☕ 자유 수다</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block font-semibold text-on-surface mb-1">작성자</label>
+                  <input
+                    type="text"
+                    disabled
+                    value={currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || ''}
+                    className="w-full bg-surface-container border border-on-surface/[0.08] rounded-xl py-2 px-3 text-on-surface-variant font-bold opacity-80"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-semibold text-on-surface mb-1">제목</label>
+                <input
+                  type="text"
+                  value={newTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
+                  placeholder="따뜻한 제목을 입력해 주세요"
+                  required
+                  className="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-3 text-on-surface font-medium"
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                <div>
+                  <label className="block font-semibold text-on-surface mb-1">게이지</label>
+                  <input
+                    type="text"
+                    value={newGauge}
+                    onChange={(e) => setNewGauge(e.target.value)}
+                    placeholder="예: 20코 26단"
+                    className="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-2.5 text-on-surface"
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold text-on-surface mb-1">바늘 호수</label>
+                  <input
+                    type="text"
+                    value={newNeedle}
+                    onChange={(e) => setNewNeedle(e.target.value)}
+                    placeholder="예: 4.0mm 줄바늘"
+                    className="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-2.5 text-on-surface"
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold text-on-surface mb-1">사용한 실</label>
+                  <input
+                    type="text"
+                    value={newYarn}
+                    onChange={(e) => setNewYarn(e.target.value)}
+                    placeholder="예: 메리노울 4볼"
+                    className="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl py-2 px-2.5 text-on-surface"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-semibold text-on-surface mb-1">완성작 사진 첨부 (선택)</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full text-xs text-outline file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:bg-surface-container file:text-primary file:font-bold cursor-pointer"
+                />
+                {newImage && (
+                  <img src={newImage} alt="미리보기" className="mt-2 h-28 rounded-xl object-cover border" />
+                )}
+              </div>
+
+              <div>
+                <label className="block font-semibold text-on-surface mb-1">본문 내용</label>
+                <textarea
+                  rows={4}
+                  value={newContent}
+                  onChange={(e) => setNewContent(e.target.value)}
+                  placeholder="뜨개 경험이나 노하우, 궁금한 점을 자유롭게 적어주세요..."
+                  required
+                  className="w-full bg-surface-container-low border border-on-surface/[0.08] rounded-xl p-3 text-on-surface leading-relaxed"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 rounded-2xl bg-primary text-white font-bold text-sm shadow-sm hover:bg-primary-hover transition-all cursor-pointer"
+              >
+                게시글 등록하기
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Detail & Comments Modal */}
+      {detailPost && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setDetailPost(null)}>
+          <div className="bg-surface-container-lowest w-full max-w-2xl max-h-[85vh] rounded-3xl overflow-hidden shadow-2xl border border-on-surface/[0.08] flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
+              <div className="flex items-center gap-2">
+                <span className="text-xs bg-primary/10 text-primary font-bold px-2.5 py-1 rounded-full">
+                  {detailPost.category === 'gallery' && '🧵 완성작 갤러리'}
+                  {detailPost.category === 'tips' && '📐 게이지·도안 팁'}
+                  {detailPost.category === 'qna' && '🧶 실·바늘 Q&A'}
+                  {detailPost.category === 'lounge' && '☕ 자유 수다'}
+                </span>
+                <span className="text-xs text-outline">작성일: {detailPost.date}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setDetailPost(null)}
+                className="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-[20px]">close</span>
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto flex-1 text-sm">
+              <h2 className="text-xl font-bold font-serif text-on-surface mb-3">
+                {detailPost.title}
+              </h2>
+              <div className="flex items-center gap-2 text-xs text-on-surface-variant mb-4 pb-4 border-b border-on-surface/[0.06]">
+                <span className="font-bold text-on-surface">{detailPost.author}</span>
+                {detailPost.badge && (
+                  <span className="bg-surface-container text-on-surface-variant font-medium px-2 py-0.5 rounded-full text-[10px]">
+                    {detailPost.badge}
+                  </span>
+                )}
+              </div>
+
+              {detailPost.image && (
+                <img
+                  src={detailPost.image}
+                  alt={detailPost.title}
+                  className="w-full max-h-96 object-contain rounded-2xl bg-surface-container mb-4"
+                />
+              )}
+
+              <p className="text-on-surface leading-relaxed whitespace-pre-line mb-6">
+                {detailPost.content}
+              </p>
+
+              {/* Specs */}
+              {(detailPost.gauge || detailPost.needle || detailPost.yarn) && (
+                <div className="bg-surface-container-low p-4 rounded-2xl mb-6 grid grid-cols-3 gap-2 text-xs">
+                  {detailPost.gauge && <div><span className="text-outline block text-[10px]">게이지</span><strong>{detailPost.gauge}</strong></div>}
+                  {detailPost.needle && <div><span className="text-outline block text-[10px]">바늘</span><strong>{detailPost.needle}</strong></div>}
+                  {detailPost.yarn && <div><span className="text-outline block text-[10px]">실</span><strong>{detailPost.yarn}</strong></div>}
+                </div>
+              )}
+
+              {/* Likes */}
+              <div className="flex items-center justify-center my-6">
+                <button
+                  type="button"
+                  onClick={() => handleToggleLike(detailPost.id)}
+                  className={
+                    "px-6 py-2.5 rounded-full border flex items-center gap-2 text-sm font-bold cursor-pointer transition-all " +
+                    (detailPost.userLiked
+                      ? 'bg-primary text-white border-primary shadow-sm'
+                      : 'border-on-surface/10 hover:border-primary/50 text-on-surface')
+                  }
+                >
+                  <span className="material-symbols-outlined text-[18px]">
+                    {detailPost.userLiked ? 'favorite' : 'favorite_border'}
+                  </span>
+                  <span>따뜻한 응원 {detailPost.likes}</span>
+                </button>
+              </div>
+
+              {/* Comments Section */}
+              <div className="border-t border-on-surface/[0.06] pt-6">
+                <h4 className="font-bold text-sm text-on-surface mb-3 flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[16px]">chat</span>
+                  <span>댓글 {detailPost.comments.length}개</span>
+                </h4>
+
+                <div className="flex flex-col gap-3 mb-4">
+                  {detailPost.comments.map((c, idx) => (
+                    <div key={idx} className="bg-surface-container-low p-3.5 rounded-2xl text-xs">
+                      <div className="flex items-center justify-between text-on-surface-variant mb-1">
+                        <strong className="text-on-surface">{c.author}</strong>
+                        <span className="text-[10px] text-outline">{c.date}</span>
+                      </div>
+                      <p className="text-on-surface leading-normal">{c.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <form onSubmit={handleAddComment} className="flex gap-2">
+                  <input
+                    type="text"
+                    value={commentText}
+                    onChange={(e) => setCommentText(e.target.value)}
+                    placeholder="따뜻한 응원과 조언을 남겨보세요..."
+                    className="flex-1 bg-surface-container-low border border-on-surface/[0.08] rounded-xl px-3 py-2 text-xs text-on-surface"
+                  />
+                  <button
+                    type="submit"
+                    className="px-4 py-2 bg-primary text-white font-bold rounded-xl text-xs hover:bg-primary-hover cursor-pointer shrink-0"
+                  >
+                    등록
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
