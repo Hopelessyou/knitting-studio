@@ -103,15 +103,6 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
             <span className="material-symbols-outlined text-[17px]">print</span>
             <span>도안 인쇄</span>
           </button>
-          <a
-            href="https://github.com/Hopelessyou/knitting-studio"
-            target="_blank"
-            rel="noreferrer"
-            className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors"
-            title="깃허브 저장소"
-          >
-            <span className="material-symbols-outlined text-[20px]">code</span>
-          </a>
         </div>
       </div>
 
