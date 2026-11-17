@@ -119,7 +119,7 @@ const INITIAL_SAMPLE_POSTS = [
   }
 ];
 
-export default function CommunityPage({ currentUser, onOpenAuthModal }) {
+export default function CommunityPage({ currentUser, onOpenAuthModal, isAdmin }) {
   const [posts, setPosts] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -142,19 +142,29 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
   // Comment input state
   const [commentText, setCommentText] = useState('');
 
-  // Load posts
+  // Load posts with real-time sync from Admin actions
   useEffect(() => {
-    const saved = localStorage.getItem('KNIT_COMMUNITY_POSTS_V4');
-    if (saved) {
-      try {
-        setPosts(JSON.parse(saved));
-      } catch (e) {
+    const load = () => {
+      const saved = localStorage.getItem('KNIT_COMMUNITY_POSTS_V4');
+      if (saved) {
+        try {
+          setPosts(JSON.parse(saved));
+        } catch (e) {
+          setPosts(INITIAL_SAMPLE_POSTS);
+        }
+      } else {
         setPosts(INITIAL_SAMPLE_POSTS);
+        localStorage.setItem('KNIT_COMMUNITY_POSTS_V4', JSON.stringify(INITIAL_SAMPLE_POSTS));
       }
-    } else {
-      setPosts(INITIAL_SAMPLE_POSTS);
-      localStorage.setItem('KNIT_COMMUNITY_POSTS_V4', JSON.stringify(INITIAL_SAMPLE_POSTS));
-    }
+    };
+    load();
+
+    window.addEventListener('knit_storage_updated', load);
+    window.addEventListener('storage', load);
+    return () => {
+      window.removeEventListener('knit_storage_updated', load);
+      window.removeEventListener('storage', load);
+    };
   }, []);
 
   const savePosts = (updated) => {
@@ -276,9 +286,10 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
     setCommentText('');
   };
 
-  // Filtered & Sorted list
+  // Filtered & Sorted list (respecting Admin Pinned & Hidden states)
   const filteredPosts = posts
     .filter((p) => {
+      if (p.isHidden && !isAdmin) return false;
       if (activeCategory !== 'all' && p.category !== activeCategory) return false;
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
@@ -292,6 +303,8 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
       return true;
     })
     .sort((a, b) => {
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
       if (sortBy === 'popular') return b.likes - a.likes;
       if (sortBy === 'comments') return b.comments.length - a.comments.length;
       return 0; // newest as stored
@@ -452,12 +465,26 @@ export default function CommunityPage({ currentUser, onOpenAuthModal }) {
                       alt={post.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <span className="absolute top-3.5 left-3.5 bg-black/65 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs">
+                    <div className="absolute top-3.5 left-3.5 flex items-center gap-1.5 flex-wrap">
+                      {post.isPinned && (
+                        <span className="bg-primary text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-xs flex items-center gap-0.5">
+                          <span className="material-symbols-outlined text-[12px]">push_pin</span>
+                          <span>공지</span>
+                        </span>
+                      )}
+                      {post.isHidden && (
+                        <span className="bg-rose-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-xs flex items-center gap-0.5">
+                          <span className="material-symbols-outlined text-[12px]">visibility_off</span>
+                          <span>숨김</span>
+                        </span>
+                      )}
+                      <span className="bg-black/65 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs">
                       {post.category === 'gallery' && '🧵 완성작 갤러리'}
                       {post.category === 'tips' && '📐 게이지·도안 팁'}
                       {post.category === 'qna' && '🧶 실·바늘 Q&A'}
                       {post.category === 'lounge' && '☕ 자유 수다'}
                     </span>
+                    </div>
                   </div>
                 ) : (
                   <div className="p-6 pb-0">

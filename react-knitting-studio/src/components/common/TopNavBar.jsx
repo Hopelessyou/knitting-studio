@@ -1,7 +1,13 @@
 ﻿import React from 'react';
 
 export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenAuth, onSignOut }) {
-  const tabs = [
+  const isAdmin = currentUser?.user_metadata?.role === 'admin' 
+    || currentUser?.user_metadata?.is_admin === true 
+    || currentUser?.email === 'admin@knitting-studio.com'
+    || currentUser?.email === 'admin';
+  const userNickname = isAdmin ? '관리자' : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '');
+
+  const baseTabs = [
     { id: 'home', label: '홈', icon: 'home' },
     { id: 'sweater', label: '스웨터', sub: '탑다운 레글런' },
     { id: 'beanie', label: '비니 / 와치캡', sub: '8등분 왕관 줄임' },
@@ -10,11 +16,9 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
     { id: 'community', label: '커뮤니티', icon: 'forum' }
   ];
 
-  const isAdmin = currentUser?.user_metadata?.role === 'admin' 
-    || currentUser?.user_metadata?.is_admin === true 
-    || currentUser?.email === 'admin@knitting-studio.com'
-    || currentUser?.email === 'admin';
-  const userNickname = isAdmin ? '관리자' : (currentUser?.user_metadata?.nickname || currentUser?.email?.split('@')[0] || '');
+  const tabs = isAdmin
+    ? [...baseTabs, { id: 'admin', label: '관리자 센터', icon: 'shield_person', isAdminTab: true }]
+    : baseTabs;
 
   return (
     <header className="sticky top-0 z-40 bg-[#fff8f3]/95 backdrop-blur-md border-b border-[#201b13]/[0.08] shadow-2xs">
@@ -50,12 +54,21 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
                 className={
                   "px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 " +
                   (isActive
-                    ? "bg-primary text-white shadow-sm"
-                    : "text-on-surface-variant hover:text-on-surface hover:bg-white/70")
+                    ? (tab.isAdminTab ? "bg-[#201b13] text-amber-300 shadow-sm" : "bg-primary text-white shadow-sm")
+                    : (tab.isAdminTab ? "text-primary bg-primary/10 hover:bg-primary/20" : "text-on-surface-variant hover:text-on-surface hover:bg-white/70"))
                 }
               >
-                {tab.icon && <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>}
-                <span>{tab.label}</span>
+                {tab.isAdminTab ? (
+                  <>
+                    <span className="material-symbols-outlined text-[16px]">shield_person</span>
+                    <span>{tab.label}</span>
+                  </>
+                ) : (
+                  <>
+                    {tab.icon && <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>}
+                    <span>{tab.label}</span>
+                  </>
+                )}
                 {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
               </button>
             );
@@ -68,10 +81,15 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
             <div className="flex items-center gap-2 bg-surface-container px-3.5 py-1.5 rounded-full border border-on-surface/[0.08]">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-2xs"></span>
               {isAdmin && (
-                <span className="px-2 py-0.5 rounded-full bg-primary text-white text-[10px] font-extrabold flex items-center gap-1 shadow-2xs">
-                  <span className="material-symbols-outlined text-[13px]">verified_user</span>
+                <button
+                  type="button"
+                  onClick={() => onSelectTab('admin')}
+                  className="px-2.5 py-0.5 rounded-full bg-[#201b13] hover:bg-primary text-amber-300 hover:text-white text-[10px] font-extrabold flex items-center gap-1 shadow-2xs transition-all cursor-pointer"
+                  title="관리자 센터로 이동"
+                >
+                  <span className="material-symbols-outlined text-[13px]">shield_person</span>
                   <span>관리자</span>
-                </span>
+                </button>
               )}
               <span className="text-xs font-extrabold text-on-surface max-w-[110px] truncate" title={userNickname}>
                 {userNickname} 님
@@ -100,7 +118,7 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
             <button 
               onClick={() => window.print()}
               className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs"
-              title="관리자 전용 도안 인쇄"
+              title="도안 인쇄"
             >
               <span className="material-symbols-outlined text-[17px]">print</span>
               <span>도안 인쇄</span>
@@ -118,13 +136,14 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
               key={tab.id}
               onClick={() => onSelectTab(tab.id)}
               className={
-                "px-3.5 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all " +
+                "px-3.5 py-1.5 rounded-full text-xs font-bold shrink-0 transition-all flex items-center gap-1 " +
                 (isActive
-                  ? "bg-primary text-white shadow-xs"
-                  : "text-on-surface-variant bg-white/80")
+                  ? (tab.isAdminTab ? "bg-[#201b13] text-amber-300 shadow-xs" : "bg-primary text-white shadow-xs")
+                  : (tab.isAdminTab ? "text-primary bg-primary/10" : "text-on-surface-variant bg-white/80"))
               }
             >
-              {tab.label}
+              {tab.isAdminTab && <span className="material-symbols-outlined text-[14px]">shield_person</span>}
+              <span>{tab.label}</span>
             </button>
           );
         })}
