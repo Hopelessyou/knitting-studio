@@ -1,11 +1,10 @@
 {
   "buildCommand": "npm install --prefix react-knitting-studio && npm run build --prefix react-knitting-studio",
   "outputDirectory": "react-knitting-studio/dist",
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ],
   "headers": [
