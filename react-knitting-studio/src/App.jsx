@@ -41,6 +41,41 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, []);
 
+    const isAdmin = currentUser?.user_metadata?.role === 'admin' 
+    || currentUser?.user_metadata?.is_admin === true 
+    || currentUser?.email === 'admin@knitting-studio.com'
+    || currentUser?.email === 'admin';
+
+  // Print restriction: sync class and intercept beforeprint
+  useEffect(() => {
+    if (isAdmin) {
+      document.body.classList.add('is-admin-session');
+    } else {
+      document.body.classList.remove('is-admin-session');
+    }
+
+    const handleBeforePrint = (e) => {
+      const activeUser = currentUser || (() => {
+        try {
+          const l = localStorage.getItem('KNIT_ACTIVE_USER');
+          return l ? JSON.parse(l) : null;
+        } catch (err) { return null; }
+      })();
+
+      const userIsAdmin = activeUser?.user_metadata?.role === 'admin' 
+        || activeUser?.user_metadata?.is_admin === true 
+        || activeUser?.email === 'admin@knitting-studio.com'
+        || activeUser?.email === 'admin';
+
+      if (!userIsAdmin) {
+        alert('도안 인쇄 기능은 관리자(admin) 전용 기능입니다.');
+      }
+    };
+
+    window.addEventListener('beforeprint', handleBeforePrint);
+    return () => window.removeEventListener('beforeprint', handleBeforePrint);
+  }, [isAdmin, currentUser]);
+
   const handleOpenVideo = (videoId, title) => {
     setVideoModal({ isOpen: true, videoId, title });
   };
@@ -74,10 +109,10 @@ export default function App() {
       {/* 2. Main Page Content */}
       <main className="flex-1">
         {activeTab === 'home' && <HomePage onSelectTab={setActiveTab} />}
-        {activeTab === 'sweater' && <SweaterPage onOpenVideo={handleOpenVideo} />}
-        {activeTab === 'beanie' && <BeaniePage onOpenVideo={handleOpenVideo} />}
-        {activeTab === 'socks' && <SocksPage onOpenVideo={handleOpenVideo} />}
-        {activeTab === 'scarf' && <ScarfPage onOpenVideo={handleOpenVideo} />}
+        {activeTab === 'sweater' && <SweaterPage onOpenVideo={handleOpenVideo} isAdmin={isAdmin} />}
+        {activeTab === 'beanie' && <BeaniePage onOpenVideo={handleOpenVideo} isAdmin={isAdmin} />}
+        {activeTab === 'socks' && <SocksPage onOpenVideo={handleOpenVideo} isAdmin={isAdmin} />}
+        {activeTab === 'scarf' && <ScarfPage onOpenVideo={handleOpenVideo} isAdmin={isAdmin} />}
         {activeTab === 'community' && (
           <CommunityPage
             currentUser={currentUser}

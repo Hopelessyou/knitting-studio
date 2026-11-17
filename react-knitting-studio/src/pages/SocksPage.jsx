@@ -8,7 +8,7 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import SocksRoadmap from '../components/roadmap/SocksRoadmap';
 
-export default function SocksPage({ onOpenVideo }) {
+export default function SocksPage({ onOpenVideo, isAdmin }) {
   const [gaugeSts, setGaugeSts] = useState(32);
   const [gaugeRows, setGaugeRows] = useState(42);
   const [footLengthMm, setFootLengthMm] = useState(250);
@@ -70,6 +70,7 @@ export default function SocksPage({ onOpenVideo }) {
 
         <div className="lg:col-span-7">
           <ResultSummaryCard
+            isAdmin={isAdmin}
             castOn={calc.castOn}
             castOnLabel="양말 총 코수 (4의 배수)"
             castOnDesc={`발등 ${calc.halfSts}코 + 발바닥 ${calc.halfSts}코 완벽 2등분 분할`}

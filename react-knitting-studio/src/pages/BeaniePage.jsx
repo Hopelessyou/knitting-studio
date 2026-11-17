@@ -8,7 +8,7 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import BeanieRoadmap from '../components/roadmap/BeanieRoadmap';
 
-export default function BeaniePage({ onOpenVideo }) {
+export default function BeaniePage({ onOpenVideo, isAdmin }) {
   const [gaugeSts, setGaugeSts] = useState(18);
   const [gaugeRows, setGaugeRows] = useState(24);
   const [headCirc, setHeadCirc] = useState(56);
@@ -64,6 +64,7 @@ export default function BeaniePage({ onOpenVideo }) {
 
         <div className="lg:col-span-7">
           <ResultSummaryCard
+            isAdmin={isAdmin}
             castOn={calc.castOn}
             castOnLabel="시작 원형 캐스트온 코수"
             castOnDesc={`머리둘레 ${headCirc}cm - 신축성 5cm 차감 = 목표둘레 ${headCirc - 5}cm 기준`}

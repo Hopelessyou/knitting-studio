@@ -96,13 +96,16 @@ export default function TopNavBar({ activeTab, onSelectTab, currentUser, onOpenA
             </button>
           )}
 
-          <button 
-            onClick={() => window.print()}
-            className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-on-surface-variant hover:bg-surface-container transition-colors"
-          >
-            <span className="material-symbols-outlined text-[17px]">print</span>
-            <span>도안 인쇄</span>
-          </button>
+          {isAdmin && (
+            <button 
+              onClick={() => window.print()}
+              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs"
+              title="관리자 전용 도안 인쇄"
+            >
+              <span className="material-symbols-outlined text-[17px]">print</span>
+              <span>도안 인쇄</span>
+            </button>
+          )}
         </div>
       </div>
 

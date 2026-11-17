@@ -8,7 +8,7 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import SweaterRoadmap from '../components/roadmap/SweaterRoadmap';
 
-export default function SweaterPage({ onOpenVideo }) {
+export default function SweaterPage({ onOpenVideo, isAdmin }) {
   const [gaugeSts, setGaugeSts] = useState(20);
   const [gaugeRows, setGaugeRows] = useState(28);
   const [chestBase, setChestBase] = useState(100);
@@ -58,6 +58,7 @@ export default function SweaterPage({ onOpenVideo }) {
 
         <div className="lg:col-span-7">
           <ResultSummaryCard
+            isAdmin={isAdmin}
             castOn={calc.castOn}
             castOnLabel="시작 목둘레 캐스트온 코수"
             castOnDesc={`목둘레 둘레 약 46cm 기준 · 3.5mm 바늘로 튜블러 코잡기 권장`}

@@ -8,7 +8,7 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import ScarfRoadmap from '../components/roadmap/ScarfRoadmap';
 
-export default function ScarfPage({ onOpenVideo }) {
+export default function ScarfPage({ onOpenVideo, isAdmin }) {
   const [gaugeSts, setGaugeSts] = useState(18);
   const [gaugeRows, setGaugeRows] = useState(24);
   const [targetW, setTargetW] = useState(25);
@@ -81,6 +81,7 @@ export default function ScarfPage({ onOpenVideo }) {
 
         <div className="lg:col-span-7">
           <ResultSummaryCard
+            isAdmin={isAdmin}
             castOn={calc.totalCastOn}
             castOnLabel="시작 캐스트온 코수"
             castOnDesc={`패턴 코수 ${calc.bodySts}코 + 엣지 ${calc.edgeSts}코 = 총 ${calc.totalCastOn}코`}

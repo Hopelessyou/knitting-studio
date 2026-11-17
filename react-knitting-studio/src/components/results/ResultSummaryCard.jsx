@@ -6,8 +6,19 @@ export default function ResultSummaryCard({
   castOnDesc,
   specs = [],
   formula,
-  ruleDesc
+  ruleDesc,
+  isAdmin
 }) {
+  const userIsAdmin = isAdmin !== undefined ? isAdmin : (() => {
+    try {
+      const local = localStorage.getItem('KNIT_ACTIVE_USER');
+      if (local) {
+        const u = JSON.parse(local);
+        return u?.user_metadata?.role === 'admin' || u?.user_metadata?.is_admin === true || u?.email === 'admin@knitting-studio.com' || u?.email === 'admin';
+      }
+    } catch (e) {}
+    return false;
+  })();
   return (
     <div className="bg-surface-container-lowest rounded-3xl p-6 border-2 border-primary/30 shadow-md mb-8 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none" />
@@ -19,13 +30,16 @@ export default function ResultSummaryCard({
           </span>
           <h2 className="text-xl font-bold font-serif text-on-surface">도안 핵심 수치 연산 결과</h2>
         </div>
-        <button
-          onClick={() => window.print()}
-          className="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold hover:bg-primary-hover shadow-sm transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
-        >
-          <span className="material-symbols-outlined text-[16px]">print</span>
-          <span>A4 도안 인쇄</span>
-        </button>
+        {userIsAdmin && (
+          <button
+            onClick={() => window.print()}
+            className="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold hover:bg-primary-hover shadow-sm transition-all flex items-center gap-1.5 self-start sm:self-auto cursor-pointer"
+            title="관리자 전용 A4 도안 인쇄"
+          >
+            <span className="material-symbols-outlined text-[16px]">print</span>
+            <span>A4 도안 인쇄</span>
+          </button>
+        )}
       </div>
 
       {/* Cast on Hero Badge */}

@@ -36,3 +36,10 @@
   'opsz' 24;
   vertical-align: middle;
 }
+
+/* Administrator Exclusive Print Mode */
+@media print {
+  body:not(.is-admin-session) {
+    display: none !important;
+  }
+}
