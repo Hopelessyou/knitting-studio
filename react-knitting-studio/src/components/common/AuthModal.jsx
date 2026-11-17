@@ -185,12 +185,12 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-surface-container-low border-b border-on-surface/[0.06]">
-          <div className="flex items-center gap-2">
-            <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
+        <div className="flex items-center justify-between px-6 py-4.5 bg-surface-container-low border-b border-on-surface/[0.08]">
+          <div className="flex items-center gap-2.5">
+            <span className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-extrabold text-sm shadow-2xs">
               🧶
             </span>
-            <h3 className="text-base font-bold text-on-surface font-serif">
+            <h3 className="text-base font-extrabold text-on-surface font-serif">
               {tab === 'login' && '니팅 스튜디오 로그인'}
               {tab === 'signup' && '니팅 스튜디오 회원가입'}
               {tab === 'reset' && '비밀번호 재설정'}
@@ -207,12 +207,12 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
 
         {/* 3 Tabs Row */}
         <div className="p-6 pb-2">
-          <div className="grid grid-cols-3 p-1 bg-surface-container rounded-full border border-on-surface/[0.05] text-xs">
+          <div className="grid grid-cols-3 p-1.5 bg-surface-container rounded-full border border-on-surface/[0.08] text-xs">
             <button
               type="button"
               onClick={() => { setTab('login'); setErrorMsg(''); }}
               className={
-                "py-2 text-center font-bold rounded-full transition-all cursor-pointer " +
+                "py-2 text-center font-extrabold rounded-full transition-all cursor-pointer " +
                 (tab === 'login'
                   ? 'bg-surface-container-lowest text-primary shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface')
@@ -224,7 +224,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               type="button"
               onClick={() => { setTab('signup'); setErrorMsg(''); }}
               className={
-                "py-2 text-center font-bold rounded-full transition-all cursor-pointer " +
+                "py-2 text-center font-extrabold rounded-full transition-all cursor-pointer " +
                 (tab === 'signup'
                   ? 'bg-surface-container-lowest text-primary shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface')
@@ -236,7 +236,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
               type="button"
               onClick={() => { setTab('reset'); setErrorMsg(''); }}
               className={
-                "py-2 text-center font-bold rounded-full transition-all cursor-pointer " +
+                "py-2 text-center font-extrabold rounded-full transition-all cursor-pointer " +
                 (tab === 'reset'
                   ? 'bg-surface-container-lowest text-primary shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface')
@@ -248,28 +248,28 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 pt-2 flex flex-col gap-3.5 text-sm">
+        <form onSubmit={handleSubmit} className="p-6 pt-2 flex flex-col gap-4 text-sm font-medium">
           {/* Error / Success Alerts */}
           {errorMsg && (
-            <div className="text-xs text-error font-medium p-3 bg-error-container/40 rounded-xl border border-error/20 flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[16px]">error</span>
+            <div className="text-xs text-error font-bold p-3 bg-error-container/40 rounded-xl border border-error/20 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[17px]">error</span>
               <span>{errorMsg}</span>
             </div>
           )}
           {successMsg && (
-            <div className="text-xs text-emerald-800 font-medium p-3 bg-emerald-50 rounded-xl border border-emerald-200 flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[16px] text-emerald-600">check_circle</span>
+            <div className="text-xs text-emerald-800 font-bold p-3 bg-emerald-50 rounded-xl border border-emerald-200 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[17px] text-emerald-600">check_circle</span>
               <span>{successMsg}</span>
             </div>
           )}
 
           {/* Email Field (All Tabs) */}
           <div>
-            <label className="block text-xs font-semibold text-on-surface mb-1">
+            <label className="block text-xs font-bold text-on-surface mb-1.5">
               이메일 주소
             </label>
             <div className="relative">
-              <span className="material-symbols-outlined text-outline text-[18px] absolute left-3 top-2.5">
+              <span className="material-symbols-outlined text-outline text-[19px] absolute left-3.5 top-2.5">
                 mail
               </span>
               <input
@@ -278,7 +278,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="knitter@example.com"
                 required
-                className="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 pl-9 pr-3 text-on-surface placeholder:text-outline/60 text-xs font-medium"
+                className="w-full bg-surface-container-low border border-on-surface/[0.1] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 pl-10 pr-3.5 text-on-surface placeholder:text-outline font-semibold text-xs"
               />
             </div>
           </div>
@@ -286,17 +286,17 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
           {/* Nickname Field (Signup & Reset) */}
           {(tab === 'signup' || tab === 'reset') && (
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-semibold text-on-surface">
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-on-surface">
                   {tab === 'signup' ? '활동 닉네임' : '가입 시 등록한 닉네임'}
                 </label>
                 {tab === 'signup' && (
-                  <span className="text-[10px] text-outline">2~10자 한글/영문/숫자</span>
+                  <span className="text-[11px] text-outline font-medium">2~10자 한글/영문/숫자</span>
                 )}
               </div>
               <div className="flex items-center gap-2">
                 <div className="relative flex-1">
-                  <span className="material-symbols-outlined text-outline text-[18px] absolute left-3 top-2.5">
+                  <span className="material-symbols-outlined text-outline text-[19px] absolute left-3.5 top-2.5">
                     badge
                   </span>
                   <input
@@ -306,7 +306,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                     placeholder="예: 포근한겨울"
                     required
                     maxLength={10}
-                    className="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 pl-9 pr-3 text-on-surface placeholder:text-outline/60 text-xs font-medium"
+                    className="w-full bg-surface-container-low border border-on-surface/[0.1] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 pl-10 pr-3.5 text-on-surface placeholder:text-outline font-semibold text-xs"
                   />
                 </div>
                 {tab === 'signup' && (
@@ -314,7 +314,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                     type="button"
                     onClick={handleCheckNickname}
                     disabled={isNickChecking || !nickname.trim()}
-                    className="px-3 py-2 bg-surface-container hover:bg-surface-container-high text-primary font-bold rounded-xl text-xs shrink-0 cursor-pointer transition-colors border border-on-surface/[0.06] disabled:opacity-50"
+                    className="px-3.5 py-2.5 bg-surface-container hover:bg-surface-container-high text-primary font-extrabold rounded-xl text-xs shrink-0 cursor-pointer transition-colors border border-on-surface/[0.08] disabled:opacity-50"
                   >
                     {isNickChecking ? '확인 중...' : '중복 확인'}
                   </button>
@@ -323,13 +323,13 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
 
               {/* Realtime Nickname Feedback & Admin Forbidden Notice */}
               {tab === 'signup' && (
-                <div className="mt-1 px-1 flex flex-col gap-0.5">
+                <div className="mt-1.5 px-1 flex flex-col gap-0.5">
                   {nickStatus.message ? (
-                    <span className={"text-[11px] font-semibold " + (nickStatus.available ? 'text-emerald-600' : 'text-error')}>
+                    <span className={"text-xs font-bold " + (nickStatus.available ? 'text-emerald-600' : 'text-error')}>
                       {nickStatus.message}
                     </span>
                   ) : (
-                    <span className="text-[10px] text-outline">
+                    <span className="text-[11px] text-outline font-medium">
                       * 관리자, 운영자, 어드민, admin, master 등 사칭 명칭은 사용할 수 없습니다.
                     </span>
                   )}
@@ -340,14 +340,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
 
           {/* Password Field */}
           <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="block text-xs font-semibold text-on-surface">
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-xs font-bold text-on-surface">
                 {tab === 'reset' ? '새 비밀번호' : '비밀번호'}
               </label>
-              <span className="text-[10px] text-outline">6자리 이상</span>
+              <span className="text-[11px] text-outline font-medium">6자리 이상</span>
             </div>
             <div className="relative">
-              <span className="material-symbols-outlined text-outline text-[18px] absolute left-3 top-2.5">
+              <span className="material-symbols-outlined text-outline text-[19px] absolute left-3.5 top-2.5">
                 lock
               </span>
               <input
@@ -357,14 +357,14 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                 placeholder="비밀번호 입력"
                 required
                 minLength={6}
-                className="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 pl-9 pr-10 text-on-surface placeholder:text-outline/60 text-xs font-medium"
+                className="w-full bg-surface-container-low border border-on-surface/[0.1] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 pl-10 pr-10 text-on-surface placeholder:text-outline font-semibold text-xs"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-2 text-outline hover:text-on-surface"
+                className="absolute right-3.5 top-2.5 text-outline hover:text-on-surface cursor-pointer"
               >
-                <span className="material-symbols-outlined text-[18px]">
+                <span className="material-symbols-outlined text-[19px]">
                   {showPassword ? 'visibility_off' : 'visibility'}
                 </span>
               </button>
@@ -374,18 +374,18 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
           {/* Password Confirm Field (Signup & Reset) */}
           {(tab === 'signup' || tab === 'reset') && (
             <div>
-              <div className="flex items-center justify-between mb-1">
-                <label className="block text-xs font-semibold text-on-surface">
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-bold text-on-surface">
                   {tab === 'reset' ? '새 비밀번호 확인' : '비밀번호 확인'}
                 </label>
                 {password && passwordConfirm && (
-                  <span className={"text-[11px] font-bold " + (password === passwordConfirm ? 'text-emerald-600' : 'text-error')}>
+                  <span className={"text-xs font-bold " + (password === passwordConfirm ? 'text-emerald-600' : 'text-error')}>
                     {password === passwordConfirm ? '✓ 비밀번호 일치' : '✕ 불일치'}
                   </span>
                 )}
               </div>
               <div className="relative">
-                <span className="material-symbols-outlined text-outline text-[18px] absolute left-3 top-2.5">
+                <span className="material-symbols-outlined text-outline text-[19px] absolute left-3.5 top-2.5">
                   lock_reset
                 </span>
                 <input
@@ -394,16 +394,16 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                   onChange={(e) => setPasswordConfirm(e.target.value)}
                   placeholder="비밀번호 한 번 더 입력"
                   required
-                  className="w-full bg-surface-container-low border border-on-surface/[0.08] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2 pl-9 pr-3 text-on-surface placeholder:text-outline/60 text-xs font-medium"
+                  className="w-full bg-surface-container-low border border-on-surface/[0.1] focus:border-primary focus:ring-1 focus:ring-primary rounded-xl py-2.5 pl-10 pr-3.5 text-on-surface placeholder:text-outline font-semibold text-xs"
                 />
               </div>
             </div>
           )}
 
-          {/* Password Recovery Notice Box (Signup Tab Only) */}
+          {/* 📌 Password Recovery Notice Box (Signup Tab Only) */}
           {tab === 'signup' && (
-            <div className="p-3 rounded-2xl bg-primary/5 border border-primary/15 text-xs text-on-surface-variant leading-relaxed">
-              <span className="font-bold text-primary block mb-0.5">📌 비밀번호 분실 시 안내</span>
+            <div className="p-3.5 rounded-2xl bg-primary/8 border border-primary/20 text-xs text-on-surface leading-relaxed font-medium">
+              <span className="font-extrabold text-primary block mb-1">📌 비밀번호 분실 시 안내</span>
               가입하신 <strong>이메일</strong>과 <strong>닉네임</strong>이 일치할 경우 언제든지 비밀번호를 안전하게 재설정할 수 있습니다. 별도의 전화번호나 본인인증 없이 간편하게 복구됩니다.
             </div>
           )}
@@ -411,19 +411,19 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
           {/* Login Options (Login Tab Only) */}
           {tab === 'login' && (
             <div className="flex items-center justify-between text-xs pt-1">
-              <label className="flex items-center gap-1.5 cursor-pointer text-on-surface-variant">
+              <label className="flex items-center gap-2 cursor-pointer text-on-surface-variant font-bold">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="rounded border-outline/40 text-primary focus:ring-primary"
+                  className="rounded border-outline/50 text-primary focus:ring-primary w-4 h-4"
                 />
                 <span>로그인 상태 유지</span>
               </label>
               <button
                 type="button"
                 onClick={() => { setTab('reset'); setErrorMsg(''); }}
-                className="text-primary hover:underline cursor-pointer font-medium"
+                className="text-primary hover:underline cursor-pointer font-extrabold"
               >
                 비밀번호를 잊으셨나요?
               </button>
@@ -434,7 +434,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 py-3 rounded-2xl font-bold bg-primary text-white hover:bg-primary-hover active:scale-98 transition-all cursor-pointer shadow-sm disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full mt-2 py-3.5 rounded-2xl font-extrabold bg-primary text-white hover:bg-primary-hover active:scale-98 transition-all cursor-pointer shadow-sm disabled:opacity-50 flex items-center justify-center gap-2 text-sm"
           >
             {loading ? (
               <span>처리 중...</span>
@@ -445,7 +445,7 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
                   {tab === 'signup' && '회원가입 완료하고 시작하기'}
                   {tab === 'reset' && '비밀번호 재설정 및 변경하기'}
                 </span>
-                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                <span className="material-symbols-outlined text-[19px]">arrow_forward</span>
               </>
             )}
           </button>

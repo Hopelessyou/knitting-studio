@@ -48,13 +48,13 @@ export default function HomePage({ onSelectTab }) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       {/* Hero Welcome Banner */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <span className="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3.5 py-1.5 rounded-full inline-block mb-3">
+        <span className="text-xs font-extrabold text-primary uppercase tracking-widest bg-primary/10 px-4 py-1.5 rounded-full inline-block mb-3.5 border border-primary/20 shadow-2xs">
           SMART KNITTING CALCULATOR
         </span>
-        <h2 className="text-3xl sm:text-4xl font-serif font-bold text-on-surface mb-3 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-on-surface mb-3.5 tracking-tight">
           어떤 뜨개 작품을 시작하시겠어요?
         </h2>
-        <p className="text-base text-on-surface-variant leading-relaxed">
+        <p className="text-base font-medium text-on-surface-variant leading-relaxed">
           내 손장력 게이지와 실측 치수만 입력하면, 코잡기부터 완성까지 100% 자동 대입되는 마스터클래스 5단계 실전 도안을 제공합니다.
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function HomePage({ onSelectTab }) {
           <div
             key={card.id}
             onClick={() => onSelectTab(card.id)}
-            className="group bg-surface-container-lowest rounded-3xl overflow-hidden border border-on-surface/[0.08] shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+            className="group bg-surface-container-lowest rounded-3xl overflow-hidden border border-on-surface/[0.08] shadow-xs hover:shadow-xl hover:border-primary/40 transition-all duration-300 cursor-pointer flex flex-col justify-between"
           >
             <div>
               {/* Card Image Banner */}
@@ -75,11 +75,11 @@ export default function HomePage({ onSelectTab }) {
                   alt={card.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute top-3 left-3 flex gap-2">
-                  <span className="bg-black/60 backdrop-blur-md text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                <div className="absolute top-3.5 left-3.5 flex gap-2">
+                  <span className="bg-black/65 backdrop-blur-md text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-xs">
                     {card.badge}
                   </span>
-                  <span className="bg-primary/90 text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                  <span className="bg-primary/95 text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-xs">
                     {card.time}
                   </span>
                 </div>
@@ -87,13 +87,13 @@ export default function HomePage({ onSelectTab }) {
 
               {/* Card Body */}
               <div className="p-6">
-                <span className="text-xs font-bold text-primary uppercase tracking-wider block mb-1">
+                <span className="text-xs font-extrabold text-primary uppercase tracking-wider block mb-1">
                   {card.sub}
                 </span>
-                <h3 className="text-xl font-bold font-serif text-on-surface group-hover:text-primary transition-colors mb-2">
+                <h3 className="text-xl font-bold font-serif text-on-surface group-hover:text-primary transition-colors mb-2.5">
                   {card.title}
                 </h3>
-                <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
+                <p className="text-sm font-medium text-on-surface-variant leading-relaxed mb-4.5">
                   {card.desc}
                 </p>
 
@@ -102,7 +102,7 @@ export default function HomePage({ onSelectTab }) {
                   {card.features.map((f, idx) => (
                     <span
                       key={idx}
-                      className="text-xs font-medium bg-surface-container text-on-surface-variant px-2.5 py-1 rounded-lg"
+                      className="text-xs font-bold bg-surface-container text-on-surface px-3 py-1 rounded-lg border border-on-surface/[0.05]"
                     >
                       ✓ {f}
                     </span>
@@ -115,10 +115,10 @@ export default function HomePage({ onSelectTab }) {
             <div className="p-6 pt-0">
               <button
                 type="button"
-                className="w-full py-3 rounded-2xl bg-surface-container-low group-hover:bg-primary group-hover:text-white text-on-surface font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                className="w-full py-3.5 rounded-2xl bg-surface-container-low group-hover:bg-primary group-hover:text-white text-on-surface font-extrabold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs active:scale-98"
               >
                 <span>계산기 시작하기</span>
-                <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">
+                <span className="material-symbols-outlined text-[19px] group-hover:translate-x-1 transition-transform">
                   arrow_forward
                 </span>
               </button>

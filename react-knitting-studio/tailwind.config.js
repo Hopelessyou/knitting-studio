@@ -17,13 +17,13 @@ export default {
         'surface-container': '#f8ecdf',
         'surface-container-low': '#fef2e5',
         'surface-container-lowest': '#ffffff',
-        'on-surface': '#201b13',
-        'on-surface-variant': '#56423d',
-        outline: '#89726c',
+        'on-surface': '#1b1712',
+        'on-surface-variant': '#473630',
+        outline: '#7c6660',
       },
       fontFamily: {
         serif: ['"Noto Serif KR"', 'serif'],
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"Pretendard"', '"Plus Jakarta Sans"', '"Noto Sans KR"', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
       }
     },
   },
