@@ -1,0 +1,8 @@
+{
+  "name": "knitting-studio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm install --prefix react-knitting-studio && npm run build --prefix react-knitting-studio"
+  }
+}

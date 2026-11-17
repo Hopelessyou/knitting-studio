@@ -11,8 +11,23 @@ import CommunityPage from './pages/CommunityPage';
 import AdminPage from './pages/AdminPage';
 import { supabase } from './services/supabaseClient';
 
+const getInitialTab = () => {
+  if (typeof window !== 'undefined') {
+    const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+    const validTabs = ['home', 'sweater', 'beanie', 'socks', 'scarf', 'community', 'admin'];
+    if (validTabs.includes(cleanPath)) {
+      return cleanPath;
+    }
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (validTabs.includes(hash)) {
+      return hash;
+    }
+  }
+  return 'home';
+};
+
 export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [videoModal, setVideoModal] = useState({ isOpen: false, videoId: '', title: '' });
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -83,6 +98,31 @@ export default function App() {
       currentUser?.email === 'admin'
     )
   );
+
+    // Browser History & Popstate sync
+  useEffect(() => {
+    const handlePopState = () => {
+      const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
+      const validTabs = ['home', 'sweater', 'beanie', 'socks', 'scarf', 'community', 'admin'];
+      if (validTabs.includes(cleanPath)) {
+        setActiveTab(cleanPath);
+      } else {
+        setActiveTab('home');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleSelectTab = (tab) => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined' && window.history) {
+      const targetPath = tab === 'home' ? '/' : `/${tab}`;
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ tab }, '', targetPath);
+      }
+    }
+  };
 
   // Security: If not admin, instantly kick out of admin tab
   useEffect(() => {
@@ -168,7 +208,7 @@ export default function App() {
       {/* 1. Global Navigation */}
       <TopNavBar
         activeTab={activeTab}
-        onSelectTab={setActiveTab}
+        onSelectTab={handleSelectTab}
         currentUser={currentUser}
         isAdmin={isAdmin}
         onOpenAuth={() => setIsAuthOpen(true)}
@@ -177,7 +217,7 @@ export default function App() {
 
       {/* 2. Main Page Content */}
       <main className="flex-1">
-        {activeTab === 'home' && <HomePage onSelectTab={setActiveTab} />}
+        {activeTab === 'home' && <HomePage onSelectTab={handleSelectTab} />}
         {activeTab === 'sweater' && <SweaterPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
         {activeTab === 'beanie' && <BeaniePage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
         {activeTab === 'socks' && <SocksPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
@@ -193,7 +233,7 @@ export default function App() {
           <AdminPage
             currentUser={currentUser}
             isAdmin={isAdmin}
-            onSelectTab={setActiveTab}
+            onSelectTab={handleSelectTab}
             onOpenAuthModal={() => setIsAuthOpen(true)}
           />
         )}
