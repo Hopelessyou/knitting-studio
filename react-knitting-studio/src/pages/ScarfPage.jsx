@@ -101,7 +101,7 @@ export default function ScarfPage({ onOpenVideo, isAdmin }) {
       <ToolChecklist category="scarf" />
 
       {/* 4. Vocab Dictionary */}
-      <VocabDictionary />
+      <VocabDictionary onOpenVideo={onOpenVideo} />
 
       {/* 5. Masterclass Detailed Roadmap */}
       <ScarfRoadmap calc={calc} onOpenVideo={onOpenVideo} />

@@ -90,7 +90,7 @@ export default function SocksPage({ onOpenVideo, isAdmin }) {
       <ToolChecklist category="socks" />
 
       {/* 4. Vocab Dictionary */}
-      <VocabDictionary />
+      <VocabDictionary onOpenVideo={onOpenVideo} />
 
       {/* 5. Masterclass Detailed Roadmap */}
       <SocksRoadmap calc={calc} onOpenVideo={onOpenVideo} />

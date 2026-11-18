@@ -78,7 +78,7 @@ export default function SweaterPage({ onOpenVideo, isAdmin }) {
       <ToolChecklist category="sweater" />
 
       {/* 4. Vocab Dictionary */}
-      <VocabDictionary />
+      <VocabDictionary onOpenVideo={onOpenVideo} />
 
       {/* 5. Masterclass Detailed Roadmap */}
       <SweaterRoadmap calc={calc} onOpenVideo={onOpenVideo} />

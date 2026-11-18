@@ -84,7 +84,7 @@ export default function BeaniePage({ onOpenVideo, isAdmin }) {
       <ToolChecklist category="beanie" />
 
       {/* 4. Vocab Dictionary */}
-      <VocabDictionary />
+      <VocabDictionary onOpenVideo={onOpenVideo} />
 
       {/* 5. Masterclass Detailed Roadmap */}
       <BeanieRoadmap calc={calc} onOpenVideo={onOpenVideo} />

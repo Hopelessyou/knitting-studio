@@ -28,7 +28,7 @@ const getInitialTab = () => {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState(getInitialTab);
-  const [videoModal, setVideoModal] = useState({ isOpen: false, videoId: '', title: '' });
+  const [videoModal, setVideoModal] = useState({ isOpen: false, videoId: '', title: '', query: '' });
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -158,8 +158,8 @@ export default function App() {
     return () => window.removeEventListener('beforeprint', handleBeforePrint);
   }, [isPrintAllowed]);
 
-  const handleOpenVideo = (videoId, title) => {
-    setVideoModal({ isOpen: true, videoId, title });
+  const handleOpenVideo = (videoId, title, query = '') => {
+    setVideoModal({ isOpen: true, videoId, title, query });
   };
 
   const handleCloseVideo = () => {
@@ -244,6 +244,7 @@ export default function App() {
         isOpen={videoModal.isOpen}
         videoId={videoModal.videoId}
         title={videoModal.title}
+        query={videoModal.query}
         onClose={handleCloseVideo}
       />
 
