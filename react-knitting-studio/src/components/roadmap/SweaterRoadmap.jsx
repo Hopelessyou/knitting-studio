@@ -2,48 +2,38 @@ import React, { useState } from 'react';
 
 export default function SweaterRoadmap({ calc, onOpenVideo }) {
   const [activeTab, setActiveTab] = useState('all'); // 'all', '1', '2', '3', '4', '5'
-  const [expandedChecklist, setExpandedChecklist] = useState({
-    caston: true,
-    yoke: true,
-    divide: true,
-    body: true,
-    sleeves: true
-  });
-
-  const toggleSection = (key) => {
-    setExpandedChecklist(prev => ({ ...prev, [key]: !prev[key] }));
-  };
+  const [showCheatSheet, setShowCheatSheet] = useState(true);
 
   const steps = [
-    { id: '1', num: '01', title: '목둘레 코잡기 & 넥밴드 3cm', target: 'caston' },
-    { id: '2', num: '02', title: '레글런 요크 늘림 (M1R/M1L)', target: 'yoke' },
-    { id: '3', num: '03', title: '소매 분리 & 겨드랑이 감아코', target: 'divide' },
-    { id: '4', num: '04', title: '몸통 직진 원형뜨기 & 밑단 고무단', target: 'body' },
-    { id: '5', num: '05', title: '양 소매 원형뜨기 & 마감 바인드오프', target: 'sleeves' },
+    { id: '1', num: '01', title: '목둘레 코잡기 & 넥밴드 3cm' },
+    { id: '2', num: '02', title: '레글런 어깨 늘림 (M1R/M1L)' },
+    { id: '3', num: '03', title: '소매 분리 & 감아코 (조끼 만들기)' },
+    { id: '4', num: '04', title: '몸통 무한 겉뜨기 & 밑단 고무단' },
+    { id: '5', num: '05', title: '양 소매 뜨기 & 최종 완성' },
   ];
 
   return (
     <section id="roadmap" className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-on-surface/[0.08] shadow-sm mb-12">
       {/* 1. Header with Phase Jump Navigation */}
-      <div className="mb-8 pb-6 border-b border-on-surface/[0.06]">
+      <div className="mb-6 pb-6 border-b border-on-surface/[0.06]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
               <span className="text-xs font-bold text-primary tracking-widest uppercase">
-                MASTERCLASS PATTERN MANUAL
+                BEGINNER-FRIENDLY MASTER MANUAL
               </span>
             </div>
             <h2 className="text-2xl font-bold font-serif text-on-surface">
-              탑다운 레글런 스웨터 실전 도안 설명서
+              탑다운 레글런 스웨터 완전 초보 제작 설명서
             </h2>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-xs font-bold text-primary bg-primary-fixed/50 px-3 py-1.5 rounded-full border border-primary/20">
-              실측 게이지 100% 자동 대입
+              실측 게이지 100% 자동 연산 반영
             </span>
             <span className="text-xs font-medium text-on-surface-variant bg-surface-container-high px-3 py-1.5 rounded-full">
-              총 5대 핵심 공정 · 상세 가이드
+              총 5대 핵심 공정 · 완전 초보 눈높이 해설
             </span>
           </div>
         </div>
@@ -59,7 +49,7 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            전체 공정 펼쳐보기
+            전체 공정 한눈에 보기
           </button>
           {steps.map(s => (
             <button
@@ -79,6 +69,96 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         </div>
       </div>
 
+      {/* 🌟 2. Beginner 3-Minute Cheat Sheet Banner */}
+      <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-2xs">
+        <div className="flex items-center justify-between gap-2 mb-3 cursor-pointer" onClick={() => setShowCheatSheet(!showCheatSheet)}>
+          <div className="flex items-center gap-2 text-primary font-bold text-sm sm:text-base">
+            <span className="material-symbols-outlined text-[20px]">lightbulb</span>
+            <span>🌱 완전 초보자를 위한 스웨터 3분 정복 치트키 (시작 전 필독!)</span>
+          </div>
+          <button type="button" className="text-xs text-primary font-semibold flex items-center gap-1">
+            <span>{showCheatSheet ? '접기' : '펼쳐보기'}</span>
+            <span className="material-symbols-outlined text-[16px]">{showCheatSheet ? 'expand_less' : 'expand_more'}</span>
+          </button>
+        </div>
+
+        {showCheatSheet && (
+          <div className="space-y-4 pt-1 text-xs sm:text-sm text-on-surface leading-relaxed border-t border-amber-500/10">
+            {/* Flow Map */}
+            <div className="p-3.5 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+              <strong className="text-primary font-bold block mb-1.5 text-xs">
+                🧭 스웨터는 이렇게 만들어져요 (위에서 아래로 뜨는 탑다운!)
+              </strong>
+              <div className="flex items-center gap-1 sm:gap-2 flex-wrap text-[11px] sm:text-xs font-semibold text-on-surface">
+                <span className="px-2 py-1 rounded-md bg-primary-fixed/40 text-primary">1. 목둘레 (도넛 만들기)</span>
+                <span className="text-outline">➔</span>
+                <span className="px-2 py-1 rounded-md bg-primary-fixed/40 text-primary">2. 어깨선 늘림 (티셔츠 판 만들기)</span>
+                <span className="text-outline">➔</span>
+                <span className="px-2 py-1 rounded-md bg-primary-fixed/40 text-primary">3. 소매 분리 (조끼 만들기)</span>
+                <span className="text-outline">➔</span>
+                <span className="px-2 py-1 rounded-md bg-primary-fixed/40 text-primary">4. 몸통 겉뜨기 (무한 힐링)</span>
+                <span className="text-outline">➔</span>
+                <span className="px-2 py-1 rounded-md bg-primary-fixed/40 text-primary">5. 양쪽 소매 뜨기 (완성!)</span>
+              </div>
+            </div>
+
+            {/* 3 Green Passes */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20">
+                <div className="flex items-center gap-1.5 text-emerald-700 font-bold text-xs mb-1">
+                  <span className="material-symbols-outlined text-[16px]">check_circle</span>
+                  <span>① 흔들코가 너무 어렵다면?</span>
+                </div>
+                <p className="text-on-surface-variant text-[11px] leading-normal">
+                  외계어 같은 흔들코 대신, 평소 하던 <strong>일반 코잡기(롱테일)</strong>로 시작하세요! 머리가 들어가도록 <strong>느슨하게만</strong> 잡으면 100% 성공합니다.
+                </p>
+              </div>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20">
+                <div className="flex items-center gap-1.5 text-emerald-700 font-bold text-xs mb-1">
+                  <span className="material-symbols-outlined text-[16px]">check_circle</span>
+                  <span>② 독일식 경사뜨기(GSR) 머리 아프면?</span>
+                </div>
+                <p className="text-on-surface-variant text-[11px] leading-normal">
+                  초보자는 <strong>과감하게 건너뛰고 바로 2단계로 가셔도</strong> 예쁜 라운드넥 스웨터가 완성됩니다! 스트레스받지 마세요.
+                </p>
+              </div>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20">
+                <div className="flex items-center gap-1.5 text-emerald-700 font-bold text-xs mb-1">
+                  <span className="material-symbols-outlined text-[16px]">check_circle</span>
+                  <span>③ 돗바늘 코막음 손 떨리면?</span>
+                </div>
+                <p className="text-on-surface-variant text-[11px] leading-normal">
+                  어려운 돗바늘 기법 대신, 대바늘로 하는 <strong>일반 겉뜨기 덮어씌워 코막음</strong>을 넉넉하게 해주셔도 충분히 튼튼하고 예쁩니다.
+                </p>
+              </div>
+            </div>
+
+            {/* 4 Core Hand Actions */}
+            <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06] text-xs">
+              <strong className="text-on-surface font-bold block mb-1 text-xs">
+                🖐️ 딱 4개만 외우세요! 초보 필수 손동작 공식
+              </strong>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-on-surface-variant">
+                <div>
+                  <strong className="text-primary font-bold">M1R (오른쪽 늘림 - 뒤앞앞):</strong> 코 사이 가로줄을 왼바늘로 <strong>뒤에서 앞으로</strong> 푹 찔러 올린 뒤 <strong>앞다리</strong>에 겉뜨기!
+                </div>
+                <div>
+                  <strong className="text-primary font-bold">M1L (왼쪽 늘림 - 앞뒤뒤):</strong> 코 사이 가로줄을 왼바늘로 <strong>앞에서 뒤로</strong> 푹 찔러 올린 뒤 <strong>뒷다리</strong>에 꼬아 겉뜨기!
+                </div>
+                <div>
+                  <strong className="text-primary font-bold">감아코 (Backward Loop):</strong> 왼손 엄지에 실을 둘러 생긴 고리에 오른쪽 바늘을 쏙 끼우는 초간단 코잡기.
+                </div>
+                <div>
+                  <strong className="text-primary font-bold">마커 (Marker):</strong> 편물을 찌르는 게 아니라 <strong>바늘에 반지처럼 끼워두는</strong> 길잡이.
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="space-y-8">
         {/* ========================================================================= */}
         {/* STEP 01 */}
@@ -86,17 +166,17 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {(activeTab === 'all' || activeTab === '1') && (
           <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
                   01
                 </span>
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-on-surface">
-                    시작 목둘레 <span className="text-primary font-extrabold">{calc.castOn}코</span> 잡기 &amp; 넥밴드 3cm
+                    목둘레 코잡기 <span className="text-primary font-extrabold">({calc.castOn}코)</span> &amp; 넥밴드 3cm
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
-                    기초 코잡기부터 꼬임 없는 원형 연결, 탄력 있는 넥라인 완성
+                    스웨터의 맨 윗부분인 목 구멍(도넛 모양)을 만들고 단정한 넥밴드를 뜹니다.
                   </p>
                 </div>
               </div>
@@ -107,6 +187,29 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 <span className="text-xs font-medium bg-surface-container-highest px-2.5 py-1 rounded-full text-on-surface-variant">
                   줄길이 40cm (또는 매직루프)
                 </span>
+              </div>
+            </div>
+
+            {/* Easy vs Pro Badge Choice */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-3">
+              <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs">
+                <div className="flex items-center gap-1.5 font-bold text-emerald-800 mb-1">
+                  <span className="material-symbols-outlined text-[16px]">sentiment_satisfied</span>
+                  <span>🟢 완전 초보 추천 (가장 쉬운 길)</span>
+                </div>
+                <p className="text-emerald-950 text-[11px] leading-relaxed">
+                  어려운 흔들코 영상 보며 고생하지 마세요! <strong>일반 롱테일 코잡기</strong>로 {calc.castOn}코를 잡으세요. 머리가 쑥 들어가도록 <strong>손가락 하나 들어갈 정도로 약간 느슨하게</strong>만 잡아주면 완벽합니다.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-surface-container-lowest border border-on-surface/[0.08] text-xs">
+                <div className="flex items-center gap-1.5 font-bold text-on-surface mb-1">
+                  <span className="material-symbols-outlined text-[16px]">verified</span>
+                  <span>🔵 숙련자 정석 옵션</span>
+                </div>
+                <p className="text-on-surface-variant text-[11px] leading-relaxed">
+                  기성복 니트처럼 끝단이 둥글고 신축성 있는 마감을 원하시면 <strong>이탈리안 튜블러(흔들코)</strong> 기법을 사용하세요 (하단 영상 참조).
+                </p>
               </div>
             </div>
 
@@ -130,7 +233,7 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                     시작 목둘레 <tspan fontWeight="800" fill="#984125">{calc.castOn}코</tspan>
                   </text>
                   <text x="210" y="74" textAnchor="middle" fontSize="11" fontWeight="600" fill="#655a4e">
-                    흔들코 ➔ 1코 고무뜨기 3cm 직진
+                    1코 고무뜨기 3cm 직진 (겉뜨기 1, 안뜨기 1)
                   </text>
                   <g transform="translate(65, 8)">
                     <rect width="88" height="22" rx="11" fill="#ffdbd0" />
@@ -144,55 +247,47 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
               </div>
             </div>
 
-            {/* Granular Instructions */}
-            <div className="space-y-3 text-sm text-on-surface leading-relaxed">
-              <p>
-                <strong>1. 바늘 선택 &amp; 준비</strong>: 메인 몸통 바늘(4.5mm)보다 1mm 가는 <strong>3.5mm 40cm 줄바늘</strong>을 사용합니다. 시작 목둘레는 둘레가 좁기 때문에 긴 줄바늘을 쓰면 케이블이 팽팽하게 당겨져 코잡기가 매우 힘드므로 꼭 40cm 줄바늘 또는 매직루프를 활용하세요.
-              </p>
-              <p>
-                <strong>2. 신축성 튜블러(흔들코) 코잡기</strong>: 계산된 시작 코수인 <strong><span className="font-bold text-primary">{calc.castOn}코</span></strong>를 잡습니다. 일반 롱테일 코잡기는 머리가 통과할 때 신축성이 부족해 옷이 뜯어질 수 있으므로, 기성복처럼 쫀쫀하고 탄력 있는 <strong>흔들코(Italian Tubular Cast-on)</strong> 기법을 권장합니다.
-              </p>
-              <p>
-                <strong>3. 꼬임 방지 원형 연결 (초보자 실수 1위!)</strong>: 바늘에 걸린 모든 코의 아랫단(땋은 머리 모양의 릿지)이 안쪽을 향하도록 평평한 테이블에 가지런히 펼쳐 정렬합니다. 코가 한 번이라도 비틀린 채 첫 코와 마지막 코를 이으면 전체가 뫼비우스의 띠처럼 꼬여 풀고 다시 떠야 합니다.
-              </p>
-              <p>
-                <strong>4. 1코 고무단 3cm 완성</strong>: 원형으로 연결한 뒤 첫 코에 시작 마커(BOR)를 걸고, <strong>1코 고무뜨기 (겉1, 안1)</strong>로 <strong>3cm (약 8~10단)</strong>을 단정하게 뜹니다.
-              </p>
-            </div>
-
-            {/* Neckline Styles A vs B */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold flex items-center gap-1 mb-1 text-sm">
-                  <span className="material-symbols-outlined text-[16px]">tips_and_updates</span>
-                  <span>스타일 A: 기본 싱글 넥밴드 (3cm)</span>
+            {/* Step-by-Step Action List */}
+            <div className="space-y-3.5 text-xs sm:text-sm text-on-surface leading-relaxed">
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  1단계: 3.5mm 40cm 바늘에 {calc.castOn}코 잡기
                 </strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  가장 가볍고 산뜻한 기본 라운드넥. 목둘레 답답함 없이 내추럴하게 착용하기 좋습니다.
+                <p className="text-on-surface-variant text-xs">
+                  메인 몸통 바늘(4.5mm)보다 1mm 가는 <strong>3.5mm 줄바늘</strong>을 씁니다. 목둘레는 둘레가 작기 때문에 줄 길이가 짧은 <strong>40cm 줄바늘</strong>을 쓰거나 긴 바늘로 매직루프를 해야 바늘이 편안합니다. 계산된 코수 <strong>{calc.castOn}코</strong>를 바늘에 만듭니다.
                 </p>
               </div>
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold flex items-center gap-1 mb-1 text-sm">
-                  <span className="material-symbols-outlined text-[16px]">style</span>
-                  <span>스타일 B: 도톰한 접단 넥밴드 (6~7cm)</span>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-rose-500/20">
+                <strong className="text-rose-600 font-bold text-xs sm:text-sm flex items-center gap-1.5 mb-1">
+                  <span className="material-symbols-outlined text-[16px]">warning</span>
+                  <span>2단계: 책상에 내려놓고 꼬임 풀기 (초보자 멘붕 1위 실수 방지!)</span>
                 </strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  고무단을 6~7cm 떠서 안쪽으로 반 접어 코를 주워 겹쳐 뜨면 목 늘어남이 없는 탄탄한 명품 니트 완성!
+                <p className="text-on-surface-variant text-xs">
+                  코를 다 잡은 뒤 평평한 책상에 도넛 모양으로 가지런히 펼쳐놓으세요. 바늘에 걸린 코 아래 <strong>땋은 머리 모양(V자 줄기)이 모두 안쪽을 바라보고 있는지</strong> 꼭 눈으로 확인하세요! 코가 꽈배기처럼 비틀린 채 첫 코와 마지막 코를 이으면 전체가 꼬여버려 다 풀러야 합니다.
+                </p>
+              </div>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  3단계: 원형 연결 후 1코 고무뜨기 3cm 뜨기
+                </strong>
+                <p className="text-on-surface-variant text-xs">
+                  오른쪽 바늘 끝에 시작을 표시할 <strong>시작마커(BOR)</strong>를 쏙 끼우고, 첫 코와 마지막 코를 이어 원형으로 뜨기 시작합니다.<br/>
+                  <strong>[겉뜨기 1개 ➔ 안뜨기 1개]</strong>를 번갈아 뜨며 자로 쟀을 때 <strong>약 3cm(약 8~10단)</strong>가 될 때까지 돕니다.<br/>
+                  💡 <em>손동작 팁: 겉뜨기 할 땐 실을 바늘 뒤에, 안뜨기 할 땐 실을 바늘 앞으로 가져와야 원치 않는 구멍이 생기지 않아요!</em>
                 </p>
               </div>
             </div>
 
-            {/* German Short Rows (GSR) Guide */}
-            <div className="p-4 bg-surface-container-lowest rounded-xl border border-secondary/20 text-xs text-on-surface-variant flex flex-col gap-1.5 mb-4">
-              <div className="flex items-center gap-1.5 text-secondary font-bold text-sm">
+            {/* GSR Skip Option */}
+            <div className="p-3.5 bg-surface-container-lowest rounded-xl border border-secondary/20 text-xs text-on-surface-variant flex flex-col gap-1.5 my-3.5">
+              <div className="flex items-center gap-1.5 text-secondary font-bold text-xs sm:text-sm">
                 <span className="material-symbols-outlined text-[17px]">accessibility_new</span>
-                <span>뒷목 올림(독일식 경사뜨기, GSR) 선택 가이드</span>
+                <span>💡 뒷목 높임(독일식 경사뜨기, GSR) 안심 가이드</span>
               </div>
               <p className="leading-relaxed">
-                • <strong>초보자 추천 (가장 쉬운 입문)</strong>: 처음 스웨터를 뜨신다면 경사뜨기 없이 바로 STEP 02로 넘어가셔도 충분히 예쁜 라운드넥이 완성됩니다.
-              </p>
-              <p className="leading-relaxed">
-                • <strong>기성복 핏 옵션</strong>: 스웨터가 뒤로 젖혀지거나 앞목이 목을 압박하는 현상을 완벽히 방지하고 싶다면, 넥밴드 직후 뒷목~양 소매 구간에서 <strong>독일식 경사뜨기(German Short Rows)</strong>를 4~6회 왕복하여 뒷목 높이를 약 2.5~3cm 높여주면 목선이 예술적으로 편안해집니다.
+                옷 뒷목을 살짝 높여 목을 더 편안하게 해주는 기법입니다. 하지만 <strong>완전 초보자라면 과감히 건너뛰고 바로 STEP 02로 넘어가셔도 예쁜 라운드넥 스웨터가 완성</strong>됩니다! 부담 없이 넘어가세요.
               </p>
             </div>
 
@@ -200,11 +295,11 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
             <div>
               <button
                 type="button"
-                onClick={() => onOpenVideo('00u88Q6z3bA', '이탈리안 튜블러 코잡기 (흔들코)')}
+                onClick={() => onOpenVideo('00u88Q6z3bA', '이탈리안 튜브 코잡기 (흔들코)')}
                 className="inline-flex items-center gap-2 text-xs text-primary hover:text-white hover:bg-primary bg-primary-fixed/40 px-4 py-2 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95"
               >
                 <span className="material-symbols-outlined text-[18px]">play_circle</span>
-                <span>기법 영상: 튜블러 코잡기 (흔들코) 재생</span>
+                <span>기법 영상: 튜브 코잡기 &amp; 1코 고무단 재생</span>
               </button>
             </div>
           </div>
@@ -216,17 +311,17 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {(activeTab === 'all' || activeTab === '2') && (
           <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
                   02
                 </span>
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-on-surface">
-                    마커 배분 &amp; 요크 레글런 사선 늘림 <span className="text-primary font-extrabold">({calc.neededIncreases}회 반복)</span>
+                    마커 배분 &amp; 레글런 사선 늘림 <span className="text-primary font-extrabold">({calc.neededIncreases}회 반복)</span>
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
-                    4곳의 레글런 선을 따라 M1R/M1L로 어깨와 소매를 입체적으로 확장
+                    어깨선 4곳을 대각선으로 점점 넓혀가며 앞판, 뒤판, 양쪽 팔 공간을 만듭니다.
                   </p>
                 </div>
               </div>
@@ -240,10 +335,11 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
               </div>
             </div>
 
-            {/* Instruction intro */}
-            <p className="text-sm text-on-surface leading-relaxed mb-4">
-              <strong>1. 4.5mm 메인 바늘로 교체 &amp; 마커 걸기</strong>: 넥밴드가 끝나면 이제 스웨터 전체 텐션을 결정하는 <strong>4.5mm 메인 줄바늘</strong>로 바꾸면서, 아래 실시간 마커 배분 공식에 맞춰 4개의 마커를 걸어줍니다.
-            </p>
+            {/* 3-Second Concept */}
+            <div className="p-3 bg-primary-fixed/20 rounded-xl border border-primary/20 text-xs text-on-surface mb-3.5">
+              <strong className="text-primary font-bold block mb-0.5">🎯 이번 단계에서 내가 만드는 것:</strong>
+              목 구멍에서 시작해 4개의 대각선(레글런 선)을 따라 코를 늘려가며, 마치 티셔츠처럼 <strong>앞판·뒤판과 양쪽 소매가 될 넓은 판</strong>을 만드는 핵심 공정입니다!
+            </div>
 
             {/* SVG Raglan Schematic Diagram */}
             <div className="p-4 bg-surface-container-lowest rounded-xl border border-on-surface/[0.08] my-4 shadow-2xs">
@@ -252,7 +348,7 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                   <span className="material-symbols-outlined text-[16px]">pin_drop</span>
                   <span>STEP 02 구조도: 탑다운 레글런 4방향 확장 평면도</span>
                 </span>
-                <span className="text-xs text-outline font-medium">레글런 선: 각 2코 (총 8코)</span>
+                <span className="text-xs text-outline font-medium">레글런 기둥 각 2코 (총 8코)</span>
               </div>
 
               <div className="w-full flex justify-center py-2">
@@ -313,82 +409,114 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
 
               {/* 4-Zone Stat Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs mt-2">
-                <div className="p-2.5 bg-surface-container-low rounded-lg">
-                  <span className="text-on-surface-variant block mb-0.5">뒷판 (Back)</span>
-                  <strong className="text-primary font-bold text-sm">{calc.backSts}코</strong>
+                <div className="p-2 bg-surface-container-low rounded-lg">
+                  <span className="text-on-surface-variant block text-[11px]">뒷판 시작</span>
+                  <strong className="text-primary text-sm font-bold">{calc.backSts}코</strong>
                 </div>
-                <div className="p-2.5 bg-surface-container-low rounded-lg">
-                  <span className="text-on-surface-variant block mb-0.5">오른쪽 소매</span>
-                  <strong className="text-primary font-bold text-sm">{calc.sleeveSts}코</strong>
+                <div className="p-2 bg-surface-container-low rounded-lg">
+                  <span className="text-on-surface-variant block text-[11px]">앞판 시작</span>
+                  <strong className="text-primary text-sm font-bold">{calc.frontSts}코</strong>
                 </div>
-                <div className="p-2.5 bg-surface-container-low rounded-lg">
-                  <span className="text-on-surface-variant block mb-0.5">앞판 (Front)</span>
-                  <strong className="text-primary font-bold text-sm">{calc.frontSts}코</strong>
+                <div className="p-2 bg-surface-container-low rounded-lg">
+                  <span className="text-on-surface-variant block text-[11px]">양 소매 각각</span>
+                  <strong className="text-secondary text-sm font-bold">{calc.sleeveSts}코</strong>
                 </div>
-                <div className="p-2.5 bg-surface-container-low rounded-lg">
-                  <span className="text-on-surface-variant block mb-0.5">왼쪽 소매</span>
-                  <strong className="text-primary font-bold text-sm">{calc.sleeveSts}코</strong>
+                <div className="p-2 bg-surface-container-low rounded-lg">
+                  <span className="text-on-surface-variant block text-[11px]">레글런 선 (4곳)</span>
+                  <strong className="text-on-surface text-sm font-bold">각 2코 (총 8코)</strong>
                 </div>
               </div>
-              <p className="text-[12px] text-outline mt-2 text-center">
-                진행 순서: [시작마커] → 뒷판 → [마커1] → 겉2코선 → 오른쪽소매 → [마커2] → 겉2코선 → 앞판 → [마커3] → 겉2코선 → 왼쪽소매 → [마커4] → 겉2코선
-              </p>
             </div>
 
-            {/* Granular Step Details */}
-            <div className="space-y-3 text-sm text-on-surface leading-relaxed">
-              <p>
-                <strong>2. 늘림단 (1단) - M1R &amp; M1L 완벽 손동작 요령</strong>:<br/>
-                각 4곳의 레글런 2코 기둥선 바로 <strong>직전</strong>에서는 <strong>M1R(오른코늘림)</strong>, 기둥선(겉뜨기 2코) 바로 <strong>직후</strong>에서는 <strong>M1L(왼코늘림)</strong>을 합니다.<br/>
-                • <strong className="text-primary">M1R (오른코늘림)</strong>: 앞뒤 코 사이의 가로 싱커루프를 왼바늘로 <strong>뒤에서 앞으로</strong> 찔러 올린 뒤, <strong>앞쪽 루프</strong>에 바늘을 찔러 겉뜨기(구멍 없이 단단하게 비틀어 뜸).<br/>
-                • <strong className="text-primary">레글런 기둥 2코</strong>: 변형 없이 <strong>겉뜨기 2코</strong>로 기둥을 곧게 유지합니다.<br/>
-                • <strong className="text-primary">M1L (왼코늘림)</strong>: 싱커루프를 왼바늘로 <strong>앞에서 뒤로</strong> 찔러 올린 뒤, <strong>뒤쪽 루프(꼬아뜨기)</strong>에 바늘을 찔러 겉뜨기.<br/>
-                ※ 4개 레글런 선마다 2코씩 늘어나므로 <strong>한 바퀴에 정확히 총 8코가 증가</strong>합니다.
-              </p>
-              <p>
-                <strong>3. 평단 (2단)</strong>: 늘림 없이 모든 코를 편안하게 겉뜨기(Knit)로 한 바퀴 뜹니다. (마커는 그냥 오른쪽 바늘로 넘겨줍니다).
-              </p>
-              <p>
-                <strong>4. 반복 횟수 &amp; 진동 깊이</strong>: 이 2단 세트(늘림단 1단 + 평단 1단)를 총 <strong><span className="font-bold text-primary">{calc.neededIncreases}회</span> (총 <span className="font-bold">{calc.raglanRows}단</span>, 진동 깊이 약 <span className="font-bold">{calc.armholeDepthCm}cm</span>)</strong> 반복합니다.
-              </p>
-            </div>
+            {/* Granular Step-by-Step Instructions */}
+            <div className="space-y-3.5 text-xs sm:text-sm text-on-surface leading-relaxed">
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  1단계: 4.5mm 메인 바늘로 바꾸면서 마커 4곳 걸기
+                </strong>
+                <p className="text-on-surface-variant text-xs mb-2">
+                  넥밴드가 끝났으니 이제 몸통 바늘인 <strong>4.5mm 줄바늘(60~80cm)</strong>로 교체합니다. 마커는 바늘에 끼우는 이정표예요! 아래 순서대로 뜨면서 마커를 바늘에 쏙쏙 끼워주세요:
+                </p>
+                <div className="p-2.5 bg-surface-container-low rounded-lg font-mono text-[11px] text-on-surface space-y-1">
+                  <div>1. [시작마커 걸기] ➔ 뒷판 <strong>{calc.backSts}코</strong> 겉뜨기</div>
+                  <div>2. [마커1 걸기] ➔ 레글런 기둥 <strong>2코</strong> 겉뜨기 ➔ [마커2 걸기]</div>
+                  <div>3. 오른쪽 소매 <strong>{calc.sleeveSts}코</strong> 겉뜨기</div>
+                  <div>4. [마커3 걸기] ➔ 레글런 기둥 <strong>2코</strong> 겉뜨기 ➔ [마커4 걸기]</div>
+                  <div>5. 앞판 <strong>{calc.frontSts}코</strong> 겉뜨기</div>
+                  <div>6. [마커5 걸기] ➔ 레글런 기둥 <strong>2코</strong> 겉뜨기 ➔ [마커6 걸기]</div>
+                  <div>7. 왼쪽 소매 <strong>{calc.sleeveSts}코</strong> 겉뜨기</div>
+                  <div>8. [마커7 걸기] ➔ 레글런 기둥 <strong>2코</strong> 겉뜨기 ➔ 한 바퀴 완료!</div>
+                </div>
+              </div>
 
-            {/* Pro Tips Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold block mb-1 text-sm">💡 초보자 마커 8개 꿀팁</strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  레글런 2코 기둥의 앞뒤로 마커를 각각 걸어두면(총 8개), 마커 사이에서는 무조건 겉뜨기 2코만 뜨고 마커 바깥에서만 늘림을 하므로 실수가 0이 됩니다.
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-primary/20">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  2단계: 마법의 2단 반복 공식 (이것만 {calc.neededIncreases}번 반복하면 어깨 끝!)
+                </strong>
+                <div className="space-y-2 text-xs text-on-surface-variant mt-1.5">
+                  <div className="p-2.5 rounded-lg bg-primary-fixed/20 text-on-surface">
+                    <strong className="text-primary font-bold block mb-0.5">🔹 1단 (늘림단: 1바퀴 돌면 총 8코가 늘어남)</strong>
+                    4개의 레글런 기둥(2코)마다:
+                    <ul className="list-disc list-inside mt-1 space-y-0.5 text-[11px]">
+                      <li>기둥 2코 직전: <strong>M1R (오른쪽 늘림)</strong> 1코</li>
+                      <li>기둥 2코는 그냥 <strong>겉뜨기</strong></li>
+                      <li>기둥 2코 직후: <strong>M1L (왼쪽 늘림)</strong> 1코</li>
+                      <li>나머지 판(앞판, 뒤판, 소매) 코들은 모두 편하게 <strong>겉뜨기</strong></li>
+                    </ul>
+                  </div>
+
+                  <div className="p-2.5 rounded-lg bg-surface-container-high text-on-surface">
+                    <strong className="font-bold block mb-0.5">🔹 2단 (쉬어가는 평단)</strong>
+                    코 늘림 없이, 모든 코를 그냥 편안하게 <strong>겉뜨기로만 1바퀴</strong> 쭉 돕니다! 마커가 나오면 마커를 오른쪽 바늘로 쏙 넘겨주기만 하세요.
+                  </div>
+
+                  <p className="text-primary font-bold text-[11px]">
+                    🔁 이 [1단(늘림) ➔ 2단(평단)] 세트를 총 <strong>{calc.neededIncreases}회 반복</strong> (총 {calc.yokeRows}단) 합니다!
+                  </p>
+                </div>
+              </div>
+
+              {/* M1R / M1L 3-Second Action Guide */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="p-3 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
+                  <strong className="text-primary font-bold block mb-1">💡 M1R (오른쪽 늘림) 3초 비법: "뒤앞앞"</strong>
+                  <p className="text-on-surface-variant text-[11px] leading-relaxed">
+                    1. 코와 코 사이 바닥에 가로로 걸쳐진 실(가로줄)을 왼바늘로 <strong>뒤에서 앞으로</strong> 푹 찔러 올립니다.<br/>
+                    2. 걸려 올라온 실의 <strong>앞쪽 다리</strong>에 오른바늘을 찔러 겉뜨기!<br/>
+                    👉 뒤에서 찔러 앞을 뜬다 = <strong>뒤앞앞</strong>!
+                  </p>
+                </div>
+
+                <div className="p-3 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
+                  <strong className="text-primary font-bold block mb-1">💡 M1L (왼쪽 늘림) 3초 비법: "앞뒤뒤"</strong>
+                  <p className="text-on-surface-variant text-[11px] leading-relaxed">
+                    1. 가로줄을 왼바늘로 <strong>앞에서 뒤로</strong> 푹 찔러 올립니다.<br/>
+                    2. 걸려 올라온 실의 <strong>뒤쪽 다리</strong>에 오른바늘을 비틀어 찔러 겉뜨기!<br/>
+                    👉 앞에서 찔러 뒤를 뜬다 = <strong>앞뒤뒤</strong>!
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  3단계: 언제까지 떠야 하나요? (요크 완성 셀프 체크)
+                </strong>
+                <p className="text-on-surface-variant text-xs">
+                  넥밴드 바로 아래부터 레글런 대각선 길이를 줄자로 쟀을 때 <strong>약 {calc.yokeDepthCm}cm</strong>가 나오면 요크 완료!<br/>
+                  💡 <em>직접 입어보는 팁: 편물을 어깨에 둘러보았을 때, 늘림선 끝부분이 내 양쪽 겨드랑이 밑에 편안하게 닿으면 완벽합니다.</em>
                 </p>
               </div>
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-on-surface/[0.08] text-xs">
-                <strong className="text-on-surface font-bold block mb-1 text-sm">📌 10단마다 단수링 꽂기</strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  {calc.raglanRows}단은 꽤 길어서 세다 보면 헷갈리기 쉽습니다. 옷핀 모양 단수링을 10단마다 레글런 기둥선에 걸어두면 한눈에 진행 상황을 체크할 수 있습니다.
-                </p>
-              </div>
-            </div>
-
-            {/* Armhole Measurement Guide */}
-            <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/15 text-xs text-on-surface-variant flex flex-col gap-1.5 mb-4">
-              <div className="flex items-center gap-1.5 text-primary font-bold text-sm">
-                <span className="material-symbols-outlined text-[17px]">straighten</span>
-                <span>진동 길이 정확한 측정법 &amp; 핏 체크</span>
-              </div>
-              <p className="leading-relaxed">
-                바닥에 편물을 평평하게 펼치고 <strong>넥밴드 리브 바로 밑부터 바늘 끝까지의 레글런 사선 기둥 라인을 따라</strong> 줄자로 잽니다. 줄바늘에 보조 케이블을 끼우고 직접 입어보아 겨드랑이 밑 1.5~2cm 아래까지 충분히 내려오면 소매 분리로 들어갈 최적의 타이밍입니다.
-              </p>
             </div>
 
             {/* Video Button */}
-            <div>
+            <div className="mt-4">
               <button
                 type="button"
-                onClick={() => onOpenVideo('1v3x4a5b6c', 'M1R & M1L 레글런 늘림 정석')}
+                onClick={() => onOpenVideo('00u88Q6z3bA', 'M1R / M1L 레글런 늘림 기법')}
                 className="inline-flex items-center gap-2 text-xs text-primary hover:text-white hover:bg-primary bg-primary-fixed/40 px-4 py-2 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95"
               >
                 <span className="material-symbols-outlined text-[18px]">play_circle</span>
-                <span>기법 영상: M1R &amp; M1L 레글런 늘림 재생</span>
+                <span>기법 영상: M1R / M1L 코늘림 손동작 재생</span>
               </button>
             </div>
           </div>
@@ -400,7 +528,7 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {(activeTab === 'all' || activeTab === '3') && (
           <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
                   03
@@ -410,18 +538,24 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                     소매 분리 &amp; 겨드랑이 감아코 <span className="text-primary font-extrabold">({calc.underarmSts}코)</span>
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
-                    양 소매를 별실에 쉬어두고 앞·뒤판을 연결하여 거대한 몸통 완성
+                    양쪽 팔은 별실에 묶어 잠시 쉬게 두고, 몸통만 동그랗게 이어 조끼를 만듭니다.
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2 flex-wrap shrink-0">
                 <span className="text-xs font-bold bg-secondary-fixed/50 text-secondary px-3 py-1 rounded-full border border-secondary/20">
-                  몸통과 소매 분리점
+                  몸통과 소매 분리일
                 </span>
                 <span className="text-xs font-medium bg-surface-container-highest px-2.5 py-1 rounded-full text-on-surface-variant">
-                  별실(쉬는 실) 필요
+                  별실(안 쓰는 실) 준비
                 </span>
               </div>
+            </div>
+
+            {/* 3-Second Concept */}
+            <div className="p-3 bg-secondary-fixed/20 rounded-xl border border-secondary/20 text-xs text-on-surface mb-3.5">
+              <strong className="text-secondary font-bold block mb-0.5">🎯 이번 단계에서 내가 만드는 것: "조끼 만들기"</strong>
+              팔 코들을 안 입는 실에 꿰어 잠시 쉬게 묶어두고, 겨드랑이 밑에 여유 공간(감아코)을 만들어 앞판과 뒤판을 하나로 이어 <strong>완벽한 원통형 조끼</strong>를 만듭니다!
             </div>
 
             {/* SVG Sleeve Separation Diagram */}
@@ -431,13 +565,13 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                   <span className="material-symbols-outlined text-[16px]">call_split</span>
                   <span>STEP 03 구조도: 소매 별실 분리 &amp; 겨드랑이 감아코 연결</span>
                 </span>
-                <span className="text-xs text-outline font-medium">별실(쉬는 실) 필요</span>
+                <span className="text-xs text-outline font-medium">별실(안 쓰는 실) 필요</span>
               </div>
               <div className="w-full flex justify-center py-2">
                 <svg viewBox="0 0 440 140" className="w-full max-w-[440px] h-auto overflow-visible" xmlns="http://www.w3.org/2000/svg">
                   <path d="M 150 20 L 290 20 L 290 120 L 150 120 Z" fill="rgba(152,65,37,0.05)" stroke="#984125" strokeWidth="2" strokeDasharray="3 3" />
                   <text x="220" y="55" textAnchor="middle" fontSize="13" fontWeight="800" fill="#984125">몸통 원형 연결</text>
-                  <text x="220" y="74" textAnchor="middle" fontSize="11" fontWeight="600" fill="#655a4e">뒷판 + 앞판 결합 진행</text>
+                  <text x="220" y="74" textAnchor="middle" fontSize="11" fontWeight="600" fill="#655a4e">뒷판 + 앞판 결합 조끼 형태</text>
 
                   {/* Left Sleeve Box */}
                   <g transform="translate(15, 25)">
@@ -475,45 +609,60 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
               </div>
             </div>
 
-            {/* Granular Instructions */}
-            <div className="space-y-3 text-sm text-on-surface leading-relaxed">
-              <p>
-                <strong>1. 뒷판 겉뜨기 &amp; 오른쪽 소매 별실 분리</strong>: 시작 마커에서 출발하여 뒷판 코를 겉뜨기로 뜬 후, 오른쪽 소매 코 <strong><span className="font-bold text-primary">{calc.finalSleeveSts}코</span></strong>를 돗바늘을 사용해 매끄러운 별실(털 날림 없는 면사 추천)에 걸어 묶어둡니다.
-              </p>
-              <p>
-                <strong>2. 오른쪽 겨드랑이 감아코(Backward Loop) 생성</strong>: 오른손 바늘에 <strong>겨드랑이 감아코 <span className="font-bold text-primary">{calc.underarmSts}코</span></strong>를 새로 만듭니다. 💡 <strong>장력 팁</strong>: 엄지손가락이 헐렁하게 쏙 빠져나올 정도로 여유 있게 감아야 다음 단에서 대바늘 끝이 부드럽게 들어갑니다.
-              </p>
-              <p>
-                <strong>3. 앞판 겉뜨기 &amp; 왼쪽 소매 별실 분리</strong>: 이어서 앞판 코를 끝까지 겉뜨기로 뜨고, 왼쪽 소매 코 <strong><span className="font-bold text-primary">{calc.finalSleeveSts}코</span></strong>도 별실에 옮겨 안전하게 묶어둡니다.
-              </p>
-              <p>
-                <strong>4. 왼쪽 겨드랑이 감아코 &amp; 몸통 원형 닫기</strong>: 반대쪽 겨드랑이에도 <strong>감아코 <span className="font-bold text-primary">{calc.underarmSts}코</span></strong>를 만들고 뒷판 첫 코와 연결하여 하나의 거대한 원통형 몸통을 완성합니다.
-              </p>
-            </div>
-
-            {/* Raglan Stitches Allocation Guide */}
-            <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs text-on-surface-variant flex flex-col gap-1.5 my-4">
-              <div className="flex items-center gap-1.5 text-primary font-bold text-sm">
-                <span className="material-symbols-outlined text-[17px]">help_outline</span>
-                <span>소매 분리 시 레글런 2코 기둥선은 어디로 보내나요?</span>
+            {/* Granular Step-by-Step Instructions */}
+            <div className="space-y-3.5 text-xs sm:text-sm text-on-surface leading-relaxed">
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  1단계: 뒷판 코 겉뜨기 &amp; 오른쪽 소매 별실에 꿰어두기
+                </strong>
+                <p className="text-on-surface-variant text-xs">
+                  시작 마커에서 출발해 뒷판 코들을 쭉 겉뜨기합니다.<br/>
+                  오른쪽 소매 코 <strong>{calc.finalSleeveSts}코</strong>가 나오면 돗바늘에 안 쓰는 부드러운 실(별실)을 꿰어 한 코씩 쏙쏙 옮겨 담고, 빠지지 않게 실 끝을 가볍게 묶어둡니다. (소매는 몸통 다 뜨고 나중에 뜰 거예요!)
+                </p>
               </div>
-              <p className="leading-relaxed">
-                • <strong>방법 1 (초보자 강력 추천)</strong>: 레글런 2코 <strong>모두를 몸통에 포함</strong>시킵니다. 계산기에서 도출된 소매 코수와 100% 깔끔하게 일치하고 품이 한결 편안해집니다.
-              </p>
-              <p className="leading-relaxed">
-                • <strong>방법 2 (정석 핏)</strong>: 2코를 반으로 쪼개어 <strong>1코는 몸통, 1코는 소매</strong>로 나누어 보냅니다. (이 경우 소매 시작 코수가 각 1코씩 늘어납니다).
-              </p>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-primary/20">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  2단계: 오른쪽 겨드랑이에 감아코 {calc.underarmSts}코 만들기
+                </strong>
+                <p className="text-on-surface-variant text-xs mb-1.5">
+                  겨드랑이에 편안한 품을 주기 위해 오른바늘에 <strong>감아코 {calc.underarmSts}코</strong>를 만듭니다.
+                </p>
+                <div className="p-2.5 bg-primary-fixed/20 rounded-lg text-primary text-[11px] font-medium leading-relaxed">
+                  💡 <strong>감아코 3초 완성법 (정말 쉬워요!):</strong><br/>
+                  왼손 엄지손가락에 뜨개실을 시계방향으로 1바퀴 감은 뒤, 엄지 아래 생긴 고리에 오른쪽 바늘 끝을 밑에서 위로 쑥 집어넣고 엄지를 뺍니다! 너무 꽉 당기지 말고 여유 있게 감아주세요.
+                </div>
+              </div>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  3단계: 앞판 겉뜨기 &amp; 왼쪽 소매도 똑같이 하기
+                </strong>
+                <p className="text-on-surface-variant text-xs">
+                  앞판 코들을 끝까지 겉뜨기한 뒤, 왼쪽 소매 코 <strong>{calc.finalSleeveSts}코</strong>도 별실에 옮겨 묶어둡니다.<br/>
+                  왼쪽 겨드랑이에도 <strong>감아코 {calc.underarmSts}코</strong>를 만들고 뒷판 첫 코와 연결하면... 끝!
+                </p>
+              </div>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20 text-xs text-on-surface">
+                <strong className="text-emerald-700 font-bold block mb-1">
+                  🎯 확인: 이제 바늘에는 몸통 총 {calc.totalFinalBodySts}코만 남았습니다!
+                </strong>
+                <p className="text-on-surface-variant text-[11px]">
+                  바늘이 훨씬 가벼워졌죠? 양쪽 팔 구멍이 뚫린 조끼 모양이 완성되었습니다. 레글런 기둥 코(2코)는 모두 몸통에 포함되어 계산되어 있으니 안심하세요.
+                </p>
+              </div>
             </div>
 
             {/* Video Button */}
-            <div>
+            <div className="mt-4">
               <button
                 type="button"
-                onClick={() => onOpenVideo('5a6b7c8d9e', '감아코 만들기 (Backward Loop)')}
+                onClick={() => onOpenVideo('00u88Q6z3bA', '소매 분리 및 겨드랑이 감아코 만들기')}
                 className="inline-flex items-center gap-2 text-xs text-primary hover:text-white hover:bg-primary bg-primary-fixed/40 px-4 py-2 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95"
               >
                 <span className="material-symbols-outlined text-[18px]">play_circle</span>
-                <span>기법 영상: 감아코 만들기 (Backward Loop) 재생</span>
+                <span>기법 영상: 소매 분리 &amp; 감아코 손동작 재생</span>
               </button>
             </div>
           </div>
@@ -525,125 +674,90 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {(activeTab === 'all' || activeTab === '4') && (
           <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
                   04
                 </span>
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-on-surface">
-                    몸통 직진 원형뜨기 <span className="text-primary font-extrabold">({calc.totalFinalBodySts}코)</span> &amp; 밑단 고무단
+                    몸통 무한 겉뜨기 힐링 &amp; 밑단 고무단 5cm
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
-                    증감 없이 편안한 메리야스 직진 궤도와 단정한 1x1 밑단 리브 마감
+                    더 이상 늘림도 줄임도 없이, 원하는 옷 길이가 될 때까지 뱅글뱅글 겉뜨기만 돕니다.
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-2 flex-wrap shrink-0">
                 <span className="text-xs font-bold bg-primary-fixed/50 text-primary px-3 py-1 rounded-full border border-primary/20">
-                  4.5mm 메인 → 3.5mm 리브
+                  힐링 겉뜨기 구간
                 </span>
                 <span className="text-xs font-medium bg-surface-container-highest px-2.5 py-1 rounded-full text-on-surface-variant">
-                  줄길이 80~100cm
+                  밑단 3.5mm 바늘 교체
                 </span>
               </div>
             </div>
 
-            {/* SVG Body Schematic */}
-            <div className="p-4 bg-surface-container-lowest rounded-xl border border-on-surface/[0.08] my-4 shadow-2xs">
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-on-surface/[0.05]">
-                <span className="text-xs font-bold text-primary flex items-center gap-1.5">
-                  <span className="material-symbols-outlined text-[16px]">straight</span>
-                  <span>STEP 04 구조도: 몸통 원통 직진 &amp; 밑단 고무단</span>
-                </span>
-                <span className="text-xs text-outline font-medium">4.5mm ➔ 3.5mm 바늘</span>
-              </div>
-              <div className="w-full flex justify-center py-2">
-                <svg viewBox="0 0 420 135" className="w-full max-w-[420px] h-auto overflow-visible" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <marker id="down-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#984125" />
-                    </marker>
-                  </defs>
-                  <rect x="130" y="10" width="160" height="75" rx="4" fill="rgba(152,65,37,0.04)" stroke="#984125" strokeWidth="2" />
-                  <line x1="210" y1="22" x2="210" y2="70" stroke="#984125" strokeWidth="2.5" markerEnd="url(#down-arrow)" />
-                  <text x="145" y="45" fontSize="11" fontWeight="700" fill="#984125">총 {calc.totalFinalBodySts}코</text>
-                  <text x="220" y="45" fontSize="11" fontWeight="600" fill="#655a4e">증감 없이 직진</text>
-                  <text x="220" y="60" fontSize="9.5" fontWeight="500" fill="#89726c">32~36cm ({calc.bodyRowsEst - 5}~{calc.bodyRowsEst + 5}단)</text>
-
-                  {/* Rib Band */}
-                  <rect x="130" y="85" width="160" height="28" rx="3" fill="#ffdbd0" stroke="#984125" strokeWidth="1.5" />
-                  <line x1="145" y1="85" x2="145" y2="113" stroke="#984125" strokeWidth="1" strokeDasharray="2 2" />
-                  <line x1="160" y1="85" x2="160" y2="113" stroke="#984125" strokeWidth="1" strokeDasharray="2 2" />
-                  <line x1="175" y1="85" x2="175" y2="113" stroke="#984125" strokeWidth="1" strokeDasharray="2 2" />
-                  <line x1="245" y1="85" x2="245" y2="113" stroke="#984125" strokeWidth="1" strokeDasharray="2 2" />
-                  <line x1="260" y1="85" x2="260" y2="113" stroke="#984125" strokeWidth="1" strokeDasharray="2 2" />
-                  <line x1="275" y1="85" x2="275" y2="113" stroke="#984125" strokeWidth="1" strokeDasharray="2 2" />
-                  <text x="210" y="103" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#984125">밑단 1코 고무뜨기 5cm (3.5mm 바늘)</text>
-
-                  <g transform="translate(15, 38)">
-                    <rect width="100" height="34" rx="8" fill="#e9e8e5" />
-                    <text x="50" y="15" textAnchor="middle" fontSize="9" fontWeight="600" fill="#56423d">메리야스 겉뜨기</text>
-                    <text x="50" y="27" textAnchor="middle" fontSize="8.5" fontWeight="500" fill="#89726c">편안한 직진 구간</text>
-                  </g>
-                  <g transform="translate(305, 82)">
-                    <rect width="100" height="34" rx="8" fill="#f0e0d0" />
-                    <text x="50" y="15" textAnchor="middle" fontSize="9" fontWeight="700" fill="#984125">신축성 코막음</text>
-                    <text x="50" y="27" textAnchor="middle" fontSize="8.5" fontWeight="500" fill="#655a4e">조이지 않게 마감</text>
-                  </g>
-                </svg>
-              </div>
+            {/* 3-Second Concept */}
+            <div className="p-3 bg-primary-fixed/20 rounded-xl border border-primary/20 text-xs text-on-surface mb-3.5">
+              <strong className="text-primary font-bold block mb-0.5">🎯 이번 단계에서 내가 만드는 것: "생각 없는 힐링 뜨개 타임"</strong>
+              복잡한 계산 끝! 몸통 총 <strong>{calc.totalFinalBodySts}코</strong>로 넷플릭스나 유튜브 보며 뱅글뱅글 겉뜨기만 계속 뜨면 스웨터 몸통이 쑥쑥 자라납니다.
             </div>
 
-            {/* Granular Instructions */}
-            <div className="space-y-3 text-sm text-on-surface leading-relaxed">
-              <p>
-                <strong>1. 무한 메리야스 겉뜨기 &amp; 손장력 유지</strong>: 소매가 빠져 가벼워진 몸통 총 <strong><span className="font-bold text-primary">{calc.totalFinalBodySts}코</span></strong>로 증감 없이 밑단 고무단 전까지 <strong>메리야스 겉뜨기(원형뜨기)</strong>를 계속 진행합니다. 긴장이 풀려 손땀이 점점 헐렁해지면 옷이 아래로 갈수록 나팔꽃처럼 퍼질 수 있으니, 스와치를 떴을 때의 일정한 텐션을 유지해 주세요.
-              </p>
-              <p>
-                <strong>2. 몸통 기장 &amp; 바늘 교체</strong>: 겨드랑이 밑선부터 약 <strong>32~36cm (약 <span className="font-bold">{calc.bodyRowsEst - 5}~{calc.bodyRowsEst + 5}단</span>)</strong> 진행한 뒤, 1호수 작은 <strong>3.5mm 줄바늘</strong>로 교체합니다. 바늘 호수를 줄여야 고무단이 벌어지지 않고 허리선에서 단정하게 오므라듭니다.
-              </p>
-              <p>
-                <strong>3. 밑단 고무단 &amp; 신축성 마감</strong>: 3.5mm 바늘로 <strong>1코 고무뜨기 (K1, P1)</strong>를 <strong>5cm (약 14~16단)</strong> 뜬 뒤, 신축성이 뛰어난 돗바늘 이탈리안 바인드오프 또는 제니식 코막음으로 마감합니다.
-              </p>
-            </div>
+            {/* Granular Step-by-Step Instructions */}
+            <div className="space-y-3.5 text-xs sm:text-sm text-on-surface leading-relaxed">
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  1단계: 겨드랑이 밑선부터 약 {calc.bodyLengthCm - 5}cm 무한 겉뜨기
+                </strong>
+                <p className="text-on-surface-variant text-xs mb-2">
+                  4.5mm 줄바늘로 총 <strong>{calc.totalFinalBodySts}코</strong>를 코 늘림/줄임 없이 겉뜨기로만 뱅글뱅글 돕니다 (약 {calc.bodyRowsEst}단).
+                </p>
+                <div className="p-2.5 bg-surface-container-low rounded-lg text-xs text-on-surface">
+                  💡 <strong>내 키에 딱 맞추는 기장 조절 팁:</strong><br/>
+                  <span className="text-on-surface-variant text-[11px]">
+                    중간에 옷을 몸에 대보세요! 골반 위에서 끝내면 경쾌한 세미크롭, 바지 벨트선에 닿으면 클래식 정석핏, 엉덩이를 덮으면 루즈핏이 됩니다. 원하는 위치에서 5cm 덜 떴을 때 멈추시면 됩니다!
+                  </span>
+                </div>
+              </div>
 
-            {/* Tips: Russian Join & Yarn Position */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold block mb-1 text-sm">💡 티 안 나게 새 실 잇는 위치</strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  새 실타래를 연결할 때 앞가슴 한가운데서 매듭을 지으면 겉으로 티가 납니다. 반드시 <strong>겨드랑이 밑선(옆구리 솔기 위치)</strong>에서 실을 교체하세요.
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  2단계: 3.5mm 바늘로 바꾸고 밑단 1코 고무뜨기 5cm
+                </strong>
+                <p className="text-on-surface-variant text-xs">
+                  원하는 기장 직전에 도달하면, 밑단이 늘어지지 않고 예쁘게 모아지도록 1mm 가는 <strong>3.5mm 바늘로 교체</strong>합니다.<br/>
+                  <strong>1코 고무뜨기 (겉뜨기 1, 안뜨기 1)</strong>를 약 <strong>5cm (약 14~16단)</strong> 뜹니다.
                 </p>
               </div>
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-on-surface/[0.08] text-xs">
-                <strong className="text-on-surface font-bold block mb-1 text-sm">🧶 러시안 조인 (Russian Join)</strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  돗바늘로 새 실과 헌 실의 끝부분을 서로의 꼬임 속에 통과시켜 겹쳐 꼬면 매듭 없이 완벽하게 하나로 이어집니다.
-                </p>
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-primary/20">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  3단계: 밑단 코막음 (쉬운 길 vs 정석 길)
+                </strong>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                  <div className="p-2.5 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                    <strong className="text-emerald-800 font-bold block text-xs mb-0.5">🟢 완전 초보 추천 (가장 쉬운 길)</strong>
+                    <p className="text-emerald-950 text-[11px] leading-relaxed">
+                      돗바늘 쓰지 마세요! 대바늘로 하는 <strong>일반 겉뜨기 덮어씌워 코막음</strong>을 느슨하게만 해주셔도 충분히 예쁩니다. (골반이 낄 수 있으니 넉넉하게 코를 덮어씌우세요!)
+                    </p>
+                  </div>
+                  <div className="p-2.5 bg-surface-container-low rounded-lg border border-on-surface/[0.08]">
+                    <strong className="text-on-surface font-bold block text-xs mb-0.5">🔵 숙련자 정석</strong>
+                    <p className="text-on-surface-variant text-[11px] leading-relaxed">
+                      기성복처럼 신축성이 뛰어난 마감을 원하시면 돗바늘을 이용한 <strong>이탈리안 바인드오프</strong>를 진행하세요.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Length Guide Cards */}
-            <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/15 text-xs text-on-surface-variant flex flex-col gap-2 mb-4">
-              <div className="flex items-center gap-1.5 text-primary font-bold text-sm">
-                <span className="material-symbols-outlined text-[17px]">check_circle</span>
-                <span>스타일별 몸통 기장 맞춤 가이드</span>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-1">
-                <div className="p-3 bg-surface-container-low rounded-lg">
-                  <strong className="text-on-surface block mb-1 text-xs">트렌디 크롭 핏</strong>
-                  <span className="text-outline">겨드랑이 밑 23~26cm (하이웨이스트 하의와 최적)</span>
-                </div>
-                <div className="p-3 bg-surface-container-low rounded-lg border border-primary/30">
-                  <strong className="text-primary block mb-1 text-xs">클래식 레귤러 핏 (추천)</strong>
-                  <span className="text-on-surface-variant">겨드랑이 밑 32~36cm (골반선에 걸치는 황금 비율)</span>
-                </div>
-                <div className="p-3 bg-surface-container-low rounded-lg">
-                  <strong className="text-on-surface block mb-1 text-xs">루즈 오버핏</strong>
-                  <span className="text-outline">겨드랑이 밑 38~42cm (엉덩이를 포근하게 덮는 기장)</span>
-                </div>
-              </div>
+            {/* Yarn Join Tip */}
+            <div className="p-3.5 bg-surface-container-lowest rounded-xl border border-amber-500/20 text-xs text-on-surface-variant my-3.5">
+              <strong className="text-amber-700 font-bold block mb-1">💡 새 실 연결할 때 특급 꿀팁</strong>
+              <p className="leading-relaxed">
+                실 1볼이 끝나서 새 실을 연결할 때는 <strong>절대 옷 앞판 한가운데에서 매듭짓지 마세요!</strong> 옆구리 솔기 위치(겨드랑이 밑선)에서 새 실을 연결해야 옷을 입었을 때 매듭이 보이지 않고 깔끔합니다.
+              </p>
             </div>
 
             {/* Video Button */}
@@ -654,7 +768,7 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 className="inline-flex items-center gap-2 text-xs text-primary hover:text-white hover:bg-primary bg-primary-fixed/40 px-4 py-2 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95"
               >
                 <span className="material-symbols-outlined text-[18px]">play_circle</span>
-                <span>기법 영상: 돗바늘 이탈리안 바인드오프 재생</span>
+                <span>기법 영상: 밑단 코막음 기법 재생</span>
               </button>
             </div>
           </div>
@@ -666,17 +780,17 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {(activeTab === 'all' || activeTab === '5') && (
           <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-5">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
                   05
                 </span>
                 <div>
                   <h3 className="text-lg md:text-xl font-bold text-on-surface">
-                    양 소매 원형뜨기 &amp; 신축성 돗바늘 코막음
+                    양 소매 원형뜨기 &amp; 최종 완성
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
-                    자연스러운 테이퍼드 줄임 공식과 손목 립, 블로킹 마무리
+                    별실에 쉬고 있던 소매 코를 바늘로 데려와 손목까지 떠내려가며 마침내 완성합니다.
                   </p>
                 </div>
               </div>
@@ -685,116 +799,86 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                   매직루프 or 장갑바늘
                 </span>
                 <span className="text-xs font-medium bg-surface-container-highest px-2.5 py-1 rounded-full text-on-surface-variant">
-                  손목 3.5mm
+                  손목 3.5mm 바늘 교체
                 </span>
               </div>
             </div>
 
-            {/* SVG Sleeve Diagram */}
-            <div className="p-4 bg-surface-container-lowest rounded-xl border border-on-surface/[0.08] my-4 shadow-2xs">
-              <div className="flex items-center justify-between mb-3 pb-2 border-b border-on-surface/[0.05]">
-                <span className="text-xs font-bold text-primary flex items-center gap-1.5">
-                  <span className="material-symbols-outlined text-[16px]">change_history</span>
-                  <span>STEP 05 구조도: 소매 테이퍼드 줄임 &amp; 손목 마감</span>
-                </span>
-                <span className="text-xs text-outline font-medium">매직루프 or 장갑바늘</span>
-              </div>
-              <div className="w-full flex justify-center py-2">
-                <svg viewBox="0 0 420 135" className="w-full max-w-[420px] h-auto overflow-visible" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <marker id="sleeve-down-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                      <path d="M 1.5 0 L 5 8 L 8.5 0 z" fill="#fe875d" />
-                    </marker>
-                  </defs>
-                  <polygon points="120,12 300,12 260,90 160,90" fill="rgba(152,65,37,0.04)" stroke="#984125" strokeWidth="2" />
-                  <text x="210" y="28" textAnchor="middle" fontSize="11" fontWeight="700" fill="#984125">
-                    별실 <tspan fontWeight="800" fill="#984125">{calc.finalSleeveSts}코</tspan> + 감아코 <tspan fontWeight="800" fill="#984125">{calc.underarmSts}코</tspan> = 시작 총 <tspan fontWeight="800" fill="#984125">{calc.totalInitialSleeveSts}코</tspan>
-                  </text>
-
-                  {/* Decreasing Arrows */}
-                  <line x1="145" y1="45" x2="175" y2="65" stroke="#fe875d" strokeWidth="2.5" markerEnd="url(#sleeve-down-arrow)" />
-                  <line x1="275" y1="45" x2="245" y2="65" stroke="#fe875d" strokeWidth="2.5" markerEnd="url(#sleeve-down-arrow)" />
-                  <text x="210" y="58" textAnchor="middle" fontSize="10.5" fontWeight="700" fill="#a0401c">6단(또는 8단)마다 양쪽 -2코 줄임</text>
-                  <text x="210" y="73" textAnchor="middle" fontSize="9.5" fontWeight="500" fill="#655a4e">마커 후 SSK · 마커 전 K2tog</text>
-
-                  {/* Wrist Rib */}
-                  <rect x="160" y="90" width="100" height="26" rx="3" fill="#ffdbd0" stroke="#984125" strokeWidth="1.5" />
-                  <text x="210" y="106" textAnchor="middle" fontSize="10" fontWeight="700" fill="#984125">손목 1코 고무단 5cm (3.5mm)</text>
-
-                  <g transform="translate(15, 85)">
-                    <rect width="130" height="26" rx="13" fill="#e9e8e5" />
-                    <text x="65" y="17" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="#56423d">손목 목표: 약 {calc.wristSts}코</text>
-                  </g>
-                  <g transform="translate(275, 85)">
-                    <rect width="130" height="26" rx="13" fill="#f0e0d0" />
-                    <text x="65" y="17" textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#984125">이탈리안 코막음 (돗바늘)</text>
-                  </g>
-                </svg>
-              </div>
+            {/* 3-Second Concept */}
+            <div className="p-3 bg-primary-fixed/20 rounded-xl border border-primary/20 text-xs text-on-surface mb-3.5">
+              <strong className="text-primary font-bold block mb-0.5">🎯 이번 단계에서 내가 만드는 것: "드디어 팔 달기!"</strong>
+              조끼에서 쉬고 있던 양쪽 팔을 하나씩 꺼내 손목까지 떠내려가면, 마침내 입을 수 있는 완성형 스웨터가 탄생합니다!
             </div>
 
-            {/* Granular Instructions */}
-            <div className="space-y-3 text-sm text-on-surface leading-relaxed">
-              <p>
-                <strong>1. 소매 코 줍기 &amp; 매직루프 연결</strong>: 별실에 쉬어둔 소매 코 <strong><span className="font-bold text-primary">{calc.finalSleeveSts}코</span></strong>를 4.5mm 줄바늘로 옮겨 담고, 겨드랑이 감아코 <strong><span className="font-bold text-primary">{calc.underarmSts}코</span></strong>를 함께 주워 원형으로 연결합니다 (시작 코수 총 <strong><span className="font-bold">{calc.totalInitialSleeveSts}코</span></strong>). 겨드랑이 감아코 한가운데에 소매 시작 마커를 걸어줍니다.
-              </p>
-              <p>
-                <strong>2. 자연스러운 테이퍼드 줄임 공식 (6단 또는 8단 주기)</strong>:<br/>
-                • <strong>줄임단</strong>: [시작마커 넘김] → 겉뜨기 1코 → <strong className="text-primary">SSK(왼코모아뜨기)</strong> → 손목 마커 3코 전까지 겉뜨기 → <strong className="text-primary">K2tog(오른코모아뜨기)</strong> → 겉뜨기 1코.<br/>
-                • <strong>평단</strong>: 줄임단 사이는 줄임 없이 모든 코를 겉뜨기로 5단(또는 7단) 채워줍니다.<br/>
-                • 손목 목표 코수(약 {calc.wristSts}코)에 도달할 때까지 이 줄임을 규칙적으로 반복합니다.
-              </p>
-              <p>
-                <strong>3. 손목 고무단 5cm</strong>: 소매 길이가 손목 뼈 위치까지 오면 <strong>3.5mm 바늘</strong>로 교체하고, <strong>1코 고무뜨기 5cm (약 14~16단)</strong>를 뜹니다.
-              </p>
-              <p>
-                <strong>4. 반대쪽 소매 및 블로킹(마무리 세탁)</strong>: 반대쪽 소매도 동일한 단수와 줄임 주기로 떠준 뒤, 돗바늘로 모든 실밥을 편물 안쪽에 숨겨 정리합니다. 마지막으로 미온수에 울샴푸로 가볍게 세탁하여 평평하게 그늘에서 말리면(블로킹) 편물이 마법처럼 고르고 평평해집니다!
-              </p>
-            </div>
+            {/* Granular Step-by-Step Instructions */}
+            <div className="space-y-3.5 text-xs sm:text-sm text-on-surface leading-relaxed">
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  1단계: 소매 코 바늘에 꿰기 &amp; 겨드랑이 코 줍기
+                </strong>
+                <p className="text-on-surface-variant text-xs mb-2">
+                  별실을 살살 풀면서 소매 코 <strong>{calc.finalSleeveSts}코</strong>를 4.5mm 바늘에 조심스럽게 옮깁니다.<br/>
+                  겨드랑이 감아코 <strong>{calc.underarmSts}코</strong>에서 새 실로 코를 주워 총 <strong>{calc.totalInitialSleeveSts}코</strong>로 소매를 원형 연결합니다.
+                </p>
 
-            {/* Pro Tips: Magic loop & Underarm hole prevent */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold block mb-1 text-sm">💡 매직루프(Magic Loop)란?</strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  소매통이 좁아도 80cm 줄바늘 케이블을 소매 코 중간에서 <strong>토끼 귀처럼 반으로 접어 바깥으로 빼내면</strong> 바늘 교체 없이 원형뜨기가 가능합니다.
-                </p>
+                {/* Underarm Hole Fix Alert */}
+                <div className="p-2.5 bg-rose-500/10 rounded-lg border border-rose-500/20 text-rose-800 text-xs">
+                  <strong className="font-bold flex items-center gap-1 mb-0.5">
+                    <span className="material-symbols-outlined text-[15px]">tips_and_updates</span>
+                    <span>⚠️ 초보자 멘붕 방지: 겨드랑이 구멍 100% 안 생기는 비법!</span>
+                  </strong>
+                  <span className="text-rose-950 text-[11px] leading-relaxed">
+                    겨드랑이와 소매 경계 틈새에서 <strong>1코씩 추가로 건져 올린 뒤</strong>, 다음 단을 뜰 때 옆 코와 함께 <strong>2코 모아뜨기(K2tog)</strong>를 해주면 구멍이 마법처럼 싹 사라집니다!
+                  </span>
+                </div>
               </div>
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold block mb-1 text-sm">✨ 겨드랑이 구멍 박멸 3단계</strong>
-                <p className="text-on-surface-variant leading-relaxed">
-                  ① 경계선 싱커루프 1코 끌어올리기 ➔ ② 꼬아뜨기로 구멍 조이기 ➔ ③ 다음 단에서 옆 코와 K2tog로 합치면 구멍이 100% 사라집니다.
-                </p>
-              </div>
-            </div>
 
-            {/* 2 Bind-off Methods Comparison */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-primary/20 text-xs">
-                <strong className="text-primary font-bold block mb-1 text-sm">방법 A: 이탈리안 바인드오프 (돗바늘 - 추천)</strong>
-                <p className="text-on-surface-variant mb-1.5 leading-relaxed">
-                  기성복 니트처럼 물결침 없이 매끈하고 가장 신축성이 뛰어납니다. 손목 둘레의 약 3.5배 실을 남기고 돗바늘로 겉코와 안코를 꿰매어 마감합니다.
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-primary/20">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  2단계: 슬림핏 소매 줄임 공식
+                </strong>
+                <p className="text-on-surface-variant text-xs mb-2">
+                  팔뚝에서 손목으로 내려갈수록 좁아지므로, <strong>{calc.sleeveDecRows}단마다 1번씩 양쪽에서 1코씩 줄이기</strong>를 반복합니다.
                 </p>
-                <span className="text-[12px] text-primary/80 font-medium">💡 탄성과 완성도가 가장 높은 전문가 추천 방식</span>
+                <div className="p-2.5 bg-surface-container-low rounded-lg font-mono text-[11px] text-on-surface space-y-1">
+                  <div>🔹 <strong>줄임단 뜨는 법:</strong> [시작마커] ➔ 겉뜨기 1개 ➔ 오른코 겹쳐뜨기(SSK, 1코 줄임) ➔ 쭉 겉뜨기 ➔ 끝에서 3코 전 2코 모아뜨기(K2tog, 1코 줄임) ➔ 겉뜨기 1개</div>
+                  <div>🔹 <strong>평단:</strong> 줄임단 다음 {calc.sleeveDecRows - 1}단 동안은 줄임 없이 그냥 편안하게 겉뜨기!</div>
+                  <div className="text-primary font-bold">손목 목표 코수(약 {calc.wristSts}코)가 될 때까지 규칙적으로 반복합니다.</div>
+                </div>
               </div>
-              <div className="p-4 bg-surface-container-lowest rounded-xl border border-on-surface/[0.08] text-xs">
-                <strong className="text-on-surface font-bold block mb-1 text-sm">방법 B: 제니식 신축성 코막음 (초보자용)</strong>
-                <p className="text-on-surface-variant mb-1.5 leading-relaxed">
-                  돗바늘 바느질이 익숙지 않은 분들을 위해 대바늘로 바늘비우기(Yarn Over)를 활용해 손목이 쨍기지 않는 부드러운 탄성을 완성합니다.
+
+              <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
+                <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
+                  3단계: 손목 1코 고무뜨기 5cm &amp; 코막음
+                </strong>
+                <p className="text-on-surface-variant text-xs">
+                  손목 뼈 위치까지 오면 <strong>3.5mm 바늘로 교체</strong>하고, <strong>1코 고무뜨기 5cm (약 14~16단)</strong>를 뜬 뒤 느슨하게 코막음하여 한쪽 팔을 끝냅니다!
                 </p>
-                <span className="text-[12px] text-outline font-medium">💡 대바늘만으로 빠르고 쉽게 신축성 완성</span>
+              </div>
+
+              <div className="p-3.5 bg-surface-container-lowest rounded-xl border border-emerald-500/20 text-xs">
+                <strong className="text-emerald-700 font-bold block mb-1 text-sm flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[18px]">celebration</span>
+                  <span>4단계: 반대쪽 소매 뜨기 &amp; 최종 세탁 블로킹 (완성!)</span>
+                </strong>
+                <p className="text-on-surface-variant leading-relaxed text-xs">
+                  반대쪽 소매도 똑같이 1번 더 떠주면 모든 뜨개가 끝납니다!<br/>
+                  남은 꼬리실들을 돗바늘로 편물 안쪽에 쏙쏙 숨겨 잘라냅니다.<br/>
+                  미온수에 울샴푸를 풀고 스웨터를 조물조물 가볍게 세탁한 뒤, 수건으로 물기를 꼭 짜서 그늘에 평평하게 펼쳐 말려주면(블로킹) 삐뚤빼뚤했던 코들이 마법처럼 고르고 평평해집니다!<br/>
+                  🎉 <strong>축하합니다! 세상에 단 하나뿐인 내 첫 핸드메이드 스웨터가 완성되었습니다!</strong>
+                </p>
               </div>
             </div>
 
             {/* Video Button */}
-            <div>
+            <div className="mt-4">
               <button
                 type="button"
-                onClick={() => onOpenVideo('00u88Q6z3bA', '이탈리안 바인드오프 돗바늘 마감')}
+                onClick={() => onOpenVideo('00u88Q6z3bA', '소매 매직루프 및 돗바늘 코막음')}
                 className="inline-flex items-center gap-2 text-xs text-primary hover:text-white hover:bg-primary bg-primary-fixed/40 px-4 py-2 rounded-full font-bold transition-all cursor-pointer shadow-2xs active:scale-95"
               >
                 <span className="material-symbols-outlined text-[18px]">play_circle</span>
-                <span>기법 영상: 이탈리안 바인드오프 재생</span>
+                <span>기법 영상: 소매 매직루프 &amp; 코막음 재생</span>
               </button>
             </div>
           </div>

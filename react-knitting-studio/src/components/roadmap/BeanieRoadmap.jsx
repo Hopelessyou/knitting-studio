@@ -74,6 +74,34 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
         </div>
       </div>
 
+            {/* 🌟 Beginner 3-Minute Cheat Sheet Banner */}
+      <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-2xs">
+        <div className="flex items-center gap-2 text-primary font-bold text-sm sm:text-base mb-3">
+          <span className="material-symbols-outlined text-[20px]">lightbulb</span>
+          <span>🌱 완전 초보자를 위한 비니 3분 정복 치트키 (시작 전 필독!)</span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-on-surface">
+          <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20">
+            <strong className="text-emerald-700 font-bold block mb-1">① 독일식 코잡기 어렵다면?</strong>
+            <p className="text-on-surface-variant text-[11px] leading-normal">
+              평소 하던 <strong>일반 코잡기(롱테일)</strong>로 하셔도 비니는 충분히 잘 늘어납니다! 단, 이마가 조이지 않게 <strong>느슨하게만</strong> 잡으세요.
+            </p>
+          </div>
+          <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20">
+            <strong className="text-emerald-700 font-bold block mb-1">② 정수리 줄임(K2tog)이란?</strong>
+            <p className="text-on-surface-variant text-[11px] leading-normal">
+              어려운 기호가 아니에요! <strong>2코를 한꺼번에 찔러서 겉뜨기</strong>를 하면 2코가 1코로 줄어들며 예쁜 모자 정수리가 완성됩니다.
+            </p>
+          </div>
+          <div className="p-3 bg-surface-container-lowest rounded-xl border border-emerald-500/20">
+            <strong className="text-emerald-700 font-bold block mb-1">③ 정수리 마무리는 복주머니!</strong>
+            <p className="text-on-surface-variant text-[11px] leading-normal">
+              마지막에 남은 코들에 돗바늘로 실을 통과시켜 <strong>복주머니 끈 당기듯 쏙 오므려주면</strong> 감쪽같이 마감됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div className="space-y-8">
         {/* ========================================================================= */}
         {/* STEP 01 */}
@@ -101,6 +129,29 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
                 <span className="text-xs font-medium bg-surface-container-highest px-2.5 py-1 rounded-full text-on-surface-variant">
                   줄길이 40cm 쇼티
                 </span>
+              </div>
+            </div>
+
+                        {/* Easy vs Pro Choice */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 my-3">
+              <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs">
+                <div className="flex items-center gap-1.5 font-bold text-emerald-800 mb-1">
+                  <span className="material-symbols-outlined text-[16px]">sentiment_satisfied</span>
+                  <span>🟢 완전 초보 추천 (가장 쉬운 길)</span>
+                </div>
+                <p className="text-emerald-950 text-[11px] leading-relaxed">
+                  독일식 꼬아 코잡기 영상 보며 헤매지 마세요! <strong>일반 코잡기</strong>로 {calc.castOn}코를 잡으셔도 100% 예쁜 비니가 완성됩니다. 단, 이마가 편하도록 <strong>느슨하게</strong>만 잡아주세요!
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-surface-container-lowest border border-on-surface/[0.08] text-xs">
+                <div className="flex items-center gap-1.5 font-bold text-on-surface mb-1">
+                  <span className="material-symbols-outlined text-[16px]">verified</span>
+                  <span>🔵 숙련자 정석 옵션</span>
+                </div>
+                <p className="text-on-surface-variant text-[11px] leading-relaxed">
+                  이마 압박 없이 탄성이 뛰어난 <strong>독일식 꼬아 코잡기(German Twisted)</strong>를 사용하세요.
+                </p>
               </div>
             </div>
 
