@@ -57,8 +57,14 @@ export default function useSweaterCalc(gaugeSts = 20, gaugeRows = 28, chestBase 
     const totalRows = Math.round((totalLengthCm * gaugeRows) / 10);
     const yarnBalls = (fit === 'tailored') ? '10~11볼 (500g)' : '12~13볼 (600g)';
 
-    // Wrist target sts (approx 19~21cm)
+        // Wrist target sts (approx 19~21cm)
     const wristSts = Math.max(36, Math.round((20 * stitchPerCm) / 2) * 2);
+
+    // Body & Sleeve Lengths & Decrease Intervals
+    const bodyLengthCm = Math.max(30, totalLengthCm - Math.round(armholeDepthCm));
+    const sleeveLengthCm = (fit === 'tailored') ? 42 : 44;
+    const sleeveDecreasesNeeded = Math.max(1, Math.round((totalInitialSleeveSts - wristSts) / 2));
+    const sleeveDecRows = Math.max(4, Math.round(((sleeveLengthCm - 5) * rowPerCm) / sleeveDecreasesNeeded));
 
     return {
       stitchPerCm,
@@ -84,7 +90,10 @@ export default function useSweaterCalc(gaugeSts = 20, gaugeRows = 28, chestBase 
       totalLengthCm,
       totalRows,
       yarnBalls,
-      wristSts
+      wristSts,
+      bodyLengthCm,
+      sleeveLengthCm,
+      sleeveDecRows
     };
   }, [gaugeSts, gaugeRows, chestBase, fit, gender]);
 }

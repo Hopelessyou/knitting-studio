@@ -708,7 +708,7 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
             <div className="space-y-3.5 text-xs sm:text-sm text-on-surface leading-relaxed">
               <div className="p-3 bg-surface-container-lowest rounded-xl border border-on-surface/[0.06]">
                 <strong className="text-primary font-bold text-xs sm:text-sm block mb-1">
-                  1단계: 겨드랑이 밑선부터 약 {calc.bodyLengthCm - 5}cm 무한 겉뜨기
+                  1단계: 겨드랑이 밑선부터 약 {(calc.bodyLengthCm || 34) - 5}cm 무한 겉뜨기
                 </strong>
                 <p className="text-on-surface-variant text-xs mb-2">
                   4.5mm 줄바늘로 총 <strong>{calc.totalFinalBodySts}코</strong>를 코 늘림/줄임 없이 겉뜨기로만 뱅글뱅글 돕니다 (약 {calc.bodyRowsEst}단).
@@ -838,11 +838,11 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                   2단계: 슬림핏 소매 줄임 공식
                 </strong>
                 <p className="text-on-surface-variant text-xs mb-2">
-                  팔뚝에서 손목으로 내려갈수록 좁아지므로, <strong>{calc.sleeveDecRows}단마다 1번씩 양쪽에서 1코씩 줄이기</strong>를 반복합니다.
+                  팔뚝에서 손목으로 내려갈수록 좁아지므로, <strong>{(calc.sleeveDecRows || 8)}단마다 1번씩 양쪽에서 1코씩 줄이기</strong>를 반복합니다.
                 </p>
                 <div className="p-2.5 bg-surface-container-low rounded-lg font-mono text-[11px] text-on-surface space-y-1">
                   <div>🔹 <strong>줄임단 뜨는 법:</strong> [시작마커] ➔ 겉뜨기 1개 ➔ 오른코 겹쳐뜨기(SSK, 1코 줄임) ➔ 쭉 겉뜨기 ➔ 끝에서 3코 전 2코 모아뜨기(K2tog, 1코 줄임) ➔ 겉뜨기 1개</div>
-                  <div>🔹 <strong>평단:</strong> 줄임단 다음 {calc.sleeveDecRows - 1}단 동안은 줄임 없이 그냥 편안하게 겉뜨기!</div>
+                  <div>🔹 <strong>평단:</strong> 줄임단 다음 {(calc.sleeveDecRows || 8) - 1}단 동안은 줄임 없이 그냥 편안하게 겉뜨기!</div>
                   <div className="text-primary font-bold">손목 목표 코수(약 {calc.wristSts}코)가 될 때까지 규칙적으로 반복합니다.</div>
                 </div>
               </div>
