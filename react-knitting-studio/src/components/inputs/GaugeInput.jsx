@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 // 4대 국제 표준 실 굵기 프리셋 데이터
 const YARN_PRESETS = [
-  { id: 'fingering', name: '가는 실', en: 'Fingering', sub: '26코 · 3mm', sts: 26, rows: 34, needleMm: 3.0, needleDesc: '2.5~3.25mm' },
-  { id: 'dk', name: '보통 실', en: 'DK / 워스티드', sub: '20코 · 4mm', sts: 20, rows: 28, needleMm: 4.0, needleDesc: '3.75~4.5mm' },
-  { id: 'aran', name: '도톰한 실', en: 'Aran', sub: '16코 · 5mm', sts: 16, rows: 22, needleMm: 5.0, needleDesc: '4.5~5.5mm' },
-  { id: 'chunky', name: '굵은 실', en: 'Chunky', sub: '12코 · 7mm', sts: 12, rows: 16, needleMm: 7.0, needleDesc: '6.0~8.0mm' },
+  { id: 'fingering', name: '가는 실', en: 'Fingering', sub: '26코 · 3.0mm', sts: 26, rows: 34, needleMm: 3.0, needleDesc: '2.5~3.25mm' },
+  { id: 'dk', name: '보통 실', en: 'DK / 워스티드', sub: '20코 · 4.0mm', sts: 20, rows: 28, needleMm: 4.0, needleDesc: '3.75~4.5mm' },
+  { id: 'aran', name: '도톰한 실', en: 'Aran', sub: '16코 · 5.0mm', sts: 16, rows: 22, needleMm: 5.0, needleDesc: '4.5~5.5mm' },
+  { id: 'chunky', name: '굵은 실', en: 'Chunky', sub: '12코 · 7.0mm', sts: 12, rows: 16, needleMm: 7.0, needleDesc: '6.0~8.0mm' },
 ];
 
 // 표준 바늘 호수별 게이지 매핑 테이블
@@ -29,7 +29,28 @@ const NEEDLE_LOOKUP = {
   '12.0': { sts: 7, rows: 9, label: '자이언트 얀 (Giant)' },
 };
 
-// 퀵 mm 선택 칩 리스트
+// 코수 -> 바늘 역매핑 테이블
+const STS_TO_NEEDLE_MAP = {
+  36: 2.0,
+  32: 2.5,
+  28: 3.0,
+  26: 3.25,
+  24: 3.5,
+  22: 3.75,
+  20: 4.0,
+  18: 4.5,
+  16: 5.0,
+  15: 5.5,
+  14: 6.0,
+  13: 6.5,
+  12: 7.0,
+  10: 8.0,
+  9: 9.0,
+  8: 10.0,
+  7: 12.0,
+};
+
+// 퀵 mm 선택 칩 리스트 (10대 표준 호수)
 const QUICK_NEEDLE_SIZES = [2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 10.0];
 
 // 바늘 mm -> 코수/단수 환산
@@ -46,6 +67,10 @@ function convertNeedleToGauge(mm) {
 // 코수 -> 바늘 mm 역환산
 function convertStsToNeedle(sts) {
   if (!sts || sts <= 0) return 4.0;
+  const rounded = Math.round(sts);
+  if (STS_TO_NEEDLE_MAP[rounded]) {
+    return STS_TO_NEEDLE_MAP[rounded];
+  }
   const mm = Math.round((82 / sts) * 10) / 10;
   return Math.max(1.5, Math.min(15.0, mm));
 }
@@ -67,7 +92,11 @@ export default function GaugeInput({
   // Sync from props
   useEffect(() => {
     setLocalSts(String(gaugeSts));
-    setLocalNeedle(String(convertStsToNeedle(gaugeSts)));
+    // Prevent reverse recalculation jump (e.g., 4.5 jumping to 4.6)
+    const currentNeedle = parseFloat(localNeedle);
+    if (!currentNeedle || convertNeedleToGauge(currentNeedle).sts !== gaugeSts) {
+      setLocalNeedle(String(convertStsToNeedle(gaugeSts)));
+    }
   }, [gaugeSts]);
 
   useEffect(() => {
@@ -285,7 +314,7 @@ export default function GaugeInput({
 
       {/* 2. 실 크기 (권장 바늘 호수 mm) 직접 입력 Hero Section */}
       <div className="p-3.5 sm:p-4 bg-primary/5 rounded-2xl border-2 border-primary/20 mb-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2.5">
           <div>
             <label className="text-xs sm:text-sm font-bold text-on-surface flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[17px] text-primary">straighten</span>
@@ -300,58 +329,66 @@ export default function GaugeInput({
           </span>
         </div>
 
-        {/* Stepper + Direct Number Input */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => stepNeedle(-0.5)}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-primary/20 flex items-center justify-center font-bold text-lg hover:bg-primary/10 transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
-              title="0.5mm 얇게"
-            >
-              -
-            </button>
-            <div className="flex items-center justify-center gap-1 shrink-0">
-              <input
-                type="text"
-                inputMode="decimal"
-                value={localNeedle}
-                onChange={handleNeedleChange}
-                onBlur={handleNeedleBlur}
-                onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-                className="w-20 text-center text-xl sm:text-2xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
-                placeholder="4.0"
-                title="실 크기(mm)를 키보드로 직접 백스페이스하여 입력할 수 있습니다 (예: 3.5, 4.5, 6.0)"
-              />
-              <span className="text-xs sm:text-sm text-primary font-bold shrink-0">mm</span>
-            </div>
-            <button
-              type="button"
-              onClick={() => stepNeedle(0.5)}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-primary/20 flex items-center justify-center font-bold text-lg hover:bg-primary/10 transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
-              title="0.5mm 굵게"
-            >
-              +
-            </button>
+        {/* Top: Stepper + Direct Number Input */}
+        <div className="flex items-center justify-center sm:justify-start gap-2.5 py-1">
+          <button
+            type="button"
+            onClick={() => stepNeedle(-0.5)}
+            className="w-10 h-10 rounded-xl bg-white border border-primary/20 flex items-center justify-center font-bold text-xl hover:bg-primary/10 transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
+            title="0.5mm 얇게"
+          >
+            -
+          </button>
+          <div className="flex items-center justify-center gap-1 shrink-0">
+            <input
+              type="text"
+              inputMode="decimal"
+              value={localNeedle}
+              onChange={handleNeedleChange}
+              onBlur={handleNeedleBlur}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+              className="w-20 text-center text-2xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
+              placeholder="4.0"
+              title="실 크기(mm)를 키보드로 직접 백스페이스하여 입력할 수 있습니다 (예: 3.5, 4.5, 6.0)"
+            />
+            <span className="text-sm text-primary font-bold shrink-0">mm</span>
           </div>
+          <button
+            type="button"
+            onClick={() => stepNeedle(0.5)}
+            className="w-10 h-10 rounded-xl bg-white border border-primary/20 flex items-center justify-center font-bold text-xl hover:bg-primary/10 transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
+            title="0.5mm 굵게"
+          >
+            +
+          </button>
+          <span className="text-xs text-on-surface-variant font-medium ml-2 hidden sm:inline-block">
+            (0.5mm 증감 또는 3.5, 4.5 등 키보드 직접 입력)
+          </span>
+        </div>
 
-          {/* Quick Needle mm Chips */}
-          <div className="flex items-center gap-1 sm:gap-1.5 flex-wrap">
+        {/* Bottom: Quick Needle mm Chips in 2-row clean grid */}
+        <div className="mt-3 pt-2.5 border-t border-primary/10">
+          <div className="text-[10px] font-bold text-secondary uppercase tracking-wider mb-1.5 flex items-center gap-1">
+            <span className="material-symbols-outlined text-[13px]">bolt</span>
+            <span>자주 쓰는 대바늘 호수 퀵 선택:</span>
+          </div>
+          <div className="grid grid-cols-5 gap-1.5">
             {QUICK_NEEDLE_SIZES.map((mm) => {
-              const isSelected = Math.abs(currentNeedleNum - mm) < 0.1;
+              const isSelected = Math.abs(currentNeedleNum - mm) < 0.15;
+              const formattedLabel = Number.isInteger(mm) ? `${mm}.0` : `${mm}`;
               return (
                 <button
                   key={mm}
                   type="button"
                   onClick={() => selectNeedleMm(mm)}
-                  className={`px-2 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer select-none ${
+                  className={`py-1.5 px-1 rounded-lg text-xs font-bold transition-all text-center cursor-pointer select-none ${
                     isSelected
-                      ? 'bg-primary text-white shadow-2xs scale-105'
-                      : 'bg-white/80 border border-primary/15 text-on-surface-variant hover:bg-white hover:text-primary'
+                      ? 'bg-primary text-white shadow-2xs scale-[1.02] ring-2 ring-primary/30'
+                      : 'bg-white/90 border border-primary/15 text-on-surface hover:bg-white hover:text-primary hover:border-primary/40'
                   }`}
-                  title={`${mm}mm 실 크기 선택`}
+                  title={`${formattedLabel}mm 실 크기 선택`}
                 >
-                  {mm}mm
+                  {formattedLabel}mm
                 </button>
               );
             })}
@@ -544,7 +581,7 @@ export default function GaugeInput({
             </span>
           ) : (
             <span className="text-[10px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded-full">
-              ✏️ {currentNeedleNum.toFixed(1)}mm 맞춤 세팅
+              ✏️ {Number.isInteger(currentNeedleNum) ? `${currentNeedleNum}.0` : currentNeedleNum.toFixed(1)}mm 맞춤 세팅
             </span>
           )}
         </div>
