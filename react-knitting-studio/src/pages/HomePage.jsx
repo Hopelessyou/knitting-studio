@@ -3,20 +3,30 @@ import React from 'react';
 export default function HomePage({ onSelectTab }) {
   const cards = [
     {
-      id: 'sweater',
-      title: '탑다운 레글런 스웨터',
-      sub: 'Top-Down Raglan Sweater',
-      desc: '신체 치수와 게이지를 넣으면 목둘레 코잡기부터 요크 늘림, 소매 분리까지 5단계 도안이 1초 만에 자동 완성됩니다.',
-      img: '/images/sweater_loose.jpg',
+      id: 'sweater-crew',
+      title: '라운드넥 스웨터',
+      sub: 'Classic Crewneck Raglan',
+      desc: '가장 클래식하고 유행을 타지 않는 라운드넥 탑다운 레글런 스웨터! 신체 치수와 게이지를 넣으면 목둘레 코잡기부터 완성까지 100% 자동 연산됩니다.',
+      img: '/images/sweater_crew.jpg',
       badge: '난이도 ★★★☆☆',
       time: '약 2~3주 소요',
-      features: ['이탈리안 튜블러 코잡기', 'M1R/M1L 사선 늘림', '테일러드 & 루즈핏']
+      features: ['이탈리안/롱테일 코잡기', 'M1R/M1L 사선 늘림', '테일러드 & 루즈핏']
+    },
+    {
+      id: 'sweater-vneck',
+      title: 'V넥 스웨터 & 가디건',
+      sub: 'V-Neck & Cardigan Edition',
+      desc: '세련된 V라인 사선 파임 스웨터와 앞섶 단추구멍이 들어간 오픈형 가디건! 평면 왕복과 원형뜨기를 자유자재로 지원합니다.',
+      img: '/images/sweater_vneck.jpg',
+      badge: '난이도 ★★★☆☆',
+      time: '약 2~3주 소요',
+      features: ['V라인 중심 3코 모아뜨기', '단추구멍 자동 계산', '평면 왕복 레글런']
     },
     {
       id: 'beanie',
       title: '비니 & 와치캡',
       sub: '8-Wedge Crown Beanie',
-      desc: '머리둘레 8등분 대칭 왕관 줄임 공식으로 정수리가 울퉁불퉁 솟지 않는 완벽한 핏의 비니와 도커 와치캡을 제작합니다.',
+      desc: '머리둘레 8등분 대칭 왕관 줄임 공식으로 정수리가 울퉁불퉁 울지 않는 완벽한 핏의 비니와 숏캡 와치캡을 제작합니다.',
       img: '/images/beanie_watchcap.jpg',
       badge: '난이도 ★★☆☆☆',
       time: '약 2~3일 소요',
@@ -26,7 +36,7 @@ export default function HomePage({ onSelectTab }) {
       id: 'socks',
       title: '맞춤 양말 (토업 & 커프다운)',
       sub: 'Custom Fit Socks',
-      desc: '발가락부터 올라가는 토업과 발목부터 내려오는 커프다운 중 원하는 기법으로 닳지 않는 쫀쫀한 맞춤 양말을 완성합니다.',
+      desc: '발가락부터 올라가는 토업과 발목부터 내려오는 커프다운 중 원하는 기법으로 벗겨지지 않는 쫀쫀한 맞춤 양말을 완성합니다.',
       img: '/images/socks_toeup.jpg',
       badge: '난이도 ★★★☆☆',
       time: '약 3~4일 소요',
@@ -36,7 +46,7 @@ export default function HomePage({ onSelectTab }) {
       id: 'scarf',
       title: '목도리 & 머플러',
       sub: 'Brioche & Rib Scarf',
-      desc: '변형고무뜨기의 폭신한 에어쿠션 볼륨과 아이코드 3코 엣지로 사방 가장자리가 절대 말리지 않는 프리미엄 목도리를 뜹니다.',
+      desc: '변형고무뜨기의 푹신한 에어쿠션 볼륨과 아이코드 3코 엣지로 사방 가장자리가 절대 말리지 않는 프리미엄 목도리를 뜹니다.',
       img: '/images/scarf_rib.jpg',
       badge: '난이도 ★☆☆☆☆',
       time: '약 4~5일 소요',

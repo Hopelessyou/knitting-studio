@@ -8,12 +8,18 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import SweaterRoadmap from '../components/roadmap/SweaterRoadmap';
 
-export default function SweaterPage({ onOpenVideo, isAdmin }) {
+export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew" }) {
   const [gaugeSts, setGaugeSts] = useState(20);
   const [gaugeRows, setGaugeRows] = useState(28);
   const [chestBase, setChestBase] = useState(100);
   const [fit, setFit] = useState('loose');
-  const [sweaterType, setSweaterType] = useState('crew'); // 'crew', 'vneck', 'cardigan'
+  const [sweaterType, setSweaterType] = useState(initialStyle || 'crew'); // 'crew', 'vneck', 'cardigan'
+
+  React.useEffect(() => {
+    if (initialStyle) {
+      setSweaterType(initialStyle);
+    }
+  }, [initialStyle]);
 
   const calc = useSweaterCalc(gaugeSts, gaugeRows, chestBase, fit, 'f', sweaterType);
 

@@ -14,7 +14,7 @@ import { supabase } from './services/supabaseClient';
 const getInitialTab = () => {
   if (typeof window !== 'undefined') {
     const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
-    const validTabs = ['home', 'sweater', 'beanie', 'socks', 'scarf', 'community', 'admin'];
+    const validTabs = ['home', 'sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf', 'community', 'admin'];
     if (validTabs.includes(cleanPath)) {
       return cleanPath;
     }
@@ -103,7 +103,7 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
-      const validTabs = ['home', 'sweater', 'beanie', 'socks', 'scarf', 'community', 'admin'];
+      const validTabs = ['home', 'sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf', 'community', 'admin'];
       if (validTabs.includes(cleanPath)) {
         setActiveTab(cleanPath);
       } else {
@@ -218,7 +218,13 @@ export default function App() {
       {/* 2. Main Page Content */}
       <main className="flex-1">
         {activeTab === 'home' && <HomePage onSelectTab={handleSelectTab} />}
-        {activeTab === 'sweater' && <SweaterPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
+        {(activeTab === 'sweater' || activeTab === 'sweater-crew' || activeTab === 'sweater-vneck' || activeTab === 'sweater-cardigan') && (
+          <SweaterPage
+            onOpenVideo={handleOpenVideo}
+            isAdmin={isPrintAllowed}
+            initialStyle={activeTab === 'sweater-vneck' ? 'vneck' : activeTab === 'sweater-cardigan' ? 'cardigan' : 'crew'}
+          />
+        )}
         {activeTab === 'beanie' && <BeaniePage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
         {activeTab === 'socks' && <SocksPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
         {activeTab === 'scarf' && <ScarfPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}

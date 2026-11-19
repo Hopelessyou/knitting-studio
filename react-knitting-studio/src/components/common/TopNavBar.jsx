@@ -45,13 +45,20 @@ export default function TopNavBar({
 
   // 뜨개 제품 도안 계산기 그룹
   const productTabs = [
-    { id: 'sweater', label: '스웨터', emoji: '👕', sub: '탑다운 레글런 · V넥 · 가디건' },
-    { id: 'beanie', label: '비니', emoji: '🧢', sub: '와치캡 · 8등분 왕관 줄임' },
-    { id: 'socks', label: '양말', emoji: '🧦', sub: '토업 & 커프다운 맞춤' },
-    { id: 'scarf', label: '목도리', emoji: '🧣', sub: '변형고무 & 리브 머플러' }
+    { id: 'sweater-crew', label: '라운드넥', fullLabel: '라운드넥 스웨터', emoji: '👕', sub: '클래식 탑다운 레글런 풀오버' },
+    { id: 'sweater-vneck', label: 'V넥', fullLabel: 'V넥 스웨터', emoji: '👔', sub: '세련된 V라인 탑다운 풀오버' },
+    { id: 'sweater-cardigan', label: '가디건', fullLabel: '오픈 가디건', emoji: '🧥', sub: '앞트임 & 단추단 오픈 가디건' },
+    { id: 'beanie', label: '비니', fullLabel: '비니 & 와치캡', emoji: '🧢', sub: '와치캡 · 8등분 왕관 줄임' },
+    { id: 'socks', label: '양말', fullLabel: '맞춤 양말', emoji: '🧦', sub: '토업 & 커프다운 맞춤' },
+    { id: 'scarf', label: '목도리', fullLabel: '변형고무 목도리', emoji: '🧣', sub: '변형고무 & 리브 머플러' }
   ];
 
-  const isProductActive = ['sweater', 'beanie', 'socks', 'scarf'].includes(activeTab);
+  const isProductActive = ['sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf'].includes(activeTab);
+  
+  const isTabActive = (tabId) => {
+    if (tabId === 'sweater-crew') return activeTab === 'sweater' || activeTab === 'sweater-crew';
+    return activeTab === tabId;
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-[#fff8f3]/95 backdrop-blur-md border-b border-[#201b13]/[0.08] shadow-2xs">
@@ -125,7 +132,7 @@ export default function TopNavBar({
             {/* 제품 4종 다이렉트 탭 */}
             <div className="flex items-center gap-1 shrink-0">
               {productTabs.map((tab) => {
-                const isActive = activeTab === tab.id;
+                const isActive = isTabActive(tab.id);
                 return (
                   <button
                     key={tab.id}
@@ -161,7 +168,7 @@ export default function TopNavBar({
                 </div>
                 <div className="space-y-1">
                   {productTabs.map((tab) => {
-                    const isActive = activeTab === tab.id;
+                    const isActive = isTabActive(tab.id);
                     return (
                       <button
                         key={tab.id}
@@ -313,7 +320,7 @@ export default function TopNavBar({
         <div className="flex items-center gap-1 bg-white p-0.5 rounded-full border border-on-surface/[0.08] shrink-0">
           <span className="text-[10px] font-black text-primary px-1.5 shrink-0 whitespace-nowrap">도안</span>
           {productTabs.map((tab) => {
-            const isActive = activeTab === tab.id;
+            const isActive = isTabActive(tab.id);
             return (
               <button
                 key={tab.id}
