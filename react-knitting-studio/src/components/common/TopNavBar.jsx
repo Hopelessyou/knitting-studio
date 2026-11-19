@@ -84,7 +84,7 @@ export default function TopNavBar({
         </button>
 
         {/* Desktop Navigation: [홈]과 [커뮤니티] 분리 & [스웨터, 비니 등 제품] 한 그룹에 구성 */}
-        <nav className="hidden lg:flex items-center gap-2 shrink-0">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0">
           {/* 1. 홈 (Home) 독립 분리 */}
           <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0 flex items-center gap-1">
             <button
@@ -104,16 +104,16 @@ export default function TopNavBar({
             <button
               type="button"
               onClick={() => onSelectTab('custom')}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
                 activeTab === 'custom'
                   ? 'bg-primary text-white shadow-xs'
                   : 'text-primary hover:text-on-surface hover:bg-white/80'
               }`}
               title="어깨/실루엣/패턴 자유 조립 도안 스튜디오"
             >
-              <span className="material-symbols-outlined text-[17px]">palette</span>
-              <span>커스텀 도안</span>
-              <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-amber-500/20 text-amber-800 font-extrabold uppercase">NEW</span>
+              <span className="material-symbols-outlined text-[15px]">palette</span>
+              <span>커스텀</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" title="신규 기능" />
               {activeTab === 'custom' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
             </button>
           </div>
@@ -220,7 +220,7 @@ export default function TopNavBar({
             <button
               type="button"
               onClick={() => onSelectTab('community')}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+              className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
                 activeTab === 'community'
                   ? 'bg-primary text-white shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
@@ -238,7 +238,7 @@ export default function TopNavBar({
               <button
                 type="button"
                 onClick={() => onSelectTab('admin')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
+                className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
                   activeTab === 'admin'
                     ? 'bg-[#201b13] text-amber-300 shadow-xs'
                     : 'text-primary bg-primary/10 hover:bg-primary/20'
