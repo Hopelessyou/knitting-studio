@@ -9,12 +9,13 @@ import SocksPage from './pages/SocksPage';
 import ScarfPage from './pages/ScarfPage';
 import CommunityPage from './pages/CommunityPage';
 import AdminPage from './pages/AdminPage';
+import CustomStudioPage from './pages/CustomStudioPage';
 import { supabase } from './services/supabaseClient';
 
 const getInitialTab = () => {
   if (typeof window !== 'undefined') {
     const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
-    const validTabs = ['home', 'sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf', 'community', 'admin'];
+    const validTabs = ['home', 'custom', 'sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf', 'community', 'admin'];
     if (validTabs.includes(cleanPath)) {
       return cleanPath;
     }
@@ -103,7 +104,7 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       const cleanPath = window.location.pathname.replace(/^\/|\/$/g, '').toLowerCase();
-      const validTabs = ['home', 'sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf', 'community', 'admin'];
+      const validTabs = ['home', 'custom', 'sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf', 'community', 'admin'];
       if (validTabs.includes(cleanPath)) {
         setActiveTab(cleanPath);
       } else {
@@ -218,6 +219,12 @@ export default function App() {
       {/* 2. Main Page Content */}
       <main className="flex-1">
         {activeTab === 'home' && <HomePage onSelectTab={handleSelectTab} />}
+        {activeTab === 'custom' && (
+          <CustomStudioPage
+            isAdmin={isPrintAllowed}
+            onOpenVideo={handleOpenVideo}
+          />
+        )}
         {(activeTab === 'sweater' || activeTab === 'sweater-crew' || activeTab === 'sweater-vneck' || activeTab === 'sweater-cardigan') && (
           <SweaterPage
             onOpenVideo={handleOpenVideo}

@@ -70,6 +70,39 @@ export default function HomePage({ onSelectTab }) {
       </div>
 
       {/* 4 Cards Grid */}
+      {/* 🌟 NEW FEATURE: Custom Studio Callout Banner */}
+      <div 
+        onClick={() => onSelectTab('custom')}
+        className="mb-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-primary/15 via-surface-container to-amber-500/15 border-2 border-primary/30 shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 group"
+      >
+        <div className="flex items-start sm:items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined text-[28px]">palette</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[11px] font-extrabold uppercase tracking-wider bg-primary text-white px-2.5 py-0.5 rounded-full">
+                NEW STUDIO
+              </span>
+              <span className="text-xs font-bold text-primary">어깨 구조 × 실루엣 × 무늬 패턴 자유 조립</span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-bold font-serif text-on-surface group-hover:text-primary transition-colors">
+              🎨 나만의 맞춤 도안 제작 스튜디오
+            </h3>
+            <p className="text-xs sm:text-sm text-on-surface-variant mt-0.5 break-keep">
+              드롭숄더/레글런, 크롭/롱핏, 꽈배기/멍석뜨기 무늬까지 내 취향대로 골라 1:1 맞춤 편물 도안을 1초 만에 완성하세요!
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          className="self-start md:self-auto px-4 py-2.5 rounded-full bg-primary text-white text-xs font-bold group-hover:bg-primary-hover shadow-xs transition-all flex items-center gap-1.5 whitespace-nowrap"
+        >
+          <span>스튜디오 입장하기</span>
+          <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </button>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {cards.map((card) => (
           <div
