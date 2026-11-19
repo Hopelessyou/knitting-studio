@@ -106,9 +106,17 @@ export default function useSweaterCalc(
     // 실 소요량 산출 (체형 및 옷 면적에 실시간 비례)
     const gramEst = Math.round(380 + ((chestBase - 85) * 7) + (fit === 'loose' ? 50 : 0) + (type === 'cardigan' ? 60 : 0));
     const ballSize = (typeof yarnBallWeight === 'number' && yarnBallWeight > 0) ? yarnBallWeight : 50;
-    const ballsMin = Math.max(1, Math.round(gramEst / ballSize));
-    const ballsMax = ballsMin + 1;
-    let yarnBalls = `${ballsMin}~${ballsMax}볼 (${gramEst}g · ${ballSize}g/볼)`;
+
+    let yarnBalls = '';
+    if (ballSize >= 1000) {
+      const neededCones = Math.max(1, Math.ceil(gramEst / ballSize));
+      const kgLabel = (ballSize / 1000).toFixed(ballSize % 1000 === 0 ? 0 : 1);
+      yarnBalls = `${neededCones}콘 (${gramEst}g · ${kgLabel}kg 콘사)`;
+    } else {
+      const ballsMin = Math.max(1, Math.round(gramEst / ballSize));
+      const ballsMax = ballsMin + 1;
+      yarnBalls = `${ballsMin}~${ballsMax}볼 (${gramEst}g · ${ballSize}g/볼)`;
+    }
 
     // 5. 스타일별 (라운드넥, V넥, 가디건) 특화 파라미터
     let castOn = baseCastOn;

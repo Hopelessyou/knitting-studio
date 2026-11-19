@@ -60,7 +60,7 @@ export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew
     ] : [
       { label: '완성 총장', value: `${calc.totalLengthCm}cm`, sub: `${calc.totalRows}단` }
     ]),
-    { label: '예상 실', value: calc.yarnBalls, sub: `${ballWeight}g/볼 기준` }
+    { label: '예상 실', value: calc.yarnBalls, sub: ballWeight >= 1000 ? `${(ballWeight/1000).toFixed(ballWeight % 1000 === 0 ? 0 : 1)}kg 콘사 기준` : `${ballWeight}g/볼 기준` }
   ];
 
   return (

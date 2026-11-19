@@ -118,9 +118,19 @@ export default function useCustomPatternCalc({
     const patternWeightBonus = patternType === 'cable' ? 70 : patternType === 'moss' ? 30 : 0;
     const estGrams = Math.round(baseWeight + ((chestBase - 85) * 5) + patternWeightBonus);
     const ballSize = (typeof yarnBallWeight === 'number' && yarnBallWeight > 0) ? yarnBallWeight : 50;
-    const estBallsMin = Math.max(1, Math.round(estGrams / ballSize));
-    const estBallsMax = estBallsMin + 1;
-    const yarnBalls = `${estBallsMin}~${estBallsMax}볼 (${estGrams}g · ${ballSize}g/볼)`;
+
+    let yarnBalls = '';
+    let estBallsMax = 1;
+    if (ballSize >= 1000) {
+      const neededCones = Math.max(1, Math.ceil(estGrams / ballSize));
+      const kgLabel = (ballSize / 1000).toFixed(ballSize % 1000 === 0 ? 0 : 1);
+      yarnBalls = `${neededCones}콘 (${estGrams}g · ${kgLabel}kg 콘사)`;
+      estBallsMax = neededCones;
+    } else {
+      const estBallsMin = Math.max(1, Math.round(estGrams / ballSize));
+      estBallsMax = estBallsMin + 1;
+      yarnBalls = `${estBallsMin}~${estBallsMax}볼 (${estGrams}g · ${ballSize}g/볼)`;
+    }
 
     // 스트라이프 배색 시 컬러별 볼수
     const stripeColorA = Math.ceil(estBallsMax * 0.55);

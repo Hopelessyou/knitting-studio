@@ -175,7 +175,7 @@ export default function GaugeInput({
   const handleBallWeightBlur = () => {
     let num = parseInt(localBallWeight, 10);
     if (isNaN(num) || num < 10) num = 10;
-    if (num > 500) num = 500;
+    if (num > 3000) num = 3000;
     setLocalBallWeight(String(num));
     if (onBallWeightChange) {
       onBallWeightChange(num);
@@ -184,7 +184,7 @@ export default function GaugeInput({
 
   const stepBallWeight = (delta) => {
     const current = parseInt(localBallWeight, 10) || ballWeight || 50;
-    const next = Math.max(10, Math.min(500, current + delta));
+    const next = Math.max(10, Math.min(3000, current + delta));
     setLocalBallWeight(String(next));
     if (onBallWeightChange) {
       onBallWeightChange(next);
@@ -426,7 +426,7 @@ export default function GaugeInput({
                 onChange={handleBallWeightChange}
                 onBlur={handleBallWeightBlur}
                 onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-                className="w-16 text-center text-lg font-bold font-serif text-secondary bg-white rounded-lg border border-secondary/30 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 py-0.5 shadow-2xs"
+                className="w-20 text-center text-lg font-bold font-serif text-secondary bg-white rounded-lg border border-secondary/30 focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/20 py-0.5 shadow-2xs"
                 placeholder="50"
                 title="실 1볼 무게(g)를 직접 백스페이스하여 입력할 수 있습니다"
               />
@@ -447,7 +447,8 @@ export default function GaugeInput({
             {[
               { g: 40, label: '40g (소폭/모헤어)' },
               { g: 50, label: '50g (표준 울)' },
-              { g: 100, label: '100g (대용량 벌크)' }
+              { g: 100, label: '100g (벌크볼)' },
+              { g: 1000, label: '1kg (대용량 콘사)' }
             ].map(({ g, label }) => {
               const isSelected = currentBallWeightNum === g;
               return (
