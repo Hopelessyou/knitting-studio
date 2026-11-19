@@ -7,6 +7,12 @@ const TOOLS_DATA = {
     { id: 'notion', title: '3. 별실 또는 실리콘 코드', spec: '길이 약 1m 2줄 (소매 쉼코용)', desc: '요크 완성 후 소매 코를 잠시 쉬게 걸어둘 부드러운 면사 별실이나 실리콘 튜브 홀더를 준비합니다.', icon: 'cable' },
     { id: 'finish', title: '4. 줄자 & 돗바늘 & 쪽가위', spec: '실시간 치수 측정 및 실정리', desc: '요크 깊이·총장 수시 측정용 부드러운 줄자와 겨드랑이 틈새 메꿈용 굵은 돗바늘입니다.', icon: 'cut' }
   ],
+  cardigan: [
+    { id: 'needle', title: '1. 대바늘 2종 (줄바늘)', spec: '메인 4.5~5.0mm / 립 3.5~4.0mm', desc: '앞트임 평면 왕복뜨기용 80cm 줄바늘 필수. 소매/단추단은 3.5mm 바늘로 쫀쫀하게 작업합니다.', icon: 'straighten' },
+    { id: 'marker', title: '2. 스티치 마커 (8개)', spec: '레글런 4개 라인 앞뒤 8개', desc: '앞판 좌우, 양 소매, 뒷판 경계에 마커를 걸어 겉면 M1R/M1L 늘림 위치를 확인합니다.', icon: 'bookmark' },
+    { id: 'button', title: '3. 단추 (5~6개) & 별실', spec: '직경 20~25mm 우드/자개 단추', desc: '가디건 앞섶을 단단하게 여며줄 단추 5~6개와 소매 분리용 부드러운 면사 별실을 준비합니다.', icon: 'radio_button_checked' },
+    { id: 'finish', title: '4. 줄자 & 돗바늘 & 쪽가위', spec: '단추 간격 측정 & 실정리', desc: '단추구멍 간격(약 7~8cm) 측정용 줄자와 단추 달기 및 실정리용 돗바늘입니다.', icon: 'cut' }
+  ],
   beanie: [
     { id: 'needle', title: '1. 40cm 숏서큘러 2종', spec: '몸통 4.5~5.0mm / 립 3.5~4.0mm', desc: '비니 머리둘레에 딱 맞는 40cm 줄바늘 필수. 고무단은 0.5~1.0mm 얇은 바늘로 짱짱하게 잡습니다.', icon: 'straighten' },
     { id: 'crown', title: '2. 정수리 전환 바늘 (필수⚠️)', spec: '80cm 줄바늘 (매직루프) or DPNs', desc: '정수리 코수가 8~16코로 줄면 40cm 바늘로는 편물이 당겨져 뜰 수 없습니다! 반드시 80cm 줄바늘이나 장갑바늘로 교체해야 합니다.', icon: 'change_circle' },

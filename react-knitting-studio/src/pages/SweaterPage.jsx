@@ -13,18 +13,66 @@ export default function SweaterPage({ onOpenVideo, isAdmin }) {
   const [gaugeRows, setGaugeRows] = useState(28);
   const [chestBase, setChestBase] = useState(100);
   const [fit, setFit] = useState('loose');
+  const [sweaterType, setSweaterType] = useState('crew'); // 'crew', 'vneck', 'cardigan'
 
-  const calc = useSweaterCalc(gaugeSts, gaugeRows, chestBase, fit);
+  const calc = useSweaterCalc(gaugeSts, gaugeRows, chestBase, fit, 'f', sweaterType);
+
+  // Dynamic summary text based on type
+  let typeTitle = '라운드넥 크루 풀오버';
+  let castOnLabel = '시작 목둘레 코잡기 (원형)';
+  let castOnDesc = '목둘레 약 44cm 기준 · 3.5mm 바늘 넥밴드 3cm';
+  let formula = `몸통 ${calc.totalFinalBodySts}코 (앞뒤 각 ${Math.round(calc.totalFinalBodySts / 2)}코)`;
+
+  if (sweaterType === 'vneck') {
+    typeTitle = '탑다운 V넥 레글런 풀오버';
+    castOnLabel = '시작 코잡기 (평면 왕복 시작)';
+    castOnDesc = `뒷목(${calc.backSts}) + 소매 2개(${calc.sleeveSts * 2}) + 레글런(8) + 앞목 2코 · V라인 사선 형성`;
+    formula = `V점 합체 후 몸통 ${calc.totalFinalBodySts}코 (앞뒤 각 ${Math.round(calc.totalFinalBodySts / 2)}코)`;
+  } else if (sweaterType === 'cardigan') {
+    typeTitle = '탑다운 오픈 레글런 가디건';
+    castOnLabel = '시작 코잡기 (앞트임 평면 시작)';
+    castOnDesc = `뒷목(${calc.backSts}) + 소매 2개(${calc.sleeveSts * 2}) + 레글런(8) + 앞판 좌우(${calc.frontLeftSts * 2}코)`;
+    formula = `몸통 ${calc.totalFinalBodySts}코 (평면 왕복 진행 · 단추 ${calc.buttonCount}개 단추단 별도)`;
+  }
+
+  const specs = [
+    ...(sweaterType === 'vneck' ? [
+      { label: 'V파임 깊이', value: `${calc.vneckDepthCm}cm`, sub: `${calc.vneckJoinRow}단 후 V점 합체` }
+    ] : sweaterType === 'cardigan' ? [
+      { label: '앞판 좌우 패널', value: `각 ${calc.frontLeftSts}코`, sub: '평면 메리야스 왕복' }
+    ] : [
+      { label: '요크 깊이', value: `${calc.armholeDepthCm}cm`, sub: `${calc.raglanRows}단 직진` }
+    ]),
+    {
+      label: '레글런 늘림',
+      value: `${calc.neededIncreases}회`,
+      sub: sweaterType === 'cardigan' ? '겉면 늘림 / 안면 안뜨기' : sweaterType === 'vneck' ? '레글런+V사선 늘림' : '2단마다 양쪽 8코'
+    },
+    ...(sweaterType === 'cardigan' ? [
+      { label: '단추 구성', value: `단추 ${calc.buttonCount}개`, sub: `약 ${calc.buttonSpacingCm}cm 간격` }
+    ] : [
+      { label: '완성 총장', value: `${calc.totalLengthCm}cm`, sub: `${calc.totalRows}단` }
+    ]),
+    { label: '예상 실 소요량', value: calc.yarnBalls, sub: 'DK/워스티드 기준' }
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* 1. Preview */}
+      {/* 1. Preview with Type Selection & Fit Selection */}
       <ProductPreview
         category="sweater"
-        style={fit}
-        onStyleChange={setFit}
-        fitBadge={fit === 'tailored' ? '테일러드 정핏 (+7cm)' : '노르딕 루즈 오버핏 (+15cm)'}
+        style={sweaterType}
+        onStyleChange={setSweaterType}
+        fitBadge={`${typeTitle} · ${fit === 'tailored' ? '테일러드 정핏 (+7cm)' : '루즈 오버핏 (+15cm)'}`}
         options={[
+          { id: 'crew', label: '👕 라운드넥 스웨터 (기본)' },
+          { id: 'vneck', label: '👔 V넥 스웨터 (V라인)' },
+          { id: 'cardigan', label: '🧥 오픈 가디건 (단추 여밈)' }
+        ]}
+        secondaryLabel="실루엣 핏"
+        secondaryValue={fit}
+        onSecondaryChange={setFit}
+        secondaryOptions={[
           { id: 'loose', label: '루즈 오버핏 (+15cm 여유)' },
           { id: 'tailored', label: '테일러드 스탠다드 (+7cm 여유)' }
         ]}
@@ -60,16 +108,11 @@ export default function SweaterPage({ onOpenVideo, isAdmin }) {
           <ResultSummaryCard
             isAdmin={isAdmin}
             castOn={calc.castOn}
-            castOnLabel="시작 목둘레 캐스트온 코수"
-            castOnDesc={`목둘레 둘레 약 46cm 기준 · 3.5mm 바늘로 튜블러 코잡기 권장`}
-            formula={`몸통 ${calc.totalFinalBodySts}코 (앞뒤 각 ${Math.round(calc.totalFinalBodySts / 2)}코)`}
+            castOnLabel={castOnLabel}
+            castOnDesc={castOnDesc}
+            formula={formula}
             ruleDesc={`완성 가슴둘레 ${calc.targetChest}cm (여유분 포함)`}
-            specs={[
-              { label: '요크 깊이', value: `${calc.armholeDepthCm}cm`, sub: `${calc.raglanRows}단` },
-              { label: '레글런 늘림', value: `${calc.neededIncreases}회`, sub: '2단마다 양쪽 늘림' },
-              { label: '완성 총장', value: `${calc.totalLengthCm}cm`, sub: `${calc.totalRows}단` },
-              { label: '예상 실 소요량', value: calc.yarnBalls, sub: 'DK/워스티드 기준' }
-            ]}
+            specs={specs}
           />
         </div>
       </div>

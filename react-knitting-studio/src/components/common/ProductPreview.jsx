@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 
-export default function ProductPreview({ category, style, onStyleChange, options, fitBadge }) {
+export default function ProductPreview({
+  category,
+  style,
+  onStyleChange,
+  options,
+  fitBadge,
+  secondaryOptions,
+  secondaryValue,
+  onSecondaryChange,
+  secondaryLabel
+}) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -19,23 +29,54 @@ export default function ProductPreview({ category, style, onStyleChange, options
         )}
       </div>
 
-      {/* Style Toggle Pills */}
+      {/* Primary Style Toggle Pills */}
       {options && options.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-3">
           {options.map((opt) => {
             const isSelected = style === opt.id;
             return (
               <button
                 key={opt.id}
+                type="button"
                 onClick={() => onStyleChange(opt.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 shadow-2xs ${
                   isSelected
-                    ? 'bg-primary text-white shadow-sm'
+                    ? 'bg-primary text-white shadow-xs scale-[1.02]'
                     : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
                 }`}
               >
                 <span>{opt.label}</span>
-                {isSelected && <span className="material-symbols-outlined text-[14px]">check</span>}
+                {isSelected && <span className="material-symbols-outlined text-[15px]">check</span>}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Secondary Options (e.g. Fit Selection) */}
+      {secondaryOptions && secondaryOptions.length > 0 && (
+        <div className="flex items-center flex-wrap gap-2 mb-4 pb-1">
+          {secondaryLabel && (
+            <span className="text-xs font-bold text-on-surface-variant mr-1 flex items-center gap-1">
+              <span className="material-symbols-outlined text-[15px] text-primary">straighten</span>
+              {secondaryLabel}:
+            </span>
+          )}
+          {secondaryOptions.map((opt) => {
+            const isSelected = secondaryValue === opt.id;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => onSecondaryChange(opt.id)}
+                className={`px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1 ${
+                  isSelected
+                    ? 'bg-secondary text-white shadow-2xs'
+                    : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
+                }`}
+              >
+                <span>{opt.label}</span>
+                {isSelected && <span className="material-symbols-outlined text-[13px]">check</span>}
               </button>
             );
           })}
@@ -45,6 +86,7 @@ export default function ProductPreview({ category, style, onStyleChange, options
       {/* Image Preview Container */}
       <div className="relative aspect-[16/10] sm:aspect-[21/9] rounded-2xl overflow-hidden bg-surface-container border border-on-surface/[0.06]">
         <img
+          key={`${category}_${style}`}
           src={`/images/${category}_${style}.jpg`}
           alt={`${category} ${style} 완성 사진`}
           className="w-full h-full object-cover object-center transition-all duration-300 hover:scale-[1.02]"
