@@ -8,6 +8,7 @@ export default function CustomStudioPage({ isAdmin, onOpenVideo }) {
   // 1. Core State
   const [gaugeSts, setGaugeSts] = useState(20);
   const [gaugeRows, setGaugeRows] = useState(28);
+  const [ballWeight, setBallWeight] = useState(50);
   const [chestBase, setChestBase] = useState(95);
 
   // 2. Custom Modules State
@@ -24,7 +25,8 @@ export default function CustomStudioPage({ isAdmin, onOpenVideo }) {
     shoulderType,
     lengthType,
     fitType,
-    patternType
+    patternType,
+    yarnBallWeight: ballWeight
   });
 
   return (
@@ -220,6 +222,8 @@ export default function CustomStudioPage({ isAdmin, onOpenVideo }) {
             gaugeRows={gaugeRows}
             onStsChange={setGaugeSts}
             onRowsChange={setGaugeRows}
+            ballWeight={ballWeight}
+            onBallWeightChange={setBallWeight}
           />
 
           <DimensionsInput

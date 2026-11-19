@@ -11,6 +11,7 @@ import SweaterRoadmap from '../components/roadmap/SweaterRoadmap';
 export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew" }) {
   const [gaugeSts, setGaugeSts] = useState(20);
   const [gaugeRows, setGaugeRows] = useState(28);
+  const [ballWeight, setBallWeight] = useState(50);
   const [chestBase, setChestBase] = useState(100);
   const [fit, setFit] = useState('loose');
   const [sweaterType, setSweaterType] = useState(initialStyle || 'crew'); // 'crew', 'vneck', 'cardigan'
@@ -21,7 +22,7 @@ export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew
     }
   }, [initialStyle]);
 
-  const calc = useSweaterCalc(gaugeSts, gaugeRows, chestBase, fit, 'f', sweaterType);
+  const calc = useSweaterCalc(gaugeSts, gaugeRows, chestBase, fit, 'f', sweaterType, ballWeight);
 
   // Dynamic summary text based on type
   let typeTitle = '라운드넥 크루 풀오버';
@@ -59,7 +60,7 @@ export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew
     ] : [
       { label: '완성 총장', value: `${calc.totalLengthCm}cm`, sub: `${calc.totalRows}단` }
     ]),
-    { label: '예상 실', value: calc.yarnBalls, sub: 'DK/워스티드' }
+    { label: '예상 실', value: calc.yarnBalls, sub: `${ballWeight}g/볼 기준` }
   ];
 
   return (
@@ -92,6 +93,8 @@ export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew
             gaugeRows={gaugeRows}
             onStsChange={setGaugeSts}
             onRowsChange={setGaugeRows}
+            ballWeight={ballWeight}
+            onBallWeightChange={setBallWeight}
           />
 
           <DimensionsInput

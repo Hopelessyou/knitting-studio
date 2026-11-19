@@ -13,6 +13,7 @@ export default function useCustomPatternCalc({
   lengthType = 'regular', // 'crop' | 'regular' | 'long'
   fitType = 'regular',   // 'slim' (+5) | 'regular' (+10) | 'oversized' (+18)
   patternType = 'cable', // 'plain' | 'cable' | 'moss' | 'stripe'
+  yarnBallWeight = 50,
 }) {
   return useMemo(() => {
     const safeGaugeSts = Math.max(5, Number(gaugeSts) || 20);
@@ -116,9 +117,10 @@ export default function useCustomPatternCalc({
     const baseWeight = lengthType === 'crop' ? 380 : lengthType === 'long' ? 580 : 480;
     const patternWeightBonus = patternType === 'cable' ? 70 : patternType === 'moss' ? 30 : 0;
     const estGrams = Math.round(baseWeight + ((chestBase - 85) * 5) + patternWeightBonus);
-    const estBallsMin = Math.round(estGrams / 50);
+    const ballSize = (typeof yarnBallWeight === 'number' && yarnBallWeight > 0) ? yarnBallWeight : 50;
+    const estBallsMin = Math.max(1, Math.round(estGrams / ballSize));
     const estBallsMax = estBallsMin + 1;
-    const yarnBalls = `${estBallsMin}~${estBallsMax}볼 (${estGrams}g)`;
+    const yarnBalls = `${estBallsMin}~${estBallsMax}볼 (${estGrams}g · ${ballSize}g/볼)`;
 
     // 스트라이프 배색 시 컬러별 볼수
     const stripeColorA = Math.ceil(estBallsMax * 0.55);
@@ -165,5 +167,5 @@ export default function useCustomPatternCalc({
       stripeColorA,
       stripeColorB
     };
-  }, [gaugeSts, gaugeRows, chestBase, shoulderType, lengthType, fitType, patternType]);
+  }, [gaugeSts, gaugeRows, chestBase, shoulderType, lengthType, fitType, patternType, yarnBallWeight]);
 }

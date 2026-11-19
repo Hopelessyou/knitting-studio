@@ -4,12 +4,13 @@ import { useMemo } from 'react';
  * useSweaterCalc
  * 탑다운 레글런 스웨터 (라운드넥, V넥, 가디건) 실시간 도안 수치 자동 연산 훅
  *
- * @param {number} gaugeSts  10cm당 가로 코수 (기본 20코)
- * @param {number} gaugeRows 10cm당 세로 단수 (기본 28단)
- * @param {number} chestBase 기준 실제 가슴둘레 cm (기본 100cm)
- * @param {string} fit       실루엣 핏 ('loose' = +15cm 여유, 'tailored' = +7cm 여유)
- * @param {string} gender    성별 ('f' = 여성 기준 목둘레, 'm' = 남성 기준 목둘레)
- * @param {string} type      제작 스타일 ('crew' = 라운드넥, 'vneck' = V넥, 'cardigan' = 가디건)
+ * @param {number} gaugeSts       10cm당 가로 코수 (기본 20코)
+ * @param {number} gaugeRows      10cm당 세로 단수 (기본 28단)
+ * @param {number} chestBase      기준 실제 가슴둘레 cm (기본 100cm)
+ * @param {string} fit            실루엣 핏 ('loose' = +15cm 여유, 'tailored' = +7cm 여유)
+ * @param {string} gender         성별 ('f' = 여성 기준 목둘레, 'm' = 남성 기준 목둘레)
+ * @param {string} type           제작 스타일 ('crew' = 라운드넥, 'vneck' = V넥, 'cardigan' = 가디건)
+ * @param {number} yarnBallWeight 실 1볼 규격 무게 g (기본 50g)
  */
 export default function useSweaterCalc(
   gaugeSts = 20,
@@ -17,7 +18,8 @@ export default function useSweaterCalc(
   chestBase = 100,
   fit = 'loose',
   gender = 'f',
-  type = 'crew'
+  type = 'crew',
+  yarnBallWeight = 50
 ) {
   return useMemo(() => {
     // 1cm당 코수 및 단수
@@ -103,9 +105,10 @@ export default function useSweaterCalc(
 
     // 실 소요량 산출 (체형 및 옷 면적에 실시간 비례)
     const gramEst = Math.round(380 + ((chestBase - 85) * 7) + (fit === 'loose' ? 50 : 0) + (type === 'cardigan' ? 60 : 0));
-    const ballsMin = Math.round(gramEst / 50);
+    const ballSize = (typeof yarnBallWeight === 'number' && yarnBallWeight > 0) ? yarnBallWeight : 50;
+    const ballsMin = Math.max(1, Math.round(gramEst / ballSize));
     const ballsMax = ballsMin + 1;
-    let yarnBalls = `${ballsMin}~${ballsMax}볼 (${gramEst}g)`;
+    let yarnBalls = `${ballsMin}~${ballsMax}볼 (${gramEst}g · ${ballSize}g/볼)`;
 
     // 5. 스타일별 (라운드넥, V넥, 가디건) 특화 파라미터
     let castOn = baseCastOn;
@@ -184,5 +187,5 @@ export default function useSweaterCalc(
       buttonSpacingCm,
       buttonbandPickSts
     };
-  }, [gaugeSts, gaugeRows, chestBase, fit, gender, type]);
+  }, [gaugeSts, gaugeRows, chestBase, fit, gender, type, yarnBallWeight]);
 }
