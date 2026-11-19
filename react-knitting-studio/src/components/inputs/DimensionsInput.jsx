@@ -37,9 +37,9 @@ export default function DimensionsInput({ title, subtitle, value, min, max, step
               key={idx}
               type="button"
               onClick={() => onChange(p.val)}
-              className={`px-3 py-1 rounded-full text-xs transition-colors cursor-pointer whitespace-nowrap ${
+              className={`px-3 py-1 rounded-full text-xs transition-colors cursor-pointer whitespace-nowrap font-bold ${
                 value === p.val
-                  ? 'bg-primary text-white font-semibold shadow-2xs'
+                  ? '!bg-primary !text-white shadow-2xs'
                   : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
               }`}
             >

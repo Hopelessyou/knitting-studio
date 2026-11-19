@@ -4,6 +4,9 @@ export default function ResultSummaryCard({
   castOn,
   castOnLabel = '시작 코잡기 (Cast-on)',
   castOnDesc,
+  bodySts,
+  bodyStsLabel = '완성 몸통 총 코수',
+  bodyStsDesc,
   specs = [],
   formula,
   ruleDesc,
@@ -24,12 +27,13 @@ export default function ResultSummaryCard({
     <div className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 border-primary/30 shadow-md mb-6 sm:mb-8 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-primary/5 rounded-bl-full pointer-events-none" />
 
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-on-surface/[0.08]">
         <div>
           <span className="text-[10px] sm:text-xs font-bold text-primary uppercase tracking-wider block mb-0.5 sm:mb-1">
             KEY CALCULATION RESULTS
           </span>
-          <h2 className="text-lg sm:text-xl font-bold font-serif text-on-surface break-keep">도안 핵심 수치 연산 결과</h2>
+          <h2 className="text-lg sm:text-xl font-bold font-serif text-on-surface break-keep">도안 핵심 수치 자동 연산 결과</h2>
         </div>
         {userIsAdmin && (
           <button
@@ -43,28 +47,54 @@ export default function ResultSummaryCard({
         )}
       </div>
 
-      {/* Cast on Hero Badge */}
-      <div className="p-4 sm:p-5 bg-primary/5 rounded-xl sm:rounded-2xl border border-primary/20 mb-4 sm:mb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-        <div>
-          <span className="text-xs font-bold text-secondary block mb-0.5 sm:mb-1">{castOnLabel}</span>
-          <div className="flex items-baseline gap-1.5 sm:gap-2">
-            <span className="text-3xl sm:text-5xl font-serif font-bold text-primary">{castOn}</span>
-            <span className="text-base sm:text-lg font-bold text-on-surface">코</span>
+      {/* Dual Core Hero Badges: 시작 코잡기 & 완성 몸통 코수 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-5">
+        {/* 1. 시작 코잡기 */}
+        <div className="p-4 bg-primary/5 rounded-xl sm:rounded-2xl border border-primary/20 flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-bold text-secondary block mb-0.5 sm:mb-1">{castOnLabel}</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-3xl sm:text-4xl font-serif font-bold text-primary">{castOn}</span>
+              <span className="text-base sm:text-lg font-bold text-on-surface">코</span>
+            </div>
           </div>
           {castOnDesc && (
-            <p className="text-xs text-on-surface-variant mt-1 break-keep">{castOnDesc}</p>
+            <p className="text-[11px] sm:text-xs text-on-surface-variant mt-2 break-keep">{castOnDesc}</p>
           )}
         </div>
-        {formula && (
-          <div className="w-full sm:w-auto text-left sm:text-right border-t sm:border-t-0 sm:border-l border-primary/20 pt-2.5 sm:pt-0 sm:pl-5">
-            <span className="text-[11px] sm:text-xs font-semibold text-outline block mb-0.5">배수 규칙 &amp; 산출 공식</span>
-            <span className="text-xs sm:text-sm font-bold text-on-surface break-keep">{formula}</span>
-            {ruleDesc && <p className="text-[11px] sm:text-xs text-on-surface-variant mt-0.5 break-keep">{ruleDesc}</p>}
+
+        {/* 2. 완성 몸통 코수 */}
+        <div className="p-4 bg-secondary/5 rounded-xl sm:rounded-2xl border border-secondary/20 flex flex-col justify-between">
+          <div>
+            <span className="text-xs font-bold text-secondary block mb-0.5 sm:mb-1">{bodyStsLabel}</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-3xl sm:text-4xl font-serif font-bold text-secondary">{bodySts || castOn}</span>
+              <span className="text-base sm:text-lg font-bold text-on-surface">코</span>
+            </div>
           </div>
-        )}
+          {bodyStsDesc && (
+            <p className="text-[11px] sm:text-xs text-on-surface-variant mt-2 break-keep">{bodyStsDesc}</p>
+          )}
+        </div>
       </div>
 
-      {/* Spec Grid */}
+      {/* Formula & Rule Description Strip */}
+      {formula && (
+        <div className="p-3 bg-surface-container-low rounded-xl border border-on-surface/[0.06] mb-4 sm:mb-5 text-xs">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+            <span className="font-bold text-primary flex items-center gap-1">
+              <span className="material-symbols-outlined text-[16px]">calculate</span>
+              <span>배수 규칙 &amp; 산출 공식:</span>
+            </span>
+            <span className="font-bold text-on-surface break-keep">{formula}</span>
+          </div>
+          {ruleDesc && (
+            <p className="text-[11px] text-on-surface-variant mt-1 break-keep">{ruleDesc}</p>
+          )}
+        </div>
+      )}
+
+      {/* 4-Spec Grid */}
       {specs && specs.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
           {specs.map((item, i) => (
