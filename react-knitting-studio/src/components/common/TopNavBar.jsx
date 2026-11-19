@@ -106,27 +106,19 @@ export default function TopNavBar({
 
           {/* 2. 제품 그룹 (스웨터, 비니 등 제품군 한 그룹으로 통합) */}
           <div className="relative bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs flex items-center gap-1 shrink-0">
-            {/* 제품 도안 메뉴 트리거 뱃지 */}
+            {/* 제품 도안 메뉴 열기 아이콘 버튼 */}
             <button
               type="button"
               onClick={() => setShowProductMenu(!showProductMenu)}
-              className={`flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-                isProductActive
-                  ? 'text-primary bg-primary/10 hover:bg-primary/20'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-white/60'
+              className={`w-7 h-7 rounded-full text-xs font-extrabold transition-all cursor-pointer flex items-center justify-center shrink-0 ${
+                showProductMenu
+                  ? 'bg-primary text-white shadow-xs'
+                  : 'text-primary bg-primary/10 hover:bg-primary/20'
               }`}
-              title="뜨개 제품 도안 목록 보기"
+              title="뜨개 제품 도안 상세 메뉴 보기"
             >
-              <span className="material-symbols-outlined text-[16px] text-primary">tune</span>
-              <span>제품 도안</span>
-              <span
-                className="material-symbols-outlined text-[15px] transition-transform duration-200"
-                style={{ transform: showProductMenu ? 'rotate(180deg)' : 'none' }}
-              >
-                expand_more
-              </span>
+              <span className="material-symbols-outlined text-[16px]">tune</span>
             </button>
-
             <span className="w-px h-4 bg-on-surface/[0.12] mx-0.5 shrink-0" />
 
             {/* 제품 4종 다이렉트 탭 */}
