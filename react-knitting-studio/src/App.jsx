@@ -129,6 +129,9 @@ export default function App() {
   useEffect(() => {
     if (!isAdmin && (activeTab === 'admin' || activeTab === 'custom')) {
       setActiveTab('home');
+      if (typeof window !== 'undefined' && window.history) {
+        window.history.replaceState({ tab: 'home' }, '', '/');
+      }
     }
   }, [isAdmin, activeTab]);
 
