@@ -624,7 +624,7 @@ export default function AdminPage({ currentUser, isAdmin, onSelectTab, onOpenAut
   const totalCommentsCount = allComments.length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
       {/* Toast Feedback */}
       {toast.show && (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-surface-container-lowest border border-on-surface/10 shadow-2xl text-xs font-bold text-on-surface animate-bounce">
@@ -1405,77 +1405,84 @@ export default function AdminPage({ currentUser, isAdmin, onSelectTab, onOpenAut
       )}
 
       {/* ======================================================== */}
-      {/* TAB 5: SYSTEM & POLICY CONFIG */}
+      {/* TAB 5: SYSTEM & POLICY CONFIG (황금 비율 2-컬럼 밸런스 레이아웃) */}
       {/* ======================================================== */}
       {activeAdminTab === 'system' && (
-        <div className="space-y-8 animate-fadeIn">
-          {/* 1. Global Announcement Banner Config */}
-          <div className="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
-            <div className="flex items-center justify-between pb-4 border-b border-on-surface/[0.06] mb-5">
+        <div className="space-y-6 animate-fadeIn">
+          {/* 2-Column Balanced Grid: Banner (Left) + Print Policy (Right) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* 1. Global Announcement Banner Config */}
+            <div className="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs flex flex-col justify-between">
               <div>
-                <h3 className="text-base font-bold text-on-surface flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary text-[20px]">campaign</span>
-                  <span>상단 글로벌 긴급 공지 배너 제어</span>
-                </h3>
-                <p className="text-xs text-outline mt-0.5">
-                  웹사이트 최상단에 노출되는 전체 긴급 공지 배너를 켜고 끄거나 문구를 변경합니다.
-                </p>
-              </div>
+                <div className="flex items-center justify-between pb-3.5 border-b border-on-surface/[0.06] mb-4">
+                  <div>
+                    <h3 className="text-base font-bold text-on-surface flex items-center gap-2">
+                      <span className="material-symbols-outlined text-primary text-[20px]">campaign</span>
+                      <span>상단 글로벌 긴급 공지 배너 제어</span>
+                    </h3>
+                    <p className="text-[11px] text-outline mt-0.5">
+                      사이트 최상단에 노출되는 전체 긴급 공지 배너를 켜고 끄거나 문구를 변경합니다.
+                    </p>
+                  </div>
 
-              {/* Toggle Switch */}
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={systemConfig.bannerEnabled}
-                  onChange={(e) => {
-                    const updated = { ...systemConfig, bannerEnabled: e.target.checked };
-                    saveSystemConfig(updated);
-                    logAction('상단 배너 상태 변경', e.target.checked ? '배너 활성화' : '배너 비활성화');
-                    showToast(e.target.checked ? '상단 공지 배너가 활성화되었습니다.' : '상단 공지 배너가 비활성화되었습니다.');
-                  }}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-              </label>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-on-surface mb-1.5">배너 안내 문구</label>
-                <input
-                  type="text"
-                  value={systemConfig.bannerText}
-                  onChange={(e) => setSystemConfig({ ...systemConfig, bannerText: e.target.value })}
-                  placeholder="공지 배너 내용을 입력하세요..."
-                  className="w-full px-4 py-2.5 rounded-2xl bg-surface-container text-xs font-medium text-on-surface border border-on-surface/[0.06] focus:outline-none focus:ring-2 focus:ring-primary/30"
-                />
-              </div>
-
-              <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold text-on-surface">배너 테마:</span>
-                  {[
-                    { id: 'primary', label: '테라코타 기본', cls: 'bg-primary text-white' },
-                    { id: 'emerald', label: '에메랄드 알림', cls: 'bg-emerald-600 text-white' },
-                    { id: 'warning', label: '앰버 주의보', cls: 'bg-amber-600 text-white' },
-                    { id: 'rose', label: '로즈 긴급', cls: 'bg-rose-600 text-white' }
-                  ].map((theme) => (
-                    <button
-                      key={theme.id}
-                      type="button"
-                      onClick={() => setSystemConfig({ ...systemConfig, bannerType: theme.id })}
-                      className={
-                        'px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ' +
-                        (systemConfig.bannerType === theme.id
-                          ? theme.cls + ' ring-2 ring-primary ring-offset-2'
-                          : 'bg-surface-container text-on-surface-variant hover:text-on-surface')
-                      }
-                    >
-                      {theme.label}
-                    </button>
-                  ))}
+                  {/* Toggle Switch */}
+                  <label className="relative inline-flex items-center cursor-pointer shrink-0">
+                    <input
+                      type="checkbox"
+                      checked={systemConfig.bannerEnabled}
+                      onChange={(e) => {
+                        const updated = { ...systemConfig, bannerEnabled: e.target.checked };
+                        saveSystemConfig(updated);
+                        logAction('상단 배너 상태 변경', e.target.checked ? '배너 활성화' : '배너 비활성화');
+                        showToast(e.target.checked ? '상단 공지 배너가 활성화되었습니다.' : '상단 공지 배너가 비활성화되었습니다.');
+                      }}
+                      className="sr-only peer"
+                    />
+                    <div className="w-11 h-6 bg-surface-container peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                  </label>
                 </div>
 
+                <div className="space-y-3.5">
+                  <div>
+                    <label className="block text-xs font-bold text-on-surface mb-1">배너 안내 문구</label>
+                    <input
+                      type="text"
+                      value={systemConfig.bannerText}
+                      onChange={(e) => setSystemConfig({ ...systemConfig, bannerText: e.target.value })}
+                      placeholder="공지 배너 내용을 입력하세요..."
+                      className="w-full px-4 py-2.5 rounded-2xl bg-surface-container text-xs font-medium text-on-surface border border-on-surface/[0.06] focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    />
+                  </div>
+
+                  <div>
+                    <span className="block text-xs font-bold text-on-surface mb-1.5">배너 테마:</span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {[
+                        { id: 'primary', label: '테라코타 기본', cls: 'bg-primary text-white' },
+                        { id: 'emerald', label: '에메랄드 알림', cls: 'bg-emerald-600 text-white' },
+                        { id: 'warning', label: '앰버 주의보', cls: 'bg-amber-600 text-white' },
+                        { id: 'rose', label: '로즈 긴급', cls: 'bg-rose-600 text-white' }
+                      ].map((theme) => (
+                        <button
+                          key={theme.id}
+                          type="button"
+                          onClick={() => setSystemConfig({ ...systemConfig, bannerType: theme.id })}
+                          className={
+                            'px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ' +
+                            (systemConfig.bannerType === theme.id
+                              ? theme.cls + ' ring-2 ring-primary ring-offset-2 shadow-2xs'
+                              : 'bg-surface-container text-on-surface-variant hover:text-on-surface')
+                          }
+                        >
+                          {theme.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-5 mt-4 border-t border-on-surface/[0.06] flex justify-end">
                 <button
                   type="button"
                   onClick={() => {
@@ -1483,85 +1490,93 @@ export default function AdminPage({ currentUser, isAdmin, onSelectTab, onOpenAut
                     logAction('상단 배너 저장', systemConfig.bannerText);
                     showToast('상단 배너 설정이 저장되어 전체 사이트에 즉시 적용되었습니다.');
                   }}
-                  className="px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-primary hover:bg-primary-hover text-white text-xs font-bold transition-all shadow-xs cursor-pointer text-center"
                 >
                   배너 설정 즉시 적용
                 </button>
               </div>
             </div>
-          </div>
 
-          {/* 2. Global Print Permission Policy */}
-          <div className="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs">
-            <h3 className="text-base font-bold text-on-surface flex items-center gap-2 mb-1">
-              <span className="material-symbols-outlined text-purple-600 text-[20px]">print</span>
-              <span>도안 인쇄 권한 글로벌 정책 제어</span>
-            </h3>
-            <p className="text-xs text-outline mb-5">
-              도안 인쇄 기능의 접근 권한을 클릭 한 번으로 사이트 전체에 실시간 적용합니다.
-            </p>
+            {/* 2. Global Print Permission Policy (2x2 Balanced Grid) */}
+            <div className="bg-surface-container-lowest p-6 rounded-3xl border border-on-surface/[0.08] shadow-xs flex flex-col justify-between">
+              <div>
+                <h3 className="text-base font-bold text-on-surface flex items-center gap-2 mb-1">
+                  <span className="material-symbols-outlined text-purple-600 text-[20px]">print</span>
+                  <span>도안 인쇄 권한 글로벌 정책</span>
+                </h3>
+                <p className="text-[11px] text-outline mb-4">
+                  도안 인쇄 기능의 접근 권한을 클릭 한 번으로 사이트 전체에 실시간 적용합니다.
+                </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {[
-                {
-                  id: 'admin_only',
-                  title: '👑 관리자 전용',
-                  sub: '관리자(admin) 계정만 인쇄 가능 (현재 기본값)',
-                  rec: true
-                },
-                {
-                  id: 'all_members',
-                  title: '👤 로그인 회원 전체',
-                  sub: '로그인한 모든 회원이 인쇄 가능'
-                },
-                {
-                  id: 'public',
-                  title: '🌐 전체 공개',
-                  sub: '비로그인 방문자를 포함한 모든 사용자 허용'
-                },
-                {
-                  id: 'disabled',
-                  title: '⛔ 전면 인쇄 차단',
-                  sub: '도안 보호를 위해 모든 인쇄 버튼 비활성화'
-                }
-              ].map((policy) => {
-                const isSelected = systemConfig.printPolicy === policy.id;
-                return (
-                  <div
-                    key={policy.id}
-                    onClick={() => {
-                      const updated = { ...systemConfig, printPolicy: policy.id };
-                      saveSystemConfig(updated);
-                      logAction('인쇄 정책 변경', policy.id);
-                      showToast(`도안 인쇄 정책이 '${policy.title}'(으)로 변경되었습니다.`);
-                    }}
-                    className={
-                      'p-4 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ' +
-                      (isSelected
-                        ? 'border-primary bg-primary/5 shadow-xs'
-                        : 'border-on-surface/[0.06] bg-surface-container hover:bg-surface-container-high')
+                <div className="grid grid-cols-2 gap-2.5">
+                  {[
+                    {
+                      id: 'admin_only',
+                      title: '👑 관리자 전용',
+                      sub: '관리자 계정만 인쇄 가능',
+                      rec: true
+                    },
+                    {
+                      id: 'all_members',
+                      title: '👤 로그인 회원',
+                      sub: '로그인 회원 누구나 인쇄 가능'
+                    },
+                    {
+                      id: 'public',
+                      title: '🌐 전체 공개',
+                      sub: '비로그인 방문자 포함 전원 허용'
+                    },
+                    {
+                      id: 'disabled',
+                      title: '⛔ 인쇄 차단',
+                      sub: '도안 보호를 위해 전면 비활성화'
                     }
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <strong className="text-xs font-bold text-on-surface">{policy.title}</strong>
-                        {policy.rec && (
-                          <span className="text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-primary text-white">
-                            권장
+                  ].map((policy) => {
+                    const isSelected = systemConfig.printPolicy === policy.id;
+                    return (
+                      <div
+                        key={policy.id}
+                        onClick={() => {
+                          const updated = { ...systemConfig, printPolicy: policy.id };
+                          saveSystemConfig(updated);
+                          logAction('인쇄 정책 변경', policy.id);
+                          showToast(`도안 인쇄 정책이 '${policy.title}'(으)로 변경되었습니다.`);
+                        }}
+                        className={
+                          'p-3.5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ' +
+                          (isSelected
+                            ? 'border-primary bg-primary/5 shadow-xs'
+                            : 'border-on-surface/[0.06] bg-surface-container hover:bg-surface-container-high')
+                        }
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <strong className="text-xs font-bold text-on-surface">{policy.title}</strong>
+                            {policy.rec && (
+                              <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-primary text-white">
+                                권장
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] text-outline leading-tight">{policy.sub}</p>
+                        </div>
+                        <div className="mt-2.5 flex items-center gap-1 text-[11px] font-bold text-primary">
+                          <span className="material-symbols-outlined text-[15px]">
+                            {isSelected ? 'check_circle' : 'radio_button_unchecked'}
                           </span>
-                        )}
+                          <span>{isSelected ? '적용됨' : '선택'}</span>
+                        </div>
                       </div>
-                      <p className="text-[11px] text-outline leading-tight">{policy.sub}</p>
-                    </div>
-                    <div className="mt-3 flex items-center gap-1.5 text-[11px] font-bold text-primary">
-                      <span className="material-symbols-outlined text-[16px]">
-                        {isSelected ? 'check_circle' : 'radio_button_unchecked'}
-                      </span>
-                      <span>{isSelected ? '현재 적용됨' : '선택하기'}</span>
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="pt-3 mt-3 border-t border-on-surface/[0.06]">
+                <span className="text-[11px] text-outline">
+                  현재 정책: <strong className="text-primary font-bold">{systemConfig.printPolicy}</strong> (실시간 반영 중)
+                </span>
+              </div>
             </div>
           </div>
 

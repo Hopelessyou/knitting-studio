@@ -55,6 +55,11 @@ export default function TopNavBar({
 
   const isProductActive = ['sweater', 'sweater-crew', 'sweater-vneck', 'sweater-cardigan', 'beanie', 'socks', 'scarf'].includes(activeTab);
   
+  const currentProduct = productTabs.find((t) => {
+    if (t.id === 'sweater-crew') return activeTab === 'sweater' || activeTab === 'sweater-crew';
+    return activeTab === t.id;
+  });
+
   const isTabActive = (tabId) => {
     if (tabId === 'sweater-crew') return activeTab === 'sweater' || activeTab === 'sweater-crew';
     return activeTab === tabId;
@@ -62,119 +67,76 @@ export default function TopNavBar({
 
   return (
     <header className="sticky top-0 z-40 bg-[#fff8f3]/95 backdrop-blur-md border-b border-[#201b13]/[0.08] shadow-2xs">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 min-h-[3.75rem] sm:min-h-[4.25rem] py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-4">
-        {/* Header Logo -> Home Navigation */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[3.75rem] sm:min-h-[4.25rem] py-1.5 sm:py-2 flex items-center justify-between gap-3 sm:gap-6">
+        {/* 1. Header Logo -> Home Navigation */}
         <button
           type="button"
           onClick={() => onSelectTab('home')}
-          className="flex items-center gap-2 sm:gap-3.5 cursor-pointer group text-left border-0 bg-transparent p-0 focus:outline-none shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group text-left border-0 bg-transparent p-0 focus:outline-none shrink-0"
           title="홈으로 이동"
         >
-          <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-primary text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-primary-hover transition-all shrink-0">
-            <span className="material-symbols-outlined text-[19px] sm:text-[26px]">gesture</span>
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-primary text-white flex items-center justify-center shadow-xs group-hover:scale-105 group-hover:bg-primary-hover transition-all shrink-0">
+            <span className="material-symbols-outlined text-[20px] sm:text-[24px]">gesture</span>
           </div>
           <div className="min-w-0">
-            <h1 className="font-serif font-extrabold text-base sm:text-xl text-on-surface tracking-tight leading-tight group-hover:text-primary transition-colors whitespace-nowrap">
+            <h1 className="font-serif font-extrabold text-base sm:text-lg text-on-surface tracking-tight leading-tight group-hover:text-primary transition-colors whitespace-nowrap">
               니팅 스튜디오
             </h1>
-            <p className="hidden 2xl:block text-xs text-on-surface-variant font-bold tracking-wide whitespace-nowrap">
-              KNITTING STUDIO · REACT EDITION
+            <p className="hidden 2xl:block text-[10px] text-on-surface-variant font-bold tracking-wide whitespace-nowrap">
+              SMART KNITTING STUDIO
             </p>
           </div>
         </button>
 
-        {/* Desktop Navigation: [홈]과 [커뮤니티] 분리 & [스웨터, 비니 등 제품] 한 그룹에 구성 */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 shrink-0">
-          {/* 1. 홈 (Home) 독립 분리 */}
-          <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0 flex items-center gap-1">
-            <button
-              type="button"
-              onClick={() => onSelectTab('home')}
-              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
-                activeTab === 'home'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
-              }`}
-            >
-              <span className="material-symbols-outlined text-[17px]">home</span>
-              <span>홈</span>
-              {activeTab === 'home' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
-            </button>
+        {/* 2. Desktop Navigation: 균형 잡힌 황금 비율 네비게이션 */}
+        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2">
+          {/* 홈 (Home) */}
+          <button
+            type="button"
+            onClick={() => onSelectTab('home')}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+              activeTab === 'home'
+                ? 'bg-primary text-white shadow-xs'
+                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+            }`}
+          >
+            <span className="material-symbols-outlined text-[17px]">home</span>
+            <span>홈</span>
+          </button>
 
-            {isAdmin && (
-              <button
-                type="button"
-                onClick={() => onSelectTab('custom')}
-                className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                  activeTab === 'custom'
-                    ? 'bg-primary text-white shadow-xs'
-                    : 'text-primary hover:text-on-surface hover:bg-white/80'
-                }`}
-                title="관리자 전용: 어깨/실루엣/패턴 자유 조립 도안 스튜디오"
-              >
-                <span className="material-symbols-outlined text-[15px]">palette</span>
-                <span>커스텀</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" title="관리자 전용" />
-                {activeTab === 'custom' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
-              </button>
-            )}
-          </div>
-
-          <span className="w-px h-5 bg-on-surface/[0.12] shrink-0" />
-
-          {/* 2. 제품 그룹 (스웨터, 비니 등 제품군 한 그룹으로 통합) */}
-          <div className="relative bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs flex items-center gap-1 shrink-0">
-            {/* 제품 도안 메뉴 열기 아이콘 버튼 */}
+          {/* 도안 계산기 통합 드롭다운 캡슐 (6종 개별 버튼 대신 깔끔한 단일 메뉴) */}
+          <div className="relative" ref={menuRef}>
             <button
               type="button"
               onClick={() => setShowProductMenu(!showProductMenu)}
-              className={`w-7 h-7 rounded-full text-xs font-extrabold transition-all cursor-pointer flex items-center justify-center shrink-0 ${
-                showProductMenu
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'text-primary bg-primary/10 hover:bg-primary/20'
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap border ${
+                isProductActive
+                  ? 'bg-primary text-white border-primary shadow-xs'
+                  : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-white border-on-surface/[0.08] shadow-2xs'
               }`}
-              title="뜨개 제품 도안 상세 메뉴 보기"
+              title="뜨개 제품 도안 계산기 선택"
             >
-              <span className="material-symbols-outlined text-[16px]">tune</span>
+              <span className="material-symbols-outlined text-[17px]">
+                {currentProduct ? 'checkroom' : 'straighten'}
+              </span>
+              <span>
+                {currentProduct ? `${currentProduct.label} 도안` : '도안 계산기'}
+              </span>
+              <span className={`material-symbols-outlined text-[16px] transition-transform duration-200 ${showProductMenu ? 'rotate-180' : ''}`}>
+                arrow_drop_down
+              </span>
             </button>
-            <span className="w-px h-4 bg-on-surface/[0.12] mx-0.5 shrink-0" />
-
-            {/* 제품 4종 다이렉트 탭 */}
-            <div className="flex items-center gap-1 shrink-0">
-              {productTabs.map((tab) => {
-                const isActive = isTabActive(tab.id);
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => {
-                      onSelectTab(tab.id);
-                      setShowProductMenu(false);
-                    }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                      isActive
-                        ? 'bg-primary text-white shadow-xs scale-[1.02]'
-                        : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
-                    }`}
-                  >
-                    <span>{tab.label}</span>
-                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
-                  </button>
-                );
-              })}
-            </div>
 
             {/* 제품 도안 드롭다운 팝오버 */}
             {showProductMenu && (
               <div
-                ref={menuRef}
                 className="absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-on-surface/[0.08] p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
               >
                 <div className="px-3 py-2 border-b border-on-surface/[0.05] mb-1">
-                  <span className="text-[11px] font-bold text-secondary uppercase tracking-wider block">
+                  <span className="text-[10px] font-bold text-secondary uppercase tracking-wider block">
                     KNITTING PATTERN CALCULATORS
                   </span>
-                  <span className="text-xs font-bold text-on-surface">뜨개 제품 맞춤 도안 계산기</span>
+                  <span className="text-xs font-bold text-on-surface">뜨개 맞춤 도안 계산기 선택</span>
                 </div>
                 <div className="space-y-1">
                   {productTabs.map((tab) => {
@@ -202,8 +164,8 @@ export default function TopNavBar({
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-on-surface">{tab.label}</span>
-                            {isActive && <span className="text-[11px] font-bold text-primary">현재 도안 ✓</span>}
+                            <span className="text-xs font-bold text-on-surface">{tab.fullLabel}</span>
+                            {isActive && <span className="text-[10px] font-bold text-primary">선택됨 ✓</span>}
                           </div>
                           <p className="text-[11px] text-on-surface-variant truncate">{tab.sub}</p>
                         </div>
@@ -215,69 +177,70 @@ export default function TopNavBar({
             )}
           </div>
 
-          <span className="w-px h-5 bg-on-surface/[0.12] shrink-0" />
+          {/* 커뮤니티 */}
+          <button
+            type="button"
+            onClick={() => onSelectTab('community')}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+              activeTab === 'community'
+                ? 'bg-primary text-white shadow-xs'
+                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+            }`}
+          >
+            <span className="material-symbols-outlined text-[17px]">forum</span>
+            <span>사랑방 커뮤니티</span>
+          </button>
 
-          {/* 3. 커뮤니티 (Community) 독립 분리 */}
-          <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0">
+          {/* 관리자 전용: 커스텀 도안 스튜디오 */}
+          {isAdmin && (
             <button
               type="button"
-              onClick={() => onSelectTab('community')}
-              className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                activeTab === 'community'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
+              onClick={() => onSelectTab('custom')}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap border ${
+                activeTab === 'custom'
+                  ? 'bg-primary text-white border-primary shadow-xs'
+                  : 'bg-white/80 text-primary hover:bg-white border-primary/20 shadow-2xs'
+              }`}
+              title="관리자 전용: 어깨/실루엣/패턴 파라메트릭 도안 스튜디오"
+            >
+              <span className="material-symbols-outlined text-[16px]">palette</span>
+              <span>커스텀 도안</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" title="관리자 전용" />
+            </button>
+          )}
+
+          {/* 관리자 전용: 관리자 센터 */}
+          {isAdmin && (
+            <button
+              type="button"
+              onClick={() => onSelectTab('admin')}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
+                activeTab === 'admin'
+                  ? 'bg-[#201b13] text-amber-300 shadow-xs'
+                  : 'bg-amber-100/80 text-amber-900 hover:bg-amber-200/80 border border-amber-300/40'
               }`}
             >
-              <span className="material-symbols-outlined text-[17px]">forum</span>
-              <span>커뮤니티</span>
-              {activeTab === 'community' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+              <span className="material-symbols-outlined text-[16px]">shield_person</span>
+              <span>관리자 센터</span>
             </button>
-          </div>
-
-          {/* 4. 관리자 센터 (Admin) - 관리자 전용 분리 */}
-          {isAdmin && (
-            <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0">
-              <button
-                type="button"
-                onClick={() => onSelectTab('admin')}
-                className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                  activeTab === 'admin'
-                    ? 'bg-[#201b13] text-amber-300 shadow-xs'
-                    : 'text-primary bg-primary/10 hover:bg-primary/20'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[17px]">shield_person</span>
-                <span>관리자 센터</span>
-                {activeTab === 'admin' && <span className="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse" />}
-              </button>
-            </div>
           )}
         </nav>
 
-        {/* Right Action Tools: Auth & External */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        {/* 3. Right User Profile & Action Area */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {currentUser ? (
-            <div className="flex items-center gap-1.5 sm:gap-2 bg-surface-container px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-on-surface/[0.08]">
-              <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500 shadow-2xs shrink-0"></span>
-              {/* 관리자에게만 관리자 뱃지/버튼 표시 */}
-              {isAdmin === true && (
-                <button
-                  type="button"
-                  onClick={() => onSelectTab('admin')}
-                  className="px-2 py-0.5 rounded-full bg-[#201b13] hover:bg-primary text-amber-300 hover:text-white text-[10px] font-extrabold flex items-center gap-1 shadow-2xs transition-all cursor-pointer whitespace-nowrap"
-                  title="관리자 센터로 이동"
-                >
-                  <span className="material-symbols-outlined text-[13px]">shield_person</span>
-                  <span>관리자</span>
-                </button>
-              )}
-              <span className="text-xs font-extrabold text-on-surface max-w-[70px] sm:max-w-[120px] truncate" title={userNickname}>
-                {userNickname} 님
+            <div className="flex items-center gap-2 bg-surface-container-low px-2.5 sm:px-3 py-1 rounded-full border border-on-surface/[0.08] shadow-2xs">
+              <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">
+                {isAdmin ? '👑' : '👤'}
               </span>
+              <span className="text-xs font-bold text-on-surface max-w-[90px] sm:max-w-[120px] truncate">
+                {userNickname}
+              </span>
+              <span className="w-px h-3.5 bg-on-surface/15" />
               <button
                 type="button"
                 onClick={onSignOut}
-                className="text-xs text-outline hover:text-error ml-0.5 font-bold cursor-pointer whitespace-nowrap"
+                className="text-[11px] font-semibold text-outline hover:text-rose-600 transition-colors cursor-pointer"
                 title="로그아웃"
               >
                 로그아웃
@@ -287,10 +250,10 @@ export default function TopNavBar({
             <button
               type="button"
               onClick={onOpenAuth}
-              className="px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold bg-surface-container-low hover:bg-surface-container border border-on-surface/[0.1] text-primary transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer shadow-xs active:scale-95 whitespace-nowrap shrink-0"
+              className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold bg-primary hover:bg-primary-hover text-white transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer shadow-xs active:scale-95 whitespace-nowrap"
             >
-              <span className="material-symbols-outlined text-[16px] sm:text-[17px]">account_circle</span>
-              <span>로그인<span className="hidden 2xl:inline"> / 회원가입</span></span>
+              <span className="material-symbols-outlined text-[16px]">account_circle</span>
+              <span>로그인</span>
             </button>
           )}
 
@@ -298,17 +261,17 @@ export default function TopNavBar({
           {isAdmin === true && (
             <button 
               onClick={() => window.print()}
-              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs shrink-0"
+              className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs"
               title="도안 인쇄"
             >
-              <span className="material-symbols-outlined text-[17px]">print</span>
+              <span className="material-symbols-outlined text-[16px]">print</span>
               <span>도안 인쇄</span>
             </button>
           )}
         </div>
       </div>
 
-      {/* Mobile Tab Scroller: 홈, 제품군, 커뮤니티 분리 (스크롤바 숨김 및 여백 최적화) */}
+      {/* Mobile Tab Scroller */}
       <div className="lg:hidden flex items-center gap-1.5 overflow-x-auto px-3 py-2 border-t border-on-surface/[0.06] scrollbar-none no-scrollbar bg-surface-container-low/90 backdrop-blur-sm">
         {/* 1. 홈 */}
         <button
