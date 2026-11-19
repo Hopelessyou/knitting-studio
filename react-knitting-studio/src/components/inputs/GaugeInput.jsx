@@ -15,22 +15,22 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {/* Stitches Stepper + Direct Number Input */}
         <div className="p-3 bg-surface-container-low rounded-2xl border border-on-surface/[0.04]">
-          <label className="block text-xs font-bold text-on-surface mb-1">
+          <label className="block text-xs font-bold text-on-surface mb-1 text-center sm:text-left">
             가로 코수 (10cm당)
           </label>
-          <div className="flex items-center justify-between mt-2 gap-2">
+          <div className="flex items-center justify-center gap-2 mt-2">
             <button
               type="button"
               onClick={() => onStsChange(Math.max(5, Math.round((gaugeSts - 1) * 10) / 10))}
-              className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
               title="1코 줄이기"
             >
               -
             </button>
-            <div className="flex items-center justify-center gap-1.5 flex-1 min-w-0">
+            <div className="flex items-center justify-center gap-1 shrink-0">
               <input
                 type="number"
                 min="5"
@@ -43,7 +43,7 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
                     onStsChange(Math.max(5, Math.min(60, val)));
                   }
                 }}
-                className="w-16 sm:w-20 text-center text-2xl sm:text-3xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
+                className="w-16 text-center text-xl sm:text-2xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
                 title="코수를 키보드로 직접 입력할 수 있습니다"
               />
               <span className="text-xs text-on-surface-variant font-bold shrink-0">코</span>
@@ -51,7 +51,7 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
             <button
               type="button"
               onClick={() => onStsChange(Math.min(60, Math.round((gaugeSts + 1) * 10) / 10))}
-              className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
               title="1코 늘리기"
             >
               +
@@ -64,19 +64,19 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
 
         {/* Rows Stepper + Direct Number Input */}
         <div className="p-3 bg-surface-container-low rounded-2xl border border-on-surface/[0.04]">
-          <label className="block text-xs font-bold text-on-surface mb-1">
+          <label className="block text-xs font-bold text-on-surface mb-1 text-center sm:text-left">
             세로 단수 (10cm당)
           </label>
-          <div className="flex items-center justify-between mt-2 gap-2">
+          <div className="flex items-center justify-center gap-2 mt-2">
             <button
               type="button"
               onClick={() => onRowsChange(Math.max(5, Math.round((gaugeRows - 1) * 10) / 10))}
-              className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
               title="1단 줄이기"
             >
               -
             </button>
-            <div className="flex items-center justify-center gap-1.5 flex-1 min-w-0">
+            <div className="flex items-center justify-center gap-1 shrink-0">
               <input
                 type="number"
                 min="5"
@@ -89,7 +89,7 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
                     onRowsChange(Math.max(5, Math.min(80, val)));
                   }
                 }}
-                className="w-16 sm:w-20 text-center text-2xl sm:text-3xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
+                className="w-16 text-center text-xl sm:text-2xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
                 title="단수를 키보드로 직접 입력할 수 있습니다"
               />
               <span className="text-xs text-on-surface-variant font-bold shrink-0">단</span>
@@ -97,7 +97,7 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
             <button
               type="button"
               onClick={() => onRowsChange(Math.min(80, Math.round((gaugeRows + 1) * 10) / 10))}
-              className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-surface-container flex items-center justify-center font-bold text-lg hover:bg-surface-container-high transition-colors shrink-0 cursor-pointer select-none"
               title="1단 늘리기"
             >
               +
