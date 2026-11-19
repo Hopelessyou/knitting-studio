@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 // 4대 국제 표준 실 굵기 프리셋 데이터
 const YARN_PRESETS = [
-  { id: 'fingering', label: '가는 실 (Fingering)', sub: '26코 · 3mm', sts: 26, rows: 34, needle: '2.5~3.25mm' },
-  { id: 'dk', label: '보통 실 (DK)', sub: '20코 · 4mm', sts: 20, rows: 28, needle: '3.75~4.5mm' },
-  { id: 'aran', label: '도톰한 실 (Aran)', sub: '16코 · 5mm', sts: 16, rows: 22, needle: '4.5~5.5mm' },
-  { id: 'chunky', label: '굵은 실 (Chunky)', sub: '12코 · 7mm', sts: 12, rows: 16, needle: '6.0~8.0mm' },
+  { id: 'fingering', name: '가는 실', en: 'Fingering', sub: '26코 · 3mm', sts: 26, rows: 34, needle: '2.5~3.25mm' },
+  { id: 'dk', name: '보통 실', en: 'DK / 워스티드', sub: '20코 · 4mm', sts: 20, rows: 28, needle: '3.75~4.5mm' },
+  { id: 'aran', name: '도톰한 실', en: 'Aran', sub: '16코 · 5mm', sts: 16, rows: 22, needle: '4.5~5.5mm' },
+  { id: 'chunky', name: '굵은 실', en: 'Chunky', sub: '12코 · 7mm', sts: 12, rows: 16, needle: '6.0~8.0mm' },
 ];
 
 export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsChange }) {
@@ -160,7 +160,7 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
               <button
                 key={p.id}
                 type="button"
-                onClick={() => handleSelectPreset(p)}
+                onClick={(e) => { handleSelectPreset(p); e.currentTarget.blur(); }}
                 className={`p-2 rounded-xl text-left transition-all border cursor-pointer select-none ${
                   isSelected
                     ? 'bg-primary text-white border-primary shadow-2xs scale-[1.02]'
@@ -168,7 +168,7 @@ export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsCha
                 }`}
               >
                 <div className="flex items-center justify-between font-bold text-xs">
-                  <span className="truncate">{p.label.split(' ')[0]}</span>
+                  <span className="font-bold text-xs">{p.name}</span>
                   {isSelected && <span className="material-symbols-outlined text-[13px]">check</span>}
                 </div>
                 <span className={`block text-[10px] mt-0.5 ${isSelected ? 'text-white/80' : 'text-on-surface-variant'}`}>
