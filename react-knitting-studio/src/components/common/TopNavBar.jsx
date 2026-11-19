@@ -77,13 +77,13 @@ export default function TopNavBar({
         </button>
 
         {/* Desktop Navigation: [홈]과 [커뮤니티] 분리 & [스웨터, 비니 등 제품] 한 그룹에 구성 */}
-        <nav className="hidden lg:flex items-center gap-2.5">
+        <nav className="hidden lg:flex items-center gap-2 shrink-0">
           {/* 1. 홈 (Home) 독립 분리 */}
-          <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs">
+          <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0">
             <button
               type="button"
               onClick={() => onSelectTab('home')}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'home'
                   ? 'bg-primary text-white shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
@@ -95,15 +95,15 @@ export default function TopNavBar({
             </button>
           </div>
 
-          <span className="w-px h-5 bg-on-surface/[0.12]" />
+          <span className="w-px h-5 bg-on-surface/[0.12] shrink-0" />
 
           {/* 2. 제품 그룹 (스웨터, 비니 등 제품군 한 그룹으로 통합) */}
-          <div className="relative bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs flex items-center gap-1">
+          <div className="relative bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs flex items-center gap-1 shrink-0">
             {/* 제품 도안 메뉴 트리거 뱃지 */}
             <button
               type="button"
               onClick={() => setShowProductMenu(!showProductMenu)}
-              className={`flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
+              className={`flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-full text-xs font-extrabold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                 isProductActive
                   ? 'text-primary bg-primary/10 hover:bg-primary/20'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-white/60'
@@ -120,10 +120,10 @@ export default function TopNavBar({
               </span>
             </button>
 
-            <span className="w-px h-4 bg-on-surface/[0.12] mx-0.5" />
+            <span className="w-px h-4 bg-on-surface/[0.12] mx-0.5 shrink-0" />
 
             {/* 제품 4종 다이렉트 탭 */}
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 shrink-0">
               {productTabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 return (
@@ -134,7 +134,7 @@ export default function TopNavBar({
                       onSelectTab(tab.id);
                       setShowProductMenu(false);
                     }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
                       isActive
                         ? 'bg-primary text-white shadow-xs scale-[1.02]'
                         : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
@@ -198,14 +198,14 @@ export default function TopNavBar({
             )}
           </div>
 
-          <span className="w-px h-5 bg-on-surface/[0.12]" />
+          <span className="w-px h-5 bg-on-surface/[0.12] shrink-0" />
 
           {/* 3. 커뮤니티 (Community) 독립 분리 */}
-          <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs">
+          <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0">
             <button
               type="button"
               onClick={() => onSelectTab('community')}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 activeTab === 'community'
                   ? 'bg-primary text-white shadow-xs'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-white/80'
@@ -219,11 +219,11 @@ export default function TopNavBar({
 
           {/* 4. 관리자 센터 (Admin) - 관리자 전용 분리 */}
           {isAdmin && (
-            <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs">
+            <div className="bg-surface-container-low p-1 rounded-full border border-on-surface/[0.08] shadow-2xs shrink-0">
               <button
                 type="button"
                 onClick={() => onSelectTab('admin')}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                   activeTab === 'admin'
                     ? 'bg-[#201b13] text-amber-300 shadow-xs'
                     : 'text-primary bg-primary/10 hover:bg-primary/20'
