@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function HomePage({ onSelectTab }) {
+export default function HomePage({ onSelectTab, isAdmin }) {
   const cards = [
     {
       id: 'sweater-crew',
@@ -70,7 +70,8 @@ export default function HomePage({ onSelectTab }) {
       </div>
 
       {/* 4 Cards Grid */}
-      {/* 🌟 NEW FEATURE: Custom Studio Callout Banner */}
+      {/* 🌟 NEW FEATURE: Custom Studio Callout Banner (관리자 전용) */}
+      {isAdmin && (
       <div 
         onClick={() => onSelectTab('custom')}
         className="mb-8 p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-primary/15 via-surface-container to-amber-500/15 border-2 border-primary/30 shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 group"
@@ -102,6 +103,7 @@ export default function HomePage({ onSelectTab }) {
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
         </button>
       </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
         {cards.map((card) => (

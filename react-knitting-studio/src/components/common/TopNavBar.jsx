@@ -101,21 +101,23 @@ export default function TopNavBar({
               {activeTab === 'home' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
             </button>
 
-            <button
-              type="button"
-              onClick={() => onSelectTab('custom')}
-              className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
-                activeTab === 'custom'
-                  ? 'bg-primary text-white shadow-xs'
-                  : 'text-primary hover:text-on-surface hover:bg-white/80'
-              }`}
-              title="어깨/실루엣/패턴 자유 조립 도안 스튜디오"
-            >
-              <span className="material-symbols-outlined text-[15px]">palette</span>
-              <span>커스텀</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" title="신규 기능" />
-              {activeTab === 'custom' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
-            </button>
+            {isAdmin && (
+              <button
+                type="button"
+                onClick={() => onSelectTab('custom')}
+                className={`px-2.5 py-1 rounded-full text-[11px] xl:text-xs font-bold transition-all cursor-pointer flex items-center gap-1 whitespace-nowrap shrink-0 ${
+                  activeTab === 'custom'
+                    ? 'bg-primary text-white shadow-xs'
+                    : 'text-primary hover:text-on-surface hover:bg-white/80'
+                }`}
+                title="관리자 전용: 어깨/실루엣/패턴 자유 조립 도안 스튜디오"
+              >
+                <span className="material-symbols-outlined text-[15px]">palette</span>
+                <span>커스텀</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500" title="관리자 전용" />
+                {activeTab === 'custom' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+              </button>
+            )}
           </div>
 
           <span className="w-px h-5 bg-on-surface/[0.12] shrink-0" />
@@ -322,19 +324,21 @@ export default function TopNavBar({
           <span>홈</span>
         </button>
 
-        <button
-          type="button"
-          onClick={() => onSelectTab('custom')}
-          className={`px-2.5 py-1 rounded-full text-xs font-bold shrink-0 transition-all flex items-center gap-1 whitespace-nowrap ${
-            activeTab === 'custom'
-              ? 'bg-primary text-white shadow-2xs'
-              : 'bg-white text-primary border border-primary/20'
-          }`}
-        >
-          <span className="material-symbols-outlined text-[15px]">palette</span>
-          <span>커스텀</span>
-          <span className="text-[9px] px-1 rounded-full bg-amber-500/20 text-amber-800 font-bold">NEW</span>
-        </button>
+        {isAdmin && (
+          <button
+            type="button"
+            onClick={() => onSelectTab('custom')}
+            className={`px-2.5 py-1 rounded-full text-xs font-bold shrink-0 transition-all flex items-center gap-1 whitespace-nowrap ${
+              activeTab === 'custom'
+                ? 'bg-primary text-white shadow-2xs'
+                : 'bg-white text-primary border border-primary/20'
+            }`}
+          >
+            <span className="material-symbols-outlined text-[15px]">palette</span>
+            <span>커스텀</span>
+            <span className="text-[9px] px-1 rounded-full bg-amber-500/20 text-amber-800 font-bold">관리자</span>
+          </button>
+        )}
 
         <span className="w-px h-4 bg-on-surface/15 shrink-0" />
 

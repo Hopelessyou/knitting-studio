@@ -127,7 +127,7 @@ export default function App() {
 
   // Security: If not admin, instantly kick out of admin tab
   useEffect(() => {
-    if (!isAdmin && activeTab === 'admin') {
+    if (!isAdmin && (activeTab === 'admin' || activeTab === 'custom')) {
       setActiveTab('home');
     }
   }, [isAdmin, activeTab]);
@@ -218,12 +218,16 @@ export default function App() {
 
       {/* 2. Main Page Content */}
       <main className="flex-1">
-        {activeTab === 'home' && <HomePage onSelectTab={handleSelectTab} />}
+        {activeTab === 'home' && <HomePage onSelectTab={handleSelectTab} isAdmin={isAdmin} />}
         {activeTab === 'custom' && (
-          <CustomStudioPage
-            isAdmin={isPrintAllowed}
-            onOpenVideo={handleOpenVideo}
-          />
+          isAdmin ? (
+            <CustomStudioPage
+              isAdmin={isPrintAllowed}
+              onOpenVideo={handleOpenVideo}
+            />
+          ) : (
+            <HomePage onSelectTab={handleSelectTab} isAdmin={isAdmin} />
+          )
         )}
         {(activeTab === 'sweater' || activeTab === 'sweater-crew' || activeTab === 'sweater-vneck' || activeTab === 'sweater-cardigan') && (
           <SweaterPage
