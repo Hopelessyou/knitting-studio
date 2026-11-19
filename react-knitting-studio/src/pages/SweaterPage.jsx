@@ -37,27 +37,27 @@ export default function SweaterPage({ onOpenVideo, isAdmin }) {
 
   const specs = [
     ...(sweaterType === 'vneck' ? [
-      { label: 'V파임 깊이', value: `${calc.vneckDepthCm}cm`, sub: `${calc.vneckJoinRow}단 후 V점 합체` }
+      { label: 'V파임 깊이', value: `${calc.vneckDepthCm}cm`, sub: `${calc.vneckJoinRow}단 후 합체` }
     ] : sweaterType === 'cardigan' ? [
-      { label: '앞판 좌우 패널', value: `각 ${calc.frontLeftSts}코`, sub: '평면 메리야스 왕복' }
+      { label: '앞판 패널', value: `각 ${calc.frontLeftSts}코`, sub: '평면 메리야스' }
     ] : [
       { label: '요크 깊이', value: `${calc.armholeDepthCm}cm`, sub: `${calc.raglanRows}단 직진` }
     ]),
     {
       label: '레글런 늘림',
       value: `${calc.neededIncreases}회`,
-      sub: sweaterType === 'cardigan' ? '겉면 늘림 / 안면 안뜨기' : sweaterType === 'vneck' ? '레글런+V사선 늘림' : '2단마다 양쪽 8코'
+      sub: sweaterType === 'cardigan' ? '겉늘림/안뜨기' : sweaterType === 'vneck' ? '레글런+V늘림' : '2단마다 늘림'
     },
     ...(sweaterType === 'cardigan' ? [
-      { label: '단추 구성', value: `단추 ${calc.buttonCount}개`, sub: `약 ${calc.buttonSpacingCm}cm 간격` }
+      { label: '단추 구성', value: `${calc.buttonCount}개`, sub: `약 ${calc.buttonSpacingCm}cm 간격` }
     ] : [
       { label: '완성 총장', value: `${calc.totalLengthCm}cm`, sub: `${calc.totalRows}단` }
     ]),
-    { label: '예상 실 소요량', value: calc.yarnBalls, sub: 'DK/워스티드 기준' }
+    { label: '예상 실', value: calc.yarnBalls, sub: 'DK/워스티드' }
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-5 sm:py-8">
       {/* 1. Preview with Type Selection & Fit Selection */}
       <ProductPreview
         category="sweater"
@@ -65,16 +65,16 @@ export default function SweaterPage({ onOpenVideo, isAdmin }) {
         onStyleChange={setSweaterType}
         fitBadge={`${typeTitle} · ${fit === 'tailored' ? '테일러드 정핏 (+7cm)' : '루즈 오버핏 (+15cm)'}`}
         options={[
-          { id: 'crew', label: '👕 라운드넥 스웨터 (기본)' },
-          { id: 'vneck', label: '👔 V넥 스웨터 (V라인)' },
-          { id: 'cardigan', label: '🧥 오픈 가디건 (단추 여밈)' }
+          { id: 'crew', label: '👕 라운드넥', fullLabel: '👕 라운드넥 (기본)' },
+          { id: 'vneck', label: '👔 V넥', fullLabel: '👔 V넥 스웨터 (V라인)' },
+          { id: 'cardigan', label: '🧥 가디건', fullLabel: '🧥 오픈 가디건 (단추)' }
         ]}
         secondaryLabel="실루엣 핏"
         secondaryValue={fit}
         onSecondaryChange={setFit}
         secondaryOptions={[
-          { id: 'loose', label: '루즈 오버핏 (+15cm 여유)' },
-          { id: 'tailored', label: '테일러드 스탠다드 (+7cm 여유)' }
+          { id: 'loose', label: '루즈핏 (+15cm)', fullLabel: '루즈 오버핏 (+15cm 여유)' },
+          { id: 'tailored', label: '정핏 (+7cm)', fullLabel: '테일러드 스탠다드 (+7cm 여유)' }
         ]}
       />
 

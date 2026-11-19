@@ -2,15 +2,15 @@ import React from 'react';
 
 export default function GaugeInput({ gaugeSts, gaugeRows, onStsChange, onRowsChange }) {
   return (
-    <div className="bg-surface-container-lowest rounded-3xl p-5 border border-on-surface/[0.08] shadow-sm mb-6">
-      <div className="flex items-center justify-between mb-4 pb-2 border-b border-on-surface/[0.06]">
-        <div>
-          <span className="text-[11px] font-bold text-secondary uppercase tracking-wider block mb-0.5">
+    <div className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-on-surface/[0.08] shadow-sm mb-6">
+      <div className="flex items-center justify-between gap-2 mb-3 sm:mb-4 pb-2 border-b border-on-surface/[0.06]">
+        <div className="min-w-0">
+          <span className="text-[10px] sm:text-[11px] font-bold text-secondary uppercase tracking-wider block mb-0.5">
             STEP 1 · GAUGE SETTING
           </span>
-          <h3 className="text-base font-bold text-on-surface">10cm 게이지 스와치 입력</h3>
+          <h3 className="text-sm sm:text-base font-bold text-on-surface whitespace-nowrap">10cm 게이지 스와치 입력</h3>
         </div>
-        <span className="text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+        <span className="text-[11px] sm:text-xs font-semibold text-primary bg-primary/10 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full whitespace-nowrap shrink-0">
           10cm × 10cm 사방
         </span>
       </div>

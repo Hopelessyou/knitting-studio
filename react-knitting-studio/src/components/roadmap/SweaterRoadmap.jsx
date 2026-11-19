@@ -65,53 +65,53 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
     : '앞판이 열려있는 오픈형 클래식 가디건! 평면 왕복 레글런과 단추단(단추구멍) 마감';
 
   return (
-    <section id="roadmap" className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-on-surface/[0.08] shadow-sm mb-12">
+    <section id="roadmap" className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-on-surface/[0.08] shadow-sm mb-8 sm:mb-12">
       {/* 1. Header with Phase Jump Navigation */}
-      <div className="mb-6 pb-6 border-b border-on-surface/[0.06]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+      <div className="mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-on-surface/[0.06]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-3 mb-3 sm:mb-4">
           <div>
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-2 mb-1">
               <span className="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
-              <span className="text-xs font-bold text-primary tracking-widest uppercase">
+              <span className="text-[10px] sm:text-xs font-bold text-primary tracking-widest uppercase">
                 {isCrew ? 'ROUNDNECK MASTER MANUAL' : isVneck ? 'V-NECK MASTER MANUAL' : 'CARDIGAN MASTER MANUAL'}
               </span>
             </div>
-            <h2 className="text-2xl font-bold font-serif text-on-surface">
+            <h2 className="text-lg sm:text-2xl font-bold font-serif text-on-surface break-keep">
               {mainTitle}
             </h2>
-            <p className="text-xs text-on-surface-variant mt-1">
+            <p className="text-xs text-on-surface-variant mt-0.5 sm:mt-1 break-keep">
               {subTitle}
             </p>
           </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-xs font-bold text-primary bg-primary-fixed/50 px-3 py-1.5 rounded-full border border-primary/20">
-              실측 게이지 100% 자동 연산 반영
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+            <span className="text-[11px] sm:text-xs font-bold text-primary bg-primary-fixed/50 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border border-primary/20 whitespace-nowrap">
+              실측 게이지 100% 자동 연산
             </span>
-            <span className="text-xs font-medium text-on-surface-variant bg-surface-container-high px-3 py-1.5 rounded-full">
-              총 5대 핵심 공정 · 완전 초보 눈높이 해설
+            <span className="text-[11px] sm:text-xs font-medium text-on-surface-variant bg-surface-container-high px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full whitespace-nowrap">
+              총 5대 핵심 공정
             </span>
           </div>
         </div>
 
-        {/* Phase Quick Jump Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none text-xs font-bold">
+        {/* Phase Quick Jump Tabs: 스크롤바 숨김 및 터치 스크롤 최적화 */}
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 scrollbar-none no-scrollbar text-xs font-bold">
           <button
             type="button"
             onClick={() => setActiveTab('all')}
-            className={`px-3.5 py-1.5 rounded-full transition-all shrink-0 cursor-pointer ${
+            className={`px-3 py-1.5 rounded-full transition-all shrink-0 cursor-pointer whitespace-nowrap ${
               activeTab === 'all'
                 ? 'bg-primary text-white shadow-xs'
                 : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            전체 공정 한눈에 보기
+            전체 한눈에 보기
           </button>
           {steps.map(s => (
             <button
               key={s.id}
               type="button"
               onClick={() => setActiveTab(s.id)}
-              className={`px-3.5 py-1.5 rounded-full transition-all shrink-0 flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3 py-1.5 rounded-full transition-all shrink-0 flex items-center gap-1 cursor-pointer whitespace-nowrap ${
                 activeTab === s.id
                   ? 'bg-primary text-white shadow-xs'
                   : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface'
@@ -125,15 +125,15 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
       </div>
 
       {/* 🌟 2. Beginner 3-Minute Cheat Sheet Banner */}
-      <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-2xs">
-        <div className="flex items-center justify-between gap-2 mb-3 cursor-pointer" onClick={() => setShowCheatSheet(!showCheatSheet)}>
-          <div className="flex items-center gap-2 text-primary font-bold text-sm sm:text-base">
-            <span className="material-symbols-outlined text-[20px]">lightbulb</span>
-            <span>🌱 {isCrew ? '라운드넥' : isVneck ? 'V넥 스웨터' : '오픈 가디건'} 3분 정복 치트키 (시작 전 필독!)</span>
+      <div className="mb-6 sm:mb-8 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-amber-500/5 border border-amber-500/20 shadow-2xs">
+        <div className="flex items-center justify-between gap-2 mb-3 cursor-pointer select-none" onClick={() => setShowCheatSheet(!showCheatSheet)}>
+          <div className="flex items-center gap-1.5 sm:gap-2 text-primary font-bold text-xs sm:text-base min-w-0 break-keep">
+            <span className="material-symbols-outlined text-[18px] sm:text-[20px] shrink-0">lightbulb</span>
+            <span className="truncate sm:whitespace-normal">🌱 {isCrew ? '라운드넥' : isVneck ? 'V넥' : '가디건'} 3분 정복 치트키</span>
           </div>
-          <button type="button" className="text-xs text-primary font-semibold flex items-center gap-1">
+          <button type="button" className="text-xs text-primary font-bold flex items-center gap-0.5 shrink-0 whitespace-nowrap bg-amber-500/10 px-2 py-1 rounded-full">
             <span>{showCheatSheet ? '접기' : '펼쳐보기'}</span>
-            <span className="material-symbols-outlined text-[16px]">{showCheatSheet ? 'expand_less' : 'expand_more'}</span>
+            <span className="material-symbols-outlined text-[15px]">{showCheatSheet ? 'expand_less' : 'expand_more'}</span>
           </button>
         </div>
 
@@ -265,15 +265,15 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {/* STEP 01 */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === '1') && (
-          <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
+          <div className="p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
                   01
                 </span>
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold text-on-surface">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-on-surface break-keep">
                     {isCrew && (
                       <>목둘레 코잡기 <span className="text-primary font-extrabold">({calc.castOn}코)</span> &amp; 넥밴드 3cm</>
                     )}
@@ -493,15 +493,15 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {/* STEP 02 */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === '2') && (
-          <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
+          <div className="p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
                   02
                 </span>
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold text-on-surface">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-on-surface break-keep">
                     {isCrew && (
                       <>마커 배분 &amp; 레글런 사선 늘림 <span className="text-primary font-extrabold">({calc.neededIncreases}회 반복)</span></>
                     )}
@@ -669,15 +669,15 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {/* STEP 03 */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === '3') && (
-          <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
+          <div className="p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
                   03
                 </span>
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold text-on-surface">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-on-surface break-keep">
                     소매 분리 &amp; 겨드랑이 감아코 <span className="text-primary font-extrabold">({calc.underarmSts}코)</span>
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
@@ -786,15 +786,15 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {/* STEP 04 */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === '4') && (
-          <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
+          <div className="p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
                   04
                 </span>
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold text-on-surface">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-on-surface break-keep">
                     {isCardigan ? '몸통 평면 왕복뜨기 & 밑단 고무단 5cm' : '몸통 무한 겉뜨기 힐링 & 밑단 고무단 5cm'}
                   </h3>
                   <p className="text-xs text-on-surface-variant mt-0.5">
@@ -884,15 +884,15 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
         {/* STEP 05 */}
         {/* ========================================================================= */}
         {(activeTab === 'all' || activeTab === '5') && (
-          <div className="p-6 md:p-7 rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
+          <div className="p-4 sm:p-6 md:p-7 rounded-xl sm:rounded-2xl bg-surface-container-low border border-on-surface/[0.06] transition-all hover:border-primary/30">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-3">
-                <span className="w-9 h-9 rounded-full bg-primary text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-xs">
+                <span className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-primary text-white font-extrabold text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-xs">
                   05
                 </span>
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold text-on-surface">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-on-surface break-keep">
                     {isCrew && '양 소매 원형뜨기 & 최종 완성'}
                     {isVneck && '양 소매 뜨기 & V넥밴드 중심 3코 모아뜨기(CDD)'}
                     {isCardigan && `양 소매 뜨기 & 앞섶 단추단(단추구멍 ${calc.buttonCount}개)`}
