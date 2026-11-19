@@ -272,7 +272,7 @@ export default function TopNavBar({
               className="px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs font-bold bg-surface-container-low hover:bg-surface-container border border-on-surface/[0.1] text-primary transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer shadow-xs active:scale-95 whitespace-nowrap shrink-0"
             >
               <span className="material-symbols-outlined text-[16px] sm:text-[17px]">account_circle</span>
-              <span>로그인<span className="hidden sm:inline"> / 회원가입</span></span>
+              <span>로그인<span className="hidden 2xl:inline"> / 회원가입</span></span>
             </button>
           )}
 
