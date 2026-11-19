@@ -1,51 +1,129 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function DimensionsInput({ title, subtitle, value, min, max, step = 1, unit = 'cm', onChange, presets }) {
+export default function DimensionsInput({
+  title,
+  subtitle,
+  value,
+  min = 20,
+  max = 200,
+  step = 1,
+  unit = 'cm',
+  onChange,
+  presets
+}) {
+  // Local string state to allow completely natural backspacing, clearing, and typing
+  const [localVal, setLocalVal] = useState(String(value));
+
+  useEffect(() => {
+    setLocalVal(String(value));
+  }, [value]);
+
+  const handleChange = (e) => {
+    const v = e.target.value;
+    if (v === '' || /^\d*\.?\d*$/.test(v)) {
+      setLocalVal(v);
+      if (v !== '') {
+        const num = parseFloat(v);
+        if (!isNaN(num) && num > 0) {
+          onChange(num);
+        }
+      }
+    }
+  };
+
+  const handleBlur = () => {
+    let num = parseFloat(localVal);
+    if (isNaN(num) || num < min) num = min;
+    if (num > max) num = max;
+    num = Math.round(num * 10) / 10;
+    setLocalVal(String(num));
+    onChange(num);
+  };
+
+  const stepVal = (delta) => {
+    const current = parseFloat(localVal) || value || min;
+    const next = Math.max(min, Math.min(max, Math.round((current + delta) * 10) / 10));
+    setLocalVal(String(next));
+    onChange(next);
+  };
+
   return (
     <div className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-on-surface/[0.08] shadow-sm mb-6">
-      <div className="flex items-center justify-between mb-2 sm:mb-3">
+      {/* Header */}
+      <div className="flex items-center justify-between gap-2 mb-2">
         <div>
           <span className="text-[10px] sm:text-xs font-bold text-secondary uppercase tracking-wider block mb-0.5">
-            DIMENSIONS
+            STEP 2 · DIMENSIONS
           </span>
           <h3 className="text-sm sm:text-base font-bold text-on-surface break-keep">{title}</h3>
         </div>
-        <div className="text-right">
-          <span className="text-xl sm:text-2xl font-bold font-serif text-primary">{value}</span>
-          <span className="text-xs text-on-surface-variant ml-1 font-semibold">{unit}</span>
-        </div>
+        <span className="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full shrink-0">
+          직접 입력 가능
+        </span>
       </div>
 
-      {subtitle && <p className="text-xs sm:text-sm text-on-surface-variant mb-3 break-keep">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-xs text-on-surface-variant mb-3.5 break-keep">{subtitle}</p>
+      )}
 
-      {/* Range Slider */}
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-primary h-2 bg-surface-container rounded-lg cursor-pointer mb-3"
-      />
+      {/* Stepper + Direct Numeric Input (레인지 슬라이더 대신 게이지와 동일한 직접 수치 입력 인터페이스) */}
+      <div className="flex items-center justify-center gap-2.5 py-2.5 mb-3.5 bg-surface-container-low rounded-2xl border border-on-surface/[0.04]">
+        <button
+          type="button"
+          onClick={() => stepVal(-step)}
+          className="w-10 h-10 rounded-xl bg-white border border-on-surface/[0.1] flex items-center justify-center font-bold text-xl hover:bg-surface-container transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
+          title={`${step}${unit} 줄이기`}
+        >
+          -
+        </button>
+        <div className="flex items-center justify-center gap-1.5 shrink-0">
+          <input
+            type="text"
+            inputMode="decimal"
+            value={localVal}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+            className="w-24 text-center text-2xl sm:text-3xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
+            placeholder={String(min)}
+            title="수치를 키보드로 직접 백스페이스하여 입력할 수 있습니다"
+          />
+          <span className="text-sm sm:text-base text-on-surface-variant font-bold shrink-0">{unit}</span>
+        </div>
+        <button
+          type="button"
+          onClick={() => stepVal(step)}
+          className="w-10 h-10 rounded-xl bg-white border border-on-surface/[0.1] flex items-center justify-center font-bold text-xl hover:bg-surface-container transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
+          title={`${step}${unit} 늘리기`}
+        >
+          +
+        </button>
+      </div>
 
       {/* Preset Chips */}
       {presets && presets.length > 0 && (
-        <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-2 border-t border-on-surface/[0.04]">
-          {presets.map((p, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => onChange(p.val)}
-              className={`px-3 py-1 rounded-full text-xs transition-colors cursor-pointer whitespace-nowrap font-bold ${
-                value === p.val
-                  ? '!bg-primary !text-white shadow-2xs'
-                  : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
-              }`}
-            >
-              {p.label}
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2 pt-2.5 border-t border-on-surface/[0.04]">
+          <span className="text-[11px] font-bold text-secondary mr-1 hidden sm:inline">표준 사이즈:</span>
+          {presets.map((p, idx) => {
+            const isSelected = Math.abs(parseFloat(localVal) - p.val) < 0.1;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => {
+                  setLocalVal(String(p.val));
+                  onChange(p.val);
+                }}
+                className={`px-3 py-1 rounded-full text-xs transition-all cursor-pointer whitespace-nowrap font-bold ${
+                  isSelected
+                    ? 'bg-primary text-white shadow-2xs scale-105'
+                    : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+                }`}
+              >
+                {p.label}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>
