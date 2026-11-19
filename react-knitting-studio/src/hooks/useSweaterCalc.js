@@ -21,8 +21,10 @@ export default function useSweaterCalc(
 ) {
   return useMemo(() => {
     // 1cm당 코수 및 단수
-    const stitchPerCm = gaugeSts / 10;
-    const rowPerCm = gaugeRows / 10;
+    const safeGaugeSts = Math.max(5, Number(gaugeSts) || 20);
+    const safeGaugeRows = Math.max(5, Number(gaugeRows) || 28);
+    const stitchPerCm = safeGaugeSts / 10;
+    const rowPerCm = safeGaugeRows / 10;
 
     // 핏 여유분 및 목표 완성 가슴둘레
     const ease = (fit === 'tailored') ? 7 : 15;
