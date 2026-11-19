@@ -77,7 +77,7 @@ export default function TopNavBar({
             <h1 className="font-serif font-extrabold text-base sm:text-xl text-on-surface tracking-tight leading-tight group-hover:text-primary transition-colors whitespace-nowrap">
               니팅 스튜디오
             </h1>
-            <p className="hidden xl:block text-xs text-on-surface-variant font-bold tracking-wide whitespace-nowrap">
+            <p className="hidden 2xl:block text-xs text-on-surface-variant font-bold tracking-wide whitespace-nowrap">
               KNITTING STUDIO · REACT EDITION
             </p>
           </div>
