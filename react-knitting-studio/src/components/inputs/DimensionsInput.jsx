@@ -48,84 +48,87 @@ export default function DimensionsInput({
   };
 
   return (
-    <div className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-on-surface/[0.08] shadow-sm mb-6">
-      {/* Header */}
-      <div className="flex items-center justify-between gap-2 mb-2">
-        <div>
-          <span className="text-[10px] sm:text-xs font-bold text-secondary uppercase tracking-wider block mb-0.5">
-            STEP 2 · DIMENSIONS
+    <div className="bg-surface-container-lowest rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 border border-on-surface/[0.08] shadow-sm mb-4 sm:mb-6 flex flex-col justify-between">
+      <div>
+        {/* Header */}
+        <div className="flex items-center justify-between gap-1.5 mb-1.5">
+          <div className="min-w-0">
+            <span className="text-[10px] font-bold text-secondary uppercase tracking-wider block mb-0.5 truncate">
+              STEP 2 · DIMENSIONS
+            </span>
+            <h3 className="text-xs sm:text-base font-bold text-on-surface break-keep truncate">{title}</h3>
+          </div>
+          <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full shrink-0">
+            직접 입력
           </span>
-          <h3 className="text-sm sm:text-base font-bold text-on-surface break-keep">{title}</h3>
         </div>
-        <span className="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-0.5 rounded-full shrink-0">
-          직접 입력 가능
-        </span>
+
+        {subtitle && (
+          <p className="text-[11px] sm:text-xs text-on-surface-variant mb-2.5 sm:mb-3.5 break-keep line-clamp-2">{subtitle}</p>
+        )}
       </div>
 
-      {subtitle && (
-        <p className="text-xs text-on-surface-variant mb-3.5 break-keep">{subtitle}</p>
-      )}
-
-      {/* Stepper + Direct Numeric Input (레인지 슬라이더 대신 게이지와 동일한 직접 수치 입력 인터페이스) */}
-      <div className="flex items-center justify-center gap-2.5 py-2.5 mb-3.5 bg-surface-container-low rounded-2xl border border-on-surface/[0.04]">
-        <button
-          type="button"
-          onClick={() => stepVal(-step)}
-          className="w-10 h-10 rounded-xl bg-white border border-on-surface/[0.1] flex items-center justify-center font-bold text-xl hover:bg-surface-container transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
-          title={`${step}${unit} 줄이기`}
-        >
-          -
-        </button>
-        <div className="flex items-center justify-center gap-1.5 shrink-0">
-          <input
-            type="text"
-            inputMode="decimal"
-            value={localVal}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
-            className="w-24 text-center text-2xl sm:text-3xl font-bold font-serif text-primary bg-white rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-1 shadow-2xs"
-            placeholder={String(min)}
-            title="수치를 키보드로 직접 백스페이스하여 입력할 수 있습니다"
-          />
-          <span className="text-sm sm:text-base text-on-surface-variant font-bold shrink-0">{unit}</span>
+      <div>
+        {/* Stepper + Direct Numeric Input */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2.5 py-1.5 sm:py-2.5 mb-2.5 sm:mb-3.5 bg-surface-container-low rounded-xl sm:rounded-2xl border border-on-surface/[0.04]">
+          <button
+            type="button"
+            onClick={() => stepVal(-step)}
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white border border-on-surface/[0.1] flex items-center justify-center font-bold text-base sm:text-xl hover:bg-surface-container transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs active:scale-95"
+            title={`${step}${unit} 줄이기`}
+          >
+            -
+          </button>
+          <div className="flex items-center justify-center gap-1 shrink-0">
+            <input
+              type="text"
+              inputMode="decimal"
+              value={localVal}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+              className="w-16 sm:w-24 text-center text-xl sm:text-3xl font-bold font-serif text-primary bg-white rounded-lg sm:rounded-xl border-2 border-primary/20 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 py-0.5 sm:py-1 shadow-2xs"
+              placeholder={String(min)}
+              title="수치를 키보드로 직접 백스페이스하여 입력할 수 있습니다"
+            />
+            <span className="text-xs sm:text-base text-on-surface-variant font-bold shrink-0">{unit}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => stepVal(step)}
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white border border-on-surface/[0.1] flex items-center justify-center font-bold text-base sm:text-xl hover:bg-surface-container transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs active:scale-95"
+            title={`${step}${unit} 늘리기`}
+          >
+            +
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={() => stepVal(step)}
-          className="w-10 h-10 rounded-xl bg-white border border-on-surface/[0.1] flex items-center justify-center font-bold text-xl hover:bg-surface-container transition-colors shrink-0 cursor-pointer select-none text-primary shadow-2xs"
-          title={`${step}${unit} 늘리기`}
-        >
-          +
-        </button>
+
+        {/* Preset Chips */}
+        {presets && presets.length > 0 && (
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1 sm:gap-1.5 pt-2 border-t border-on-surface/[0.04]">
+            {presets.map((p, idx) => {
+              const isSelected = Math.abs(parseFloat(localVal) - p.val) < 0.1;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    setLocalVal(String(p.val));
+                    onChange(p.val);
+                  }}
+                  className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[10px] sm:text-xs transition-all cursor-pointer whitespace-nowrap font-bold active:scale-95 ${
+                    isSelected
+                      ? 'bg-primary text-white shadow-2xs scale-105'
+                      : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+                  }`}
+                >
+                  {p.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
-
-      {/* Preset Chips */}
-      {presets && presets.length > 0 && (
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 sm:gap-2 pt-2.5 border-t border-on-surface/[0.04]">
-          <span className="text-[11px] font-bold text-secondary mr-1 hidden sm:inline">표준 사이즈:</span>
-          {presets.map((p, idx) => {
-            const isSelected = Math.abs(parseFloat(localVal) - p.val) < 0.1;
-            return (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => {
-                  setLocalVal(String(p.val));
-                  onChange(p.val);
-                }}
-                className={`px-3 py-1 rounded-full text-xs transition-all cursor-pointer whitespace-nowrap font-bold ${
-                  isSelected
-                    ? 'bg-primary text-white shadow-2xs scale-105'
-                    : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
-                }`}
-              >
-                {p.label}
-              </button>
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 }
