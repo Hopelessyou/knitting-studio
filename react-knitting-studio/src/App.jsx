@@ -215,6 +215,7 @@ export default function App() {
         onSelectTab={handleSelectTab}
         currentUser={currentUser}
         isAdmin={isAdmin}
+        isPrintAllowed={isPrintAllowed}
         onOpenAuth={() => setIsAuthOpen(true)}
         onSignOut={handleSignOut}
       />
@@ -226,6 +227,8 @@ export default function App() {
           isAdmin ? (
             <CustomStudioPage
               isAdmin={isPrintAllowed}
+              currentUser={currentUser}
+              onOpenAuthModal={() => setIsAuthOpen(true)}
               onOpenVideo={handleOpenVideo}
             />
           ) : (
@@ -236,12 +239,35 @@ export default function App() {
           <SweaterPage
             onOpenVideo={handleOpenVideo}
             isAdmin={isPrintAllowed}
+            currentUser={currentUser}
+            onOpenAuthModal={() => setIsAuthOpen(true)}
             initialStyle={activeTab === 'sweater-vneck' ? 'vneck' : activeTab === 'sweater-cardigan' ? 'cardigan' : 'crew'}
           />
         )}
-        {activeTab === 'beanie' && <BeaniePage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
-        {activeTab === 'socks' && <SocksPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
-        {activeTab === 'scarf' && <ScarfPage onOpenVideo={handleOpenVideo} isAdmin={isPrintAllowed} />}
+        {activeTab === 'beanie' && (
+          <BeaniePage
+            onOpenVideo={handleOpenVideo}
+            isAdmin={isPrintAllowed}
+            currentUser={currentUser}
+            onOpenAuthModal={() => setIsAuthOpen(true)}
+          />
+        )}
+        {activeTab === 'socks' && (
+          <SocksPage
+            onOpenVideo={handleOpenVideo}
+            isAdmin={isPrintAllowed}
+            currentUser={currentUser}
+            onOpenAuthModal={() => setIsAuthOpen(true)}
+          />
+        )}
+        {activeTab === 'scarf' && (
+          <ScarfPage
+            onOpenVideo={handleOpenVideo}
+            isAdmin={isPrintAllowed}
+            currentUser={currentUser}
+            onOpenAuthModal={() => setIsAuthOpen(true)}
+          />
+        )}
         {activeTab === 'community' && (
           <CommunityPage
             currentUser={currentUser}

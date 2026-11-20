@@ -5,6 +5,7 @@ export default function TopNavBar({
   onSelectTab,
   currentUser,
   isAdmin: propIsAdmin,
+  isPrintAllowed: propIsPrintAllowed,
   onOpenAuth,
   onSignOut
 }) {
@@ -38,6 +39,8 @@ export default function TopNavBar({
             currentUser?.email === 'admin')
         )
   );
+
+  const isPrintAllowed = propIsPrintAllowed !== undefined ? propIsPrintAllowed : isAdmin;
 
   const userNickname = isAdmin
     ? '관리자'
@@ -257,12 +260,12 @@ export default function TopNavBar({
             </button>
           )}
 
-          {/* 도안 인쇄 버튼: 오직 관리자에게만 노출 */}
-          {isAdmin === true && (
+          {/* 도안 인쇄 버튼: 글로벌 인쇄 권한 정책에 따라 노출 */}
+          {isPrintAllowed && (
             <button 
               onClick={() => window.print()}
-              className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs"
-              title="도안 인쇄"
+              className="hidden sm:flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-all cursor-pointer shadow-2xs active:scale-95"
+              title="A4 도안 인쇄"
             >
               <span className="material-symbols-outlined text-[16px]">print</span>
               <span>도안 인쇄</span>

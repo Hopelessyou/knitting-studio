@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import StepProgressTracker from './StepProgressTracker';
 
-export default function ScarfRoadmap({ calc, onOpenVideo }) {
+export default function ScarfRoadmap({ calc, onOpenVideo, currentUser, onOpenAuthModal }) {
   const [activeTab, setActiveTab] = useState('all');
 
   const isBrioche = calc.pattern === 'brioche';
@@ -146,6 +147,9 @@ export default function ScarfRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 말림 없는 코잡기 &amp; 에지 재생</span>
               </button>
             </div>
+
+            {/* Step 1 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="scarf_step_1" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -202,6 +206,9 @@ export default function ScarfRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: {isBrioche ? '브리오쉬 brk 손동작 재생' : '변형 고무뜨기 재생'}</span>
               </button>
             </div>
+
+            {/* Step 2 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="scarf_step_2" targetRows={calc.totalRows || 40} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -245,6 +252,9 @@ export default function ScarfRoadmap({ calc, onOpenVideo }) {
                 <br/>• 200cm 이상: 두툼하게 둘둘 감아 얼굴을 덮는 롱 머플러
               </p>
             </div>
+
+            {/* Step 3 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="scarf_step_3" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -282,6 +292,9 @@ export default function ScarfRoadmap({ calc, onOpenVideo }) {
                 <strong>2. 러시안 조인 (Russian Join)</strong>: 새 실과 헌 실의 끝부분을 돗바늘로 서로의 실 꼬임 속에 통과시켜 겹쳐 꼬면 매듭 없이 완벽하게 하나로 이어져 피부에 닿아도 부드럽습니다.
               </p>
             </div>
+
+            {/* Step 4 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="scarf_step_4" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -330,6 +343,9 @@ export default function ScarfRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 탄력 코막음 &amp; 블로킹 재생</span>
               </button>
             </div>
+
+            {/* Step 5 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="scarf_step_5" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
       </div>

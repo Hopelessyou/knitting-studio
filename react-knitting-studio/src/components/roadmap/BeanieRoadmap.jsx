@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import StepProgressTracker from './StepProgressTracker';
 
-export default function BeanieRoadmap({ calc, onOpenVideo }) {
+export default function BeanieRoadmap({ calc, onOpenVideo, currentUser, onOpenAuthModal }) {
   const [activeTab, setActiveTab] = useState('all');
 
   const steps = [
@@ -206,6 +207,9 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 독일식 꼬아 코잡기 재생</span>
               </button>
             </div>
+
+            {/* Step 1 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="beanie_step_1" targetRows={1} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -272,6 +276,9 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 고무단 탄력 유지 재생</span>
               </button>
             </div>
+
+            {/* Step 2 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="beanie_step_2" targetRows={Math.round(calc.brimHeightCm * 2.4)} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -320,6 +327,9 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
                 바늘에 걸려 있는 편물을 억지로 아래로 잡아당기지 말고, 평평한 바닥에 내려놓은 자연스러운 상태에서 줄자로 밑단부터 바늘 아래까지 측정하세요.
               </p>
             </div>
+
+            {/* Step 3 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="beanie_step_3" targetRows={calc.crownStartRows} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -417,6 +427,9 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: K2tog 정수리 줄임 재생</span>
               </button>
             </div>
+
+            {/* Step 4 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="beanie_step_4" targetRows={Math.round(calc.crownDecreaseCm * 2.4)} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -470,6 +483,9 @@ export default function BeanieRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 돗바늘 정수리 조임 마감 재생</span>
               </button>
             </div>
+
+            {/* Step 5 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="beanie_step_5" targetRows={1} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
       </div>

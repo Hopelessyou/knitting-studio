@@ -10,7 +10,8 @@ const YARN_PRESETS = [
 
 // 표준 바늘 호수별 게이지 매핑 테이블
 const NEEDLE_LOOKUP = {
-  '2.0': { sts: 36, rows: 48, label: '레이스 (Lace)' },
+  '2.0': { sts: 36, rows: 48, label: '양말 1호 / 레이스 (Lace)' },
+  '2.25': { sts: 34, rows: 45, label: '양말 US 1 (Sock)' },
   '2.5': { sts: 32, rows: 42, label: '양말 / 핑거링 (Sock)' },
   '3.0': { sts: 28, rows: 36, label: '핑거링 (Fingering)' },
   '3.25': { sts: 26, rows: 34, label: '라이트 스포츠 (Sport)' },
@@ -32,6 +33,7 @@ const NEEDLE_LOOKUP = {
 // 코수 -> 바늘 역매핑 테이블
 const STS_TO_NEEDLE_MAP = {
   36: 2.0,
+  34: 2.25,
   32: 2.5,
   28: 3.0,
   26: 3.25,
@@ -51,14 +53,16 @@ const STS_TO_NEEDLE_MAP = {
 };
 
 // 퀵 mm 선택 칩 리스트 (10대 표준 호수)
-const QUICK_NEEDLE_SIZES = [2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 10.0];
+const QUICK_NEEDLE_SIZES = [2.0, 2.25, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 10.0];
 
 // 바늘 mm -> 코수/단수 환산
 function convertNeedleToGauge(mm) {
-  const key = mm.toFixed(1);
-  if (NEEDLE_LOOKUP[key]) {
-    return NEEDLE_LOOKUP[key];
-  }
+  const keyStr = String(mm);
+  const key1 = mm.toFixed(1);
+  const key2 = mm.toFixed(2);
+  if (NEEDLE_LOOKUP[keyStr]) return NEEDLE_LOOKUP[keyStr];
+  if (NEEDLE_LOOKUP[key1]) return NEEDLE_LOOKUP[key1];
+  if (NEEDLE_LOOKUP[key2]) return NEEDLE_LOOKUP[key2];
   const sts = Math.max(5, Math.min(60, Math.round(82 / mm)));
   const rows = Math.max(5, Math.min(80, Math.round(sts * 1.4)));
   return { sts, rows, label: `${mm}mm 맞춤 규격` };

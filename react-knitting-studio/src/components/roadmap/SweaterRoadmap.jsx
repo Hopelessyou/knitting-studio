@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import StepProgressTracker from './StepProgressTracker';
 
-export default function SweaterRoadmap({ calc, onOpenVideo }) {
+export default function SweaterRoadmap({ calc, onOpenVideo, currentUser, onOpenAuthModal }) {
   const [activeTab, setActiveTab] = useState('all'); // 'all', '1', '2', '3', '4', '5'
   const [showCheatSheet, setShowCheatSheet] = useState(true);
 
@@ -486,6 +487,9 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: {isCrew ? '튜브 코잡기 & 1코 고무단 재생' : '기초 코잡기 & 마커 걸기 영상 재생'}</span>
               </button>
             </div>
+
+            {/* Step 1 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="sweater_step_1" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -662,6 +666,9 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: M1R / M1L 코늘림 손동작 재생</span>
               </button>
             </div>
+
+            {/* Step 2 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="sweater_step_2" targetRows={calc.yokeRows} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -779,6 +786,9 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 소매 분리 &amp; 감아코 손동작 재생</span>
               </button>
             </div>
+
+            {/* Step 3 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="sweater_step_3" targetRows={1} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -877,6 +887,9 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 밑단 코막음 손동작 재생</span>
               </button>
             </div>
+
+            {/* Step 4 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="sweater_step_4" targetRows={calc.bodyRowsEst} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -1018,6 +1031,9 @@ export default function SweaterRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: {isVneck ? 'V넥밴드 코줍기 & CDD 영상 재생' : isCardigan ? '가디건 단추단 & 단추구멍 영상 재생' : '소매 매직루프 & 코막음 재생'}</span>
               </button>
             </div>
+
+            {/* Step 5 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="sweater_step_5" targetRows={calc.sleeveDecRows ? Math.round(calc.sleeveDecRows * 6) : 60} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
       </div>

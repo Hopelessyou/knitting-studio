@@ -116,12 +116,15 @@ export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew
         <div className="lg:col-span-7">
           <ResultSummaryCard
             isAdmin={isAdmin}
+            isPrintAllowed={isAdmin}
             castOn={calc.castOn}
             castOnLabel={castOnLabel}
             castOnDesc={castOnDesc}
             bodySts={calc.totalFinalBodySts}
             bodyStsLabel={sweaterType === 'cardigan' ? '몸통 코수 (앞트임 평면)' : '완성 몸통 코수 (원형)'}
             bodyStsDesc={`앞뒤 각 ${Math.round(calc.totalFinalBodySts / 2)}코 · 완성 가슴둘레 ${calc.targetChest}cm (여유분 +${calc.ease}cm)`}
+            yarnBalls={calc.yarnBalls}
+            yarnMeters={calc.yarnMeters}
             formula={formula}
             ruleDesc={`완성 가슴둘레 ${calc.targetChest}cm = 실측 ${chestBase}cm + ${fit === 'tailored' ? '정핏 7cm' : '루즈핏 15cm'}`}
             specs={specs}
@@ -136,7 +139,12 @@ export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew
       <VocabDictionary onOpenVideo={onOpenVideo} />
 
       {/* 5. Masterclass Detailed Roadmap */}
-      <SweaterRoadmap calc={calc} onOpenVideo={onOpenVideo} />
+      <SweaterRoadmap
+        calc={calc}
+        onOpenVideo={onOpenVideo}
+        currentUser={currentUser}
+        onOpenAuthModal={onOpenAuthModal}
+      />
     </div>
   );
 }

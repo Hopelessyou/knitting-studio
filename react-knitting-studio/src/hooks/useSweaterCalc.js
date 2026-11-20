@@ -118,6 +118,11 @@ export default function useSweaterCalc(
       yarnBalls = `${ballsMin}~${ballsMax}볼 (${gramEst}g · ${ballSize}g/볼)`;
     }
 
+    // 실 총 길이 환산 (미터 및 야드)
+    const estMeters = Math.round(gramEst * (safeGaugeSts * 0.11 + 0.4));
+    const estYards = Math.round(estMeters * 1.09361);
+    const yarnMeters = `${estMeters.toLocaleString()}m (${estYards.toLocaleString()}yd)`;
+
     // 5. 스타일별 (라운드넥, V넥, 가디건) 특화 파라미터
     let castOn = baseCastOn;
     let frontLeftSts = 0;
@@ -181,7 +186,9 @@ export default function useSweaterCalc(
       bodyRowsEst,
       totalLengthCm,
       totalRows,
+      gramEst,
       yarnBalls,
+      yarnMeters,
       wristSts,
       sleeveLengthCm,
       sleeveDecRows,

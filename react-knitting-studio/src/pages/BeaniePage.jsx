@@ -8,13 +8,14 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import BeanieRoadmap from '../components/roadmap/BeanieRoadmap';
 
-export default function BeaniePage({ onOpenVideo, isAdmin }) {
+export default function BeaniePage({ onOpenVideo, isAdmin, currentUser, onOpenAuthModal }) {
   const [gaugeSts, setGaugeSts] = useState(18);
   const [gaugeRows, setGaugeRows] = useState(24);
   const [headCirc, setHeadCirc] = useState(56);
   const [style, setStyle] = useState('classic');
+  const [yarnBallWeight, setYarnBallWeight] = useState(50);
 
-  const calc = useBeanieCalc(gaugeSts, gaugeRows, headCirc, style);
+  const calc = useBeanieCalc(gaugeSts, gaugeRows, headCirc, style, '2x2', yarnBallWeight);
 
   const styleNames = {
     classic: '클래식 폴딩 비니 (7cm 턴업 롤업)',
@@ -45,6 +46,8 @@ export default function BeaniePage({ onOpenVideo, isAdmin }) {
             gaugeRows={gaugeRows}
             onStsChange={setGaugeSts}
             onRowsChange={setGaugeRows}
+            ballWeight={yarnBallWeight}
+            onBallWeightChange={setYarnBallWeight}
           />
 
           <DimensionsInput
@@ -65,16 +68,22 @@ export default function BeaniePage({ onOpenVideo, isAdmin }) {
         <div className="lg:col-span-7">
           <ResultSummaryCard
             isAdmin={isAdmin}
+            isPrintAllowed={isAdmin}
             castOn={calc.castOn}
             castOnLabel="시작 원형 캐스트온 코수"
             castOnDesc={`머리둘레 ${headCirc}cm - 신축성 5cm 차감 = 목표둘레 ${headCirc - 5}cm 기준`}
+            bodySts={calc.castOn}
+            bodyStsLabel="비니 원형 코수 유지"
+            bodyStsDesc="정수리 줄임 전까지 증감 없이 원형 직진"
+            yarnBalls={calc.yarnBalls}
+            yarnMeters={calc.yarnMeters}
             formula={`8의 배수 (${calc.wedgeSts}코 × 8섹션 = 총 ${calc.castOn}코)`}
             ruleDesc="정수리 8등분 쐐기 줄임 대칭 완벽 보장"
             specs={[
               { label: '롤업 브림 높이', value: `${calc.brimHeightCm}cm`, sub: '이마 고무단' },
               { label: '정수리 줄임 시작', value: `${calc.crownStartHeightCm}cm`, sub: `${calc.crownStartRows}단` },
               { label: '비니 완성 총장', value: `${calc.totalHeightCm}cm`, sub: `${calc.totalRows}단` },
-              { label: '예상 실 소요량', value: '1~2볼 (80~100g)', sub: '울 100% 기준' }
+              { label: '예상 실 중량', value: `${calc.estGrams}g`, sub: '단색 메리노울 기준' }
             ]}
           />
         </div>
@@ -87,7 +96,12 @@ export default function BeaniePage({ onOpenVideo, isAdmin }) {
       <VocabDictionary onOpenVideo={onOpenVideo} />
 
       {/* 5. Masterclass Detailed Roadmap */}
-      <BeanieRoadmap calc={calc} onOpenVideo={onOpenVideo} />
+      <BeanieRoadmap
+        calc={calc}
+        onOpenVideo={onOpenVideo}
+        currentUser={currentUser}
+        onOpenAuthModal={onOpenAuthModal}
+      />
     </div>
   );
 }

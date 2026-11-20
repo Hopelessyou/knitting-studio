@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import StepProgressTracker from './StepProgressTracker';
 
-export default function SocksRoadmap({ calc, onOpenVideo }) {
+export default function SocksRoadmap({ calc, onOpenVideo, currentUser, onOpenAuthModal }) {
   const [activeTab, setActiveTab] = useState('all');
 
   const isToeUp = calc.method === 'toeup';
@@ -180,6 +181,9 @@ export default function SocksRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: {isToeUp ? '주디스 매직 캐스트온 재생' : '발목 립 코잡기 재생'}</span>
               </button>
             </div>
+
+            {/* Step 1 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="socks_step_1" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -239,6 +243,9 @@ export default function SocksRoadmap({ calc, onOpenVideo }) {
                 싱커루프를 뒤에서 앞으로 주울 때는 앞루프를 찔러 뜨고(M1R), 앞에서 뒤로 주울 때는 뒷루프를 찔러 꼬아뜨면(M1L) 구멍 없이 탄탄한 솔기가 완성됩니다.
               </p>
             </div>
+
+            {/* Step 2 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="socks_step_2" targetRows={calc.totalRows || 40} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -286,6 +293,9 @@ export default function SocksRoadmap({ calc, onOpenVideo }) {
                 </p>
               )}
             </div>
+
+            {/* Step 3 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="socks_step_3" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -344,6 +354,9 @@ export default function SocksRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: 독일식 경사뜨기(GSR) 뒤꿈치 재생</span>
               </button>
             </div>
+
+            {/* Step 4 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="socks_step_4" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
 
@@ -402,6 +415,9 @@ export default function SocksRoadmap({ calc, onOpenVideo }) {
                 <span>기법 영상: {isToeUp ? "Jeny's 신축성 코막음 재생" : '키치너 스티치 재생'}</span>
               </button>
             </div>
+
+            {/* Step 5 Progress Tracker (로그인 전용) */}
+            <StepProgressTracker stepKey="socks_step_5" targetRows={10} currentUser={currentUser} onOpenAuthModal={onOpenAuthModal} />
           </div>
         )}
       </div>

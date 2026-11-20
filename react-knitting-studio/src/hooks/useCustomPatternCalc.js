@@ -132,6 +132,11 @@ export default function useCustomPatternCalc({
       yarnBalls = `${estBallsMin}~${estBallsMax}볼 (${estGrams}g · ${ballSize}g/볼)`;
     }
 
+    // 실 총 길이 환산 (미터 및 야드)
+    const estMeters = Math.round(estGrams * (safeGaugeSts * 0.11 + 0.4));
+    const estYards = Math.round(estMeters * 1.09361);
+    const yarnMeters = `${estMeters.toLocaleString()}m (${estYards.toLocaleString()}yd)`;
+
     // 스트라이프 배색 시 컬러별 볼수
     const stripeColorA = Math.ceil(estBallsMax * 0.55);
     const stripeColorB = Math.floor(estBallsMax * 0.45);
@@ -173,6 +178,7 @@ export default function useCustomPatternCalc({
       sleeveLengthCm,
       sleeveDecRows,
       yarnBalls,
+      yarnMeters,
       estGrams,
       stripeColorA,
       stripeColorB
