@@ -54,8 +54,7 @@ export default function ScarfPage({ onOpenVideo, isAdmin, currentUser, onOpenAut
 
           {/* 2.a: 2-Column Compact Dimensions Grid for Scarf */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <DimensionsInput
-              title="목도리 너비 (cm)"
+            <DimensionsInput compact={true} title="목도리 너비 (cm)"
               subtitle="선호하는 머플러 가로 폭"
               value={targetW}
               min={15}
@@ -68,8 +67,7 @@ export default function ScarfPage({ onOpenVideo, isAdmin, currentUser, onOpenAut
               ]}
             />
 
-            <DimensionsInput
-              title="목도리 총 길이 (cm)"
+            <DimensionsInput compact={true} title="목도리 총 길이 (cm)"
               subtitle="목에 2번 감아 자연스럽게 늘어뜨리는 길이"
               value={targetL}
               min={120}

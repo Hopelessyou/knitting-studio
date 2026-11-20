@@ -46,8 +46,7 @@ export default function SocksPage({ onOpenVideo, isAdmin, currentUser, onOpenAut
 
           {/* 2.a: 2-Column Compact Dimensions Grid for Socks */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <DimensionsInput
-              title="발 길이 (mm)"
+            <DimensionsInput compact={true} title="발 길이 (mm)"
               subtitle="발뒤꿈치 맨 끝부터 긴 발가락 끝까지"
               value={footLengthMm}
               min={210}
@@ -63,8 +62,7 @@ export default function SocksPage({ onOpenVideo, isAdmin, currentUser, onOpenAut
               ]}
             />
 
-            <DimensionsInput
-              title="발등 둘레 (cm)"
+            <DimensionsInput compact={true} title="발등 둘레 (cm)"
               subtitle="발바닥 아치 중간 둘레 (-2cm 여유분)"
               value={footCircCm}
               min={18}
