@@ -8,7 +8,7 @@ import DimensionsInput from '../components/inputs/DimensionsInput';
 import ResultSummaryCard from '../components/results/ResultSummaryCard';
 import SweaterRoadmap from '../components/roadmap/SweaterRoadmap';
 
-export default function SweaterPage({ onOpenVideo, isAdmin, initialStyle = "crew" }) {
+export default function SweaterPage({ onOpenVideo, isAdmin, currentUser, onOpenAuthModal, initialStyle = "crew" }) {
   const [gaugeSts, setGaugeSts] = useState(20);
   const [gaugeRows, setGaugeRows] = useState(28);
   const [ballWeight, setBallWeight] = useState(50);

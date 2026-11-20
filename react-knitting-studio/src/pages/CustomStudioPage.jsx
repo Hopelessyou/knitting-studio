@@ -4,7 +4,7 @@ import CustomPatternPreview from '../components/custom/CustomPatternPreview';
 import GaugeInput from '../components/inputs/GaugeInput';
 import DimensionsInput from '../components/inputs/DimensionsInput';
 
-export default function CustomStudioPage({ isAdmin, onOpenVideo }) {
+export default function CustomStudioPage({ isAdmin, onOpenVideo, currentUser, onOpenAuthModal }) {
   // 1. Core State
   const [gaugeSts, setGaugeSts] = useState(20);
   const [gaugeRows, setGaugeRows] = useState(28);
